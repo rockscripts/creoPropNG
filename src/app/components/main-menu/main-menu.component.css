@@ -1,0 +1,38 @@
+.navbar-brand, .nav-link{
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+.nav-link{
+  font-family: 'Roboto-Bold';
+}
+
+.navbar-brand {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+  font-family: 'Product-Sans-Regular';
+  font-size: 1.9em;
+}
+
+.navbar{
+  background-color:#ed1b24ff !important;
+  height: 70px;
+}
+
+.navbar-collapse{
+  background-color:#ed1b24ff !important;
+}
+
+nav .form-control{
+    border-radius: 0px;
+    border: 1px solid #eee;
+    background-color: #eee;
+}
+
+nav .btn-search{
+  background-color: #eee;
+  border-radius: 0px;
+  border: 1px solid #eee;
+}

@@ -1,0 +1,31 @@
+.rem-online{
+  color:#41a152;
+  font-weight: bold;
+}
+
+.np-text{
+  margin-bottom: 3em;
+}
+
+.np-text{
+  color:#999;
+}
+
+.np-text h2{
+  color:#000;
+}
+
+.np-text a{
+  color:#49acd0;
+  font-weight: bold;
+}
+
+.cp-cont{
+  padding-top: 2em;
+  background: #fafafa;
+}
+
+.np-ok-ps{
+  background:#fff;
+  margin-top: -3em;
+}

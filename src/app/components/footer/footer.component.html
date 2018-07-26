@@ -1,0 +1,56 @@
+<footer class="row justify-content-md-center footer">
+  <div class="row footer-1 text-center">
+    <h4 class="tit">Búsquedas relacionadas</h4>
+  </div>
+  <div class="row col-12 footer-2">
+    <div class="col">
+      <div class="row">PROPIEDADES EN ALQUILER</div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
+        {{ub.tit}}</li>
+      </ul>
+    </div>
+
+    <div class="col">
+      <div class="row">PROPIEDADES EN VENTA</div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let ub of propiedades_venta" class="list-group-item d-flex justify-content-between align-items-center">
+        {{ub.tit}}</li>
+      </ul>
+    </div>
+
+    <div class="col">
+      <div class="row">PROPIEDADES EN ARGENTINA</div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
+        {{ub.tit}}</li>
+      </ul>
+    </div>
+
+    <div class="col">
+      <div class="row">PROPIEDADES EN CONSTRUCCIÓN</div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
+        {{ub.tit}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row col-12 footer-3">
+
+    <div class="col-auto">
+      <img class="img-footer" src="assets/img/data_fiscal.jpg" />
+    </div>
+
+    <div class="col row align-items-center">
+      <div class="col">
+        © Copyright 2018 creoprop.com.ar
+        <a routerLink="terminos">Términos y condiciones</a>&nbsp;
+        <a routerLink="privacidad">Política de Privacidad</a>
+      </div>
+    </div>
+
+    <div class="col-auto">
+      <img class="img-footer" src="assets/img/LogoTipo.svg" />
+    </div>
+  </div>
+</footer>

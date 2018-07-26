@@ -1,0 +1,346 @@
+<div class="hh1 ftit row align-items-center">
+  <div class="col text-center"><i class="fa fa-filter"></i> FILTROS</div>
+</div>
+<div class="accordion row" id="accordionExample">
+  <form class="w-100">
+<!-- ubicacion -->
+  <div class="card col-12">
+    <div class="card-header" id="headingOne">
+      <div class="" type="div" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Ubicación
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="busqueda.provincia" name="provincia">
+            <option *ngFor="let prov of provincias" [value]="prov.id">{{prov.nombre}}</option>
+          </select>
+        </div>
+
+        <div class="form-group"> <input type="text" class="form-control" [(ngModel)]="busqueda.termUbicacion" name="termUbicacion" (keyup)="updateUbicaciones()" placeholder="Buscar Localidad"> </div>
+
+        <ul class="list-group list-group-flush">
+          <li (click)="ciudadClick(ub.id)" *ngFor="let ub of ubicaciones_busqueda" class="list-group-item d-flex justify-content-between">
+            <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.cant}})</span> </li>
+        </ul>
+
+        <div class="w-100">
+  				<button class="w-100 btn btn-sm btn-cprop mtop1">APLICAR</button>
+  			</div>
+      </div>
+    </div>
+  </div>
+<!-- direccion -->
+  <div class="card col-12">
+    <div class="card-header" id="headingTwo">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Dirección
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <div class="form-group"> <input type="text" class="form-control" [(ngModel)]="busqueda.termDireccion" name="termUbicacion" placeholder="Ej: Av. de Mayo"> </div>
+      </div>
+    </div>
+  </div>
+<!-- tipo op -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+        Tipo de operación
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse4" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+          <li (click)="tipoOPClick(op.id)" *ngFor="let op of tipo_operacion" class="list-group-item d-flex justify-content-between align-items-center">{{op.name}} <span class="badge">({{op.cant}})</span> </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+<!-- tipo prop -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+        Tipo de propiedad
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse5" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+          <li (click)="tipoPropClick(tp.id)" *ngFor="let tp of tipo_propiedad" class="list-group-item d-flex justify-content-between align-items-center">{{tp.name}} <span class="badge">({{tp.cant}})</span> </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+<!-- precio -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+        Precio
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse6" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <div class="col-12 money-select">
+          <div class="row">
+            <div class="col text-center active">PESOS</div>
+            <div class="col text-center">DÓLARES</div>
+          </div>
+        </div>
+
+        <div class="form-group mtop1">
+          <div class="input-group-prepend"><div class="input-group-text">$</div></div>
+          <input type="text" class="form-control" id="pre1" placeholder="Desde"> </div>
+        <div class="form-group">
+          <div class="input-group-prepend"><div class="input-group-text">$</div></div>
+          <input type="text" class="form-control" id="pre2" placeholder="Hasta"> </div>
+
+        <div class="w-100">
+  				<button class="w-100 btn btn-sm btn-cprop mtop1">APLICAR</button>
+  			</div>
+      </div>
+    </div>
+  </div>
+<!-- expensas -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+        Expensas
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse7" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <div class="form-group mtop1">
+          <div class="input-group-prepend"><div class="input-group-text">$</div></div>
+          <input type="text" class="form-control" id="pre2" placeholder="Desde"> </div>
+        <div class="form-group">
+          <div class="input-group-prepend"><div class="input-group-text">$</div></div>
+          <input type="text" class="form-control" id="pre3" placeholder="Hasta"> </div>
+
+        <div class="w-100">
+  				<button class="w-100 btn btn-sm btn-cprop mtop1">APLICAR</button>
+  			</div>
+      </div>
+    </div>
+  </div>
+<!-- ambientes -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+        Ambientes
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse8" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+          <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of ambientes" class="list-group-item d-flex justify-content-between align-items-center">{{tp.name}} <span class="badge">({{tp.cant}})</span> </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+<!-- dormitorios -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+        Dormitorios
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse9" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+          <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of dormitorios" class="list-group-item d-flex justify-content-between align-items-center">{{tp.name}} <span class="badge">({{tp.cant}})</span> </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+<!-- baños -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+        Baños
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse10" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+          <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of cant_banios" class="list-group-item d-flex justify-content-between align-items-center">{{tp.name}} <span class="badge">({{tp.cant}})</span> </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+<!-- cocheras -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+        Cocheras
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse11" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+          <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of cocheras" class="list-group-item d-flex justify-content-between align-items-center">{{tp.name}} <span class="badge">({{tp.cant}})</span> </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+<!-- superficie -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+        Superficie
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse12" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <div class="col-12 money-select">
+          <div class="row">
+            <div class="col text-center active">CUBIERTA</div>
+            <div class="col text-center">TOTAL</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<!-- antiguedad -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+        Antigüedad
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse13" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+          <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of antiguedad" class="list-group-item d-flex justify-content-between align-items-center">{{tp.name}} <span class="badge">({{tp.cant}})</span> </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+<!-- tipos ambientes -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse16" aria-expanded="false" aria-controls="collapse16">
+        Tipos de Ambientes
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse16" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <div class="form-group"> <input type="text" class="form-control" id="finder2" placeholder="Buscar tipos de ambientes"> </div>
+
+        <ul class="list-group list-group-flush">
+          <li (click)="goToBusqueda(ub.name)" *ngFor="let ub of tipos_ambientes" class="list-group-item d-flex justify-content-between align-items-center">
+            <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.cant}})</span> </li>
+        </ul>
+
+        <div class="w-100">
+  				<button class="w-100 btn btn-sm btn-cprop mtop1">APLICAR</button>
+  			</div>
+
+      </div>
+    </div>
+  </div>
+<!-- servicios -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
+        Servicios
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse14" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <div class="form-group"> <input type="text" class="form-control" id="finder2" placeholder="Servicios"> </div>
+
+        <ul class="list-group list-group-flush">
+          <li (click)="goToBusqueda(ub.name)" *ngFor="let ub of servicios" class="list-group-item d-flex justify-content-between align-items-center">
+            <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.cant}})</span> </li>
+        </ul>
+
+        <div class="w-100">
+  				<button class="w-100 btn btn-sm btn-cprop mtop1">APLICAR</button>
+  			</div>
+
+      </div>
+    </div>
+  </div>
+<!-- generales -->
+  <div class="card col-12">
+    <div class="card-header" id="headingThree">
+      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse15" aria-expanded="false" aria-controls="collapse15">
+        Generales
+        <i class="fa icon fa-sort-down"></i>
+      </div>
+    </div>
+    <div id="collapse15" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+
+        <div class="form-group"> <input type="text" class="form-control" id="finder2" placeholder="Generales"> </div>
+
+        <ul class="list-group list-group-flush">
+          <li (click)="goToBusqueda(ub.name)" *ngFor="let ub of generales" class="list-group-item d-flex justify-content-between align-items-center">
+            <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.cant}})</span> </li>
+        </ul>
+
+        <div class="w-100">
+  				<button class="w-100 btn btn-sm btn-cprop mtop1">APLICAR</button>
+  			</div>
+
+      </div>
+    </div>
+  </div>
+<!-- tipo anunciante -->
+<div class="card col-12">
+  <div class="card-header" id="headingThree">
+    <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse17" aria-expanded="false" aria-controls="collapse17">
+      Tipo de anunciante
+      <i class="fa icon fa-sort-down"></i>
+    </div>
+  </div>
+  <div id="collapse17" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+    <div class="card-body">
+
+      <ul class="list-group list-group-flush">
+        <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of tanunciante" class="list-group-item d-flex justify-content-between align-items-center">{{tp.name}} <span class="badge">({{tp.cant}})</span> </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+</form>
+  </div>

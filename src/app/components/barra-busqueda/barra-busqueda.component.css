@@ -1,0 +1,65 @@
+.accordion .card-header{
+  background: #fff;
+  background-color: #fff;
+}
+
+.accordion .card-body{
+  padding:0px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.accordion .icon{
+  position: absolute;
+  right: 18px;
+}
+
+.accordion input{
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+}
+
+.accordion .card-header{
+  padding-left: 0px;
+  border-bottom: none;
+}
+
+.accordion .card{  border-bottom: 1px solid #ddd; box-shadow: none;}
+.accordion .card-body{  border-bottom:none;}
+
+.accordion .list-group-item{
+  color: #76a6c7; padding: 0px;  border: none;  font-size: 0.7em;
+}
+
+.accordion li{cursor: pointer;}
+
+.accordion .list-group-item .badge{
+  color: #a5a5a5;
+}
+
+.accordion .list-group{
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.money-select .col{
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-left: 1px solid #858585;
+}
+
+.money-select{
+  border: 1px solid #858585;
+  color: #858585;
+  font-size: 0.8em;
+  border-radius: 5px;
+}
+
+.money-select .active{
+  background: #858585;
+  color: #fff;
+}
+
+.mtop1{
+  margin-top: 1em;
+}

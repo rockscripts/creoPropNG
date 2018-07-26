@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg fixed-top  navbar-light ">
+  <a class="navbar-brand" routerLink="/">
+    <img src="assets/logo.svg" width="auto" height="60px" alt="">
+    creoprop
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse row" id="navbarSupportedContent">
+    <form class="my-2 my-lg-0 col-sm-5">
+      <div class="input-group add-on">
+      <input class="form-control" placeholder="¿Dónde estás buscando?" name="srch-term" id="srch-term" type="text">
+      <div class="input-group-btn">
+        <button class="btn btn-search"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+    </form>
+    <div class="col">
+    </div>
+    <div class="col-sm-auto order-last">
+      <ul class="navbar-nav mr-auto align-self-end">
+        <li *ngFor="let en of enlaces" class="nav-item">
+          <a class="nav-link"  routerLink="{{en.r}}">{{en.t}}</a>
+        </li>
+        <li class="nav-item" data-toggle="modal" data-target="#exampleModal">
+          <a class="nav-link"  >REGISTRARME</a>
+        </li>
+        <li class="nav-item" data-toggle="modal" data-target="#exampleModal">
+          <a class="nav-link"  >INICIAR SESIÓN</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,41 @@
+footer{
+  font-size: 0.8em;
+  margin-top:20px;
+  background-color: #eee;
+}
+
+footer div{margin-right: 0px;
+margin-left: 0px;}
+
+footer .list-group-item{
+  border: none;
+  background: none;
+  padding: 0px;
+}
+
+.img-footer{
+  height: 4em;
+}
+
+.footer-3{
+  height: 5em;
+  padding: 0.5em;
+  background-color: #fff;
+}
+
+.footer-1{
+  padding: 1em;
+}
+
+.footer-1 .tit{
+  font-weight: lighter;
+}
+
+.footer-2 {
+  color: #76a6c7;
+  padding-bottom: 1em;
+}
+
+.footer-2 li{
+  cursor: pointer;
+}

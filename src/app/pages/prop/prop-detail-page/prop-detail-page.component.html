@@ -1,0 +1,153 @@
+<div class="row col-12 p-detail-p">
+	<div class="row col-12 col-md-8">
+
+		<div class="col-12 c-card">
+			<div class="card">
+
+				<div class="card-body row">
+					<div class="col-auto back-arr-btn row align-items-center">
+						<div class="col"><i class="fa fa-arrow-left link-btn" routerLink="/"></i> </div>
+					</div>
+
+					<div class="col">
+						<h5 class="card-title">{{propiedad[0].titulo}}</h5>
+						<span class="col-12 pl-0 subt">
+							<i class="fa fa-map-marker" aria-hidden="true"></i>
+							{{propiedad[0].direccion}},&nbsp;{{propiedad.localidad}}
+						</span>
+					</div>
+
+					<div class="row col-12 col-md-3  order-12">
+						<div class="col-12">
+							<i class="col-auto"></i>
+							<i class="col-3 fa fa-heart link-btn"></i>
+							<i class="col-3 fa fa-share-alt link-btn"></i>
+							<i class="col-3 fa fa-print link-btn"></i>
+						</div>
+						<div class="row col-12 btn-denu"><a>DENUNCIAR AVISO</a></div>
+					</div>
+				</div>
+
+				 <div class="card-body img-cont">
+					 <img class="card-img-bottom img-map" src="./{{propiedad.files[0]['nombre']}}" alt="{{propiedad[0].titulo}}">
+			  </div>
+
+			</div>
+		</div>
+
+		<div class="col-12 c-card">
+			<div class="card">
+			  <div class="card-body">
+					<h5 class="card-title">UBICACIÓN</h5>
+					<span class="col-12 pl-0 subt">
+						<i class="fa fa-map-marker" aria-hidden="true"></i>
+						{{propiedad[0].direccion}},&nbsp;{{propiedad.localidad}}
+					</span>
+			  </div>
+			  <img class="card-img-bottom" src="..." alt="Mapa">
+			</div>
+		</div>
+
+		<div class="col-12 col-sm-6 c-card">
+			<div class="card">
+			  <div class="card-body">
+			    <h5 class="card-title">DATOS PRINCIPALES</h5>
+					<div class="col-12">
+						<div class="col-12"><i class="fa fa-share-alt"></i>&nbsp;{{propiedad[0].superficie_cubierta}} Superficie cubierta</div>
+						<div class="col-12"><i class="fa fa-share-alt"></i>&nbsp;{{propiedad[0].dormitorios}} Dormitorios</div>
+						<div class="col-12"><i class="fa fa-share-alt"></i>&nbsp;{{propiedad[0].cochera}} Cochera</div>
+						<div class="col-12"><i class="fa fa-share-alt"></i>&nbsp;{{propiedad[0].piscina}} Piscina</div>
+						<div class="col-12"><i class="fa fa-share-alt"></i>&nbsp;{{propiedad[0].capacidad}} Capacidad</div>
+					</div>
+			  </div>
+			</div>
+		</div>
+
+		<div class="col-12 col-sm-6 c-card">
+			<div class="card">
+			  <div class="card-body">
+			    <h5 class="card-title">DESCRIPCIÓN</h5>
+					{{propiedad[0].texto}}
+			  </div>
+			</div>
+		</div>
+
+		<div class="col-12 col-sm-6 c-card">
+			<div class="card">
+			  <div class="card-body">
+			    <h5 class="card-title">AMENITIES</h5>
+
+					<div class="col-12">
+	          <div *ngFor="let ub of propiedad.amenities" class="col-12">
+							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
+						</div>
+	        </div>
+
+			  </div>
+			</div>
+		</div>
+
+
+	<!--	<div class="col-12 col-sm-6 c-card">
+			<div class="card">
+			  <div class="card-body">
+			    <h5 class="card-title">AMBIENTES</h5>
+			  </div>
+			</div>
+		</div>-->
+
+		<!--<div class="col-12 col-sm-6 c-card">
+			<div class="card">
+			  <div class="card-body">
+			    <h5 class="card-title">CARACTERÍSTICAS GENERALES</h5>
+			  </div>
+			</div>
+		</div>-->
+
+
+	</div>
+<!-- precio -->
+	<div class="row col-12 col-md-4 c-card">
+		<div class="col-12">
+			<div class="card card-det">
+				<div class="card-body">
+					<h5 class="card-title">PRECIO VENTA</h5>
+				</div>
+				<div class="card-body topln">
+					<div class="row">
+						<div class="col-3 rw-det">
+							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-bath"></i></div></div>
+							<span class="sp">Sup. Cubierta</span>
+							<div class="row"><div class="col dt-lg">{{propiedad[0].superficie_cubierta}}<small>m²</small></div></div>
+						</div>
+						<div class="col-3 rw-det">
+							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-bed"></i></div></div>
+							<span class="sp">Dormitorios</span>
+							<div class="row"><div class="col dt-lg">{{propiedad[0].dormitorios}}</div></div>
+						</div>
+						<div class="col-3 rw-det">
+							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-bath"></i></div></div>
+							<span class="sp">Baños</span>
+							<div class="row"><div class="col dt-lg">{{propiedad[0].banios}}</div></div>
+						</div>
+						<div class="col-3 rw-det">
+							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-bath"></i></div></div>
+							<span class="sp">Cochera</span>
+							<div class="row"><div class="col dt-lg">{{propiedad[0].cochera}}</div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 c-card">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">¡Contactá al anunciante!</h5>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>

@@ -1,0 +1,70 @@
+import { BrowserModule }            from '@angular/platform-browser';
+import { NgModule }                 from '@angular/core';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { HttpClientModule }         from '@angular/common/http';
+import { FormsModule }              from '@angular/forms';
+
+import { AppComponent }      from './app.component';
+import { AppRoutingModule }  from './app-routing.module';
+
+import { PropiedadesService }   from './providers/propiedades.service';
+import { GralInfoService }      from './providers/gral-info.service';
+import { ZonasService }         from './providers/zonas.service';
+
+import { PropDetailPageComponent } from './pages/prop/prop-detail-page/prop-detail-page.component';
+import { PrivacidadPageComponent } from './pages/privacidad-page/privacidad-page.component';
+import { TermsyCondPageComponent } from './pages/termsy-cond-page/termsy-cond-page.component';
+import { HomeComponent }           from './pages/home/home.component';
+import { NotFoundComponent }       from './pages/not-found/not-found.component';
+import { NuevaPropComponent }      from './pages/prop/nueva-prop/nueva-prop.component';
+import { SignInComponent }         from './pages/sign-in/sign-in.component';
+import { NuevaPropOkComponent }    from './pages/prop/nueva-prop-ok/nueva-prop-ok.component';
+import { MiCuentaComponent }       from './pages/mi-cuenta/mi-cuenta.component';
+import { SearchComponent }         from './pages/search/search.component';
+
+import { PropiedadFormComponent }  from './forms/propiedad-form/propiedad-form.component';
+
+import { BarraBusquedaComponent } from './components/barra-busqueda/barra-busqueda.component';
+import { MainMenuComponent }      from './components/main-menu/main-menu.component';
+import { FooterComponent }        from './components/footer/footer.component';
+import { PropResultComponent } from './components/prop-result/prop-result.component';
+import { LoginModalComponent } from './components/login-modal/login-modal.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    MainMenuComponent,
+    HomeComponent,
+    FooterComponent,
+    PropDetailPageComponent,
+    PrivacidadPageComponent,
+    TermsyCondPageComponent,
+    NotFoundComponent,
+    NuevaPropComponent,
+    SignInComponent,
+    NuevaPropOkComponent,
+    PropiedadFormComponent,
+    MiCuentaComponent,
+    SearchComponent,
+    BarraBusquedaComponent,
+    PropResultComponent,
+    LoginModalComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    AngularFontAwesomeModule,
+    FormsModule
+  ],
+  providers: [
+    PropiedadesService,
+    GralInfoService,
+    ZonasService
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  exports: [NotFoundComponent, NuevaPropComponent, SignInComponent]
+})
+export class AppModule { }

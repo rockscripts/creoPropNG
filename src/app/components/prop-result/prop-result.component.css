@@ -1,0 +1,64 @@
+.cp-card{
+  padding-right: 10px;
+  padding-left: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.res-count{
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.res-cont{
+  margin-top:40px;
+}
+
+.cp-card .card-body{
+  position: absolute;
+  width: 100%;
+  height: 54px;
+  background-color: rgba(255,255,255,0.9);
+  bottom: 0px;
+  padding: 9px;
+  font-size: 0.8em;
+}
+
+.cp-card .img-count{
+  position: absolute;
+  top:5px;
+  right: 5px;
+  border-radius: 5px;
+  padding: 3px;
+  color:#fff !important;
+  background: rgba(0,0,0,0.7);
+  font-size: 0.6em;
+}
+
+.cp-card .verif .fa{
+  color:#fff !important;
+}
+
+.card-tit{
+  font-weight: bold;
+      color: #599bef;
+}
+
+.card-precio{
+  color:#9e3b5b;font-weight: bold;margin-left: 4px;
+}
+
+.imb-img{
+  height: 4em;
+  width: auto;
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+}
+
+.imb-img2{
+  position: absolute;
+  width: 33%;
+  left: 33%;
+  top: 19%;
+  opacity: 0.2;
+}

@@ -1,0 +1,78 @@
+@font-face {  font-family: 'Roboto-Regular';  src: url('assets/Roboto-Regular.ttf'); }
+@font-face {  font-family: 'Roboto-Bold';  src: url('assets/Roboto-Bold.ttf'); }
+@font-face {  font-family: 'Product-Sans-Regular';  src: url('assets/Product-Sans-Regular.ttf'); }
+
+html, body{  font-family: 'Roboto-Regular';}
+
+body {  padding-top: 70px;}
+
+.hh1{
+  height: 50px;
+}
+
+.ftit{
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.card-img {min-height: 225px; max-height: 225px;
+width: auto; border-radius:0px;}
+
+.card { border-radius:0px; border: none; box-shadow: 0 1px 2px rgba(0,0,0,.25);}
+
+.fa{
+  color: #8b8785;
+}
+
+.c-card{
+  margin-bottom: 15px;
+}
+
+.btn-cprop{
+  background: #ed1b24;
+  color: #fff;
+  border-radius: 0px;
+  font-weight: bold;
+}
+
+.btn-cprop:hover{color:#d01;}
+
+.prop-container{
+    background-color: #fafafa;
+    border-left: 1px solid #d9d9d9;
+    padding-left: 2em;
+}
+
+a {color: #1ea7dd !important; font-weight: bold; cursor:pointer;}
+
+.form-control:focus {border-color: #2b9ddd; box-shadow: none;}
+
+:-ms-input-placeholder, ::-ms-input-placeholder, ::placeholder  {
+   color: #eee;
+}
+
+.form-sub{
+  font-size: 15.7px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.06;
+  letter-spacing: normal;
+  text-align: center;
+  color: #717171;
+}
+
+.form-separator{  display: flex; padding: 10px 0;}
+.form-separator::before {    margin-right: 24px;}
+.form-separator::after, .form-separator::before {
+    content: " ";
+    width: 50%;
+    border-bottom: 1px solid #e2e2e2;
+    transform: translateY(-50%);
+}
+.form-separator::after {
+    margin-left: 24px;
+}
+
+.modal{
+  background-color: rgba(0,0,0,0.6);
+}

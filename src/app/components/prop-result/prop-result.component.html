@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-12">
+    <div class="col-12 hh1 pl-0 res-count row align-items-center"><div class="col-12 pl-0"><b>{{cant_prop}}</b>&nbsp;Propiedades en Argentina</div></div>
+  </div>
+  <div class="row col-12 res-cont">
+
+    <div *ngFor="let propiedad of propiedades" class="col-12 col-sm-6 col-md-4 col-ls-3 cp-card" routerLink="propiedad/{{propiedad.id}}">
+      <div class="card">
+        <img class="card-img" src="./{{propiedad.files[0]['nombre']}}" alt="Card image">
+        <div class="card-img-overlay">
+          <img class="imb-img" src="./{{propiedad.inmobiliaria.logo}}" alt="{{propiedad.inmobiliaria.nombre}}"/>
+          <img class="imb-img2" src="./{{propiedad.inmobiliaria.logo}}" />
+          <div class="img-count">1/1</div>
+        </div>
+        <div class="card-body">
+          <div class="card-text card-tit">{{propiedad.titulo}}</div>
+          <div class="card-text">Departamento 1 <i class="fa fa-bath"></i>  2 <i class="fa fa-bed"></i> <span class="card-precio">$ 5.678.00</span></div>
+         </div>
+      </div>
+    </div>
+
+  </div>
+</div>
