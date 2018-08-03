@@ -10,6 +10,7 @@ import { AppRoutingModule }  from './app-routing.module';
 import { PropiedadesService }   from './providers/propiedades.service';
 import { GralInfoService }      from './providers/gral-info.service';
 import { ZonasService }         from './providers/zonas.service';
+import { ConfigService }        from './providers/config.service';
 
 import { PropDetailPageComponent } from './pages/prop/prop-detail-page/prop-detail-page.component';
 import { PrivacidadPageComponent } from './pages/privacidad-page/privacidad-page.component';
@@ -60,7 +61,8 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
   providers: [
     PropiedadesService,
     GralInfoService,
-    ZonasService
+    ZonasService,
+    ConfigService
   ],
   bootstrap: [
     AppComponent
