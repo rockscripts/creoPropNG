@@ -14,8 +14,7 @@ body {  padding-top: 70px;}
   border-bottom: 1px solid #d9d9d9;
 }
 
-.card-img {min-height: 225px; max-height: 225px;
-width: auto; border-radius:0px;}
+.card-img {min-height: 225px; max-height: 225px; border-radius:0px;}
 
 .card { border-radius:0px; border: none; box-shadow: 0 1px 2px rgba(0,0,0,.25);}
 
@@ -76,3 +75,7 @@ a {color: #1ea7dd !important; font-weight: bold; cursor:pointer;}
 .modal{
   background-color: rgba(0,0,0,0.6);
 }
+
+.carousel-control-next, .carousel-control-prev{ z-index:900; font-size: 3em; }
+.carousel-control-next .fa, .carousel-control-prev .fa{ color:#fff!important; }
+.carousel-control-next:hover .fa, .carousel-control-prev .fa:hover{color:#d01!important;}
