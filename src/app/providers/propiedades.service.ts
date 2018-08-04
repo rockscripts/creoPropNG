@@ -3,7 +3,11 @@ import { HttpClient } from '@angular/common/http';
 
 import { Busqueda }   from '../models/busqueda';
 
+<<<<<<< HEAD
 import { ConfigService } from './config.service';
+=======
+import { ConfigService }        from './config.service';
+>>>>>>> e61a697b9476903027fcc7f3da80816b7b67ba7a
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +23,11 @@ export class PropiedadesService {
   public busqueda = new Busqueda();
 
   constructor(
+<<<<<<< HEAD
     private http: HttpClient,
+=======
+    private http:   HttpClient,
+>>>>>>> e61a697b9476903027fcc7f3da80816b7b67ba7a
     private config: ConfigService
   ) { }
 
