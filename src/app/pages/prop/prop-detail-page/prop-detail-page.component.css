@@ -6,11 +6,10 @@
 .link-btn:active{color:#d01;}
 
 .img-cont, .img-map{
-  min-height: 360px;
   background: #eee;
 }
 
-.img-map{  min-height: 250px;}
+.img-map{  height: 480px;}
 
 .card-body .subt{
   color: #8b8785;

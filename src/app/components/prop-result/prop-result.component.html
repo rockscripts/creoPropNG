@@ -4,7 +4,7 @@
   </div>
   <div class="row col-12 res-cont">
 
-    <div *ngFor="let propiedad of propiedades" class="col-12 col-sm-6 col-md-4 col-ls-3 cp-card" routerLink="propiedad/{{propiedad.id}}">
+    <div *ngFor="let propiedad of propiedades" class="col-12 col-sm-6 col-md-4 cp-card" routerLink="propiedad/{{propiedad.id}}">
       <div class="card">
         <img class="card-img" src="./{{propiedad.files[0]['nombre']}}" alt="Card image">
         <div class="card-img-overlay">
