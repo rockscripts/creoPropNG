@@ -5,5 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
+  private userData:any = {};
+
   constructor() { }
+
+  getUserData(){
+    return this.userData;
+  }
 }
