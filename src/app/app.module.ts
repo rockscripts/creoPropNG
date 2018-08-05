@@ -31,6 +31,9 @@ import { MainMenuComponent }      from './components/main-menu/main-menu.compone
 import { FooterComponent }        from './components/footer/footer.component';
 import { PropResultComponent } from './components/prop-result/prop-result.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
+import { RegisterModalComponent } from './components/register-modal/register-modal.component';
+import { SignupFormBComponent } from './forms/signup-form-b/signup-form-b.component';
+import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
     SearchComponent,
     BarraBusquedaComponent,
     PropResultComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    RegisterModalComponent,
+    SignupFormBComponent,
+    SignupFormPComponent
   ],
   imports: [
     BrowserModule,
