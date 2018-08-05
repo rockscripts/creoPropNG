@@ -30,6 +30,7 @@ import { MainMenuComponent }      from './components/main-menu/main-menu.compone
 import { FooterComponent }        from './components/footer/footer.component';
 import { PropResultComponent } from './components/prop-result/prop-result.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
+import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
     SearchComponent,
     BarraBusquedaComponent,
     PropResultComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    PerfilUsuarioComponent
   ],
   imports: [
     BrowserModule,
