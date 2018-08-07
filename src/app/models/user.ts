@@ -5,5 +5,5 @@ export class Propiedad {
   private apellido :string = '';
   private dni      :string = '';
   private telefono :string = '';
-  private tipoUser :number = '';
+  private tipoUser :number = -1;
 }
