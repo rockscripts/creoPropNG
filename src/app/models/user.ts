@@ -1,9 +1,11 @@
-export class Propiedad {
-  private email    :string = '';
-  private pass     :string = '';
-  private nombre   :string = '';
-  private apellido :string = '';
-  private dni      :string = '';
-  private telefono :string = '';
-  private tipoUser :number = -1;
+export class User {
+  public email    :string = '';
+  public pass     :string = '';
+  public nombre   :string = '';
+  public apellido :string = '';
+  public dni      :string = '';
+  public telefono :string = '';
+  public tipoUser :number = 0;
+  public cuit     :string = '';
+  public telFijo  :string = '';
 }

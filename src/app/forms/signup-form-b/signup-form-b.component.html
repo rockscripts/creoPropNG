@@ -21,19 +21,19 @@
 
       <div class="form-group text-left">
         <label for="email">	E-mail	</label>
-        <input class="form-control" name="email" placeholder="nombre@mail.com" value="" type="text">
+        <input class="form-control" name="email" [(ngModel)]="model.email" placeholder="nombre@mail.com" value="" type="text">
       </div>
 
       <div class="form-group text-left">
         <label for="password">Contraseña	</label>
 
         <div class="form-group">
-            <input class="form-control" name="password" placeholder="Usá de 6 a 10 caracteres" value="" type="password">
+            <input class="form-control" name="password" [(ngModel)]="model.pass" placeholder="Usá de 6 a 10 caracteres" value="" type="password">
         </div>
 
       </div>
 
 
-      <input value="Registrarme" class="btn w-100 btn-large btn-cprop" type="submit">
+      <input value="Registrarme" class="btn w-100 btn-large btn-cprop" type="submit" (click)="nuevo()">
   </form>
 </div>

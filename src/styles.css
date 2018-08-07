@@ -100,7 +100,7 @@ body {  padding-top: 70px;}
   font-weight: bold;
 }
 
-.btn-cprop:hover{color:#d01;}
+.btn-cprop:hover{background-color: #d01;}
 
 .prop-container{
     background-color: #fafafa;

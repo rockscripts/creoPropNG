@@ -12,12 +12,19 @@ export class UserService {
     "idUser" : null,
     'model'  : {}
   };
-  private wsi = 'user/login';
+  private wsn = 'user/create';
+  private wsl = 'user/login';
+
+  public model;
 
   constructor(
     private http:   HttpClient,
     private config: ConfigService
   ) { }
+
+  setLogin(r){
+    this.userData.idUser = 1;
+  }
 
   getUserData(){
     return this.userData;
@@ -28,7 +35,9 @@ export class UserService {
   }
 
   logIn(){
-
+    return this
+            .http
+            .post(this.config.getAPIUrl()+this.wsl, JSON.stringify(this.model));
   }
 
   logOut(){
@@ -36,6 +45,8 @@ export class UserService {
   }
 
   create(){
-
+    return this
+            .http
+            .post(this.config.getAPIUrl()+this.wsn, JSON.stringify(this.model));
   }
 }

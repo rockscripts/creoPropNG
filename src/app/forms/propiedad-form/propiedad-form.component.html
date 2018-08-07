@@ -11,13 +11,13 @@
             <div class=" col-12 col-sm-6">
                <label>Tipo de operación</label>
                <select class="form-control" [(ngModel)]="model.tipo_operacion_id" name="tipo_operacion_id">
-               <option *ngFor="let ciud of tipo_op" [value]="ciud.id">{{ciud.nombre}}</option>
+                 <option *ngFor="let ciud of tipo_op" [value]="ciud.id">{{ciud.nombre}}</option>
                </select>
             </div>
             <div class=" col-12 col-sm-6">
                <label>Tipo de propiedad</label>
                <select class="form-control" [(ngModel)]="model.tipo_propiedad_id" name="tipo_propiedad_id">
-               <option *ngFor="let prov of tipo_prop" [value]="prov.id">{{prov.nombre}}</option>
+                 <option *ngFor="let prov of tipo_prop" [value]="prov.id">{{prov.nombre}}</option>
                </select>
             </div>
          </div>

@@ -16,6 +16,7 @@ import {PerfilUsuarioComponent} from './pages/perfil-usuario/perfil-usuario.comp
 
 const routes: Routes = [
   { path: '',                component: HomeComponent },
+  { path: 'home/:id',        component: HomeComponent },
   { path: 'propiedad/:id',   component: PropDetailPageComponent },
   { path: 'privacidad',      component: PrivacidadPageComponent },
   { path: 'terminos',        component: TermsyCondPageComponent },

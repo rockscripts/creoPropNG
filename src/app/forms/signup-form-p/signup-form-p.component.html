@@ -1,37 +1,54 @@
 <form>
 
     <div class="form-group text-left">
+      <label for="email">Tipo de usuario</label>
+      <select class="form-control" [(ngModel)]="model.tipoUser" name="tipoUser">
+        <option *ngFor="let ciud of tipo_us" [value]="ciud.id">{{ciud.nombre}}</option>
+      </select>
+    </div>
+
+    <div class="form-group text-left">
       <label for="email">	E-mail</label>
-      <input class="form-control" name="email" placeholder="nombre@mail.com" value="" type="text">
+      <input class="form-control" name="email" [(ngModel)]="model.email" placeholder="nombre@mail.com" value="" type="text">
     </div>
 
     <div class="form-group text-left">
       <label for="password">Contraseña</label>
 
       <div class="form-group">
-          <input class="form-control" name="password" placeholder="Usá de 6 a 10 caracteres" value="" type="password">
+          <input class="form-control" name="password" [(ngModel)]="model.pass" placeholder="Usá de 6 a 10 caracteres" value="" type="password">
       </div>
     </div>
 
     <div class="form-group text-left">
       <label for="nombre">Nombre</label>
-      <input class="form-control" name="nombre" placeholder="" value="" type="text">
+      <input class="form-control" name="nombre"  [(ngModel)]="model.nombre" placeholder="" value="" type="text">
     </div>
 
-    <div class="form-group text-left">
+    <div class="form-group text-left" *ngIf="model.tipoUser == 0">
       <label for="nombre">Apellido</label>
-      <input class="form-control" name="apellido" placeholder="" value="" type="text">
+      <input class="form-control" name="apellido"  [(ngModel)]="model.apellido" placeholder="" value="" type="text">
     </div>
 
-    <div class="form-group text-left">
+    <div class="form-group text-left" *ngIf="model.tipoUser == 1">
+      <label for="nombre">CUIT</label>
+      <input class="form-control" name="cuit"  [(ngModel)]="model.cuit" placeholder="" value="" type="text">
+    </div>
+
+    <div class="form-group text-left" *ngIf="model.tipoUser == 0">
       <label for="nombre">DNI</label>
-      <input class="form-control" name="dni" placeholder="" value="" type="text">
+      <input class="form-control" name="dni"  [(ngModel)]="model.dni" placeholder="" value="" type="text">
     </div>
 
     <div class="form-group text-left">
       <label for="nombre">Teléfono movil</label>
-      <input class="form-control" name="nombre" placeholder="" value="" type="text">
+      <input class="form-control" name="telefono"  [(ngModel)]="model.telefono" placeholder="" value="" type="text">
     </div>
 
-    <input value="Registrarme" class="btn w-100 btn-large btn-cprop" type="submit">
+    <div class="form-group text-left" *ngIf="model.tipoUser == 1">
+      <label for="nombre">Teléfono</label>
+      <input class="form-control" name="telFijo"  [(ngModel)]="model.telFijo" placeholder="" value="" type="text">
+    </div>
+
+    <input value="Registrarme" class="btn w-100 btn-large btn-cprop" type="submit" (click)="nuevo()">
 </form>

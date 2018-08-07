@@ -5,8 +5,6 @@ import { Propiedad }          from '../../models/propiedad';
 import { ZonasService }       from '../../providers/zonas.service';
 import { PropiedadesService } from '../../providers/propiedades.service';
 
-
-
 @Component({
   selector: 'app-propiedad-form',
   templateUrl: './propiedad-form.component.html',
