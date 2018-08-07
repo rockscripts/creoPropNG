@@ -1,29 +1,53 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
-<section class="container mt-4 mb-4">
-  <div class="container">
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <div class="d-flex flex-row border rounded">
-          <div class="p-0 w-25">
-            <img src="https://c1.staticflickr.com/3/2862/12328317524_18e52b5972_k.jpg" class="img-thumbnail border-0" />
-          </div>
-          <div class="pl-3 pt-2 pr-2 pb-2 w-75 border-left">
-            <h4 class="text-primary">Leanne Boulton</h4>
-            <h5 class="text-info">Photographer</h5>
-            <ul class="m-0 float-left" style="list-style: none; margin:0; padding: 0">
-              <li><i class="fab fa-facebook-square"></i> Facebook</li>
-              <li><i class="fab fa-twitter-square"></i> Twitter</li>
-            </ul>
-            <p class="text-right m-0"><a href="#" class="btn btn-primary"><i class="far fa-user"></i> View Profile</a></p>
+<div class="row">
+  <div class="col-sm-7 mt-3">
+    <div class="card col-sm-12">
+      <div class="row no-gutters p-3 profilecard">
+        <div class="col-auto">
+          <img src="//placehold.it/200" class="img-fluid" alt="">
+        </div>
+        <div class="col">
+          <div class="card-block px-2 pr-1">
+            <h4 class="card-title">Agent name</h4>
+            <p class="card-text text-muted w-20">NATIONALITY: </p>
+            <p class="card-text text-muted w-20">LANGUAJES: </p>
           </div>
         </div>
       </div>
-    </div>
+      <div class="row border-top -solid -1px profilecard">
+        <div class="row col-sm-12">
+          <h4 class="pl-2">PERSONAL INFORMATION</h4>
+        </div>
+        <div class="col text-uppercase text-muted">
+          <p>Active listings:</p>
+          <p>Licence NO:</p>
+          <p>Experience since:</p>
+        </div>
+        <div class="col">
+          <p class="text-muted">AREAS: </p>
+        </div>
 
+      </div>
+    </div>
   </div>
-</section>
+
+  <div class="col-sm-4 mt-3">
+    <div class="card mt-3">
+      <h4 class="card-title mt-2 pl-3">CONTACTAR ESTE AGENTE</h4>
+      <div class="col-12 my-2"><button type="button" class="w-100 btn btn-cprop" routerLink="/new-prop">Mail</button></div>
+      <div class="col-12 my-2"><button type="button" class="w-100 btn btn-cprop" routerLink="/new-prop">Telefono</button></div>
+    </div>
+    <div class="card mt-5">
+      <h4 class="card-title mt-2 pl-3">INMOBILIARIA</h4>
+      <div class="row">
+        <div class="col-4">
+          <img src="..." class="img-fluid" alt="...">
+        </div>
+        <div class="col-8">
+          <p> Nombre de la inmobiliaria</p>
+          <p href="#">Ver perfil</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

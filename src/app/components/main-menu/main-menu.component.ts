@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {UserService} from './../../providers/user.service';
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
@@ -7,13 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private us : UserService) {
+   }
+
+  registrado = true;
 
   enlaces:any=[
     { r: "new-prop", t: 'PUBLICAR UNA PROPIEDAD', attr:'' }
   ];
 
   ngOnInit() {
+      this.registrado = this.us.logeado();
+      
   }
+
 
 }

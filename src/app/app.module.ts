@@ -31,13 +31,10 @@ import { MainMenuComponent }      from './components/main-menu/main-menu.compone
 import { FooterComponent }        from './components/footer/footer.component';
 import { PropResultComponent } from './components/prop-result/prop-result.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
-<<<<<<< HEAD
-import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
-=======
 import { RegisterModalComponent } from './components/register-modal/register-modal.component';
 import { SignupFormBComponent } from './forms/signup-form-b/signup-form-b.component';
 import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.component';
->>>>>>> 4ad7692045ed8bada68c4b8d508c97918935be7c
+import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
 
 @NgModule({
   declarations: [
@@ -58,13 +55,10 @@ import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.compon
     BarraBusquedaComponent,
     PropResultComponent,
     LoginModalComponent,
-<<<<<<< HEAD
-    PerfilUsuarioComponent
-=======
+    PerfilUsuarioComponent,
     RegisterModalComponent,
     SignupFormBComponent,
-    SignupFormPComponent
->>>>>>> 4ad7692045ed8bada68c4b8d508c97918935be7c
+    SignupFormPComponent,
   ],
   imports: [
     BrowserModule,

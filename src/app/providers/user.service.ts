@@ -5,11 +5,17 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  private userData:any = {};
+  private userData:any = {
+    "idUser" : null
+  };
 
   constructor() { }
 
   getUserData(){
     return this.userData;
+  }
+
+  logeado(){
+    return this.userData.idUser != null;
   }
 }
