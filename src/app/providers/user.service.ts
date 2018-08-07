@@ -9,7 +9,8 @@ import { ConfigService } from './config.service';
 export class UserService {
 
   private userData:any = {
-    "idUser" : null
+    "idUser" : null,
+    'model'  : {}
   };
   private wsi = 'user/login';
 
