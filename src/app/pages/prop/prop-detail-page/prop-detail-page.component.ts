@@ -12,7 +12,7 @@ export class PropDetailPageComponent implements OnInit {
 
   id:number;
 
-  propiedad:any;
+  propiedad:any = [];
 
   constructor(
     private activatedRoute:ActivatedRoute,
@@ -20,6 +20,8 @@ export class PropDetailPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.propiedad[0] = {};
+    
     this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
     this

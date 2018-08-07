@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Busqueda }   from '../models/busqueda';
 
-import { ConfigService }        from './config.service';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'

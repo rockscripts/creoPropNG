@@ -11,6 +11,7 @@ import { PropiedadesService }   from './providers/propiedades.service';
 import { GralInfoService }      from './providers/gral-info.service';
 import { ZonasService }         from './providers/zonas.service';
 import { ConfigService }        from './providers/config.service';
+import { UserService }          from './providers/user.service';
 
 import { PropDetailPageComponent } from './pages/prop/prop-detail-page/prop-detail-page.component';
 import { PrivacidadPageComponent } from './pages/privacidad-page/privacidad-page.component';
@@ -30,7 +31,13 @@ import { MainMenuComponent }      from './components/main-menu/main-menu.compone
 import { FooterComponent }        from './components/footer/footer.component';
 import { PropResultComponent } from './components/prop-result/prop-result.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
+<<<<<<< HEAD
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
+=======
+import { RegisterModalComponent } from './components/register-modal/register-modal.component';
+import { SignupFormBComponent } from './forms/signup-form-b/signup-form-b.component';
+import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.component';
+>>>>>>> 4ad7692045ed8bada68c4b8d508c97918935be7c
 
 @NgModule({
   declarations: [
@@ -51,7 +58,13 @@ import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.co
     BarraBusquedaComponent,
     PropResultComponent,
     LoginModalComponent,
+<<<<<<< HEAD
     PerfilUsuarioComponent
+=======
+    RegisterModalComponent,
+    SignupFormBComponent,
+    SignupFormPComponent
+>>>>>>> 4ad7692045ed8bada68c4b8d508c97918935be7c
   ],
   imports: [
     BrowserModule,
@@ -64,7 +77,8 @@ import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.co
     PropiedadesService,
     GralInfoService,
     ZonasService,
-    ConfigService
+    ConfigService,
+    UserService
   ],
   bootstrap: [
     AppComponent

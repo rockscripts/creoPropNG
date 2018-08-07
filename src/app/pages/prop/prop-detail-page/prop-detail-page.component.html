@@ -29,7 +29,20 @@
 				</div>
 
 				 <div class="card-body img-cont">
-					 <img class="card-img-bottom img-map" src="./{{propiedad.files[0]['nombre']}}" alt="{{propiedad[0].titulo}}">
+					 	 <div id="imgs-det" class="carousel slide" data-ride="carousel">
+							 <div class="carousel-inner">
+							    <div class="carousel-item" *ngFor="let v of propiedad.files let i = index" [ngClass]="{'active' : i == 0}">
+							      <img class="card-img-bottom img-map" src="./{{v['nombre']}}" alt="{{v.titulo}}">
+							    </div>
+						   </div>
+
+							 <a class="carousel-control-prev" href="#imgs-det" data-slide="prev">
+							    <i class="fa fa-angle-left"></i>
+							 </a>
+							 <a class="carousel-control-next" href="#imgs-det" data-slide="next">
+							    <i class="fa fa-angle-right"></i>
+							 </a>
+					   </div>
 			  </div>
 
 			</div>
@@ -41,14 +54,14 @@
 					<h5 class="card-title">UBICACIÓN</h5>
 					<span class="col-12 pl-0 subt">
 						<i class="fa fa-map-marker" aria-hidden="true"></i>
-						{{propiedad[0].direccion}},&nbsp;{{propiedad.localidad}}
+						{{propiedad[0]?.direccion}},&nbsp;{{propiedad.localidad}}
 					</span>
 			  </div>
 			  <img class="card-img-bottom" src="..." alt="Mapa">
 			</div>
 		</div>
 
-		<div class="col-12 col-sm-6 c-card">
+	<div class="col-12 col-sm-6 c-card">
 			<div class="card">
 			  <div class="card-body">
 			    <h5 class="card-title">DATOS PRINCIPALES</h5>
@@ -107,7 +120,7 @@
 
 	</div>
 <!-- precio -->
-	<div class="row col-12 col-md-4 c-card">
+<div class="row col-12 col-md-4 c-card">
 		<div class="col-12">
 			<div class="card card-det">
 				<div class="card-body">
@@ -150,4 +163,5 @@
 
 
 	</div>
+
 </div>

@@ -3,13 +3,11 @@ import { HttpClient } from '@angular/common/http';
 
 import { ConfigService }        from './config.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class GralInfoService {
 
-  private url = '/creoPropAPI/web/';
   private ws  = 'main/general-data';
 
   constructor(

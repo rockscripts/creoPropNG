@@ -6,6 +6,73 @@ html, body{  font-family: 'Roboto-Regular';}
 
 body {  padding-top: 70px;}
 
+
+
+.modal .m-t{
+  font-size: 1.8em;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #535151;
+  margin: 10px 0;
+  padding: 0 14px;
+}
+
+.modal-dialog { width:465px; }
+.nsp {font-weight: normal;}
+
+.modal-footer{
+  height: 46px;
+  line-height: 46px;
+  text-align: center;
+  color: #4d4d4d;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 -2px 4px 0 rgba(172,170,170,.5);
+}
+
+.modal-body{
+  padding: 2em 1.5em 1.5em;
+}
+
+.login-google {
+    color: #515151;
+    font-weight: 600;
+    border: solid 2px #515151;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.login-google > i {
+    display: inline-block;
+    width: 32px;
+    height: 23px;
+    margin-right: 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.login-face {
+    background-color: #4267b2;
+    color: #fff;
+    font-weight: 500;
+    border: solid 2px #4267b2;
+}
+
+.social-btn {
+    display: flex;
+    width: 100%;
+    line-height: 41px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    margin: 10px 0;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
 .hh1{
   height: 50px;
 }
@@ -14,8 +81,7 @@ body {  padding-top: 70px;}
   border-bottom: 1px solid #d9d9d9;
 }
 
-.card-img {min-height: 225px; max-height: 225px;
-width: auto; border-radius:0px;}
+.card-img {min-height: 225px; max-height: 225px; border-radius:0px;}
 
 .card { border-radius:0px; border: none; box-shadow: 0 1px 2px rgba(0,0,0,.25);}
 
@@ -76,3 +142,7 @@ a {color: #1ea7dd !important; font-weight: bold; cursor:pointer;}
 .modal{
   background-color: rgba(0,0,0,0.6);
 }
+
+.carousel-control-next, .carousel-control-prev{ z-index:900; font-size: 3em; }
+.carousel-control-next .fa, .carousel-control-prev .fa{ color:#fff!important; }
+.carousel-control-next:hover .fa, .carousel-control-prev .fa:hover{color:#d01!important;}

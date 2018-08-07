@@ -1,0 +1,8 @@
+a{
+  color: #6d6d6d !important;
+}
+a.active{
+  border-bottom: solid 3px #6d6d6d !important;
+  display: inline-block !important;
+  transition: .3s !important;
+}
