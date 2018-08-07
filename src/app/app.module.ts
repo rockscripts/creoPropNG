@@ -34,6 +34,7 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
 import { RegisterModalComponent } from './components/register-modal/register-modal.component';
 import { SignupFormBComponent } from './forms/signup-form-b/signup-form-b.component';
 import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.component';
+import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +55,10 @@ import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.compon
     BarraBusquedaComponent,
     PropResultComponent,
     LoginModalComponent,
+    PerfilUsuarioComponent,
     RegisterModalComponent,
     SignupFormBComponent,
-    SignupFormPComponent
+    SignupFormPComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,36 @@
-<p>
-  mi-cuenta works!
-</p>
+<div class="row">
+  <div class="col-12 col-md-3 col-lg-2">
+    <app-barra-busqueda></app-barra-busqueda>
+  </div>
+
+  <div class="col-12 col-md-8 col-lg-10 prop-container">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs navbar-dropdown">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#mispropiedades">MIS PROPIEDADES</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#visitas">VISITAS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#estadocuenta">ESTADO DE MI CUENTA</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#pagos">PAGOS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#miperfil">MI PERFIL</a>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane container active" id="mispropiedades"><app-prop-result></app-prop-result></div>
+      <div class="tab-pane container fade" id="visitas">Aca irian las propiedades visitadas</div>
+      <div class="tab-pane container fade" id="estadocuenta">Aca iria el estado de mi cuenta</div>
+      <div class="tab-pane container fade" id="pagos">Aca irian las propiedades pagas</div>
+      <div class="tab-pane container fade" id="miperfil"><app-perfil-usuario></app-perfil-usuario></div>
+    </div>
+  </div>
+</div>
