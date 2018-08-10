@@ -1,7 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'; // [Refactorizar]
 import { HttpClient } from '@angular/common/http';
 
+import { Subject }    from 'rxjs/Subject';
+
 import { ConfigService } from './config.service';
+
+import { User } from './../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +13,13 @@ import { ConfigService } from './config.service';
 export class UserService {
 
   private userData:any = {
-    "idUser" : null,
+    "idUser" : -1,
     'model'  : {}
   };
   private wsn = 'user/create';
   private wsl = 'user/login';
+
+  public onLogin = new Subject();
 
   public model;
 
@@ -26,12 +32,8 @@ export class UserService {
     this.userData.idUser = 1;
   }
 
-  getUserData(){
-    return this.userData;
-  }
-
   logeado(){
-    return this.userData.idUser != null;
+    return this.userData.idUser != -1;
   }
 
   logIn(){

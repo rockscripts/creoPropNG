@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
+
+import { RegisterModalComponent } from '../../components/register-modal/register-modal.component';
 
 import { UserService } from '../../providers/user.service';
 import { User }        from '../../models/user';
@@ -11,7 +13,6 @@ import { User }        from '../../models/user';
 })
 
 export class SignupFormPComponent implements OnInit {
-  @ViewChild('regCloseBtn') regCloseBtn:ElementRef;
 
   model = new User();
 
@@ -22,7 +23,8 @@ export class SignupFormPComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private US :    UserService
+    private US :    UserService,
+    private modal:  RegisterModalComponent
   ) { }
 
   ngOnInit() {
@@ -33,6 +35,7 @@ export class SignupFormPComponent implements OnInit {
     this.US.create()
       .subscribe((r) => {
         this.US.setLogin(r);
+        this.modal.cerrar();
         this.router.navigate(['/home/1']);
     });
   }

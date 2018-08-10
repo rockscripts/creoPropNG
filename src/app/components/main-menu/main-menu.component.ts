@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from './../../providers/user.service';
+
+import { UserService }  from './../../providers/user.service';
+import { Subscription } from "rxjs/Subscription";
+
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
@@ -10,15 +13,18 @@ export class MainMenuComponent implements OnInit {
   constructor(private us : UserService) {
    }
 
-  registrado = true;
+  registrado = false;
 
   enlaces:any=[
     { r: "new-prop", t: 'PUBLICAR UNA PROPIEDAD', attr:'' }
   ];
 
   ngOnInit() {
-      this.registrado = this.us.logeado();
-      
+    this.us.onLogin.subscribe({
+      next: (v) => {
+        this.registrado = this.us.logeado();
+      }
+    });
   }
 
 
