@@ -30,10 +30,12 @@ export class LoginModalComponent implements OnInit {
     this.US.model = this.model;
     this.US.logIn()
       .subscribe((r) => {
-        this.US.setLogin(r);
-        this.lgCloseBtn.nativeElement.click();
-        this.US.onLogin.next();
-        this.router.navigate(['/home/1']);
+        if (r['errors'] != 'bad login'){
+          this.US.setLogin(r);
+          this.lgCloseBtn.nativeElement.click();
+          this.US.onLogin.next();
+          this.router.navigate(['/home/1']);
+        }
     });
   }
 
