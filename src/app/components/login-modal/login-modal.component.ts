@@ -1,6 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
-import { Subject }           from "rxjs/Subject";
 
 import { UserService } from '../../providers/user.service';
 import { User }        from '../../models/user';
@@ -16,11 +15,12 @@ export class LoginModalComponent implements OnInit {
 
   model = new User();
 
-  private _subject: Subject<any>;
+  showM:boolean  = false;
+  cssProp:string = '';
 
   constructor(
-    private router: Router,
-    private US :    UserService
+    private router:   Router,
+    private US :      UserService
   ) { }
 
   ngOnInit() {
@@ -35,5 +35,15 @@ export class LoginModalComponent implements OnInit {
         this.US.onLogin.next();
         this.router.navigate(['/home/1']);
     });
+  }
+
+  show(){
+    this.showM   = true;
+    this.cssProp = 'display: block;';
+  }
+
+  hide(){
+    this.showM   = false;
+    this.cssProp = 'display: none;';
   }
 }

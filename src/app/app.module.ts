@@ -35,6 +35,7 @@ import { RegisterModalComponent } from './components/register-modal/register-mod
 import { SignupFormBComponent } from './forms/signup-form-b/signup-form-b.component';
 import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.component';
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.co
     RegisterModalComponent,
     SignupFormBComponent,
     SignupFormPComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

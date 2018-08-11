@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 
-import { Propiedad }          from '../../models/propiedad';
-import { ZonasService }       from '../../providers/zonas.service';
-import { PropiedadesService } from '../../providers/propiedades.service';
+import { Propiedad }           from '../../models/propiedad';
+import { ZonasService }        from '../../providers/zonas.service';
+import { PropiedadesService }  from '../../providers/propiedades.service';
+import { UserService }         from '../../providers/user.service';
 
 @Component({
   selector: 'app-propiedad-form',
@@ -12,8 +13,9 @@ import { PropiedadesService } from '../../providers/propiedades.service';
 })
 export class PropiedadFormComponent implements OnInit {
 
-  model     = new Propiedad();
-  submitted = false;
+  model      = new Propiedad();
+  submitted  = false;
+  dataTarget = '';
 
   ciudades:any;
   provincias:any;
@@ -41,9 +43,10 @@ export class PropiedadFormComponent implements OnInit {
   ]
 
   constructor(
-    private zonas:ZonasService,
-    private router:Router,
-    private prop:PropiedadesService
+    private zonas:  ZonasService,
+    private router: Router,
+    private prop:   PropiedadesService,
+    private user:   UserService
   ) {}
 
   updateLocalidad(){
@@ -73,20 +76,26 @@ export class PropiedadFormComponent implements OnInit {
 
 
   ngOnInit() {
-    this.zonas.getProvincias().subscribe((r) => {  this.provincias = r['data'];  });
-    this.zonas.getBarrios(1).subscribe((r) => {    this.barrios = r['data']; });
+    this.zonas.getProvincias().subscribe((r)  => {  this.provincias = r['data'];  });
+    this.zonas.getBarrios(1).subscribe((r)    => {    this.barrios = r['data']; });
     this.prop.getEquipamiento().subscribe((r) => { this.equipamiento = r['data']; });
+
+    if (!this.user.permiso('new-prop')){
+      this.dataTarget = '#loginModal';
+    } else {
+      this.dataTarget = '';
+    }
   }
 
   onSubmit() { this.submitted = true; }
 
-  new(){
-    this
-      .prop
-      .create(this.model)
-      .subscribe((r) => {
-        this.router.navigate(['/new-prop-ok',{'m':this.model.titulo,'i':r['data']['id']}]);
-    });
+  newProp(){
+    if (this.user.permiso('new-prop')){
+      this.prop.create(this.model)
+        .subscribe((r) => {
+          this.router.navigate(['/new-prop-ok',{'m':this.model.titulo,'i':r['data']['id']}]);
+      });
+    }
   }
 
 }
