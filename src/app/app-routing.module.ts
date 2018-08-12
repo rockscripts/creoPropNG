@@ -12,22 +12,22 @@ import { SignInComponent }         from './pages/sign-in/sign-in.component';
 import { NuevaPropOkComponent }    from './pages/prop/nueva-prop-ok/nueva-prop-ok.component';
 import { MiCuentaComponent }       from './pages/mi-cuenta/mi-cuenta.component';
 import { SearchComponent }         from './pages/search/search.component';
-import {PerfilUsuarioComponent} from './pages/perfil-usuario/perfil-usuario.component';
+import { PerfilUsuarioComponent }  from './pages/perfil-usuario/perfil-usuario.component';
 
 const routes: Routes = [
-  { path: '',                component: HomeComponent },
-  { path: 'home/:id',        component: HomeComponent },
-  { path: 'propiedad/:id',   component: PropDetailPageComponent },
-  { path: 'privacidad',      component: PrivacidadPageComponent },
-  { path: 'terminos',        component: TermsyCondPageComponent },
-  { path: "404",             component: NotFoundComponent },
-  { path: "signin",          component: SignInComponent },
-  { path: "new-prop",        component: NuevaPropComponent },
-  { path: "new-prop-ok",     component: NuevaPropOkComponent },
-  { path: "mi-cuenta",       component: MiCuentaComponent },
-  { path: "search/:t",       component: SearchComponent },
-  { path: 'perfil',          component: PerfilUsuarioComponent },
-  { path: "**",              redirectTo: "/404" },
+  { path: '',                  component: HomeComponent },
+  { path: 'home/:id',          component: HomeComponent },
+  { path: 'propiedad/:id',     component: PropDetailPageComponent },
+  { path: 'privacidad',        component: PrivacidadPageComponent },
+  { path: 'terminos',          component: TermsyCondPageComponent },
+  { path: "404",               component: NotFoundComponent },
+  { path: "signin",            component: SignInComponent },
+  { path: "new-prop",          component: NuevaPropComponent },
+  { path: "new-prop-ok",       component: NuevaPropOkComponent },
+  { path: "mi-cuenta",         component: MiCuentaComponent },
+  { path: "search/:t",         component: SearchComponent },
+  { path: 'perfil',            component: PerfilUsuarioComponent },
+  { path: "**",                redirectTo: "/404" },
 ];
 
 @NgModule({

@@ -36,6 +36,8 @@ import { SignupFormBComponent } from './forms/signup-form-b/signup-form-b.compon
 import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.component';
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { DenunciaPropFormComponent } from './forms/denuncia-prop-form/denuncia-prop-form.component';
+import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-modal.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { AlertComponent } from './components/alert/alert.component';
     SignupFormBComponent,
     SignupFormPComponent,
     AlertComponent,
+    DenunciaPropFormComponent,
+    DenunciaModalComponent
   ],
   imports: [
     BrowserModule,

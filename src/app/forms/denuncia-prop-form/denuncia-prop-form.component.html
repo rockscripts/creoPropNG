@@ -1,0 +1,28 @@
+<div class="text-center">
+  <h5 class="m-t">Denunciar aviso</h5>
+
+  <form>
+
+    <div class="form-group text-left">
+      <label for="email">¿Por qué querés denunciar este aviso?</label>
+      <select class="form-control" name="motivo">
+        <option *ngFor="let prov of motivos_denuncia" [value]="prov.id">{{prov.nombre}}</option>
+      </select>
+    </div>
+
+    <div class="form-group text-left">
+      <label>Danos más detalles de tu denuncia:</label>
+
+      <div class="form-group">
+          <textarea class="form-control" rows="3"></textarea>
+      </div>
+
+    </div>
+
+    <div class="col-12 row">
+      <div class="col-12 col-sm-6"><button type="button" class="w-100 btn btn-cprop">CANCELAR</button></div>
+      <div class="col-12 col-sm-6"><button type="button" class="w-100 btn btn-cprop">DENUNCIAR</button></div>
+    </div>
+
+  </form>
+</div>
