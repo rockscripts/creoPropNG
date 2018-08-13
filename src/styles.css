@@ -108,7 +108,7 @@ body {  padding-top: 70px;}
     padding-left: 2em;
 }
 
-a {color: #1ea7dd !important; font-weight: bold; cursor:pointer;}
+a {color: ##03a9ec !important; font-weight: bold; cursor:pointer;}
 
 .form-control:focus {border-color: #2b9ddd; box-shadow: none;}
 

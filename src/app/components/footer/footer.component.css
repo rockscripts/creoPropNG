@@ -14,13 +14,14 @@ footer .list-group-item{
 }
 
 .img-footer{
-  height: 4em;
+  height: 3em;
 }
 
 .footer-3{
-  height: 5em;
-  padding: 0.5em;
+  height: 2.6em;
+  padding: 0.3em;
   background-color: #fff;
+  font-size: 1.1em;
 }
 
 .footer-1{
@@ -38,4 +39,11 @@ footer .list-group-item{
 
 .footer-2 li{
   cursor: pointer;
+
+}
+
+.subtitle {
+  color: black;
+  font-size: 1.2em;
+  margin-bottom: 2px;
 }

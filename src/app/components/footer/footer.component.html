@@ -1,10 +1,10 @@
 <footer class="row justify-content-md-center footer">
   <div class="row footer-1 text-center">
-    <h4 class="tit">Búsquedas relacionadas</h4>
+    <h4 class="tit">Búsquedas frecuentes</h4>
   </div>
   <div class="row col-12 footer-2">
     <div class="col">
-      <div class="row">PROPIEDADES EN ALQUILER</div>
+      <div class="row subtitle">PROPIEDADES EN ALQUILER</div>
       <ul class="list-group list-group-flush">
         <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
         {{ub.tit}}</li>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="col">
-      <div class="row">PROPIEDADES EN VENTA</div>
+      <div class="row subtitle">PROPIEDADES EN VENTA</div>
       <ul class="list-group list-group-flush">
         <li *ngFor="let ub of propiedades_venta" class="list-group-item d-flex justify-content-between align-items-center">
         {{ub.tit}}</li>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="col">
-      <div class="row">PROPIEDADES EN ARGENTINA</div>
+      <div class="row subtitle">PROPIEDADES EN ARGENTINA</div>
       <ul class="list-group list-group-flush">
         <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
         {{ub.tit}}</li>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="col">
-      <div class="row">PROPIEDADES EN CONSTRUCCIÓN</div>
+      <div class="row subtitle">PROPIEDADES EN CONSTRUCCIÓN</div>
       <ul class="list-group list-group-flush">
         <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
         {{ub.tit}}</li>
@@ -43,8 +43,8 @@
 
     <div class="col row align-items-center">
       <div class="col">
-        © Copyright 2018 creoprop.com.ar
-        <a routerLink="terminos">Términos y condiciones</a>&nbsp;
+        <strong>© Copyright 2018 creoprop.com.ar </strong>
+        <a routerLink="terminos">Términos y condiciones.</a>&nbsp;
         <a routerLink="privacidad">Política de Privacidad</a>
       </div>
     </div>
