@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'perfil',          component: PerfilUsuarioComponent },
   { path: 'report',          component: ReportFormComponent },
   { path: "**",              redirectTo: "/404" },
+
 ];
 
 @NgModule({

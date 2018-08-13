@@ -26,10 +26,10 @@
         <li class="nav-item" data-toggle="modal" data-target="#modalReg" *ngIf = "!registrado">
           <a class="nav-link">REGISTRARME</a>
         </li>
-        <li class="nav-item" data-toggle="modal" data-target="#exampleModal" *ngIf = "!registrado">
+        <li class="nav-item" data-toggle="modal" data-target="#loginModal" *ngIf = "!registrado">
           <a class="nav-link">INICIAR SESIÓN</a>
         </li>
-        <li class="nav-item" data-toggle="modal" routerLink="/mi-cuenta" *ngIf = "registrado">
+        <li class="nav-item" routerLink="/mi-cuenta" *ngIf = "registrado">
           <a class="nav-link">MI CUENTA</a>
         </li>
       </ul>

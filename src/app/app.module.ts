@@ -35,7 +35,11 @@ import { RegisterModalComponent } from './components/register-modal/register-mod
 import { SignupFormBComponent } from './forms/signup-form-b/signup-form-b.component';
 import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.component';
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { DenunciaPropFormComponent } from './forms/denuncia-prop-form/denuncia-prop-form.component';
+import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-modal.component';
 import { ReportFormComponent } from './forms/report-form/report-form.component';
+
 
 @NgModule({
   declarations: [
@@ -60,7 +64,10 @@ import { ReportFormComponent } from './forms/report-form/report-form.component';
     RegisterModalComponent,
     SignupFormBComponent,
     SignupFormPComponent,
-    ReportFormComponent,
+    AlertComponent,
+    DenunciaPropFormComponent,
+    DenunciaModalComponent,
+    ReportFormComponent
   ],
   imports: [
     BrowserModule,

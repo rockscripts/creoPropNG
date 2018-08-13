@@ -1,0 +1,15 @@
+<div [ngClass]="{'modal':true, 'fade':true, 'show':showM}" id="denunciaModal" tabindex="-1"
+     role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true"
+     [style]="cssProp">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+      <div class="modal-body">
+          <button type="button" #denunciaModal class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+
+      	   <app-denuncia-prop-form></app-denuncia-prop-form>
+      </div>
+    </div>
+
+  </div>
+</div>

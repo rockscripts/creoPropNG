@@ -36,6 +36,13 @@ export class UserService {
     return this.userData.idUser != -1;
   }
 
+  permiso(n){
+    if (this.logeado()){
+      return true;
+    }
+    return false;
+  }
+
   logIn(){
     return this
             .http

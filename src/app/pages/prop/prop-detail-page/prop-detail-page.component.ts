@@ -21,7 +21,7 @@ export class PropDetailPageComponent implements OnInit {
 
   ngOnInit() {
     this.propiedad[0] = {};
-    
+
     this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
     this
@@ -30,6 +30,10 @@ export class PropDetailPageComponent implements OnInit {
       .subscribe((r) => {
         this.propiedad = r ['data'];
     });
+  }
+
+  denunciar(){
+    
   }
 
 }
