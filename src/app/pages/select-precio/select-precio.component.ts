@@ -28,14 +28,7 @@ export class SelectPrecioComponent implements OnInit {
   }
 
   siguiente(s){
-    if (this.user.permiso('new-prop')){
-      this.prop.setModel(this.prop.getModel().tipo_plan = s);
-      this.prop.create()
-      .subscribe((r) => {
-          this.prop.setModel(this.prop.getModel().id = r['data']['id']);
-          this.router.navigate(['/new-prop-ok']);
-      });
-    }
+    
   }
 
 }

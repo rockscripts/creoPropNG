@@ -15,6 +15,7 @@ import { SearchComponent }         from './pages/search/search.component';
 import { PerfilUsuarioComponent }  from './pages/perfil-usuario/perfil-usuario.component';
 import { ReportFormComponent }     from './forms/report-form/report-form.component';
 import { SelectPrecioComponent }   from './pages/select-precio/select-precio.component';
+import { SelectPlanComponent }     from './pages/select-plan/select-plan.component';
 
 const routes: Routes = [
   { path: '',                component: HomeComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'perfil',          component: PerfilUsuarioComponent },
   { path: 'report',          component: ReportFormComponent },
   { path: 'select-plan',     component: SelectPrecioComponent },
+  { path: 'update-plan',     component: SelectPlanComponent },
   { path: "**",              redirectTo: "/404" },
 
 ];

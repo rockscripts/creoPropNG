@@ -16,7 +16,7 @@ export class MainMenuComponent implements OnInit {
   registrado = false;
 
   enlaces:any=[
-    { r: "new-prop", t: 'PUBLICAR UNA PROPIEDAD', attr:'' }
+    { r: "select-plan", t: 'PUBLICAR UNA PROPIEDAD', attr:'' }
   ];
 
   ngOnInit() {

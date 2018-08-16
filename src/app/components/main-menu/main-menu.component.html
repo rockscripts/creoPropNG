@@ -20,8 +20,11 @@
     </div>
     <div class="col-sm-auto order-last">
       <ul class="navbar-nav mr-auto align-self-end">
-        <li *ngFor="let en of enlaces" class="nav-item">
-          <a class="nav-link"  routerLink="{{en.r}}" >{{en.t}}</a>
+        <li class="nav-item" routerLink="/select-plan" *ngIf = "!registrado">
+          <a class="nav-link">PUBLICAR UNA PROPIEDAD</a>
+        </li>
+        <li class="nav-item" routerLink="/new-prop" *ngIf = "registrado">
+          <a class="nav-link">PUBLICAR UNA PROPIEDAD</a>
         </li>
         <li class="nav-item" data-toggle="modal" data-target="#modalReg" *ngIf = "!registrado">
           <a class="nav-link">REGISTRARME</a>

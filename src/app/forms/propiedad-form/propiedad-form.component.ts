@@ -91,7 +91,13 @@ export class PropiedadFormComponent implements OnInit {
 
   newProp(){
     this.prop.setModel(this.model);
-    this.router.navigate(['/select-plan']);
+    if (this.user.permiso('new-prop')){
+      this.prop.create()
+      .subscribe((r) => {
+          this.prop.setModel(this.prop.getModel().id = r['data']['id']);
+          this.router.navigate(['/new-prop-ok']);
+      });
+    }
   }
 
 }

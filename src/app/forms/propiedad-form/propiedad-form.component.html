@@ -159,12 +159,21 @@
                </select>
             </div>
          </div>
+
          <div class="form-group row">
             <h4 class="col-12">Amenities</h4>
             <div class="checkbox col-md-6 col-12"  *ngFor="let e of equipamiento">
                <label><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</label>
             </div>
          </div>
+
+         <div class="form-group row">
+            <h4 class="col-12">Ambientes</h4>
+            <div class="checkbox col-md-6 col-12"  *ngFor="let e of equipamiento">
+               <label><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</label>
+            </div>
+         </div>
+
          <div class="form-group row" *ngIf="model.tipo_operacion_id != 0">
             <div class="col-12 col-sm-4">
                <label>Valor día</label> <input type="text" class="form-control" name="valor_dia" [(ngModel)]="model.valor_dia" placeholder="Valor día">
