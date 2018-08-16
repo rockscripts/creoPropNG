@@ -34,5 +34,8 @@ export class Propiedad {
   public superficie_cubierta:number = 0;
   public superficie_total:   number  = 0;
 
-  constructor() {  }
+  public tipo_plan: number = -1;
+  public id:        number = -1;
+
+  constructor() {}
 }

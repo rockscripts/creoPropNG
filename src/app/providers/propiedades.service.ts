@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Busqueda }   from '../models/busqueda';
+import { Propiedad }  from '../models/propiedad';
 
 import { ConfigService } from './config.service';
 
@@ -17,12 +18,23 @@ export class PropiedadesService {
   private wse  = 'equipamientos/all';
 
   public busqueda = new Busqueda();
-  public model;
+  private model   = new Propiedad();
+
+  public modelVacio:boolean = true;
 
   constructor(
     private http:   HttpClient,
     private config: ConfigService
   ) { }
+
+  getModel(){
+    return this.model;
+  }
+
+  setModel(m){
+    this.model = m;
+    this.modelVacio = false;
+  }
 
   getSearch() {
     return this

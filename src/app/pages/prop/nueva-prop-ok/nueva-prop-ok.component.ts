@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
 
+import { PropiedadesService }  from '../../../providers/propiedades.service';
+
 @Component({
   selector: 'app-nueva-prop-ok',
   templateUrl: './nueva-prop-ok.component.html',
@@ -12,12 +14,13 @@ export class NuevaPropOkComponent implements OnInit {
   id:any;
 
   constructor(
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private prop:   PropiedadesService
   ) { }
 
   ngOnInit() {
-    this.titulo = this.activatedRoute.snapshot.paramMap.get('m');
-    this.id     = this.activatedRoute.snapshot.paramMap.get('i');
+    this.titulo = this.prop.getModel().titulo;
+    this.id     = this.prop.getModel().id;
   }
 
 }
