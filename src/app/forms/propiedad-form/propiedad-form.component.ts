@@ -21,6 +21,9 @@ export class PropiedadFormComponent implements OnInit {
   provincias:any;
   barrios:any;
   equipamiento:any;
+  servicios:any;
+  ambientes:any;
+  carac_gral:any;
 
   tipo_prop:any = [
     {"id":"0","nombre":"Casa"},
@@ -77,8 +80,11 @@ export class PropiedadFormComponent implements OnInit {
 
   ngOnInit() {
     this.zonas.getProvincias().subscribe((r)  => {  this.provincias = r['data'];  });
-    this.zonas.getBarrios(1).subscribe((r)    => {    this.barrios = r['data']; });
+    this.zonas.getBarrios(1).subscribe((r)    => {    this.barrios = r['data'];   });
     this.prop.getEquipamiento().subscribe((r) => { this.equipamiento = r['data']; });
+    this.prop.getServicios().subscribe((r) => { this.servicios = r['data']; });
+    this.prop.getAmbientes().subscribe((r) => { this.ambientes = r['data']; });
+    this.prop.getCaraceristicas().subscribe((r) => { this.carac_gral = r['data']; });
 
     if(this.prop.modelVacio){
       this.model = new Propiedad();

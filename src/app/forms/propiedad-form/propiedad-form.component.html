@@ -44,137 +44,131 @@
                </select>
             </div>
          </div>
+      </div>
 
-         <div class="form-group">
-            <label>Título</label>
-            <input type="text" class="form-control" [(ngModel)]="model.titulo" name="titulo" placeholder="">
-         </div>
+      <div class=" col-12 col-sm-6">
+        <div class="form-group">
+           <label>Título</label>
+           <input type="text" class="form-control" [(ngModel)]="model.titulo" name="titulo" placeholder="">
+        </div>
 
-         <div class="form-group col-12 row">
-            <div class=" col-12 col-sm-6">
-               <label>Provincia</label>
-               <select class="form-control" [(ngModel)]="model.provincia" (change)="updateLocalidad()" name="provincia">
-               <option *ngFor="let prov of provincias" [value]="prov.id">{{prov.nombre}}</option>
-               </select>
-            </div>
-            <div class=" col-12 col-sm-6" *ngIf="model.provincia != 2">
-               <label>Localidad</label>
-               <select class="form-control" [(ngModel)]="model.localidad" name="localidad">
-               <option *ngFor="let ciud of ciudades" [value]="ciud.id">{{ciud.nombre}}</option>
-               </select>
-            </div>
-            <div class=" col-12 col-sm-6" *ngIf="model.provincia == 2">
-               <label>Barrio</label>
-               <select class="form-control" [(ngModel)]="model.barrio" name="barrio">
-               <option *ngFor="let bar of barrios" [value]="bar.id">{{bar.nombre}}</option>
-               </select>
-            </div>
-         </div>
+        <div class="form-group col-12 row">
+           <div class=" col-12 col-sm-6">
+              <label>Provincia</label>
+              <select class="form-control" [(ngModel)]="model.provincia" (change)="updateLocalidad()" name="provincia">
+              <option *ngFor="let prov of provincias" [value]="prov.id">{{prov.nombre}}</option>
+              </select>
+           </div>
+           <div class=" col-12 col-sm-6" *ngIf="model.provincia != 2">
+              <label>Localidad</label>
+              <select class="form-control" [(ngModel)]="model.localidad" name="localidad">
+              <option *ngFor="let ciud of ciudades" [value]="ciud.id">{{ciud.nombre}}</option>
+              </select>
+           </div>
+           <div class=" col-12 col-sm-6" *ngIf="model.provincia == 2">
+              <label>Barrio</label>
+              <select class="form-control" [(ngModel)]="model.barrio" name="barrio">
+                <option *ngFor="let bar of barrios" [value]="bar.id">{{bar.nombre}}</option>
+              </select>
+           </div>
+        </div>
 
-         <div class="form-group col-12 row">
-            <div class="col-12 col-sm-6 ">
-               <label>Piso</label>
-               <input type="text" class="form-control" [(ngModel)]="model.piso" name="piso">
-            </div>
-            <div class="col-12 col-sm-6 ">
-               <label>Dpto</label>
-               <input type="text" class="form-control" [(ngModel)]="model.dpto" name="dpto">
-            </div>
-         </div>
-         <div class="form-group col-12 row">
-            <div class="col-12 col-sm-6 ">
-               <label>Calle 1</label>
-               <input type="text" class="form-control" [(ngModel)]="model.calle1" name="calle1">
-            </div>
-            <div class="col-12 col-sm-6 ">
-               <label>Calle 2</label>
-               <input type="text" class="form-control" [(ngModel)]="model.calle2" name="calle2">
-            </div>
-         </div>
+        <div class="form-group col-12 row">
+           <div class="col-12 col-sm-6 ">
+              <label>Piso</label>
+              <input type="text" class="form-control" [(ngModel)]="model.piso" name="piso">
+           </div>
+           <div class="col-12 col-sm-6 ">
+              <label>Dpto</label>
+              <input type="text" class="form-control" [(ngModel)]="model.dpto" name="dpto">
+           </div>
+        </div>
+        <div class="form-group col-12 row">
+           <div class="col-12 col-sm-6 ">
+              <label>Calle 1</label>
+              <input type="text" class="form-control" [(ngModel)]="model.calle1" name="calle1">
+           </div>
+           <div class="col-12 col-sm-6 ">
+              <label>Calle 2</label>
+              <input type="text" class="form-control" [(ngModel)]="model.calle2" name="calle2">
+           </div>
+        </div>
 
-         <div class="form-group col-12 row">
-            <h4>Dirección</h4>
-            <div class="input-group col-12  pv-8">
-               <input type="search"  name="direccion" [(ngModel)]="model.direccion" class="form-control">
-               <span class="input-group-btn">
-               <button class="btn btn-primary" type="button" id="search"  onclick="event.preventDefault();">
-               <span class="glyphicon glyphicon-search" aria-hidden="true">
-               </span> Buscar Dirección</button>
-               </span>
-            </div>
-         </div>
-         <div class="form-group col-12 row">
-            <div id="map_canvas" class="col-12  thumbnail" style="height 400px;"></div>
-         </div>
+        <div class="form-group col-12 row">
+           <h4>Dirección</h4>
+           <div class="input-group col-12  pv-8">
+              <input type="search"  name="direccion" [(ngModel)]="model.direccion" class="form-control">
+              <span class="input-group-btn">
+              <button class="btn btn-primary" type="button" id="search"  onclick="event.preventDefault();">
+              <span class="glyphicon glyphicon-search" aria-hidden="true">
+              </span> Buscar Dirección</button>
+              </span>
+           </div>
+        </div>
+        <div class="form-group col-12 row">
+           <div id="map_canvas" class="col-12  thumbnail" style="height 400px;"></div>
+        </div>
 
-         <div class="row col-12  pv-8">
-            <label class="col-12 col-sm-3">Coordenadas</label>
-            <div class="col-12 col-sm-4" >
-               <input name="latitud" type="text" id="latitude" value="" class="form-control" readonly="readonly">
-            </div>
-            <div class="col-12 col-sm-4" >
-               <input name="longitud" type="text" id="longitude" value="" class="form-control" readonly="readonly">
-            </div>
-         </div>
+        <div class="row col-12  pv-8">
+           <label class="col-12 col-sm-3">Coordenadas</label>
+           <div class="col-12 col-sm-4" >
+              <input name="latitud" type="text" id="latitude" value="" class="form-control" readonly="readonly">
+           </div>
+           <div class="col-12 col-sm-4" >
+              <input name="longitud" type="text" id="longitude" value="" class="form-control" readonly="readonly">
+           </div>
+        </div>
+      </div>
+
+      <div class="col-12 pull-right">
+        <h4>Características generales</h4><hr>
+
+        <div class="form-group row">
+           <div class="checkbox col-md-6 col-12"  *ngFor="let e of carac_gral" [ngSwitch]="e.type">
+              <label *ngSwitchCase="'ck'"><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]">&nbsp;{{e.nombre}}</label>
+              <label *ngSwitchCase="'tx'">{{e.nombre}}:&nbsp;<input type="text" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]"></label>
+              <label *ngSwitchCase="'sl'">
+                {{e.nombre}}:&nbsp;
+                <select class="form-control" [(ngModel)]="model.carac_gral[e.id]" [name]="e.nombre">
+                  <option *ngFor="let b of e.o" [value]="b.id">{{b.nombre}}</option>
+                </select>
+              </label>
+           </div>
+        </div>
+      </div>
+
+      <div class="col-12 pull-right">
+        <h4>Características</h4><hr>
+
+        <div class="form-group row">
+           <div class="checkbox col-md-6 col-12"  *ngFor="let e of equipamiento">
+              <label><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</label>
+           </div>
+        </div>
+      </div>
+
+      <div class="col-12 pull-right">
+        <h4>Ambientes</h4><hr>
+
+        <div class="form-group row">
+           <div class="checkbox col-md-6 col-12"  *ngFor="let e of ambientes">
+              <label><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.ambientes[e.id]">&nbsp;{{e.nombre}}</label>
+           </div>
+        </div>
+      </div>
+
+      <div class="col-12 pull-right">
+        <h4>Servicios</h4><hr>
+
+        <div class="form-group row">
+           <div class="checkbox col-md-6 col-12"  *ngFor="let e of servicios">
+              <label><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.servicios[e.id]">&nbsp;{{e.nombre}}</label>
+           </div>
+        </div>
       </div>
 
       <div class="col-12 col-sm-6 pull-right">
-         <h4>Características</h4>
-         <hr>
-         <div class="form-group row">
-            <div class="col-12 col-sm-6 ">
-               <label>Ambientes</label>
-               <input type="number" class="form-control" name="ambientes" [(ngModel)]="model.ambientes">
-            </div>
-            <div class="col-12 col-sm-6 ">
-               <label>Baños</label>
-               <input type="number" class="form-control" name="banios" [(ngModel)]="model.banios">
-            </div>
-         </div>
-         <div class="form-group row">
-            <div class="col-12 col-sm-6">
-               <label>Dormitorios</label> <input type="number" class="form-control" name="dormitorios" [(ngModel)]="model.dormitorios" placeholder="2">
-            </div>
-            <div class="col-12 col-sm-6">
-               <label>Superficie Cubierta</label> <input type="number" class="form-control" name="superficie" [(ngModel)]="model.superficie_cubierta" placeholder="400">
-               <small class="form-text text-muted">En metros cuadrados.</small>
-            </div>
-         </div>
-         <div class="form-group row">
-            <div class="col-12 col-sm-6 ">
-               <label>Superficie Total</label>
-               <input type="number" class="form-control" name="superficie_total" [(ngModel)]="model.superficie_total">
-               <small class="form-text text-muted">En metros cuadrados.</small>
-            </div>
-            <div class="col-12 col-sm-6 ">
-               <label>Expensas</label>
-               <input type="text" class="form-control" name="expensas" [(ngModel)]="model.expensas">
-            </div>
-         </div>
-         <div class="form-group row">
-            <div class="col-12 col-md-6">
-               <label>Disposición</label>
-               <select class="form-control" name="disposicion" [(ngModel)]="model.disposicion">
-               <option *ngFor="let ciud of disposicion" [value]="ciud.id">{{ciud.nombre}}</option>
-               </select>
-            </div>
-         </div>
-
-         <div class="form-group row">
-            <h4 class="col-12">Amenities</h4>
-            <div class="checkbox col-md-6 col-12"  *ngFor="let e of equipamiento">
-               <label><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</label>
-            </div>
-         </div>
-
-         <div class="form-group row">
-            <h4 class="col-12">Ambientes</h4>
-            <div class="checkbox col-md-6 col-12"  *ngFor="let e of equipamiento">
-               <label><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</label>
-            </div>
-         </div>
-
-         <div class="form-group row" *ngIf="model.tipo_operacion_id != 0">
+          <div class="form-group row" *ngIf="model.tipo_operacion_id != 0">
             <div class="col-12 col-sm-4">
                <label>Valor día</label> <input type="text" class="form-control" name="valor_dia" [(ngModel)]="model.valor_dia" placeholder="Valor día">
             </div>

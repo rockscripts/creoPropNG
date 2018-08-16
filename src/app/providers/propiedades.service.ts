@@ -15,7 +15,11 @@ export class PropiedadesService {
   private wsp  = 'propiedad/getInfo';
   private wsn  = 'propiedad/create';
   private wsc  = 'search/config';
+
   private wse  = 'equipamientos/all';
+  private wscg = 'propiedad/caracteristicas';
+  private wsam = 'ambientes/all';
+  private wser = 'servicios/all';
 
   public busqueda = new Busqueda();
   private model   = new Propiedad();
@@ -43,9 +47,19 @@ export class PropiedadesService {
   }
 
   getEquipamiento() {
-    return this
-            .http
-            .get(this.config.getAPIUrl()+this.wse);
+    return this.http.get(this.config.getAPIUrl()+this.wse);
+  }
+
+  getAmbientes() {
+    return this.http.get(this.config.getAPIUrl()+this.wsam);
+  }
+
+  getServicios() {
+    return this.http.get(this.config.getAPIUrl()+this.wser);
+  }
+
+  getCaraceristicas() {
+    return this.http.get(this.config.getAPIUrl()+this.wscg);
   }
 
   getPropiedad(id) {

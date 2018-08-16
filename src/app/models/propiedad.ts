@@ -17,7 +17,7 @@ export class Propiedad {
   public valor_semana: number = 0;
   public imgs:         any    = [];
   public texto:        string = '';
-  public ambientes:    number = 0;
+  public ambientes_c:  number = 0;
   public banios:       number = 0;
   public expensas:     number = 0;
   public disposicion:  number = 0;
@@ -34,19 +34,9 @@ export class Propiedad {
   public superficie_cubierta:number = 0;
   public superficie_total:   number  = 0;
 
-  public etapa:             number = 0;
-  public tipo_techo:        number = 0;
-  public largo_terreno:     number = 0;
-  public frente:            number = 0;
-  public luminosidad:       number = 0;
-  public estado_inmueble:   number = 0;
-  public cobertura_cochera: number = 0;
-  public cantidad_plantas:  number = 0;
-  public camas:             number = 0;
-  public parque_infantil:   boolean = false;
-  public pension:           number = 0;
-  public entorno:           number = 0;
-  public limpieza_final:    number = 0;
+  public ambientes:  any = [];
+  public servicios:  any = [];
+  public carac_gral: any = [];
 
   public tipo_plan: number = -1;
   public id:        number = -1;
