@@ -80,22 +80,23 @@ export class PropiedadFormComponent implements OnInit {
     this.zonas.getBarrios(1).subscribe((r)    => {    this.barrios = r['data']; });
     this.prop.getEquipamiento().subscribe((r) => { this.equipamiento = r['data']; });
 
-    if (!this.user.permiso('new-prop')){
+    /*if (!this.user.permiso('new-prop')){
       this.dataTarget = '#loginModal';
     } else {
       this.dataTarget = '';
-    }
+    }*/
   }
 
   onSubmit() { this.submitted = true; }
 
   newProp(){
-    if (this.user.permiso('new-prop')){
-      this.prop.create(this.model)
-        .subscribe((r) => {
-          this.router.navigate(['/new-prop-ok',{'m':this.model.titulo,'i':r['data']['id']}]);
-      });
-    }
+    this.prop.model = this.model;
+    this.router.navigate(['/select-plan']);
+
+    //this.prop.create(this.model)
+    //  .subscribe((r) => {
+    //      this.router.navigate(['/new-prop-ok',{'m':this.model.titulo,'i':r['data']['id']}]);
+    //  });
   }
 
 }

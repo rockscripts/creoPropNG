@@ -1,0 +1,13 @@
+p{color:#bbb;}
+
+.card-precio .card-header .col{ text-align:center;font-weight: bold;}
+.card-precio {min-height: 16rem;}
+
+
+.v0{ background-color: #ddd;}
+.v1 {background-color: #d6e7dd;}
+.v2 {background-color: #c1e0ff}
+
+.vp { font-size: 1.5rem; }
+
+.pktit {height: 6rem;}

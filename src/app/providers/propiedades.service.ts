@@ -17,6 +17,7 @@ export class PropiedadesService {
   private wse  = 'equipamientos/all';
 
   public busqueda = new Busqueda();
+  public model;
 
   constructor(
     private http:   HttpClient,
@@ -47,10 +48,10 @@ export class PropiedadesService {
             .post(this.config.getAPIUrl()+this.wsc, JSON.stringify(this.busqueda));
   }
 
-  create(m) {
+  create() {
     return this
             .http
-            .post(this.config.getAPIUrl()+this.wsn, m);
+            .post(this.config.getAPIUrl()+this.wsn, this.model);
   }
 
   clearParams(){
