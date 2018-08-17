@@ -23,13 +23,15 @@ export class PropiedadesService {
 
   public busqueda = new Busqueda();
   private model   = new Propiedad();
+  private caracGral:any = [];
 
   public modelVacio:boolean = true;
 
   constructor(
     private http:   HttpClient,
     private config: ConfigService
-  ) { }
+  ) {
+  }
 
   getModel(){
     return this.model;
@@ -58,7 +60,7 @@ export class PropiedadesService {
     return this.http.get(this.config.getAPIUrl()+this.wser);
   }
 
-  getCaraceristicas() {
+  getCaraceristicas() { //[modificar] para no hacer peticiones de gusto
     return this.http.get(this.config.getAPIUrl()+this.wscg);
   }
 

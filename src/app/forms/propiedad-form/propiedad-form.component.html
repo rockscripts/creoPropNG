@@ -125,7 +125,8 @@
 
         <div class="form-group row">
            <div class="checkbox col-md-6 col-12"  *ngFor="let e of carac_gral" [ngSwitch]="e.type">
-              <label class="form-inline" *ngSwitchCase="'ck'"><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]">&nbsp;{{e.nombre}}</label>
+              <label class="form-inline" *ngSwitchCase="'ck'">
+                <input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]">&nbsp;{{e.nombre}}</label>
 
               <label class="form-inline" *ngSwitchCase="'tx'">
                 <input type="checkbox" [value]="false" [name]="e.nombre" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;
