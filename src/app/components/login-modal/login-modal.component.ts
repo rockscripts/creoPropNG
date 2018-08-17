@@ -1,8 +1,8 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 
-import { UserService } from '../../providers/user.service';
-import { User }        from '../../models/user';
+import { UserService }            from '../../providers/user.service';
+import { User }                   from '../../models/user';
 
 @Component({
   selector: 'app-login-modal',
@@ -19,8 +19,8 @@ export class LoginModalComponent implements OnInit {
   cssProp:string = '';
 
   constructor(
-    private router:   Router,
-    private US :      UserService
+    private router: Router,
+    private US :    UserService
   ) { }
 
   ngOnInit() {
@@ -47,5 +47,13 @@ export class LoginModalComponent implements OnInit {
   hide(){
     this.showM   = false;
     this.cssProp = 'display: none;';
+  }
+
+  cerrar(){
+    this.lgCloseBtn.nativeElement.click();
+  }
+
+  irRegistro(){
+    this.cerrar();
   }
 }

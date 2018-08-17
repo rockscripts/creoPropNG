@@ -125,11 +125,17 @@
 
         <div class="form-group row">
            <div class="checkbox col-md-6 col-12"  *ngFor="let e of carac_gral" [ngSwitch]="e.type">
-              <label *ngSwitchCase="'ck'"><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]">&nbsp;{{e.nombre}}</label>
-              <label *ngSwitchCase="'tx'">{{e.nombre}}:&nbsp;<input type="text" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]"></label>
-              <label *ngSwitchCase="'sl'">
+              <label class="form-inline" *ngSwitchCase="'ck'"><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]">&nbsp;{{e.nombre}}</label>
+
+              <label class="form-inline" *ngSwitchCase="'tx'">
+                <input type="checkbox" [value]="false" [name]="e.nombre" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;
+                {{e.nombre}}:&nbsp;<input type="text" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]">
+              </label>
+
+              <label class="form-inline" *ngSwitchCase="'sl'">
+                <input type="checkbox" [value]="false" [name]="e.nombre" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;
                 {{e.nombre}}:&nbsp;
-                <select class="form-control" [(ngModel)]="model.carac_gral[e.id]" [name]="e.nombre">
+                <select class="form-control form-control-sm" [(ngModel)]="model.carac_gral[e.id]" [name]="e.nombre">
                   <option *ngFor="let b of e.o" [value]="b.id">{{b.nombre}}</option>
                 </select>
               </label>

@@ -34,9 +34,10 @@ export class Propiedad {
   public superficie_cubierta:number = 0;
   public superficie_total:   number  = 0;
 
-  public ambientes:  any = [];
-  public servicios:  any = [];
-  public carac_gral: any = [];
+  public ambientes:    any = [];
+  public servicios:    any = [];
+  public carac_gral:   any = [];
+  public carac_gral_e: any = [];
 
   public tipo_plan: number = -1;
   public id:        number = -1;
