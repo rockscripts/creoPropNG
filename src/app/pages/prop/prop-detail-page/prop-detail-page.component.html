@@ -61,17 +61,11 @@
 			</div>
 		</div>
 
-	<div class="col-12 col-sm-6 c-card">
+		<div class="col-12 col-sm-6 c-card">
 			<div class="card">
 			  <div class="card-body">
-			    <h5 class="card-title">DATOS PRINCIPALES</h5>
-					<div class="col-12">
-						<div class="col-12"><i class="fa fa-share-alt"></i>&nbsp;{{propiedad[0].superficie_cubierta}} Superficie cubierta</div>
-						<div class="col-12"><i class="fa fa-share-alt"></i>&nbsp;{{propiedad[0].dormitorios}} Dormitorios</div>
-						<div class="col-12"><i class="fa fa-share-alt"></i>&nbsp;{{propiedad[0].cochera}} Cochera</div>
-						<div class="col-12"><i class="fa fa-share-alt"></i>&nbsp;{{propiedad[0].piscina}} Piscina</div>
-						<div class="col-12"><i class="fa fa-share-alt"></i>&nbsp;{{propiedad[0].capacidad}} Capacidad</div>
-					</div>
+			    <h5 class="card-title">DESCRIPCIÓN</h5>
+					{{propiedad[0].texto}}
 			  </div>
 			</div>
 		</div>
@@ -79,8 +73,44 @@
 		<div class="col-12 col-sm-6 c-card">
 			<div class="card">
 			  <div class="card-body">
-			    <h5 class="card-title">DESCRIPCIÓN</h5>
-					{{propiedad[0].texto}}
+			    <h5 class="card-title">CARACTERÍSTICAS GENERALES</h5>
+
+					<div class="col-12">
+	          <div *ngFor="let ub of propiedad.carac_gral" class="col-12">
+							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.n}}:&nbsp;{{ub.v}}
+						</div>
+	        </div>
+
+			  </div>
+			</div>
+		</div>
+
+		<div class="col-12 col-sm-6 c-card">
+			<div class="card">
+			  <div class="card-body">
+			    <h5 class="card-title">AMBIENTES</h5>
+
+					<div class="col-12">
+	          <div *ngFor="let ub of propiedad.ambientes" class="col-12">
+							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
+						</div>
+	        </div>
+
+			  </div>
+			</div>
+		</div>
+
+		<div class="col-12 col-sm-6 c-card">
+			<div class="card">
+			  <div class="card-body">
+			    <h5 class="card-title">SERVICIOS</h5>
+
+					<div class="col-12">
+	          <div *ngFor="let ub of propiedad.servicios" class="col-12">
+							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
+						</div>
+	        </div>
+
 			  </div>
 			</div>
 		</div>
@@ -99,23 +129,6 @@
 			  </div>
 			</div>
 		</div>
-
-
-	<!--	<div class="col-12 col-sm-6 c-card">
-			<div class="card">
-			  <div class="card-body">
-			    <h5 class="card-title">AMBIENTES</h5>
-			  </div>
-			</div>
-		</div>-->
-
-		<!--<div class="col-12 col-sm-6 c-card">
-			<div class="card">
-			  <div class="card-body">
-			    <h5 class="card-title">CARACTERÍSTICAS GENERALES</h5>
-			  </div>
-			</div>
-		</div>-->
 
 
 	</div>

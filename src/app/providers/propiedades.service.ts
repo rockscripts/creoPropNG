@@ -37,6 +37,10 @@ export class PropiedadesService {
     return this.model;
   }
 
+  clearModel(){
+    this.model = new Propiedad();
+  }
+
   setModel(m){
     this.model = m;
     this.modelVacio = false;

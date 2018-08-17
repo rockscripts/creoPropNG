@@ -100,7 +100,7 @@ export class PropiedadFormComponent implements OnInit {
     if (this.user.permiso('new-prop')){
       this.prop.create()
       .subscribe((r) => {
-          this.prop.setModel(this.prop.getModel().id = r['data']['id']);
+          this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
           this.router.navigate(['/new-prop-ok']);
       });
     }
