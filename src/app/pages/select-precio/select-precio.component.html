@@ -1,90 +1,45 @@
+<div class="row cont">
+
+  <div class="col-md-4 col-12" *ngFor="let plan of planes">
+    <div class="col-12 pktit">
+      <div class="row text-center">
+        <h2 class="col-12 text-crp">{{plan.t}}</h2>
+        <h5 class="col-12">{{plan.st}}</h5>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card card-precio">
+        <div class="card-header {{plan.class}}">
+          <div class="row align-items-center">
+            <div class="col col-3 vp"> {{plan.en1}} </div>
+            <div class="col col-6">    {{plan.en2}} </div>
+            <div class="col col-3">    {{plan.en3}} </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="col-12">
+            <p>{{plan.bd1}}</p>
+            <p>{{plan.bd2}}</p>
+          </div>
+          <div class="row bt-cont">
+            <div class="col-12 col-sm-10 offset-sm-1"><button type="button" class="w-100 btn btn-cprop" data-toggle="modal" [attr.data-target]="dataTarget" (click)="siguiente(plan.id)">Publicar ahora</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 <div class="row">
-
-  <div class="col-md-4 col-12">
-    <div class="col-12 pktit">
-      <div class="row text-center">
-        <h2 class="col-12 text-crp">Publicación gratis</h2>
-        <h5 class="col-12">10 avisos gratis para siempre, no se consumen</h5>
-      </div>
+  <div class="col">
+  </div>
+  <div class="col-12 col-md-2">
+    <div class="row">
+      <div class="col text-center">Nuestros medios de pago:</div>
     </div>
-    <div class="col-12">
-      <div class="card card-precio">
-        <div class="card-header v0">
-          <div class="row align-items-center">
-            <div class="col col-3 vp">VIP 0</div>
-            <div class="col col-6">10 Avisos</div>
-            <div class="col col-3">Gratis</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="col-12">
-            <p>No se consumen</p>
-            <p>Recomendado para dueños directos</p>
-          </div>
-          <div class="row bt-cont">
-            <div class="col-12 col-sm-10 offset-sm-1"><button type="button" class="w-100 btn btn-cprop" data-toggle="modal" [attr.data-target]="dataTarget" (click)="siguiente(0)">Publicar ahora</button></div>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col">
       </div>
     </div>
   </div>
-
-  <div class="col-md-4 col-12">
-    <div class="col-12 pktit">
-      <div class="row text-center">
-        <h2 class="col-12 text-crp">Avisos ilimitados</h2>
-        <h5 class="col-12">Recomendado si posee más de 10 propiedades</h5>
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="card card-precio">
-        <div class="card-header v1">
-          <div class="row align-items-center">
-            <div class="col col-3 vp">VIP 1</div>
-            <div class="col col-6">Avisos ilimitados</div>
-            <div class="col col-3">$100</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="col-12">
-            <p>Avisos ilimitados</p>
-            <p>Recomendado si posee más de 10 propiedades</p>
-          </div>
-          <div class="row bt-cont">
-            <div class="col-12 col-sm-10 offset-sm-1"><button type="button" class="w-100 btn btn-cprop" data-toggle="modal" [attr.data-target]="dataTarget" (click)="siguiente(1)">Publicar ahora</button></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-12">
-    <div class="col-12 pktit">
-      <div class="row text-center">
-        <h2 class="col-12 text-crp">Pack avisos + destaques</h2>
-        <h5 class="col-12">Recomendado para incrementar sus ventas</h5>
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="card card-precio">
-        <div class="card-header v2">
-          <div class="row align-items-center">
-            <div class="col col-3 vp">VIP 2</div>
-            <div class="col col-6">Avisos ilimitados + 10 destaques</div>
-            <div class="col col-3">$770</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="col-12">
-            <p>%30 de descuento</p>
-            <p>Mayor presencia</p>
-          </div>
-          <div class="row bt-cont">
-            <div class="col-12 col-sm-10 offset-sm-1"><button type="button" class="w-100 btn btn-cprop" data-toggle="modal" [attr.data-target]="dataTarget" (click)="siguiente(2)">Publicar ahora</button></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
