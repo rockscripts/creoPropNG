@@ -1,5 +1,5 @@
 <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-4 offset-lg-4 alert-comp" [ngClass]="{'oculto':oculto}" (click)="dismiss()">
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <div class="alert alert-dismissible fade show" [ngClass]="{'alert-danger':danger, 'alert-success':success}" role="alert">
     <div class="alert-cont">
       {{msg}}
       <button type="button" class="close" aria-label="Close" >
