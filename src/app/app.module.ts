@@ -38,7 +38,6 @@ import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.co
 import { AlertComponent } from './components/alert/alert.component';
 import { DenunciaPropFormComponent } from './forms/denuncia-prop-form/denuncia-prop-form.component';
 import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-modal.component';
-import { ReportFormComponent } from './forms/report-form/report-form.component';
 
 
 @NgModule({
@@ -67,7 +66,6 @@ import { ReportFormComponent } from './forms/report-form/report-form.component';
     AlertComponent,
     DenunciaPropFormComponent,
     DenunciaModalComponent,
-    ReportFormComponent
   ],
   imports: [
     BrowserModule,

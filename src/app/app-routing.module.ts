@@ -13,7 +13,6 @@ import { NuevaPropOkComponent }    from './pages/prop/nueva-prop-ok/nueva-prop-o
 import { MiCuentaComponent }       from './pages/mi-cuenta/mi-cuenta.component';
 import { SearchComponent }         from './pages/search/search.component';
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
-import { ReportFormComponent } from './forms/report-form/report-form.component';
 
 const routes: Routes = [
   { path: '',                component: HomeComponent },
@@ -28,7 +27,6 @@ const routes: Routes = [
   { path: "mi-cuenta",       component: MiCuentaComponent },
   { path: "search/:t",       component: SearchComponent },
   { path: 'perfil',          component: PerfilUsuarioComponent },
-  { path: 'report',          component: ReportFormComponent },
   { path: "**",              redirectTo: "/404" },
 
 ];
@@ -41,5 +39,5 @@ const routes: Routes = [
   declarations: [],
   exports: [ RouterModule ]
 })
-
+  
 export class AppRoutingModule {}
