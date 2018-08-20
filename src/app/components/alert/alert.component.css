@@ -1,0 +1,10 @@
+.alert-comp{
+  position: fixed;
+  z-index: 2000;
+  top: 3rem;
+  min-height: 100px;
+}
+
+.oculto {display:none;}
+
+.alert-comp .alert-cont{ min-height: 100px; }

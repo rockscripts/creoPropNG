@@ -1,6 +1,10 @@
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+<div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-4 offset-lg-4 alert-comp" [ngClass]="{'oculto':oculto}" (click)="dismiss()">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div class="alert-cont">
+      {{msg}}
+      <button type="button" class="close" aria-label="Close" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
 </div>

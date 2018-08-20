@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 
 import { UserService }            from '../../providers/user.service';
+import { TextsService }           from '../../providers/texts.service';
+import { AlertService }           from '../../components/alert/alert.service';
 import { User }                   from '../../models/user';
 
 @Component({
@@ -20,6 +22,8 @@ export class LoginModalComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private alert:  AlertService,
+    private texts:  TextsService,
     private US :    UserService
   ) { }
 
@@ -30,11 +34,14 @@ export class LoginModalComponent implements OnInit {
     this.US.model = this.model;
     this.US.logIn()
       .subscribe((r) => {
-        if (r['errors'] != 'bad login'){
+        if (r['errors'] == ''){
           this.US.setLogin(r);
           this.lgCloseBtn.nativeElement.click();
           this.US.onLogin.next();
+          this.US.clearModel();
           this.router.navigate(['/home/1']);
+        } else {
+          this.alert.show(this.texts.eBadLogin);
         }
     });
   }

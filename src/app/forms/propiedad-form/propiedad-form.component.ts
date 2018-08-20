@@ -55,8 +55,7 @@ export class PropiedadFormComponent implements OnInit {
   updateLocalidad(){
     this.zonas.provincia     = this.model.provincia;
     this.zonas.termUbicacion = '';
-    this
-      .zonas.getLocalidades()
+    this.zonas.getLocalidades()
       .subscribe((r) => {
         this.ciudades =  r ['data'];
     });

@@ -13,6 +13,7 @@ import { ZonasService }         from './providers/zonas.service';
 import { ConfigService }        from './providers/config.service';
 import { UserService }          from './providers/user.service';
 import { SiteService }          from './providers/site.service';
+import { TextsService }         from './providers/texts.service';
 
 import { PropDetailPageComponent } from './pages/prop/prop-detail-page/prop-detail-page.component';
 import { PrivacidadPageComponent } from './pages/privacidad-page/privacidad-page.component';
@@ -87,7 +88,8 @@ import { SelectPlanComponent } from './pages/select-plan/select-plan.component';
     ZonasService,
     ConfigService,
     UserService,
-    SiteService
+    SiteService,
+    TextsService
   ],
   bootstrap: [
     AppComponent

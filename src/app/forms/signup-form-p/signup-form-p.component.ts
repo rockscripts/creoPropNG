@@ -16,10 +16,7 @@ export class SignupFormPComponent implements OnInit {
 
   model = new User();
 
-  tipo_us:any = [
-    {"id":"0","nombre":"Usuario particular"},
-    {"id":"1","nombre":"Inmobiliaria"}
-  ];
+  tipo_us:any = [];
 
   constructor(
     private router: Router,
@@ -28,6 +25,10 @@ export class SignupFormPComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.US.getTypes()
+      .subscribe((r) => {
+        this.tipo_us =  r ['data'];
+    });
   }
 
   nuevo(){
