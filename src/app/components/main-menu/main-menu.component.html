@@ -1,6 +1,7 @@
 <nav [ngClass]="{'navbar':true, 'navbar-white':!navbar_red, 'navbar-red':navbar_red, 'navbar-expand-lg':true, 'fixed-top':true, 'navbar-light':true}">
   <a class="navbar-brand" routerLink="/">
-    <img src="assets/logo.svg" width="auto" height="50px" alt="">
+    <img src="assets/logo.svg" width="auto" height="50px" alt="" *ngIf="navbar_red">
+    <img src="assets/logo-red.svg" width="auto" height="50px" alt="" *ngIf="!navbar_red">
     creoprop
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
