@@ -11,4 +11,8 @@ export class User {
   public token        :string = '';
   public id           :number = -1;
   public inmobiliaria :number = -1;
+
+  public formValid(){
+
+  }
 }

@@ -5,4 +5,8 @@ export class Denuncia {
   public denunciante: number = -1;
 
   constructor() {  }
+
+  public formValid(){
+
+  }
 }

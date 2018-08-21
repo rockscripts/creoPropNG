@@ -45,4 +45,8 @@ export class Propiedad {
   public inmobiliaria_id: number = -1;
 
   constructor() {}
+
+  public formValid(){
+
+  }
 }

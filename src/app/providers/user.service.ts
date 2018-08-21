@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core'; // [Refactorizar]
 import { HttpClient } from '@angular/common/http';
-
+import { Router }     from '@angular/router';
 import { Subject }    from 'rxjs/Subject';
 
 import { ConfigService } from './config.service';
-
-import { User } from './../models/user';
+import { User }          from './../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +17,15 @@ export class UserService {
   private wsl = 'user/login';
   private wst = 'user/get-types';
 
-  public onLogin = new Subject();
+  public onLogin  = new Subject();
+  public onLogOut = new Subject()
 
   public model;
 
   constructor(
     private http:   HttpClient,
-    private config: ConfigService
+    private config: ConfigService,
+    private router: Router
   ) { }
 
   setLogin(r){
@@ -56,8 +57,10 @@ export class UserService {
     return this.http.post(this.config.getAPIUrl()+this.wsl, this.model);
   }
 
-  logOut(){
-
+  logOut(){ //todaia faltan agregar funcionalidades por acá
+    this.userData = new User();
+    this.router.navigate(['/home/exit']);
+    this.onLogOut.next();
   }
 
   create(){

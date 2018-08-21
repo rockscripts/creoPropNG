@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit }   from '@angular/core';
+import { Router, RouterEvent } from '@angular/router';
 
-import { UserService }  from './../../providers/user.service';
-import { Router, RouterEvent }       from '@angular/router';
+import { UserService } from './../../providers/user.service';
 
 @Component({
   selector: 'app-main-menu',
@@ -25,12 +25,8 @@ export class MainMenuComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.us.onLogin.subscribe({
-      next: (v) => {
-        this.registrado = this.us.logeado();
-        this.userName   = this.us.getName();
-      }
-    });
+    this.us.onLogin.subscribe({ next: (v) => { this.actualizaEstado(); } });
+    this.us.onLogOut.subscribe({ next: (v) => { this.actualizaEstado(); } });
 
     this.router.events.subscribe((e) => {
       if(e instanceof RouterEvent){
@@ -43,5 +39,14 @@ export class MainMenuComponent implements OnInit {
     });
   }
 
+  actualizaEstado(){
+    this.registrado = this.us.logeado();
+    if(this.registrado) {
+      this.userName   = this.us.getName();
+    }
+  }
 
+  logOut(){ // [Revisar] si estructuralmente seria correcto dejar esto opr aca
+    this.us.logOut();
+  }
 }
