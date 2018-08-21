@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Denuncia }         from '../../models/denuncia';
+import { DenunciaService }  from '../../providers/denuncia.service';
+import { TextsService }     from '../../providers/texts.service';
+import { AlertService }     from '../../components/alert/alert.service';
+
 @Component({
   selector: 'app-denuncia-prop-form',
   templateUrl: './denuncia-prop-form.component.html',
@@ -15,9 +20,30 @@ export class DenunciaPropFormComponent implements OnInit {
     {"id":"4","nombre":"Otro motivo"},
   ];
 
-  constructor() { }
+  model:any = new Denuncia();
+
+  constructor(
+    private denuncia: DenunciaService,
+    private alert:    AlertService,
+    private texts:    TextsService
+  ) { }
 
   ngOnInit() {
+    this.model = this.denuncia.getModel();
+  }
+
+  dismiss(){
+
+  }
+
+  denunciar(){
+    this.denuncia.nueva().subscribe(
+      (r) => {
+        if (r['errors'] == ''){
+        } else {
+          this.alert.show(this.texts.eBadReq);
+        }
+    });
   }
 
 }

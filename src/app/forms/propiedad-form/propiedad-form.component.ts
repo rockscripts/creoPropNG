@@ -13,7 +13,7 @@ import { UserService }         from '../../providers/user.service';
 })
 export class PropiedadFormComponent implements OnInit {
 
-  model      = new Propiedad();
+  model:Propiedad;
   submitted  = false;
   dataTarget = '';
 
@@ -21,6 +21,9 @@ export class PropiedadFormComponent implements OnInit {
   provincias:any;
   barrios:any;
   equipamiento:any;
+  servicios:any;
+  ambientes:any;
+  carac_gral:any;
 
   tipo_prop:any = [
     {"id":"0","nombre":"Casa"},
@@ -52,8 +55,7 @@ export class PropiedadFormComponent implements OnInit {
   updateLocalidad(){
     this.zonas.provincia     = this.model.provincia;
     this.zonas.termUbicacion = '';
-    this
-      .zonas.getLocalidades()
+    this.zonas.getLocalidades()
       .subscribe((r) => {
         this.ciudades =  r ['data'];
     });
@@ -77,23 +79,28 @@ export class PropiedadFormComponent implements OnInit {
 
   ngOnInit() {
     this.zonas.getProvincias().subscribe((r)  => {  this.provincias = r['data'];  });
-    this.zonas.getBarrios(1).subscribe((r)    => {    this.barrios = r['data']; });
+    this.zonas.getBarrios(1).subscribe((r)    => {    this.barrios = r['data'];   });
     this.prop.getEquipamiento().subscribe((r) => { this.equipamiento = r['data']; });
+    this.prop.getServicios().subscribe((r) => { this.servicios = r['data']; });
+    this.prop.getAmbientes().subscribe((r) => { this.ambientes = r['data']; });
+    this.prop.getCaraceristicas().subscribe((r) => { this.carac_gral = r['data']; });
 
-    if (!this.user.permiso('new-prop')){
-      this.dataTarget = '#loginModal';
+    if(this.prop.modelVacio){
+      this.model = new Propiedad();
     } else {
-      this.dataTarget = '';
+      this.model = this.prop.getModel();
     }
   }
 
   onSubmit() { this.submitted = true; }
 
   newProp(){
+    this.prop.setModel(this.model);
     if (this.user.permiso('new-prop')){
-      this.prop.create(this.model)
-        .subscribe((r) => {
-          this.router.navigate(['/new-prop-ok',{'m':this.model.titulo,'i':r['data']['id']}]);
+      this.prop.create()
+      .subscribe((r) => {
+          this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
+          this.router.navigate(['/new-prop-ok']);
       });
     }
   }

@@ -8,6 +8,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 export class RegisterModalComponent implements OnInit {
   @ViewChild('regCloseBtn') regCloseBtn:ElementRef;
 
+  showM:boolean  = false;
+  cssProp:string = '';
+
   constructor() { }
 
   ngOnInit() {
@@ -15,6 +18,16 @@ export class RegisterModalComponent implements OnInit {
 
   cerrar(){
     this.regCloseBtn.nativeElement.click();
+  }
+
+  show(){
+    this.showM   = true;
+    this.cssProp = 'display: block;';
+  }
+
+  hide(){
+    this.showM   = false;
+    this.cssProp = 'display: none;';
   }
 
 }

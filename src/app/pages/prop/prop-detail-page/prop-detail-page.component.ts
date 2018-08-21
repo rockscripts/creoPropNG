@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
 
 import { PropiedadesService } from './../../../providers/propiedades.service';
+import { DenunciaService }    from './../../../providers/denuncia.service';
 
 @Component({
   selector: 'app-prop-detail-page',
@@ -17,6 +18,7 @@ export class PropDetailPageComponent implements OnInit {
   constructor(
     private activatedRoute:ActivatedRoute,
     private propiedadService:PropiedadesService,
+    private denuncia:DenunciaService
   ) {}
 
   ngOnInit() {
@@ -33,7 +35,8 @@ export class PropDetailPageComponent implements OnInit {
   }
 
   denunciar(){
-    
+    this.denuncia.setIdProp(this.id);
+    this.denuncia.showForm.next();
   }
 
 }

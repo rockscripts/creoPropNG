@@ -17,7 +17,7 @@ export class Propiedad {
   public valor_semana: number = 0;
   public imgs:         any    = [];
   public texto:        string = '';
-  public ambientes:    number = 0;
+  public ambientes_c:  number = 0;
   public banios:       number = 0;
   public expensas:     number = 0;
   public disposicion:  number = 0;
@@ -34,5 +34,13 @@ export class Propiedad {
   public superficie_cubierta:number = 0;
   public superficie_total:   number  = 0;
 
-  constructor() {  }
+  public ambientes:    any = [];
+  public servicios:    any = [];
+  public carac_gral:   any = [];
+  public carac_gral_e: any = [];
+
+  public tipo_plan: number = -1;
+  public id:        number = -1;
+
+  constructor() {}
 }

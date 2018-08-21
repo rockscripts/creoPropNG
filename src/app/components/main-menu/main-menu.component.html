@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg fixed-top  navbar-light">
+<nav [ngClass]="{'navbar':true, 'navbar-white':!navbar_red, 'navbar-red':navbar_red, 'navbar-expand-lg':true, 'fixed-top':true, 'navbar-light':true}">
   <a class="navbar-brand" routerLink="/">
     <img src="assets/logo.svg" width="auto" height="50px" alt="">
     creoprop
@@ -7,7 +7,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse row" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse row" id="navbarSupportedContent" *ngIf="navbar_red">
     <form class="my-2 my-lg-0 col-sm-3">
       <div class="input-group add-on">
       <input class="form-control" placeholder="¿Dónde estás buscando?" name="srch-term" id="srch-term" type="text" >
@@ -20,8 +20,11 @@
     </div>
     <div class="col-sm-auto order-last">
       <ul class="navbar-nav mr-auto align-self-end">
-        <li *ngFor="let en of enlaces" class="nav-item">
-          <a class="nav-link"  routerLink="{{en.r}}" >{{en.t}}</a>
+        <li class="nav-item" routerLink="/select-plan" *ngIf = "!registrado">
+          <a class="nav-link">PUBLICAR UNA PROPIEDAD</a>
+        </li>
+        <li class="nav-item" routerLink="/new-prop" *ngIf = "registrado">
+          <a class="nav-link">PUBLICAR UNA PROPIEDAD</a>
         </li>
         <li class="nav-item" data-toggle="modal" data-target="#modalReg" *ngIf = "!registrado">
           <a class="nav-link">REGISTRARME</a>

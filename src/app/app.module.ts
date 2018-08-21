@@ -12,6 +12,8 @@ import { GralInfoService }      from './providers/gral-info.service';
 import { ZonasService }         from './providers/zonas.service';
 import { ConfigService }        from './providers/config.service';
 import { UserService }          from './providers/user.service';
+import { SiteService }          from './providers/site.service';
+import { TextsService }         from './providers/texts.service';
 
 import { PropDetailPageComponent } from './pages/prop/prop-detail-page/prop-detail-page.component';
 import { PrivacidadPageComponent } from './pages/privacidad-page/privacidad-page.component';
@@ -38,6 +40,8 @@ import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.co
 import { AlertComponent } from './components/alert/alert.component';
 import { DenunciaPropFormComponent } from './forms/denuncia-prop-form/denuncia-prop-form.component';
 import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-modal.component';
+import { SelectPrecioComponent } from './pages/select-precio/select-precio.component';
+import { SelectPlanComponent } from './pages/select-plan/select-plan.component';
 
 
 @NgModule({
@@ -66,6 +70,8 @@ import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-mod
     AlertComponent,
     DenunciaPropFormComponent,
     DenunciaModalComponent,
+    SelectPrecioComponent,
+    SelectPlanComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +85,9 @@ import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-mod
     GralInfoService,
     ZonasService,
     ConfigService,
-    UserService
+    UserService,
+    SiteService,
+    TextsService
   ],
   bootstrap: [
     AppComponent

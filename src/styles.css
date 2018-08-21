@@ -2,9 +2,9 @@
 @font-face {  font-family: 'Roboto-Bold';  src: url('assets/Roboto-Bold.ttf'); }
 @font-face {  font-family: 'Product-Sans-Regular';  src: url('assets/Product-Sans-Regular.ttf'); }
 
-html, body{  font-family: 'Roboto-Regular';}
+html, body{ height:100%; font-family: 'Roboto-Regular';}
 
-body {  padding-top: 70px;}
+body { padding-top: 3.7em;}
 
 
 
@@ -146,3 +146,20 @@ a {color: ##03a9ec !important; font-weight: bold; cursor:pointer;}
 .carousel-control-next, .carousel-control-prev{ z-index:900; font-size: 3em; }
 .carousel-control-next .fa, .carousel-control-prev .fa{ color:#fff!important; }
 .carousel-control-next:hover .fa, .carousel-control-prev .fa:hover{color:#d01!important;}
+
+app-footer{
+/*  position: absolute;bottom: 0px;*/
+}
+
+footer{
+  margin-right: 0px;
+}
+
+h5{
+  font-size: 1.05rem;
+  color:#bbb;
+}
+
+.text-crp{
+  color:#de4758;
+}

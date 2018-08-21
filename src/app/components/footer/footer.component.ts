@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router, RouterEvent } from '@angular/router';
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -23,9 +25,22 @@ export class FooterComponent implements OnInit {
     {'tit':'Galpones en Venta'},
   ];
 
-  constructor() { }
+  disable_footer = false;
+
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.router.events.subscribe((e) => {
+      if(e instanceof RouterEvent){
+        if (e.url == '/select-plan'){
+          this.disable_footer = true;
+        } else {
+          this.disable_footer = false;
+        }
+      }
+    });
   }
 
 }

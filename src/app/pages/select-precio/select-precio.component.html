@@ -1,0 +1,45 @@
+<div class="row cont">
+
+  <div class="col-md-4 col-12" *ngFor="let plan of planes">
+    <div class="col-12 pktit">
+      <div class="row text-center">
+        <h2 class="col-12 text-crp">{{plan.t}}</h2>
+        <h5 class="col-12">{{plan.st}}</h5>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card card-precio">
+        <div class="card-header {{plan.class}}">
+          <div class="row align-items-center">
+            <div class="col col-3 vp"> {{plan.en1}} </div>
+            <div class="col col-6">    {{plan.en2}} </div>
+            <div class="col col-3">    {{plan.en3}} </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="col-12">
+            <p>{{plan.bd1}}</p>
+            <p>{{plan.bd2}}</p>
+          </div>
+          <div class="row bt-cont">
+            <div class="col-12 col-sm-10 offset-sm-1"><button type="button" class="w-100 btn btn-cprop" data-toggle="modal" [attr.data-target]="dataTarget" (click)="siguiente(plan.id)">Publicar ahora</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col">
+  </div>
+  <div class="col-12 col-md-2">
+    <div class="row">
+      <div class="col text-center">Nuestros medios de pago:</div>
+    </div>
+    <div class="row">
+      <div class="col">
+      </div>
+    </div>
+  </div>
+</div>
