@@ -5,6 +5,7 @@ import { Busqueda }   from '../models/busqueda';
 import { Propiedad }  from '../models/propiedad';
 
 import { ConfigService } from './config.service';
+import { UserService }   from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,8 @@ export class PropiedadesService {
 
   constructor(
     private http:   HttpClient,
-    private config: ConfigService
+    private config: ConfigService,
+    private user:   UserService
   ) {
   }
 
@@ -47,9 +49,7 @@ export class PropiedadesService {
   }
 
   getSearch() {
-    return this
-            .http
-            .post(this.config.getAPIUrl()+this.wsa,JSON.stringify(this.busqueda));
+    return this.http.post(this.config.getAPIUrl()+this.wsa,JSON.stringify(this.busqueda));
   }
 
   getEquipamiento() {
@@ -69,21 +69,17 @@ export class PropiedadesService {
   }
 
   getPropiedad(id) {
-    return this
-            .http
-            .post(this.config.getAPIUrl()+this.wsp, {'id':id});
+    return this.http.post(this.config.getAPIUrl()+this.wsp, {'id':id});
   }
 
   getSearchConfig() {
-    return this
-            .http
-            .post(this.config.getAPIUrl()+this.wsc, JSON.stringify(this.busqueda));
+    return this.http.post(this.config.getAPIUrl()+this.wsc, JSON.stringify(this.busqueda));
   }
 
   create() {
-    return this
-            .http
-            .post(this.config.getAPIUrl()+this.wsn, this.model);
+    this.model.propietario_id  = this.user.getUserData().id;
+    this.model.inmobiliaria_id = this.user.getUserData().inmobiliaria;
+    return this.http.post(this.config.getAPIUrl()+this.wsn, this.model);
   }
 
   clearParams(){

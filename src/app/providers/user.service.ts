@@ -12,10 +12,7 @@ import { User } from './../models/user';
 })
 export class UserService {
 
-  private userData:any = {
-    "idUser" : -1,
-    'model'  : {}
-  };
+  private userData = new User();
 
   private wsn = 'user/create';
   private wsl = 'user/login';
@@ -31,11 +28,21 @@ export class UserService {
   ) { }
 
   setLogin(r){
-    this.userData.idUser = 1;
+    this.userData.id           = r['data']['id'];
+    this.userData.inmobiliaria = r['data']['inmobiliaria_id'];
+    this.userData.email        = r['data']['email'];
+    this.userData.token        = r['data']['token'];
+    this.userData.nombre       = r['data']['name'];
+    this.userData.apellido     = r['data']['surname'];
+    this.userData.tipoUser     = r['data']['tipo_user_id'];
+    this.userData.telFijo      = r['data']['tel'];
+    this.userData.telefono     = r['data']['celular'];
+    this.userData.dni          = r['data']['dni'];
+    this.userData.cuit         = r['data']['cuit'];
   }
 
   logeado(){
-    return this.userData.idUser != -1;
+    return this.userData.id != -1;
   }
 
   permiso(n){
@@ -61,6 +68,14 @@ export class UserService {
     return this.http.get(this.config.getAPIUrl()+this.wst);
   }
 
-  clearModel(){ this.model = new User(); }
-  getId() { return this.userData.idUser; }
+  clearModel()  { this.model = new User(); }
+  getId()       { return this.userData.id; }
+  getUserData() { return this.userData; }
+  getName(){
+    if (this.userData.nombre == ''){
+      return this.userData.email;
+    } else {
+      return this.userData.apellido + ' ' +this.userData.nombre;
+    }
+  }
 }
