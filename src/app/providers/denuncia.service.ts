@@ -35,9 +35,10 @@ export class DenunciaService {
     if(this.user.logeado()){
       this.setIdUser(this.user.getId());
     }
-    console.log(this.model);
     return this.http.post(this.config.getAPIUrl()+this.wsd,JSON.stringify(this.model));
   }
+
+  hideForm(){ this.modal.hide(); }
 
   setIdProp(i){ this.model.propiedad = i; }
   setIdUser(u){ this.model.denunciante = u; }

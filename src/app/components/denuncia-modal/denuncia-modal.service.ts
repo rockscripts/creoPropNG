@@ -7,10 +7,15 @@ import { Subject }    from 'rxjs/Subject';
 export class DenunciaModalService {
 
   public showModal = new Subject();
+  public hideModal = new Subject();
 
   constructor() {}
 
   show(){
     this.showModal.next();
+  }
+
+  hide(){
+    this.hideModal.next();
   }
 }

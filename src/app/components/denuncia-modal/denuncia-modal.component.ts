@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { DenunciaModalService } from './denuncia-modal.service';
 
@@ -8,6 +8,7 @@ import { DenunciaModalService } from './denuncia-modal.service';
   styleUrls: ['./denuncia-modal.component.css']
 })
 export class DenunciaModalComponent implements OnInit {
+  @ViewChild('denunciaModal') denunciaModal:ElementRef;
 
   showM:boolean = false;
   cssProp:string = '';
@@ -22,10 +23,22 @@ export class DenunciaModalComponent implements OnInit {
         this.show();
       }
     });
+
+    this.dModal.hideModal.subscribe({
+      next: () => {
+        this.hide();
+      }
+    });
   }
 
   show(){
     this.showM   = true;
     this.cssProp = 'display: block;';
+  }
+
+  hide(){
+    this.showM   = false;
+    this.denunciaModal.nativeElement.click();
+    this.cssProp = 'display: none;';
   }
 }
