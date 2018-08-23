@@ -29,7 +29,6 @@ const routes: Routes = [
   { path: "mi-cuenta",       component: MiCuentaComponent },
   { path: "search/:t",       component: SearchComponent },
   { path: 'perfil',          component: PerfilUsuarioComponent },
-  { path: 'report',          component: ReportFormComponent },
   { path: 'select-plan',     component: SelectPrecioComponent },
   { path: 'update-plan',     component: SelectPlanComponent },
   { path: "**",              redirectTo: "/404" },

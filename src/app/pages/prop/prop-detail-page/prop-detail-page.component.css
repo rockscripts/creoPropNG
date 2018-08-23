@@ -1,47 +1,71 @@
-.p-detail-p{
+.p-detail-p {
   margin-top: 1em;
 }
 
-.link-btn:hover{color:#ed1b24;}
-.link-btn:active{color:#d01;}
+.link-btn:hover {
+  color: #ed1b24;
+}
 
-.img-cont, .img-map{
+.link-btn:active {
+  color: #d01;
+}
+
+.img-cont, .img-map {
   background: #eee;
 }
 
-.img-map{  height: 480px;}
+.img-map {
+  height: 480px;
+}
 
-.card-body .subt{
+.card-body .subt {
   color: #8b8785;
 }
 
-.back-arr-btn, .card-det .fa{
-  color:#000;
+.card-title {
+  color: black;
 }
 
-.card-det .fa{
+.back-arr-btn, .card-det .fa {
+  color: #000;
+}
+
+.card-det .fa {
   font-size: 2.5em;
 }
 
-.rw-det{
+.rw-det {
   padding-left: 0.3em;
   padding-right: 0.3em;
   text-align: center;
 }
 
-.dt-lg{
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.5em;
+.dt-lg {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
-.sp{
+.sp {
   font-weight: normal;
   font-size: 0.8em;
 }
 
-.btn-denu{font-size: 0.9em;text-align: right;width: 100%;}
+.btn-denu {
+  font-size: 0.9em;
+  text-align: right;
+  width: 100%;
+}
 
-.card .topln{
+.card .topln {
   border-top: 1px solid #ddd;
+}
+
+a {
+  color: #6d6d6d !important;
+  width: inherit;
+}
+
+a.active {
+  border-radius: 30px 30px 30px 30px;
 }
