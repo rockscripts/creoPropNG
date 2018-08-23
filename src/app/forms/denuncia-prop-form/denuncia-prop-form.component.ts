@@ -32,18 +32,20 @@ export class DenunciaPropFormComponent implements OnInit {
     this.model = this.denuncia.getModel();
   }
 
-  dismiss(){
-
-  }
-
   denunciar(){
     this.denuncia.nueva().subscribe(
       (r) => {
         if (r['errors'] == ''){
+          this.alert.showSuccess(this.texts.eDenunOk);
+          this.denuncia.hideForm();
         } else {
           this.alert.show(this.texts.eBadReq);
         }
     });
+  }
+
+  dismiss(){
+    
   }
 
 }

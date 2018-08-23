@@ -39,8 +39,14 @@ export class Propiedad {
   public carac_gral:   any = [];
   public carac_gral_e: any = [];
 
-  public tipo_plan: number = -1;
-  public id:        number = -1;
+  public tipo_plan:       number = -1;
+  public id:              number = -1;
+  public propietario_id:  number = -1;
+  public inmobiliaria_id: number = -1;
 
   constructor() {}
+
+  public formValid(){
+
+  }
 }

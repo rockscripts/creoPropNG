@@ -1,4 +1,4 @@
-<div [ngClass]="{'modal':true, 'fade':true, 'show':showM}" id="denunciaModal" tabindex="-1"
+<div [ngClass]="{'modal':true, 'fade':true, 'show':showM}" *ngIf="showM" id="denunciaModal" tabindex="-1"
      role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true"
      [style]="cssProp">
   <div class="modal-dialog" role="document">

@@ -38,6 +38,8 @@ export class DenunciaService {
     return this.http.post(this.config.getAPIUrl()+this.wsd,JSON.stringify(this.model));
   }
 
+  hideForm(){ this.modal.hide(); }
+
   setIdProp(i){ this.model.propiedad = i; }
   setIdUser(u){ this.model.denunciante = u; }
   setModel(d) { this.model = d; }
