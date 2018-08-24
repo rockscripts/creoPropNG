@@ -43,7 +43,6 @@ import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-mod
 import { SelectPrecioComponent } from './pages/select-precio/select-precio.component';
 import { SelectPlanComponent } from './pages/select-plan/select-plan.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
