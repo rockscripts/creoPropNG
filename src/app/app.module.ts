@@ -42,6 +42,7 @@ import { DenunciaPropFormComponent } from './forms/denuncia-prop-form/denuncia-p
 import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-modal.component';
 import { SelectPrecioComponent } from './pages/select-precio/select-precio.component';
 import { SelectPlanComponent } from './pages/select-plan/select-plan.component';
+import { PerfilViewComponent } from './components/perfil-view/perfil-view.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { SelectPlanComponent } from './pages/select-plan/select-plan.component';
     DenunciaPropFormComponent,
     DenunciaModalComponent,
     SelectPrecioComponent,
-    SelectPlanComponent
+    SelectPlanComponent,
+    PerfilViewComponent
   ],
   imports: [
     BrowserModule,

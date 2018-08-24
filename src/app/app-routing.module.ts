@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: "new-prop-ok",     component: NuevaPropOkComponent },
   { path: "mi-cuenta",       component: MiCuentaComponent },
   { path: "search/:t",       component: SearchComponent },
-  { path: 'perfil',          component: PerfilUsuarioComponent },
+  { path: 'perfil/:id',      component: PerfilUsuarioComponent },
   { path: 'select-plan',     component: SelectPrecioComponent },
   { path: 'update-plan',     component: SelectPlanComponent },
   { path: "**",              redirectTo: "/404" },

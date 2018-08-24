@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
+import { Router }            from '@angular/router';
 
 import { PropiedadesService } from './../../../providers/propiedades.service';
 import { DenunciaService }    from './../../../providers/denuncia.service';
@@ -16,9 +17,10 @@ export class PropDetailPageComponent implements OnInit {
   propiedad:any = [];
 
   constructor(
-    private activatedRoute:ActivatedRoute,
-    private propiedadService:PropiedadesService,
-    private denuncia:DenunciaService
+    private activatedRoute:   ActivatedRoute,
+    private propiedadService: PropiedadesService,
+    private router:           Router,
+    private denuncia:         DenunciaService
   ) {}
 
   ngOnInit() {
@@ -37,6 +39,10 @@ export class PropDetailPageComponent implements OnInit {
   denunciar(){
     this.denuncia.setIdProp(this.id);
     this.denuncia.showForm.next();
+  }
+
+  goToPerfil(){
+    this.router.navigate(['/perfil/1']);
   }
 
 }
