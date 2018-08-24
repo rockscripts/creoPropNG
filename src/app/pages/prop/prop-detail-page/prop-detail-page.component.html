@@ -1,3 +1,5 @@
+<div class="container">
+
 <div class="row col-12 p-detail-p">
 	<div class="row col-12 col-md-8">
 
@@ -17,14 +19,14 @@
 						</span>
 					</div>
 
-					<div class="row col-12 col-md-3  order-12">
+					<div class="row col-12 col-md-4  order-12">
 						<div class="col-12">
 							<i class="col-auto"></i>
 							<i class="col-3 fa fa-heart link-btn"></i>
 							<i class="col-3 fa fa-share-alt link-btn"></i>
 							<i class="col-3 fa fa-print link-btn"></i>
 						</div>
-						<div class="row col-12 btn-denu"><a data-toggle="modal" data-target="#denunciaModal" (click)="denunciar()">DENUNCIAR AVISO</a></div>
+						<div class="col-12 btn-denu"><a data-toggle="modal" data-target="#denunciaModal" (click)="denunciar()">DENUNCIAR AVISO</a></div>
 					</div>
 				</div>
 
@@ -57,7 +59,7 @@
 						{{propiedad[0]?.direccion}},&nbsp;{{propiedad.localidad}}
 					</span>
 			  </div>
-			  <img class="card-img-bottom" src="..." alt="Mapa">
+			  <img class="card-img-bottom card-cont-mapa" src="..." alt="Mapa">
 			</div>
 		</div>
 
@@ -132,32 +134,35 @@
 
 
 	</div>
-<!-- precio -->
-<div class="row col-12 col-md-4 c-card">
-		<div class="col-12">
+
+<div class="col-12 col-md-4 c-card">
+	<div class="row c-card">
+		<!-- precio -->
+		<div class="col-12 c-card">
 			<div class="card card-det">
 				<div class="card-body">
-					<h5 class="card-title">PRECIO VENTA</h5>
+					<h5 class="card-title may">PRECIO {{propiedad[0].nombre_operacion}}</h5>
+					<h3 class="modern-single-ad-price">{{propiedad[0].moneda_simbolo}} {{propiedad[0].precio}}</h3>
 				</div>
 				<div class="card-body topln">
 					<div class="row">
-						<div class="col-3 rw-det">
-							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-bath"></i></div></div>
+						<div class="col rw-det" *ngIf="propiedad[0].superficie_cubierta != 0">
+							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-building-o"></i></div></div>
 							<span class="sp">Sup. Cubierta</span>
 							<div class="row"><div class="col dt-lg">{{propiedad[0].superficie_cubierta}}<small>m²</small></div></div>
 						</div>
-						<div class="col-3 rw-det">
+						<div class="col rw-det" *ngIf="propiedad[0].dormitorios != 0">
 							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-bed"></i></div></div>
 							<span class="sp">Dormitorios</span>
 							<div class="row"><div class="col dt-lg">{{propiedad[0].dormitorios}}</div></div>
 						</div>
-						<div class="col-3 rw-det">
+						<div class="col rw-det" *ngIf="propiedad[0].banios != 0">
 							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-bath"></i></div></div>
 							<span class="sp">Baños</span>
 							<div class="row"><div class="col dt-lg">{{propiedad[0].banios}}</div></div>
 						</div>
-						<div class="col-3 rw-det">
-							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-bath"></i></div></div>
+						<div class="col rw-det" *ngIf="propiedad[0].cochera != 0">
+							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-building-o"></i></div></div>
 							<span class="sp">Cochera</span>
 							<div class="row"><div class="col dt-lg">{{propiedad[0].cochera}}</div></div>
 						</div>
@@ -165,16 +170,60 @@
 				</div>
 			</div>
 		</div>
-
+		<!-- contactar anunciante -->
 		<div class="col-12 c-card">
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">¡Contactá al anunciante!</h5>
+					<div class="row">
+						<div class="col-auto">
+							<img src="./{{propiedad.inmobiliaria.logo}}">
+						</div>
+						<div class="col">
+							<h3>{{propiedad.inmobiliaria.nombre}}</h3>
+							<div class="col-12">Teléfono:&nbsp;{{propiedad[0].user.celular}}</div>
+							<div class="col-12">Encargado:&nbsp;{{propiedad[0].user.name}}&nbsp;{{propiedad[0].user.surname}} </div>
+							<div class="col-12">Código:&nbsp;{{propiedad[0].user.id}}</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<h5 class="card-title">¡Contactá al anunciante!</h5>
+					</div>
+
+					<div class="row">
+						<form class="col-12">
+							<div class="form-group">
+						    <label>Nombre</label>
+						    <input type="text" class="form-control">
+						  </div>
+
+							<div class="form-group">
+						    <label>E-Mail</label>
+						    <input type="email" class="form-control">
+						  </div>
+
+							<div class="form-group">
+						    <label>Telefono</label>
+						    <input type="tel" class="form-control">
+						  </div>
+
+							<div class="form-group">
+						    <label>Mensaje</label>
+						    <textarea class="form-control"></textarea>
+						  </div>
+
+							<div class="w-100 text-center">
+								<span type="button" class="btn btn-cprop">ENVIAR MENSAJE</span>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 
 
 	</div>
+	</div>
 
+</div>
 </div>
