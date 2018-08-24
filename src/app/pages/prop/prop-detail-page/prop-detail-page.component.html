@@ -1,56 +1,22 @@
 <div class="container">
 
 <div class="row col-12 p-detail-p">
-  <div class="row col-12 col-md-8">
-    <div class="col-12 c-card">
-      <div class="card">
-        <div class="card-body row">
-          <div class="col-auto back-arr-btn row align-items-center">
-            <div class="col"><i class="fa fa-arrow-left link-btn" routerLink="/"></i> </div>
-          </div>
+	<div class="row col-12 col-md-8">
 
-          <div class="col">
-            <h5 class="card-title">{{propiedad[0].titulo}}</h5>
-            <ul class="nav nav-tabs card-pills" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#fotos" role="tab" aria-controls="fotos" aria-selected="true">Fotos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map" aria-selected="false">Mapa</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#streetview" role="tab" aria-controls="streetview" aria-selected="false">Street View</a>
-              </li>
-            </ul>
-            <span class="col-12 pl-0 subt">
+		<div class="col-12 c-card">
+			<div class="card">
+
+				<div class="card-body row">
+					<div class="col-auto back-arr-btn row align-items-center">
+						<div class="col"><i class="fa fa-arrow-left link-btn" routerLink="/"></i> </div>
+					</div>
+
+					<div class="col">
+						<h5 class="card-title">{{propiedad[0].titulo}}</h5>
+						<span class="col-12 pl-0 subt">
 							<i class="fa fa-map-marker" aria-hidden="true"></i>
 							{{propiedad[0].direccion}},&nbsp;{{propiedad.localidad}}
 						</span>
-<<<<<<< HEAD
-          </div>
-
-          <div class="row col-12 col-md-3  order-12">
-            <div class="col-12">
-              <i class="col-auto"></i>
-              <i class="col-3 fa fa-heart link-btn"></i>
-              <i class="col-3 fa fa-share-alt link-btn"></i>
-              <i class="col-3 fa fa-print link-btn"></i>
-            </div>
-            <div class="row col-12 btn-denu"><a data-toggle="modal" data-target="#denunciaModal" (click)="denunciar()">DENUNCIAR AVISO</a></div>
-          </div>
-        </div>
-
-        <div class="tab-content">
-
-          <div class="tab-pane container active card-body img-cont" id="fotos">
-            <div id="imgs-det" class="carousel slide" data-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item" *ngFor="let v of propiedad.files let i = index" [ngClass]="{'active' : i == 0}">
-                  <img class="card-img-bottom img-map" src="assets/{{v['nombre']}}" alt="{{v.titulo}}">
-                </div>
-              </div>
-              <a class="carousel-control-prev" href="#imgs-det" data-slide="prev">
-=======
 					</div>
 
 					<div class="row col-12 col-md-4  order-12">
@@ -73,178 +39,25 @@
 						   </div>
 
 							 <a class="carousel-control-prev" href="#imgs-det" data-slide="prev">
->>>>>>> my-temporary-work
 							    <i class="fa fa-angle-left"></i>
 							 </a>
-              <a class="carousel-control-next" href="#imgs-det" data-slide="next">
+							 <a class="carousel-control-next" href="#imgs-det" data-slide="next">
 							    <i class="fa fa-angle-right"></i>
 							 </a>
-            </div>
-          </div>
+					   </div>
+			  </div>
 
-          <div class="tab-pane container fade card-body" id="map">
-            <div>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37186.95510045789!2d-58.70675878629927!3d-34.53092572602513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbce172406a6b%3A0x213681afa3e6754c!2sEjemplo!5e0!3m2!1ses-419!2sar!4v1535062543541"
-                width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-          </div>
+			</div>
+		</div>
 
-          <div class="tab-pane container fade card-body" id="streetview">
-            <div>
-              <iframe src="https://www.google.com/maps/embed?pb=!4v1535062896318!6m8!1m7!1sZ7SxHhJPviYFHjtkjB0fMA!2m2!1d-34.52914975946399!2d-58.68735833438828!3f110.70419847764343!4f0!5f1.1924812503605782"
-               width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="col-12 c-card">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">UBICACIÓN</h5>
-            <span class="col-12 pl-0 subt">
+		<div class="col-12 c-card">
+			<div class="card">
+			  <div class="card-body">
+					<h5 class="card-title">UBICACIÓN</h5>
+					<span class="col-12 pl-0 subt">
 						<i class="fa fa-map-marker" aria-hidden="true"></i>
 						{{propiedad[0]?.direccion}},&nbsp;{{propiedad.localidad}}
 					</span>
-<<<<<<< HEAD
-          </div>
-          <img class="card-img-bottom" src="..." alt="Mapa">
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 c-card">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">DESCRIPCIÓN</h5> {{propiedad[0].texto}}
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 c-card">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">CARACTERÍSTICAS GENERALES</h5>
-
-            <div class="col-12">
-              <div *ngFor="let ub of propiedad.carac_gral" class="col-12">
-                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.n}}:&nbsp;{{ub.v}}
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 c-card">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">AMBIENTES</h5>
-
-            <div class="col-12">
-              <div *ngFor="let ub of propiedad.ambientes" class="col-12">
-                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 c-card">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">SERVICIOS</h5>
-
-            <div class="col-12">
-              <div *ngFor="let ub of propiedad.servicios" class="col-12">
-                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 c-card">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">AMENITIES</h5>
-
-            <div class="col-12">
-              <div *ngFor="let ub of propiedad.amenities" class="col-12">
-                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-  <!-- precio -->
-  <div class="row col-12 col-md-4 c-card">
-    <div class="col-12">
-      <div class="card card-det">
-        <div class="card-body">
-          <h5 class="card-title">PRECIO VENTA</h5>
-        </div>
-        <div class="card-body topln">
-          <div class="row">
-            <div class="col-3 rw-det">
-              <div class="row">
-                <div class="col pl-0 pr-0"><i class="fa fa-bath"></i></div>
-              </div>
-              <span class="sp">Sup. Cubierta</span>
-              <div class="row">
-                <div class="col dt-lg">{{propiedad[0].superficie_cubierta}}<small>m²</small></div>
-              </div>
-            </div>
-            <div class="col-3 rw-det">
-              <div class="row">
-                <div class="col pl-0 pr-0"><i class="fa fa-bed"></i></div>
-              </div>
-              <span class="sp">Dormitorios</span>
-              <div class="row">
-                <div class="col dt-lg">{{propiedad[0].dormitorios}}</div>
-              </div>
-            </div>
-            <div class="col-3 rw-det">
-              <div class="row">
-                <div class="col pl-0 pr-0"><i class="fa fa-bath"></i></div>
-              </div>
-              <span class="sp">Baños</span>
-              <div class="row">
-                <div class="col dt-lg">{{propiedad[0].banios}}</div>
-              </div>
-            </div>
-            <div class="col-3 rw-det">
-              <div class="row">
-                <div class="col pl-0 pr-0"><i class="fa fa-bath"></i></div>
-              </div>
-              <span class="sp">Cochera</span>
-              <div class="row">
-                <div class="col dt-lg">{{propiedad[0].cochera}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 c-card">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">¡Contactá al anunciante!</h5>
-        </div>
-      </div>
-    </div>
-
-
-  </div>
-=======
 			  </div>
 			  <img class="card-img-bottom card-cont-mapa" src="..." alt="Mapa">
 			</div>
@@ -408,10 +221,8 @@
 			</div>
 		</div>
 
-
 	</div>
-	</div>
->>>>>>> my-temporary-work
+</div>
 
 </div>
 </div>
