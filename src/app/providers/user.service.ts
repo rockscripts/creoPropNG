@@ -5,6 +5,7 @@ import { Subject }    from 'rxjs/Subject';
 
 import { ConfigService } from './config.service';
 import { User }          from './../models/user';
+import { Inmobiliaria }  from './../models/inmobiliaria';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,6 @@ export class UserService {
 
   setLogin(r){
     this.userData.id           = r['data']['id'];
-    this.userData.inmobiliaria = r['data']['inmobiliaria_id'];
     this.userData.email        = r['data']['email'];
     this.userData.token        = r['data']['token'];
     this.userData.nombre       = r['data']['name'];
@@ -40,6 +40,12 @@ export class UserService {
     this.userData.telefono     = r['data']['celular'];
     this.userData.dni          = r['data']['dni'];
     this.userData.cuit         = r['data']['cuit'];
+
+    let inm     = new Inmobiliaria();
+    inm.id      = r['data']['inmobiliaria']['id'];
+    inm.nombre  = r['data']['inmobiliaria']['nombre'];
+    inm.img     = r['data']['inmobiliaria']['logo'];
+    this.userData.setInmobiliaria(inm);
   }
 
   logeado(){
@@ -81,4 +87,5 @@ export class UserService {
       return this.userData.apellido + ' ' +this.userData.nombre;
     }
   }
+  getIdInmobiliaria(){ return this.userData.inmobiliaria.id; }
 }

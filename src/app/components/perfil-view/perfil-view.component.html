@@ -6,26 +6,26 @@
       <div class="row no-gutters p-3 profilecard">
         <div class="col-auto">
           <img src="//placehold.it/200" class="img-fluid" alt="">
+          <div class="btn-abs btn-fa btn-eimg" *ngIf="editable">
+            <i class="fa fa-camera" click="editImg()"></i>
+          </div>
         </div>
         <div class="col">
           <div class="card-block px-2 pr-1">
-            <h4 class="card-title">Agent name</h4>
-            <p class="card-text text-muted w-20">NATIONALITY: </p>
-            <p class="card-text text-muted w-20">LANGUAJES: </p>
+            <h4 class="card-title"><i class="fa btn-fa fa-pencil" *ngIf="editable"></i> {{perfil.apellido}} {{perfil.nombre}}</h4>
+            <p class="card-text text-muted w-20"><i class="fa btn-fa fa-pencil" *ngIf="editable"></i> {{perfil.ubicacion}}</p>
           </div>
         </div>
       </div>
       <div class="row border-top -solid -1px profilecard">
         <div class="row col-sm-12">
-          <h4 class="pl-2">PERSONAL INFORMATION</h4>
+          <h4 class="pl-2">INFORMACiÓN PERSONAL</h4>
         </div>
         <div class="col text-uppercase text-muted">
-          <p>Active listings:</p>
-          <p>Licence NO:</p>
-          <p>Experience since:</p>
+          <p>Usuario desde:</p>
+          <p>Propiedades publicadas:</p>
         </div>
         <div class="col">
-          <p class="text-muted">AREAS: </p>
         </div>
 
       </div>

@@ -6,7 +6,13 @@ html, body{ height:100%; font-family: 'Roboto-Regular';}
 
 body { padding-top: 3.7em;}
 
+.btn-abs{
+  position: absolute;
+}
 
+.btn-fa:hover{
+  color: #d01;
+}
 
 .modal .m-t{
   font-size: 1.8em;

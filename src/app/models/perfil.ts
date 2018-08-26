@@ -1,0 +1,16 @@
+import { Inmobiliaria } from './inmobiliaria';
+
+export class Perfil {
+  public nombre        :string = '';
+  public apellido      :string = '';
+  public ubicacion     :string = '';
+  public usuario_desde :string = '';
+
+  public prop_count :number = 0;
+  public user_id    :number = -1;
+
+  public inmobiliaria:Inmobiliaria = new Inmobiliaria();
+
+  constructor() {  }
+
+}

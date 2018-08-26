@@ -77,8 +77,8 @@ export class PropiedadesService {
   }
 
   create() {
-    this.model.propietario_id  = this.user.getUserData().id;
-    this.model.inmobiliaria_id = this.user.getUserData().inmobiliaria;
+    this.model.propietario_id  = this.user.getId();
+    this.model.inmobiliaria_id = this.user.getIdInmobiliaria();
     return this.http.post(this.config.getAPIUrl()+this.wsn, this.model);
   }
 

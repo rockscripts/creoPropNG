@@ -5,5 +5,8 @@ margin-bottom: 0px;
 
 .profilecard{
   min-height: 132px;
+}
 
+.btn-eimg{
+  top: 0px;right: 5px;
 }
