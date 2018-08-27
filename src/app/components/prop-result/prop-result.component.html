@@ -30,7 +30,7 @@
         </div>
         <div class="card-body">
           <div class="card-text card-tit" routerLink="propiedad/{{propiedad.id}}">{{propiedad.titulo}}</div>
-          <div class="card-text">Departamento 1 <i class="fa fa-bath"></i>  2 <i class="fa fa-bed"></i> <span class="card-precio">{{propiedad.moneda_simbolo}}  {{propiedad.precio}}</span></div>
+          <div class="card-text"><span *ngIf="propiedad.banios != 0">{{propiedad.banios}} </span><i *ngIf="propiedad.banios != 0" class="fa fa-bath"></i><span *ngIf="propiedad.dormitorios != 0">{{propiedad.dormitorios}} </span><i *ngIf="propiedad.dormitorios != 0" class="fa fa-bed"></i> <span class="card-precio">{{propiedad.moneda_simbolo}}  {{propiedad.precio}}</span></div>
          </div>
       </div>
     </div>

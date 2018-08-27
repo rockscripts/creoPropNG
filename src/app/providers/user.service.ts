@@ -49,6 +49,7 @@ export class UserService {
     this.userData.perfil.prop_count    = r['data']['cant_prop'];
     this.userData.perfil.user_id       = r['data']['id'];
     this.userData.perfil.img           = r['data']['profile_img'];
+    this.userData.perfil.celular       = r['data']['celular'];
 
     let inm     = new Inmobiliaria();
     inm.id      = r['data']['inmobiliaria']['id'];

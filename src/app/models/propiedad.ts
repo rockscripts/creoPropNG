@@ -7,7 +7,7 @@ export class Propiedad {
   public capacidad:    number  = 0;
   public dormitorios:  number  = 0;
   public destacado:    boolean = false;
-  public cochera:      boolean = false;
+  public cochera:      number  = 0;
   public piscina:      boolean = false;
   public mascota:      boolean = false;
   public seguridad:    boolean = false;

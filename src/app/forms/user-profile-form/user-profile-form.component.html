@@ -14,6 +14,11 @@
     </div>
 
     <div class="form-group text-left">
+      <label>Celular</label>
+      <input type="text" class="form-control" [(ngModel)]="model.celular" name="celular">
+    </div>
+
+    <div class="form-group text-left">
       <label>Imagen de perfil</label>
       <input id="img-input" type="file" (change)="onFileChange($event)" #fileInput class="foto-input">
     </div>

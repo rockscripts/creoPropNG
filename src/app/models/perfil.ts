@@ -3,6 +3,7 @@ import { Inmobiliaria } from './inmobiliaria';
 export class Perfil {
   public nombre        :string = '';
   public apellido      :string = '';
+  public celular       :string = '';
   public ubicacion     :string = '';
   public usuario_desde :string = '';
   public img           :string = '';

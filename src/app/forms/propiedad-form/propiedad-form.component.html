@@ -4,9 +4,8 @@
 
     <div class="col-12  form-group row">
 
-      <div class=" col-12 col-sm-6">
-         <h4>Datos Principales</h4>
-         <hr>
+      <div class="row col-12 col-sm-6">
+
          <div class="form-group col-12 row">
             <div class=" col-12 col-sm-6">
                <label>Tipo de operación</label>
@@ -44,15 +43,8 @@
                </select>
             </div>
          </div>
-      </div>
 
-      <div class=" col-12 col-sm-6">
-        <div class="form-group">
-           <label>Título</label>
-           <input type="text" class="form-control" [(ngModel)]="model.titulo" name="titulo" placeholder="">
-        </div>
-
-        <div class="form-group col-12 row">
+         <div class="form-group col-12 row">
            <div class=" col-12 col-sm-6">
               <label>Provincia</label>
               <select class="form-control" [(ngModel)]="model.provincia" (change)="updateLocalidad()" name="provincia">
@@ -71,6 +63,21 @@
                 <option *ngFor="let bar of barrios" [value]="bar.id">{{bar.nombre}}</option>
               </select>
            </div>
+        </div>
+
+        <div class="form-group col-12 row">
+           <h4>Dirección</h4>
+           <div class="input-group col-12  pv-8">
+              <input type="search"  name="direccion" [(ngModel)]="model.direccion" class="form-control">
+              <span class="input-group-btn">
+              <button class="btn btn-primary" type="button" id="search"  onclick="event.preventDefault();">
+              <span class="glyphicon glyphicon-search" aria-hidden="true">
+              </span> Buscar Dirección</button>
+              </span>
+           </div>
+        </div>
+        <div class="form-group col-12 row">
+           <div id="map_canvas" class="col-12  thumbnail" style="height 400px;"></div>
         </div>
 
         <div class="form-group col-12 row">
@@ -94,22 +101,60 @@
            </div>
         </div>
 
-        <div class="form-group col-12 row">
-           <h4>Dirección</h4>
-           <div class="input-group col-12  pv-8">
-              <input type="search"  name="direccion" [(ngModel)]="model.direccion" class="form-control">
-              <span class="input-group-btn">
-              <button class="btn btn-primary" type="button" id="search"  onclick="event.preventDefault();">
-              <span class="glyphicon glyphicon-search" aria-hidden="true">
-              </span> Buscar Dirección</button>
-              </span>
-           </div>
+        <div class="form-group col-12">
+           <label>Título</label>
+           <input type="text" class="form-control" [(ngModel)]="model.titulo" name="titulo" placeholder="">
         </div>
-        <div class="form-group col-12 row">
-           <div id="map_canvas" class="col-12  thumbnail" style="height 400px;"></div>
+      </div>
+
+      <div class="row col-12 col-sm-6">
+        <div class="col-12 col-sm-6">
+           <label>Baños</label> <input type="text" class="form-control" name="banios" [(ngModel)]="model.banios" placeholder="">
         </div>
 
-        <div class="row col-12  pv-8">
+        <div class="col-12 col-sm-6">
+           <label>Dormitorios</label> <input type="text" class="form-control" name="dormitorios" [(ngModel)]="model.dormitorios" placeholder="">
+        </div>
+
+        <div class="col-12 col-sm-6">
+           <label>Ambientes</label> <input type="text" class="form-control" name="ambientes_c" [(ngModel)]="model.ambientes_c" placeholder="">
+        </div>
+
+        <div class="col-12 col-sm-6">
+           <label>Cocheras</label> <input type="text" class="form-control" name="cochera" [(ngModel)]="model.cochera" placeholder="">
+        </div>
+
+        <div class="col-12 col-sm-6">
+           <label>Superficie cubierta</label> <input type="text" class="form-control" name="superficie_cubierta" [(ngModel)]="model.superficie_cubierta" placeholder="">
+        </div>
+
+        <div class="col-12 col-sm-6">
+           <label>Superficie total</label> <input type="text" class="form-control" name="superficie_total" [(ngModel)]="model.superficie_total" placeholder="">
+        </div>
+
+        <div class=" col-12 col-sm-6">
+           <label>Disposición</label>
+           <select class="form-control" [(ngModel)]="model.disposicion" name="disposicion">
+             <option *ngFor="let ciud of disposicion" [value]="ciud.id">{{ciud.nombre}}</option>
+           </select>
+        </div>
+
+        <div class="col-12 col-sm-6">
+           <label>Expensas</label> <input type="text" class="form-control" name="expensas" [(ngModel)]="model.expensas" placeholder="">
+        </div>
+
+        <div class="form-group row">
+           <div class="col-12  form-group pull-right">
+              <h4>Fotos de la propiedad</h4>
+              <hr>
+              <div  id="preview">
+              </div>
+              <a class="btn btn-primary seleccionar-fotos">
+              <i class="fa fa-plus" aria-hidden="true"></i> Agregar Foto</a>
+              <input id="img-input" type="file" (change)="onFileChange($event)" #fileInput  multiple class="foto-input hidden">
+           </div>
+        </div>
+        <!--<div class="row col-12  pv-8">
            <label class="col-12 col-sm-3">Coordenadas</label>
            <div class="col-12 col-sm-4" >
               <input name="latitud" type="text" id="latitude" value="" class="form-control" readonly="readonly">
@@ -117,7 +162,7 @@
            <div class="col-12 col-sm-4" >
               <input name="longitud" type="text" id="longitude" value="" class="form-control" readonly="readonly">
            </div>
-        </div>
+        </div>-->
       </div>
 
       <div class="col-12 pull-right">
@@ -187,17 +232,6 @@
             </div>
          </div>
 
-         <div class="form-group row">
-            <div class="col-12  form-group pull-right">
-               <h4>Fotos de la propiedad</h4>
-               <hr>
-               <div  id="preview">
-               </div>
-               <a class="btn btn-primary seleccionar-fotos">
-               <i class="fa fa-plus" aria-hidden="true"></i> Agregar Foto</a>
-               <input id="img-input" type="file" (change)="onFileChange($event)" #fileInput  multiple class="foto-input hidden">
-            </div>
-         </div>
       </div>
 
       <div class="col-12 col-sm-6 pull-left">

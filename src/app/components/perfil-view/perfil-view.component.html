@@ -5,7 +5,7 @@
     <div class="card col-sm-12">
       <div class="row no-gutters p-3 profilecard">
         <h3 class="btn-edit" *ngIf="editable" (click)="edit()"><i class="fa btn-fa fa-pencil" ></i></h3>
-        <div class="col-auto">
+        <div class="col-sm-4 col-auto">
           <img src="{{perfil.img}}" class="img-fluid" alt="//placehold.it/200">
         </div>
         <div class="col">
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="col-sm-4 mt-3">
+  <div class="col-sm-4 mt-3" *ngIf="!editable">
     <div class="card mt-3">
       <h4 class="card-title mt-2 pl-3">CONTACTAR ESTE AGENTE</h4>
       <div class="col-12 my-2"><button type="button" class="w-100 btn btn-cprop" routerLink="/new-prop">Mail</button></div>

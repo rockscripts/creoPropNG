@@ -46,6 +46,7 @@ export class ProfileService {
         this.profile.prop_count    = v['cant_prop'];
         this.profile.user_id       = v['id'];
         this.profile.img           = v['profile_img'];
+        this.profile.celular       = v['celular'];
 
         this.profile.inmobiliaria.nombre = v['inmobiliaria']['nombre'];
         this.profile.inmobiliaria.id     = v['inmobiliaria']['id'];
