@@ -14,6 +14,7 @@ import { ConfigService }        from './providers/config.service';
 import { UserService }          from './providers/user.service';
 import { SiteService }          from './providers/site.service';
 import { TextsService }         from './providers/texts.service';
+import { ProfileService }       from './providers/profile.service';
 
 import { PropDetailPageComponent } from './pages/prop/prop-detail-page/prop-detail-page.component';
 import { PrivacidadPageComponent } from './pages/privacidad-page/privacidad-page.component';
@@ -43,6 +44,7 @@ import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-mod
 import { SelectPrecioComponent } from './pages/select-precio/select-precio.component';
 import { SelectPlanComponent } from './pages/select-plan/select-plan.component';
 import { PerfilViewComponent } from './components/perfil-view/perfil-view.component';
+import { ImbProfileViewComponent } from './components/imb-profile-view/imb-profile-view.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { PerfilViewComponent } from './components/perfil-view/perfil-view.compon
     DenunciaModalComponent,
     SelectPrecioComponent,
     SelectPlanComponent,
-    PerfilViewComponent
+    PerfilViewComponent,
+    ImbProfileViewComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,8 @@ import { PerfilViewComponent } from './components/perfil-view/perfil-view.compon
     ConfigService,
     UserService,
     SiteService,
-    TextsService
+    TextsService,
+    ProfileService
   ],
   bootstrap: [
     AppComponent

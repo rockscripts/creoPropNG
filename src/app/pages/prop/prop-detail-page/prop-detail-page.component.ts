@@ -4,6 +4,7 @@ import { Router }            from '@angular/router';
 
 import { PropiedadesService } from './../../../providers/propiedades.service';
 import { DenunciaService }    from './../../../providers/denuncia.service';
+import { ProfileService }     from './../../../providers/profile.service';
 
 @Component({
   selector: 'app-prop-detail-page',
@@ -20,7 +21,8 @@ export class PropDetailPageComponent implements OnInit {
     private activatedRoute:   ActivatedRoute,
     private propiedadService: PropiedadesService,
     private router:           Router,
-    private denuncia:         DenunciaService
+    private denuncia:         DenunciaService,
+    private perfil:           ProfileService
   ) {}
 
   ngOnInit() {
@@ -32,7 +34,7 @@ export class PropDetailPageComponent implements OnInit {
       .propiedadService
       .getPropiedad(this.id)
       .subscribe((r) => {
-        this.propiedad = r ['data'];
+        this.propiedad = r['data'];
     });
   }
 
@@ -42,7 +44,12 @@ export class PropDetailPageComponent implements OnInit {
   }
 
   goToPerfil(){
-    this.router.navigate(['/perfil/1']);
+    this.perfil.getProfile(this.propiedad[0]['propietario_id']);
+    this.perfil.profileGet.subscribe({
+      next: () => {
+        this.router.navigate(['/perfil/1']);
+      }
+    });
   }
 
 }

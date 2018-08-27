@@ -18,8 +18,8 @@ export class UserService {
   private wsl = 'user/login';
   private wst = 'user/get-types';
 
-  public onLogin  = new Subject();
-  public onLogOut = new Subject()
+  public onLogin     = new Subject();
+  public onLogOut    = new Subject();
 
   public model;
 
@@ -69,13 +69,9 @@ export class UserService {
     this.onLogOut.next();
   }
 
-  create(){
-    return this.http.post(this.config.getAPIUrl()+this.wsn, JSON.stringify(this.model));
-  }
+  create(){ return this.http.post(this.config.getAPIUrl()+this.wsn, JSON.stringify(this.model)); }
 
-  getTypes(){
-    return this.http.get(this.config.getAPIUrl()+this.wst);
-  }
+  getTypes(){ return this.http.get(this.config.getAPIUrl()+this.wst);  }
 
   clearModel()  { this.model = new User(); }
   getId()       { return this.userData.id; }

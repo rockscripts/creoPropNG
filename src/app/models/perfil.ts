@@ -5,6 +5,7 @@ export class Perfil {
   public apellido      :string = '';
   public ubicacion     :string = '';
   public usuario_desde :string = '';
+  public img           :string = '';
 
   public prop_count :number = 0;
   public user_id    :number = -1;

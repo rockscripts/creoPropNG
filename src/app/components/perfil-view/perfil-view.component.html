@@ -5,7 +5,7 @@
     <div class="card col-sm-12">
       <div class="row no-gutters p-3 profilecard">
         <div class="col-auto">
-          <img src="//placehold.it/200" class="img-fluid" alt="">
+          <img src="{{perfil.img}}" class="img-fluid" alt="//placehold.it/200">
           <div class="btn-abs btn-fa btn-eimg" *ngIf="editable">
             <i class="fa fa-camera" click="editImg()"></i>
           </div>
@@ -22,8 +22,8 @@
           <h4 class="pl-2">INFORMACiÓN PERSONAL</h4>
         </div>
         <div class="col text-uppercase text-muted">
-          <p>Usuario desde:</p>
-          <p>Propiedades publicadas:</p>
+          <p>Usuario desde: {{perfil.usuario_desde}}</p>
+          <p>Propiedades publicadas: {{perfil.prop_count}}</p>
         </div>
         <div class="col">
         </div>
@@ -38,15 +38,14 @@
       <div class="col-12 my-2"><button type="button" class="w-100 btn btn-cprop" routerLink="/new-prop">Mail</button></div>
       <div class="col-12 my-2"><button type="button" class="w-100 btn btn-cprop" routerLink="/new-prop">Telefono</button></div>
     </div>
-    <div class="card mt-5">
+    <div class="card mt-5" *ngIf="perfil.inmobiliaria.nombre">
       <h4 class="card-title mt-2 pl-3">INMOBILIARIA</h4>
       <div class="row">
-        <div class="col-4">
-          <img src="..." class="img-fluid" alt="...">
+        <div class="col-auto">
+          <img src="./{{perfil.inmobiliaria.logo}}">
         </div>
-        <div class="col-8">
-          <p> Nombre de la inmobiliaria</p>
-          <p href="#">Ver perfil</p>
+        <div class="col">
+          <h3>{{perfil.inmobiliaria.nombre}}</h3>
         </div>
       </div>
     </div>
