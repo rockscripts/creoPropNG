@@ -4,16 +4,14 @@
   <div class="col-sm-7 mt-3">
     <div class="card col-sm-12">
       <div class="row no-gutters p-3 profilecard">
+        <h3 class="btn-edit" *ngIf="editable" (click)="edit()"><i class="fa btn-fa fa-pencil" ></i></h3>
         <div class="col-auto">
           <img src="{{perfil.img}}" class="img-fluid" alt="//placehold.it/200">
-          <div class="btn-abs btn-fa btn-eimg" *ngIf="editable">
-            <i class="fa fa-camera" click="editImg()"></i>
-          </div>
         </div>
         <div class="col">
           <div class="card-block px-2 pr-1">
-            <h4 class="card-title"><i class="fa btn-fa fa-pencil" *ngIf="editable"></i> {{perfil.apellido}} {{perfil.nombre}}</h4>
-            <p class="card-text text-muted w-20"><i class="fa btn-fa fa-pencil" *ngIf="editable"></i> {{perfil.ubicacion}}</p>
+            <h4 class="card-title">{{perfil.apellido}} {{perfil.nombre}}</h4>
+            <p class="card-text text-muted w-20">{{perfil.ubicacion}}</p>
           </div>
         </div>
       </div>

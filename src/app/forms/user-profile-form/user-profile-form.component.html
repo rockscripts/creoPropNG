@@ -1,0 +1,26 @@
+<div class="text-center">
+  <h5 class="m-t">Editar perfil</h5>
+
+  <form>
+
+    <div class="form-group text-left">
+      <label>Nombre</label>
+      <input type="text" class="form-control" [(ngModel)]="model.nombre" name="nombre">
+    </div>
+
+    <div class="form-group text-left">
+      <label>Apellido</label>
+      <input type="text" class="form-control" [(ngModel)]="model.apellido" name="apellido">
+    </div>
+
+    <div class="form-group text-left">
+      <label>Imagen de perfil</label>
+      <input id="img-input" type="file" (change)="onFileChange($event)" #fileInput class="foto-input">
+    </div>
+
+    <div class="col-12 row">
+      <div class="col-12 col-sm-6"><button type="button" class="w-100 btn btn-cprop" (click)="guardar()">GUARDAR</button></div>
+    </div>
+
+  </form>
+</div>

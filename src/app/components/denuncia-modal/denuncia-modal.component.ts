@@ -4,8 +4,7 @@ import { DenunciaModalService } from './denuncia-modal.service';
 
 @Component({
   selector: 'app-denuncia-modal',
-  templateUrl: './denuncia-modal.component.html',
-  styleUrls: ['./denuncia-modal.component.css']
+  templateUrl: './denuncia-modal.component.html'
 })
 export class DenunciaModalComponent implements OnInit {
   @ViewChild('denunciaModal') denunciaModal:ElementRef;

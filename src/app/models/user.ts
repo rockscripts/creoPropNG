@@ -1,4 +1,4 @@
-import { Perfil }       from './perfil';
+import { Perfil }       from './perfil'; //[modificar] los datos del usuario (como nombre, telefono, etc) deverian formar parte del perfil
 import { Inmobiliaria } from './inmobiliaria';
 
 export class User {

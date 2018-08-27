@@ -7,6 +7,8 @@ export class Perfil {
   public usuario_desde :string = '';
   public img           :string = '';
 
+  public img_data  :any = [];
+
   public prop_count :number = 0;
   public user_id    :number = -1;
 

@@ -7,6 +7,7 @@ margin-bottom: 0px;
   min-height: 132px;
 }
 
-.btn-eimg{
+.btn-edit{
   top: 0px;right: 5px;
+  position: absolute;
 }

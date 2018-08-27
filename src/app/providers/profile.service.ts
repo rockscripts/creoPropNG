@@ -10,15 +10,24 @@ import { Perfil }        from './../models/perfil';
 })
 export class ProfileService {
 
-  public profileGet = new Subject();
+  public profileGet     = new Subject();
+  public profileUpdated = new Subject();
 
   private profile = new Perfil();
   private wsp     = 'user/profile';
+  private wspu    = 'user/editProfile';
 
   getProfile(id){
     this.http.post(this.config.getAPIUrl()+this.wsp,{'id':id}).subscribe((r) => {
       r = r ['data'];
       this.profileGet.next(r);
+    });
+  }
+
+  updateProfile(model){
+    this.http.post(this.config.getAPIUrl()+this.wspu,model).subscribe((r) => {
+      r = r['data'];
+      this.profileUpdated.next(r);
     });
   }
 

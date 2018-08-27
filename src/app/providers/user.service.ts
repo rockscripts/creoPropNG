@@ -30,7 +30,7 @@ export class UserService {
   ) { }
 
   setLogin(r){
-    this.userData.id           = r['data']['id'];
+    this.userData.id           = r['data']['id'];//[modificar] esta info es de perfil no de usuario
     this.userData.email        = r['data']['email'];
     this.userData.token        = r['data']['token'];
     this.userData.nombre       = r['data']['name'];
@@ -40,6 +40,15 @@ export class UserService {
     this.userData.telefono     = r['data']['celular'];
     this.userData.dni          = r['data']['dni'];
     this.userData.cuit         = r['data']['cuit'];
+
+    this.userData.perfil.nombre        = r['data']['name'];
+    this.userData.perfil.apellido      = r['data']['surname'];
+    //this.userData.perfil.ubicacion   = r['data']['surname'];
+    this.userData.perfil.usuario_desde = r['data']['created_at'];
+    this.userData.perfil.img           = r['data']['profile_img'];
+    this.userData.perfil.prop_count    = r['data']['cant_prop'];
+    this.userData.perfil.user_id       = r['data']['id'];
+    this.userData.perfil.img           = r['data']['profile_img'];
 
     let inm     = new Inmobiliaria();
     inm.id      = r['data']['inmobiliaria']['id'];
@@ -75,7 +84,8 @@ export class UserService {
 
   clearModel()  { this.model = new User(); }
   getId()       { return this.userData.id; }
-  getUserData() { return this.userData; }
+  getUserData() { return this.userData;    }
+  getProfile()  { return this.userData.perfil; }
   getName(){
     if (this.userData.nombre == ''){
       return this.userData.email;

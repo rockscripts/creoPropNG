@@ -45,6 +45,8 @@ import { SelectPrecioComponent } from './pages/select-precio/select-precio.compo
 import { SelectPlanComponent } from './pages/select-plan/select-plan.component';
 import { PerfilViewComponent } from './components/perfil-view/perfil-view.component';
 import { ImbProfileViewComponent } from './components/imb-profile-view/imb-profile-view.component';
+import { UserProfileFormComponent } from './forms/user-profile-form/user-profile-form.component';
+import { UserProfileModalComponent } from './components/user-profile-modal/user-profile-modal.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { ImbProfileViewComponent } from './components/imb-profile-view/imb-profi
     SelectPrecioComponent,
     SelectPlanComponent,
     PerfilViewComponent,
-    ImbProfileViewComponent
+    ImbProfileViewComponent,
+    UserProfileFormComponent,
+    UserProfileModalComponent
   ],
   imports: [
     BrowserModule,
