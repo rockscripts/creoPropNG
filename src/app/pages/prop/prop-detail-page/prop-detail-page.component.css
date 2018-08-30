@@ -1,3 +1,21 @@
+.gral{
+  background-color: #eee;
+}
+
+.carousel-control-next, .carousel-control-prev{
+  opacity:1;
+}
+
+.carousel-control-next .fa, .carousel-control-prev .fa{
+  color:#444 !important;
+  position: absolute;
+  left: 19px;
+}
+
+.carrusel-ic{
+  background-color: #fff;border-radius: 100%;width: 50px;height: 50px;opacity: 1;
+}
+
 .card-cont-mapa{
   height: 400px;
 }

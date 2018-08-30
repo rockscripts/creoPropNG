@@ -46,25 +46,25 @@
 
 .card-tit{
   font-weight: bold;
-      color: #599bef;
+  color: #4b8df8;
+}
+
+.card-text span{
+  margin-right: .625rem;
 }
 
 .card-precio{
-  color:#9e3b5b;font-weight: bold;margin-left: 4px;
+  color:#e20031;font-weight: bold;
 }
 
 .imb-img{
-  height: 4em;
+  height: 2rem;
   width: auto;
   position: absolute;
   top: 0.5em;
   left: 0.5em;
 }
 
-.imb-img2{
-  position: absolute;
-  width: 33%;
-  left: 33%;
-  top: 19%;
-  opacity: 0.2;
+.card{
+  box-shadow: none;
 }
