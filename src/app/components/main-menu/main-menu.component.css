@@ -60,15 +60,17 @@ nav .btn-search {
 }
 
 nav .btn-search .fa{
-  color:#fff !important;
+  color:#777 !important;
 }
 
 nav .form-control {
   border-radius: 5px;
   border: none;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.3);
   padding-left: 32px;
-  color:#fff;
+  color:#777;
 }
 
-nav .form-control::placeholder { color: #fff; }
+nav .form-control::placeholder { color: #777; }
+
+nav form{margin-left: 1.5rem;}

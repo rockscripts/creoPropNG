@@ -1,6 +1,5 @@
-<div class="gral">
-<div class="row col-12 p-detail-p">
-	<div class="row col-12 col-md-8">
+<div class="row p-detail-p">
+	<div class="col-12 col-md-8">
 
 		<div class="col-12 c-card">
 			<div class="card">
@@ -19,11 +18,10 @@
 					</div>
 
 					<div class="row col-12 col-md-4  order-12">
-						<div class="col-12">
-							<i class="col-auto"></i>
-							<i class="col-3 fa fa-heart link-btn"></i>
-							<i class="col-3 fa fa-share-alt link-btn"></i>
-							<i class="col-3 fa fa-print link-btn"></i>
+						<div class="col-12 cont-btn">
+							<i class="fa fa-heart link-btn"></i>
+							<i class="fa fa-share-alt link-btn"></i>
+							<i class="fa fa-print link-btn"></i>
 						</div>
 						<div class="col-12 btn-denu"><a data-toggle="modal" data-target="#denunciaModal" (click)="denunciar()">DENUNCIAR AVISO</a></div>
 					</div>
@@ -67,105 +65,106 @@
 			</div>
 		</div>
 
-		<div class="col-12 col-sm-6 c-card">
-			<div class="card">
-			  <div class="card-body">
-			    <h5 class="card-title">DESCRIPCIÓN</h5>
-					{{propiedad[0].texto}}
-			  </div>
+		<div class="row">
+			<div class="col-12 col-sm-6 c-card">
+				<div class="card">
+				  <div class="card-body">
+				    <h5 class="card-title">DESCRIPCIÓN</h5>
+						{{propiedad[0].texto}}
+				  </div>
+				</div>
+			</div>
+
+			<div class="col-12 col-sm-6 c-card">
+				<div class="card">
+				  <div class="card-body">
+				    <h5 class="card-title">CARACTERÍSTICAS GENERALES</h5>
+
+						<div class="col-12">
+		          <div *ngFor="let ub of propiedad.carac_gral" class="col-12">
+								<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.n}}:&nbsp;{{ub.v}}
+							</div>
+		        </div>
+
+				  </div>
+				</div>
+			</div>
+
+			<div class="col-12 col-sm-6 c-card">
+				<div class="card">
+				  <div class="card-body">
+				    <h5 class="card-title">AMBIENTES</h5>
+
+						<div class="col-12">
+		          <div *ngFor="let ub of propiedad.ambientes" class="col-12">
+								<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
+							</div>
+		        </div>
+
+				  </div>
+				</div>
+			</div>
+
+			<div class="col-12 col-sm-6 c-card">
+				<div class="card">
+				  <div class="card-body">
+				    <h5 class="card-title">SERVICIOS</h5>
+
+						<div class="col-12">
+		          <div *ngFor="let ub of propiedad.servicios" class="col-12">
+								<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
+							</div>
+		        </div>
+
+				  </div>
+				</div>
+			</div>
+
+			<div class="col-12 col-sm-6 c-card">
+				<div class="card">
+				  <div class="card-body">
+				    <h5 class="card-title">AMENITIES</h5>
+
+						<div class="col-12">
+		          <div *ngFor="let ub of propiedad.amenities" class="col-12">
+								<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
+							</div>
+		        </div>
+
+				  </div>
+				</div>
 			</div>
 		</div>
-
-		<div class="col-12 col-sm-6 c-card">
-			<div class="card">
-			  <div class="card-body">
-			    <h5 class="card-title">CARACTERÍSTICAS GENERALES</h5>
-
-					<div class="col-12">
-	          <div *ngFor="let ub of propiedad.carac_gral" class="col-12">
-							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.n}}:&nbsp;{{ub.v}}
-						</div>
-	        </div>
-
-			  </div>
-			</div>
-		</div>
-
-		<div class="col-12 col-sm-6 c-card">
-			<div class="card">
-			  <div class="card-body">
-			    <h5 class="card-title">AMBIENTES</h5>
-
-					<div class="col-12">
-	          <div *ngFor="let ub of propiedad.ambientes" class="col-12">
-							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
-						</div>
-	        </div>
-
-			  </div>
-			</div>
-		</div>
-
-		<div class="col-12 col-sm-6 c-card">
-			<div class="card">
-			  <div class="card-body">
-			    <h5 class="card-title">SERVICIOS</h5>
-
-					<div class="col-12">
-	          <div *ngFor="let ub of propiedad.servicios" class="col-12">
-							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
-						</div>
-	        </div>
-
-			  </div>
-			</div>
-		</div>
-
-		<div class="col-12 col-sm-6 c-card">
-			<div class="card">
-			  <div class="card-body">
-			    <h5 class="card-title">AMENITIES</h5>
-
-					<div class="col-12">
-	          <div *ngFor="let ub of propiedad.amenities" class="col-12">
-							<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
-						</div>
-	        </div>
-
-			  </div>
-			</div>
-		</div>
-
 	</div>
 
-<div class="col-12 col-md-4 c-card">
+	<div class="col-12 col-md-4 c-card">
 	<div class="row c-card">
 		<!-- precio -->
 		<div class="col-12 c-card">
 			<div class="card card-det">
 				<div class="card-body">
 					<h5 class="card-title may">PRECIO {{propiedad[0].nombre_operacion}}</h5>
-					<h3 class="modern-single-ad-price">{{propiedad[0].moneda_simbolo}} {{propiedad[0].precio}}</h3>
+					<h3 class="modern-single-ad-price">{{propiedad[0].moneda_simbolo}} {{propiedad[0].precio | number:'1.2' }}</h3>
 				</div>
 				<div class="card-body topln">
 					<div class="row">
 						<div class="col rw-det" *ngIf="propiedad[0].superficie_cubierta != 0">
-							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-building-o"></i></div></div>
+							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-sup" ></div></div>
 							<span class="sp">Sup. Cubierta</span>
 							<div class="row"><div class="col dt-lg">{{propiedad[0].superficie_cubierta}}<small>m²</small></div></div>
 						</div>
-						<div class="col rw-det" *ngIf="propiedad[0].dormitorios != 0">
-							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-bed"></i></div></div>
-							<span class="sp">Dormitorios</span>
-							<div class="row"><div class="col dt-lg">{{propiedad[0].dormitorios}}</div></div>
+						<div class="col rw-det" *ngIf="propiedad[0].ambientes != 0">
+							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-amb" ></div></div>
+							<span class="sp">Ambientes</span>
+							<div class="row"><div class="col dt-lg">{{propiedad[0].ambientes}}</div></div>
 						</div>
 						<div class="col rw-det" *ngIf="propiedad[0].banios != 0">
-							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-bath"></i></div></div>
+							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/bath" ></div></div>
 							<span class="sp">Baños</span>
 							<div class="row"><div class="col dt-lg">{{propiedad[0].banios}}</div></div>
 						</div>
 						<div class="col rw-det" *ngIf="propiedad[0].cochera != 0">
-							<div class="row"><div class="col pl-0 pr-0"><i class="fa fa-building-o"></i></div></div>
+							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-coch"></div></div>
 							<span class="sp">Cochera</span>
 							<div class="row"><div class="col dt-lg">{{propiedad[0].cochera}}</div></div>
 						</div>
@@ -175,17 +174,17 @@
 		</div>
 		<!-- anunciante -->
 		<div class="col-12 c-card">
-			<div class="row">
-				<div class="col"><h4>¡Contactá al anunciante!</h4></div>
-			</div>
 			<div class="card">
 				<div class="card-body">
 					<div class="row">
+						<div class="col"><h4>¡Contactá al anunciante!</h4></div>
+					</div>
+					<div class="row">
 						<div class="col-auto">
-							<img src="./{{propiedad.inmobiliaria.logo}}">
+							<img *ngIf="propiedad.inmobiliaria != null" src="./{{propiedad.inmobiliaria.logo}}">
 						</div>
-						<div class="col">
-							<h3>{{propiedad.inmobiliaria.nombre}}</h3>
+						<div class="col" *ngIf="propiedad[0].user != null">
+							<h3 *ngIf="propiedad.inmobiliaria != null">{{propiedad.inmobiliaria.nombre}}</h3>
 							<div class="col-12">Teléfono:&nbsp;{{propiedad[0].user.celular}}</div>
 							<div class="col-12">Encargado:&nbsp;{{propiedad[0].user.name}}&nbsp;{{propiedad[0].user.surname}} </div>
 							<div class="col-12">Código:&nbsp;{{propiedad[0].user.id}}</div>
@@ -238,5 +237,4 @@
 	</div>
 </div>
 
-</div>
 </div>

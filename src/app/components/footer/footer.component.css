@@ -1,7 +1,7 @@
 footer{
   font-size: 0.8em;
-  margin-top:20px;
   background-color: #eee;
+  box-shadow: 9px 3px 4px 1px;
 }
 
 footer div{margin-right: 0px;

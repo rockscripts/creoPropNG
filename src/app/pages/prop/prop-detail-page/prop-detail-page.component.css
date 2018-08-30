@@ -1,7 +1,3 @@
-.gral{
-  background-color: #eee;
-}
-
 .carousel-control-next, .carousel-control-prev{
   opacity:1;
 }
@@ -9,30 +5,29 @@
 .carousel-control-next .fa, .carousel-control-prev .fa{
   color:#444 !important;
   position: absolute;
-  left: 19px;
 }
+.carousel-control-next .fa{ left: 19px; }
+.carousel-control-prev .fa{ left: 14px; }
 
-.carrusel-ic{
-  background-color: #fff;border-radius: 100%;width: 50px;height: 50px;opacity: 1;
-}
+
+.carrusel-ic{  background-color: #fff;border-radius: 100%;width: 50px;height: 50px;opacity:0.5; }
+.carrusel-ic:hover{ opacity:1; }
 
 .card-cont-mapa{
   height: 400px;
 }
 
-.modern-single-ad-price, .may {text-transform:uppercase;}
+.modern-single-ad-price, .may {text-transform:uppercase; color:#000 !important;}
 
 .p-detail-p{
-  margin-top: 1em;
+  padding-top: 1em;
+  background:#f0f0f0;
 }
 
-.link-btn:hover {
-  color: #ed1b24;
-}
-
-.link-btn:active {
-  color: #d01;
-}
+.link-btn{margin-left: 0.5rem; color:#000;}
+.link-btn:hover {color: #ed1b24;}
+.link-btn:active {  color: #d01;}
+.cont-btn{text-align: right;}
 
 .img-cont, .img-map {
   background: #eee;
@@ -54,8 +49,8 @@
   color: #000;
 }
 
-.card-det .fa {
-  font-size: 2.5em;
+.card-det .icons {
+  height: 50px;
 }
 
 .rw-det {
@@ -67,7 +62,7 @@
 .dt-lg {
   text-align: center;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .sp {
@@ -79,6 +74,7 @@
   font-size: 0.9em;
   text-align: right;
   width: 100%;
+  color:#69b6d2 !important;
 }
 
 .card .topln {
@@ -86,7 +82,7 @@
 }
 
 a {
-  color: #6d6d6d !important;
+  color: #6d6d6d;
   width: inherit;
 }
 

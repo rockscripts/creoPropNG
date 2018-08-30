@@ -3,6 +3,7 @@ import { NgModule }                 from '@angular/core';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule }         from '@angular/common/http';
 import { FormsModule }              from '@angular/forms';
+import { LOCALE_ID }                from '@angular/core';
 
 import { AppComponent }      from './app.component';
 import { AppRoutingModule }  from './app-routing.module';
@@ -48,6 +49,10 @@ import { ImbProfileViewComponent } from './components/imb-profile-view/imb-profi
 import { UserProfileFormComponent } from './forms/user-profile-form/user-profile-form.component';
 import { UserProfileModalComponent } from './components/user-profile-modal/user-profile-modal.component';
 
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+registerLocaleData(localeEs);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,6 +94,7 @@ import { UserProfileModalComponent } from './components/user-profile-modal/user-
     FormsModule
   ],
   providers: [
+    {provide: LOCALE_ID, useValue: 'es'},
     PropiedadesService,
     GralInfoService,
     ZonasService,

@@ -47,6 +47,7 @@
 .card-tit{
   font-weight: bold;
   color: #4b8df8;
+  font-size: 0.9rem;
 }
 
 .card-text span{
@@ -54,11 +55,11 @@
 }
 
 .card-precio{
-  color:#e20031;font-weight: bold;
+  color:#e20031;
 }
 
 .imb-img{
-  height: 2rem;
+  height: 3rem;
   width: auto;
   position: absolute;
   top: 0.5em;

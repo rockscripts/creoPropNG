@@ -151,7 +151,6 @@ a {color: ##03a9ec !important; font-weight: bold; cursor:pointer;}
 
 .carousel-control-next, .carousel-control-prev{ z-index:900; font-size: 3em; }
 .carousel-control-next .fa, .carousel-control-prev .fa{ color:#fff!important; }
-.carousel-control-next:hover .fa, .carousel-control-prev .fa:hover{color:#d01!important;}
 
 app-footer{
 /*  position: absolute;bottom: 0px;*/
