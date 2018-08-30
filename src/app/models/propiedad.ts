@@ -29,7 +29,7 @@ export class Propiedad {
   public calle1: string = '';
   public calle2: string = '';
 
-  public tipo_propiedad_id:  number = 0;
+  public tipo_propiedad_id:  number = 1;
   public tipo_operacion_id:  number = 0;
   public superficie_cubierta:number = 0;
   public superficie_total:   number  = 0;

@@ -11,8 +11,12 @@
   border-bottom: 1px solid #d9d9d9;
 }
 
-.res-cont{
-  margin-top:40px;
+.tx-ordenar{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #777;
+  text-align: right;
+  font-size: 0.9rem;
 }
 
 .cp-card .card-body{

@@ -3,7 +3,15 @@
     <div class="col-12 hh1 pl-0 res-count row align-items-center">
       <div class="col-12 pl-0" *ngIf="mode != 'userProp'"><b>{{cant_prop}}</b>&nbsp;Propiedades en Argentina</div></div>
   </div>
-  <div class="row col-12 res-cont">
+  <div class="col-12" *ngIf="mode != 'userProp'">
+    <div class="col-12 row">
+      <div class="col"></div>
+      <div class="col-12 col-md-3 tx-ordenar">
+        <span><img src="assets/img/icon-sort.png" style="width:25px"></span> ORDENAR POR
+      </div>
+    </div>
+  </div>
+  <div class="row col-12">
 
     <div *ngFor="let propiedad of propiedades let j = index" class="col-12 col-sm-6 col-md-4 cp-card">
       <div class="card">
@@ -30,7 +38,7 @@
         </div>
         <div class="card-body">
           <div class="card-text card-tit" routerLink="propiedad/{{propiedad.id}}">{{propiedad.titulo}}</div>
-          <div class="card-text"><span *ngIf="propiedad.banios != 0">{{propiedad.banios}} </span><i *ngIf="propiedad.banios != 0" class="fa fa-bath"></i><span *ngIf="propiedad.dormitorios != 0">{{propiedad.dormitorios}} </span><i *ngIf="propiedad.dormitorios != 0" class="fa fa-bed"></i> <span class="card-precio">{{propiedad.moneda_simbolo}}  {{propiedad.precio}}</span></div>
+          <div class="card-text"><span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span><span *ngIf="propiedad.banios != 0">{{propiedad.banios}} </span><i *ngIf="propiedad.banios != 0" class="fa fa-bath"></i><span *ngIf="propiedad.dormitorios != 0">{{propiedad.dormitorios}} </span><i *ngIf="propiedad.dormitorios != 0" class="fa fa-bed"></i> <span class="card-precio">{{propiedad.moneda_simbolo}}  {{propiedad.precio}}</span></div>
          </div>
       </div>
     </div>
