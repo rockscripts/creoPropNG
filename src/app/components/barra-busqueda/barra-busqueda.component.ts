@@ -83,7 +83,7 @@ export class BarraBusquedaComponent implements OnInit {
     this.loadSearchConfig();
   }
 
-  ciudadClick(i){   this.busqueda.localidad = i; this.goToBusqueda(i); }
+  zonaClick(i){     this.busqueda.zona = i; this.goToBusqueda(i); }
   tipoOPClick(i){   this.busqueda.tipoOperacion = i; this.goToBusqueda(i); }
   tipoPropClick(i){ this.busqueda.tipoPropiedad = i; this.goToBusqueda(i); }
 

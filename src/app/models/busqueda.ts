@@ -1,6 +1,5 @@
 export class Busqueda {
-  public provincia:       number = -1;
-  public localidad:       number = -1;
+  public zona:            number = -1;
   public termUbicacion:   string = '';
   public termDireccion:   string = '';
   public tipoOperacion:   number = -1;

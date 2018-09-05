@@ -1,5 +1,10 @@
 .carousel {min-height: 225px;}
 
+.cont-b{
+  overflow: hidden;
+  width:100%;
+}
+
 .cp-card{
   padding-right: 10px;
   padding-left: 0px;

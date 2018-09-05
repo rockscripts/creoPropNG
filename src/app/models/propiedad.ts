@@ -45,6 +45,7 @@ export class Propiedad {
   public inmobiliaria_id: number = -1;
 
   public zona_id:number    = -1;
+  public zona:any          = [];
   public zona_nivel:number = 1;
 
   constructor() {}

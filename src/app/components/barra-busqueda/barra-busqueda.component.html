@@ -23,7 +23,7 @@
         <div class="form-group"> <input type="text" class="form-control" [(ngModel)]="busqueda.termUbicacion" name="termUbicacion" (keyup)="updateUbicaciones()" placeholder="Buscar Localidad"> </div>
 
         <ul class="list-group list-group-flush">
-          <li (click)="ciudadClick(ub.id)" *ngFor="let ub of ubicaciones_busqueda" class="list-group-item d-flex justify-content-between">
+          <li (click)="zonaClick(ub.id)" *ngFor="let ub of ubicaciones_busqueda" class="list-group-item d-flex justify-content-between">
             <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.cant}})</span> </li>
         </ul>
 

@@ -22,7 +22,10 @@ export class PropiedadFormComponent implements OnInit {
   ambientes:any;
   carac_gral:any;
 
-  zona:any = [[],[],[],[],[]];
+  zona:any     = [[],[],[],[],[]];
+  denomina:any = ['','Provincia','','',''];
+
+  pais_id:number      = -1;
 
   tipo_prop:any = [
     {"id":"0","nombre":"Casa"},
@@ -68,8 +71,15 @@ export class PropiedadFormComponent implements OnInit {
 
 
   ngOnInit() {
-    this.zona.setBusqueda({'nivel':2,'root':1 });
-    this.zonas.getZonas().subscribe((r)  => {  this.zonas[0] = r['data'];  });
+    this.zonas.setBusqueda({'nivel':1,'root':-1 });
+    this.zonas.getZonas().subscribe((r)  => {
+      this.zonas[0] = r['data'];
+      this.pais_id  = this.zonas[0][0].id;
+      this.zonas.setBusqueda({'nivel':2,'root':this.pais_id });
+      this.zonas.getZonas().subscribe((r)  => {
+        this.zonas[1] = r['data'];
+      });
+    });
 
     this.prop.getEquipamiento().subscribe((r) => { this.equipamiento = r['data']; });
     this.prop.getServicios().subscribe((r) => { this.servicios = r['data']; });
