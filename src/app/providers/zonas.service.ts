@@ -3,38 +3,25 @@ import { HttpClient } from '@angular/common/http';
 
 import { ConfigService } from './config.service';
 
+import { BuscarZona } from '../models/buscar-zona';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ZonasService {
 
-  private wsp  = 'provincias/all';
-  private wsl  = 'localidades/byProvince';
-  private wsb  = 'barrios/byLocalidad';
+  private wsaf  = 'zonas/all';
+  private wson  = 'zonas/create';
 
-  public termUbicacion: string;
-  public provincia:     number;
+  private model:BuscarZona = new BuscarZona();
 
   constructor(
     private http: HttpClient,
     private config: ConfigService
   ) { }
 
-  getLocalidades() {
-    return this
-            .http
-            .post(this.config.getAPIUrl()+this.wsl, {'id':this.provincia,'t':this.termUbicacion});
-  }
+  getZonas() { return this.http.post(this.config.getAPIUrl()+this.wsaf, this.model);  }
 
-  getProvincias() {
-    return this
-            .http
-            .post(this.config.getAPIUrl()+this.wsp,{});
-  }
-
-  getBarrios(i) {
-    return this
-            .http
-            .post(this.config.getAPIUrl()+this.wsb, {'id':1,'t':this.termUbicacion});
-  }
+  setBusqueda(m) { this.model.nivel = m.nivel;  this.model.root = m.root;  }
+  getModelBusqueda()  { return this.model; }
 }

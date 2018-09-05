@@ -228,27 +228,21 @@
           </div>
         </div>
 
-      </div>
-    </div>
-  </div>
-<!-- antiguedad -->
-  <div class="card col-12">
-    <div class="card-header" id="headingThree">
-      <div class="collapsed" type="div" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
-        Antigüedad
-        <i class="fa icon fa-sort-down"></i>
-      </div>
-    </div>
-    <div id="collapse13" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body">
+        <div class="form-group input-group mtop1">
+          <div class="input-group-prepend"><div class="input-group-text">m²</div></div>
+          <input type="text" class="form-control" id="pre1" placeholder="Desde"> </div>
+        <div class="form-group input-group">
+          <div class="input-group-prepend"><div class="input-group-text">m²</div></div>
+          <input type="text" class="form-control" id="pre2" placeholder="Hasta"> </div>
 
-        <ul class="list-group list-group-flush">
-          <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of antiguedad" class="list-group-item d-flex justify-content-between align-items-center">{{tp.name}} <span class="badge">({{tp.cant}})</span> </li>
-        </ul>
+        <div class="w-100">
+  				<button class="w-100 btn btn-sm btn-cprop mtop1">APLICAR</button>
+  			</div>
 
       </div>
     </div>
   </div>
+
 <!-- tipos ambientes -->
   <div class="card col-12">
     <div class="card-header" id="headingThree">

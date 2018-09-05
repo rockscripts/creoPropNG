@@ -45,7 +45,7 @@
          </div>
 
          <div class="form-group col-12 row">
-           <div class=" col-12 col-sm-6">
+           <div class="col-12 col-sm-6">
               <label>Provincia</label>
               <select class="form-control" [(ngModel)]="model.provincia" (change)="updateLocalidad()" name="provincia">
               <option *ngFor="let prov of provincias" [value]="prov.id">{{prov.nombre}}</option>

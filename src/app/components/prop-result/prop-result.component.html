@@ -37,7 +37,7 @@
         </div>
         <div class="card-body">
           <div class="card-text card-tit" routerLink="propiedad/{{propiedad.id}}">{{propiedad.titulo}}</div>
-          <div class="card-text text-center">
+          <div class="card-text">
             <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}}     </span>
             <span *ngIf="propiedad.banios != 0"><img src="assets/img/bed.svg" style="width:25px"> {{propiedad.banios}} </span>
             <span *ngIf="propiedad.dormitorios != 0"><img src="assets/img/bath.svg" style="width:25px"> {{propiedad.dormitorios}} </span>

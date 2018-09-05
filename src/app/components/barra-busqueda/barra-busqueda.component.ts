@@ -41,7 +41,7 @@ export class BarraBusquedaComponent implements OnInit {
 
     this.loadSearchConfig();
 
-    this
+  /*  this
       .zonas.getProvincias()
       .subscribe((r) => {
         this.provincias         = r['data'];
@@ -52,7 +52,7 @@ export class BarraBusquedaComponent implements OnInit {
       .zonas.getBarrios(1)
       .subscribe((r) => {
         this.barrios = r['data'];
-    });
+    });*/
   }
 
   loadSearchConfig(){

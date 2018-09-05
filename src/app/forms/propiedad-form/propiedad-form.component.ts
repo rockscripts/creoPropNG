@@ -17,13 +17,12 @@ export class PropiedadFormComponent implements OnInit {
   submitted  = false;
   dataTarget = '';
 
-  ciudades:any;
-  provincias:any;
-  barrios:any;
   equipamiento:any;
   servicios:any;
   ambientes:any;
   carac_gral:any;
+
+  zona:any = [[],[],[],[],[]];
 
   tipo_prop:any = [
     {"id":"0","nombre":"Casa"},
@@ -52,15 +51,6 @@ export class PropiedadFormComponent implements OnInit {
     private user:   UserService
   ) {}
 
-  updateLocalidad(){
-    this.zonas.provincia     = this.model.provincia;
-    this.zonas.termUbicacion = '';
-    this.zonas.getLocalidades()
-      .subscribe((r) => {
-        this.ciudades =  r ['data'];
-    });
-  }
-
   onFileChange(event) { //[modificar] //se podrá generalizar?
     let reader = new FileReader();
     if(event.target.files && event.target.files.length > 0) {
@@ -78,8 +68,9 @@ export class PropiedadFormComponent implements OnInit {
 
 
   ngOnInit() {
-    this.zonas.getProvincias().subscribe((r)  => {  this.provincias = r['data'];  });
-    this.zonas.getBarrios(1).subscribe((r)    => {    this.barrios = r['data'];   });
+    this.zona.setBusqueda({'nivel':2,'root':1 });
+    this.zonas.getZonas().subscribe((r)  => {  this.zonas[0] = r['data'];  });
+
     this.prop.getEquipamiento().subscribe((r) => { this.equipamiento = r['data']; });
     this.prop.getServicios().subscribe((r) => { this.servicios = r['data']; });
     this.prop.getAmbientes().subscribe((r) => { this.ambientes = r['data']; });
