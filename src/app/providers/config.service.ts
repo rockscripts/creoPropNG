@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ConfigService {
 
-  private urlApi = 'http://192.168.0.100/creoPropAPI/web/'; //http://localhost
+  private urlApi = './creoPropAPI/web/'; //http://localhost
 
   constructor() { }
 
