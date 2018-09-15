@@ -43,8 +43,8 @@ export class PropiedadFormComponent implements OnInit {
     {"id":"3","nombre":"Lateral"}
   ];
   moneda:any = [
-    {"id":"2","nombre":"U$S Dólares"},
-    {"id":"1","nombre":"AR$ Pesos"}
+    {"id":"2","nombre":"U$S"},
+    {"id":"1","nombre":"AR$"}
   ]
 
   constructor(

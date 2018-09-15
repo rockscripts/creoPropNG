@@ -1,9 +1,14 @@
 <div class="row f-prop">
-  <div class="container">
+  <div class="container container-980">
     <form #propForm="ngForm">
       <div class="row">
         <div class="col">
           <h3>Nueva Propiedad</h3>
+        </div>
+      </div>
+
+      <div class="row titc">
+        <div class="col">
           <h4>Datos principales</h4><hr>
         </div>
       </div>
@@ -56,7 +61,7 @@
 
       </div>
 
-      <div class="row">
+      <div class="row titc">
         <div class="col">
           <h4>Precio</h4><hr>
         </div>
@@ -69,8 +74,8 @@
       </div>
 
       <div class="row">
-        <div class="col-12 col-sm-3 fi"  *ngIf="model.tipo_operacion_id == 0">
-          <label>Moneda</label>
+        <div class="col-12 col-sm-1 fi"  *ngIf="model.tipo_operacion_id == 0">
+          <label></label>
           <select class="form-control" [(ngModel)]="model.moneda" name="moneda">
             <option *ngFor="let m of moneda" [value]="m.id">{{m.nombre}}</option>
           </select>
@@ -98,7 +103,7 @@
         </div>
      </div>
 
-      <div class="row">
+      <div class="row titc">
         <div class="col">
           <h4>Ubicación</h4><hr>
         </div>
@@ -134,7 +139,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row titc">
         <div class="col">
           <h4>Título y descripción</h4><hr>
         </div>
@@ -154,7 +159,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row titc">
         <div class="col">
           <h4>Fotos</h4><hr>
         </div>
@@ -178,7 +183,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row titc">
         <div class="col">
           <h4>Ambientes</h4><hr>
         </div>
@@ -188,13 +193,13 @@
         <div class="col">
           <div class="form-group row">
              <div class="checkbox col-md-6 col-12"  *ngFor="let e of ambientes">
-                <label><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.ambientes[e.id]">&nbsp;{{e.nombre}}</label>
+                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.ambientes[e.id]">&nbsp;{{e.nombre}}</div></div></label>
              </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row titc">
         <div class="col">
           <h4>Servicios</h4><hr>
         </div>
@@ -204,13 +209,13 @@
         <div class="col">
           <div class="form-group row">
              <div class="checkbox col-md-6 col-12"  *ngFor="let e of servicios">
-                <label><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.servicios[e.id]">&nbsp;{{e.nombre}}</label>
+                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.servicios[e.id]">&nbsp;{{e.nombre}}</div></div></label>
              </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row titc">
         <div class="col">
           <h4>Características</h4><hr>
         </div>
@@ -222,19 +227,27 @@
           <div class="form-group row">
              <div class="checkbox col-md-6 col-12"  *ngFor="let e of carac_gral" [ngSwitch]="e.type">
                 <label class="form-inline" *ngSwitchCase="'ck'">
-                  <input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]">&nbsp;{{e.nombre}}</label>
+                  <div class="row col-12">
+                    <div class="col t-ck"><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]">&nbsp;{{e.nombre}}</div>
+                  </div>
+                </label>
 
-                <label class="form-inline" *ngSwitchCase="'tx'">
-                  <input type="checkbox" [value]="false" [name]="e.nombre" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;
-                  {{e.nombre}}:&nbsp;<input type="text" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]">
+                <label class="form-inline ck-label" *ngSwitchCase="'tx'">
+                  <div class="row col-12">
+                    <div class="col t-ck"><input type="checkbox" [value]="false" [name]="e.nombre" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;{{e.nombre}}:&nbsp;</div>
+                    <div class="col"><input type="text" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.carac_gral[e.id]"></div>
+                  </div>
                 </label>
 
                 <label class="form-inline" *ngSwitchCase="'sl'">
-                  <input type="checkbox" [value]="false" [name]="e.nombre" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;
-                  {{e.nombre}}:&nbsp;
-                  <select class="form-control form-control-sm" [(ngModel)]="model.carac_gral[e.id]" [name]="e.nombre">
-                    <option *ngFor="let b of e.o" [value]="b.id">{{b.nombre}}</option>
-                  </select>
+                  <div class="row col-12">
+                    <div class="col t-ck"><input type="checkbox" [value]="false" [name]="e.nombre" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;{{e.nombre}}:&nbsp;</div>
+                    <div class="col">
+                      <select class="form-control form-control-sm" [(ngModel)]="model.carac_gral[e.id]" [name]="e.nombre">
+                        <option *ngFor="let b of e.o" [value]="b.id">{{b.nombre}}</option>
+                      </select>
+                    </div>
+                  </div>
                 </label>
              </div>
           </div>
@@ -242,7 +255,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row titc">
         <div class="col">
           <h4>Características generales</h4><hr>
         </div>
@@ -252,13 +265,13 @@
         <div class="col">
           <div class="form-group row">
              <div class="checkbox col-md-6 col-12"  *ngFor="let e of equipamiento">
-                <label><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</label>
+                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</div></div></label>
              </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row titc">
         <div class="col">
           <button class="btn btn-cprop" (click)="newProp()" data-toggle="modal" [attr.data-target]="dataTarget">Publicar ></button>
         </div>

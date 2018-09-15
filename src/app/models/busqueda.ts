@@ -6,6 +6,7 @@ export class Busqueda {
   public tipoPropiedad:   number = -1;
   public propietario_id:  number = -1;
   public inmobiliaria_id: number = -1;
+  public provincia:any;
 
   constructor() {  }
 }

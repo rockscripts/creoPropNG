@@ -34,7 +34,7 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((e) => {
       if(e instanceof RouterEvent){
-        if (e.url == '/select-plan'){
+        if (e.url == '/select-plan' || e.url == '/new-prop'){
           this.disable_footer = true;
         } else {
           this.disable_footer = false;

@@ -1,10 +1,16 @@
-.f-prop{ background-color: #eee; }
+.f-prop{ background-color: #eee; padding-bottom: 225px; }
+.container-980 { max-width: 980px; }
 
 form{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
 
-h4{font-size: 1rem; font-weight: bold;}
+h4{font-size: 16px; font-weight: bold;}
+h3{font-size: 22px; font-weight: bold;}
+label{font-size: 12px;}
+.ck-label, .t-ck{font-size: 13px; }
+input, select, textarea {font-size: 11px;}
 
 .fi {margin-bottom: 1rem;}
+.titc{margin-top: 20px;}
