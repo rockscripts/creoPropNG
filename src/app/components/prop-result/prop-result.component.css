@@ -53,6 +53,9 @@
   font-weight: bold;
   color: #4b8df8;
   font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: "...";
 }
 
 .card-text span{
