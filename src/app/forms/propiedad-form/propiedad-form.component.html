@@ -75,7 +75,7 @@
 
       <div class="row">
         <div class="col-12 col-sm-1 fi"  *ngIf="model.tipo_operacion_id == 0">
-          <label></label>
+          <label>Moneda</label>
           <select class="form-control" [(ngModel)]="model.moneda" name="moneda">
             <option *ngFor="let m of moneda" [value]="m.id">{{m.nombre}}</option>
           </select>
@@ -111,7 +111,16 @@
 
       <div class="row">
         <div class="col"> <!--selectores de ubicación -->
-
+          <div class="row">
+            
+            <div class="col-12 col-sm-2 fi" *ngFor="let zz of zona  let iz = index" >
+               <label *ngIf="!!zz[0]">{{denomina[0]}}&nbsp;</label>
+               <select *ngIf="!!zz[0]" (change)="changeZonaSelect(iz)" disabled="{{(iz == 0)}}" class="form-control" [(ngModel)]="model.zona[iz]" name="zona">
+                 <option *ngFor="let zon of zz  let izz = index" [value]="zon.id" [selected]="izz==0" >{{zon.nombre}}</option>
+               </select>
+            </div>
+          
+          </div>
         </div>
       </div>
 

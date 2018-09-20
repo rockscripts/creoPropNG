@@ -73,11 +73,13 @@ export class PropiedadFormComponent implements OnInit {
   ngOnInit() {
     this.zonas.setBusqueda({'nivel':1,'root':-1 });
     this.zonas.getZonas().subscribe((r)  => {
-      this.zonas[0] = r['data'];
-      this.pais_id  = this.zonas[0][0].id;
+      this.zona[0] = r['data'];
+      this.pais_id = this.zona[0][0].id;
+      this.model.zona[0] = this.pais_id;
       this.zonas.setBusqueda({'nivel':2,'root':this.pais_id });
       this.zonas.getZonas().subscribe((r)  => {
-        this.zonas[1] = r['data'];
+        this.zona[1] = r['data'];
+        this.model.zona[1] = this.zona[1][0].id;
       });
     });
 
@@ -91,6 +93,21 @@ export class PropiedadFormComponent implements OnInit {
     } else {
       this.model = this.prop.getModel();
     }
+  }
+
+  changeZonaSelect(l,z){
+    if(l>this.zonas.MAX_LEVELS-1){
+      return false;
+    }
+
+    this.zonas.setBusqueda({'nivel':l+2,'root':this.model.zona[l] });
+    this.zonas.getZonas().subscribe((r)  => {
+      this.zona[l+1] = r['data'];
+
+      if (this.zona[l+1].length > 0){
+        this.model.zona[l+1] = this.zona[l+1][0].id;
+      }
+    });
   }
 
   onSubmit() { this.submitted = true; }

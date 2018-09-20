@@ -15,6 +15,8 @@ export class ZonasService {
 
   private model:BuscarZona = new BuscarZona();
 
+  public MAX_LEVELS = 5;
+
   constructor(
     private http: HttpClient,
     private config: ConfigService
