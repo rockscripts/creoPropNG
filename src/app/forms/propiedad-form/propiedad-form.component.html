@@ -115,8 +115,8 @@
             
             <div class="col-12 col-sm-2 fi" *ngFor="let zz of zona  let iz = index" >
                <label *ngIf="!!zz[0]">{{denomina[0]}}&nbsp;</label>
-               <select *ngIf="!!zz[0]" (change)="changeZonaSelect(iz)" disabled="{{(iz == 0)}}" class="form-control" [(ngModel)]="model.zona[iz]" name="zona">
-                 <option *ngFor="let zon of zz  let izz = index" [value]="zon.id" [selected]="izz==0" >{{zon.nombre}}</option>
+               <select *ngIf="!!zz[0]" (change)="changeZonaSelect(iz)" disabled="{{(iz == 0)}}" class="form-control" [(ngModel)]="model.zona[iz]" name="zona{{iz}}">
+                 <option *ngFor="let zon of zz  let izz = index" [value]="zon.id">{{zon.nombre}}</option>
                </select>
             </div>
           
