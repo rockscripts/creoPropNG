@@ -6,7 +6,6 @@ export class Propiedad {
   public direccion:    string  = '';
   public capacidad:    number  = 0;
   public dormitorios:  number  = 0;
-  public destacado:    boolean = false;
   public cochera:      number  = 0;
   public piscina:      boolean = false;
   public mascota:      boolean = false;
@@ -39,6 +38,8 @@ export class Propiedad {
   public carac_gral:   any = [];
   public carac_gral_e: any = [];
 
+  public destacado:    boolean = false;
+  
   public tipo_plan:       number = -1;
   public id:              number = -1;
   public propietario_id:  number = -1;

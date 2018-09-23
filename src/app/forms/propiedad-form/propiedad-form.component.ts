@@ -77,11 +77,7 @@ export class PropiedadFormComponent implements OnInit {
       this.pais_id = this.zona[0][0].id;
       this.model.zona[0] = this.pais_id;
 
-      this.zonas.setBusqueda({'nivel':2,'root':this.pais_id });
-      this.zonas.getZonas().subscribe((r)  => {
-        this.zona[1] = r['data'];
-        this.model.zona[1] = this.zona[1][0].id;
-      });
+      this.changeZonaSelect(0);
     });
 
     this.prop.getEquipamiento().subscribe((r) => { this.equipamiento = r['data']; });
@@ -110,6 +106,7 @@ export class PropiedadFormComponent implements OnInit {
       if (this.zona[l+1].length > 0){
         this.model.zona[l]   = z;
         this.model.zona[l+1] = this.zona[l+1][0].id;
+        this.changeZonaSelect(l+1);
       }
     });
   }
