@@ -274,7 +274,8 @@
         <div class="col">
           <div class="form-group row">
              <div class="checkbox col-md-6 col-12"  *ngFor="let e of equipamiento">
-                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" [value]="e.id" [name]="e.nombre" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</div></div></label>
+                <label class="w-100"><div class="row col-12"><div class="col">
+                  <input type="checkbox" [value]="e.id" name="{{e.nombre}}" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</div></div></label>
              </div>
           </div>
         </div>
@@ -290,7 +291,7 @@
         <div class="col">
           <div class="form-group row">
              <div class="checkbox col-md-6 col-12">
-                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" [name]="e.destacado" [(ngModel)]="model.destacado">Destacar publicación</div></div></label>
+                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" [name]="model.destacado" [(ngModel)]="model.destacado">Destacar publicación</div></div></label>
              </div>
           </div>
         </div>

@@ -8,5 +8,7 @@ export class Busqueda {
   public inmobiliaria_id: number = -1;
   public provincia:any;
 
+  public page: number = 0;
+  
   constructor() {  }
 }

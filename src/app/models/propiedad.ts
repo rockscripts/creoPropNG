@@ -1,8 +1,5 @@
 export class Propiedad {
   public titulo:       string  = '';
-  public provincia:    number  = 0;
-  public localidad:    number  = 0;
-  public barrio:       number  = 0;
   public direccion:    string  = '';
   public capacidad:    number  = 0;
   public dormitorios:  number  = 0;
@@ -21,7 +18,8 @@ export class Propiedad {
   public expensas:     number = 0;
   public disposicion:  number = 0;
   public equipamiento: any    = [];
-  public moneda:       number = 0;
+  public moneda:       number = 1;
+  public precio:       number = 0;
 
   public piso: string = '';
   public dpto: string = '';
@@ -51,7 +49,23 @@ export class Propiedad {
 
   constructor() {}
 
-  public formValid(){
+  public errors:string = '';
 
+  formValid(){
+    if (this.titulo     == '') { this.errors = 'El campo título es obligatorio'; return false; }
+    if (this.direccion  == '') { this.errors = 'El campo dirección es obligatorio'; return false; }
+    if (this.moneda     == 0)  { this.errors = 'El campo moneda es obligatorio'; return false; }
+    
+    if ((this.tipo_operacion_id == 1 || this.tipo_operacion_id == 2) 
+         && (this.valor_dia == 0 || this.valor_mes == 0 || this.valor_semana == 0) )  { 
+            this.errors = 'Es necesario completar el precio'; return false; }
+
+    if (this.tipo_operacion_id == 0 && this.precio == 0){
+      this.errors = 'Es necesario completar el precio'; return false;
+    }
+
+    if (this.texto == '')  { this.errors = 'Es necesario especificar una descripción'; return false; }
+    
+    return true;
   }
 }
