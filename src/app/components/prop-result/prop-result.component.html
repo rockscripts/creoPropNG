@@ -19,7 +19,7 @@
         <div id="imgs{{j}}" class="carousel slide" data-ride="carousel" data-interval="false">
           <div class="carousel-inner">
              <div class="carousel-item" *ngFor="let v of propiedad.files let f = first" [ngClass]="{'active' : f}">
-               <img class="card-img" src="./{{v['nombre']}}" alt="{{v.titulo}}">
+               <img class="card-img" src="./{{v['vista_previa']}}" alt="{{v.titulo}}">
              </div>
           </div>
 
