@@ -13,11 +13,11 @@ import { AlertService }     from '../../components/alert/alert.service';
 export class DenunciaPropFormComponent implements OnInit {
 
   motivos_denuncia = [
-    {"id":"0","nombre":"Es un intento de estafa"},
-    {"id":"1","nombre":"Está repetido"},
-    {"id":"2","nombre":"Datos incorrectos"},
-    {"id":"3","nombre":"El inmueble ya está alquilado o vendido"},
-    {"id":"4","nombre":"Otro motivo"},
+    {"id":0,"nombre":"Es un intento de estafa"},
+    {"id":1,"nombre":"Está repetido"},
+    {"id":2,"nombre":"Datos incorrectos"},
+    {"id":3,"nombre":"El inmueble ya está alquilado o vendido"},
+    {"id":4,"nombre":"Otro motivo"},
   ];
 
   model:any = new Denuncia();
@@ -33,6 +33,12 @@ export class DenunciaPropFormComponent implements OnInit {
   }
 
   denunciar(){
+    if(!this.model.formValid()){
+      this.alert.show(this.model.errors);
+      return false;
+    }
+
+
     this.denuncia.nueva().subscribe(
       (r) => {
         if (r['errors'] == ''){

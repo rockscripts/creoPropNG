@@ -6,7 +6,12 @@ export class Denuncia {
 
   constructor() {  }
 
-  public formValid(){
+  public errors = '';
 
+  public formValid(){
+  	if(this.motivo      == -1){ this.errors="Es necesario especificar un motivo"; return false; }
+  	if(this.descripcion == ''){ this.errors="Es necesario especificar una descripción"; return false; }
+
+  	return true;
   }
 }
