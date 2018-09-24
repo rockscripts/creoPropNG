@@ -8,6 +8,8 @@ import { LOCALE_ID }                from '@angular/core';
 import { AppComponent }      from './app.component';
 import { AppRoutingModule }  from './app-routing.module';
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 import { PropiedadesService }   from './providers/propiedades.service';
 import { GralInfoService }      from './providers/gral-info.service';
 import { ZonasService }         from './providers/zonas.service';
@@ -95,6 +97,7 @@ registerLocaleData(localeEs);
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es'},
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     PropiedadesService,
     GralInfoService,
     ZonasService,
