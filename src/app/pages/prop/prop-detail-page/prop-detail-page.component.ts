@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
 import { Router }            from '@angular/router';
 import { }                   from '@types/googlemaps';
-import { AgmCoreModule }     from '@agm/core';
+import { MapsAPILoader }     from '@agm/core';
 
 import { PropiedadesService } from './../../../providers/propiedades.service';
 import { DenunciaService }    from './../../../providers/denuncia.service';
@@ -19,12 +19,16 @@ export class PropDetailPageComponent implements OnInit {
 
   propiedad:any = [];
 
+  latitud:number  = -38.341656;
+  longitud:number = -73.9160156;
+
   constructor(
     private activatedRoute:   ActivatedRoute,
     private propiedadService: PropiedadesService,
     private router:           Router,
     private denuncia:         DenunciaService,
-    private perfil:           ProfileService
+    private perfil:           ProfileService,
+    private mapsAPILoader:    MapsAPILoader
   ) {}
 
   ngOnInit() {
@@ -37,6 +41,11 @@ export class PropDetailPageComponent implements OnInit {
       .getPropiedad(this.id)
       .subscribe((r) => {
         this.propiedad = r['data'];
+        this.latitud   = Number(r['data'][0].latitud);
+        this.longitud  = Number(r['data'][0].longitud);
+    });
+
+    this.mapsAPILoader.load().then(() => {
     });
   }
 

@@ -60,8 +60,8 @@
 						{{propiedad[0]?.direccion}},&nbsp;{{propiedad[0].nombre_zona}}
 					</span>
 			  </div>
-     		<agm-map [latitude]="propiedad[0]?.latitud" [longitude]="propiedad[0]?.longitud" [zoom]="13">
-     			<agm-marker [latitude]="propiedad[0]?.latitud" [longitude]="propiedad[0]?.longitud" [label]="propiedad[0].titulo"></agm-marker>
+     		<agm-map [latitude]="latitud" [longitude]="longitud" [zoom]="13">
+     			<agm-marker [latitude]="propiedad[0].latitud" [longitude]="propiedad[0].longitud" [label]="propiedad[0].titulo"></agm-marker>
      		</agm-map>
 			</div>
 		</div>
