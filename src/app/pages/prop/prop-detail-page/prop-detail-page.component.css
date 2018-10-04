@@ -97,3 +97,5 @@ a {
 a.active {
   border-radius: 30px 30px 30px 30px;
 }
+
+agm-map { height: 450px; }

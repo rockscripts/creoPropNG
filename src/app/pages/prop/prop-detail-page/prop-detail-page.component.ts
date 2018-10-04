@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
 import { Router }            from '@angular/router';
+import { }                   from '@types/googlemaps';
+import { AgmCoreModule }     from '@agm/core';
 
 import { PropiedadesService } from './../../../providers/propiedades.service';
 import { DenunciaService }    from './../../../providers/denuncia.service';

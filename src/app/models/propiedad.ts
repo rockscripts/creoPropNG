@@ -21,10 +21,13 @@ export class Propiedad {
   public moneda:       number = 1;
   public precio:       number = 0;
 
-  public piso: string = '';
-  public dpto: string = '';
-  public calle1: string = '';
-  public calle2: string = '';
+  public piso: string        = '';
+  public dpto: string        = '';
+  public calle1: string      = '';
+  public calle2: string      = '';
+  public latitud: number     = -38.341656;
+  public longitud:number     = -73.9160156;
+  public codigoPostal:number = 0;
 
   public tipo_propiedad_id:  number = 1;
   public tipo_operacion_id:  number = 0;
@@ -46,6 +49,27 @@ export class Propiedad {
   public zona_id:number    = -1;
   public zona:any          = [];
   public zona_nivel:number = 1;
+
+  //valores posibles
+  public tipo_prop:any = [
+    {"id":0,"nombre":"Casa"},
+    {"id":1,"nombre":"Departamento"}
+  ];
+  public tipo_op:any = [
+    {"id":0,"nombre":"Venta"},
+    {"id":1,"nombre":"Alquiler"},
+    {"id":2,"nombre":"Alquiler temporal"}
+  ];
+  public disposicion_op:any = [
+    {"id":0,"nombre":"Frente"},
+    {"id":1,"nombre":"Contrafrente"},
+    {"id":2,"nombre":"Interno"},
+    {"id":3,"nombre":"Lateral"}
+  ];
+  public moneda_op:any = [
+    {"id":2,"nombre":"U$S"},
+    {"id":1,"nombre":"AR$"}
+  ];
 
   constructor() {}
 

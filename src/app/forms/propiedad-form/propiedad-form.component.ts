@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { Router }            from '@angular/router';
+import { }                   from '@types/googlemaps';
+import { MapsAPILoader }     from '@agm/core';
+import { FormControl }       from '@angular/forms'; //[Modificar] despues se usará este componente para todos los formularios?
 
 import { Propiedad }           from '../../models/propiedad';
 import { ZonasService }        from '../../providers/zonas.service';
@@ -18,6 +21,10 @@ export class PropiedadFormComponent implements OnInit {
   submitted  = false;
   dataTarget = '';
 
+  mapZoom    = 4;
+  @ViewChild("search") public searchElementRef: ElementRef;
+  searchControl: FormControl;
+  
   equipamiento:any;
   servicios:any;
   ambientes:any;
@@ -28,32 +35,14 @@ export class PropiedadFormComponent implements OnInit {
 
   pais_id:number      = -1;
 
-  tipo_prop:any = [
-    {"id":0,"nombre":"Casa"},
-    {"id":1,"nombre":"Departamento"}
-  ];
-  tipo_op:any = [
-    {"id":0,"nombre":"Venta"},
-    {"id":1,"nombre":"Alquiler"},
-    {"id":2,"nombre":"Alquiler temporal"}
-  ];
-  disposicion:any = [
-    {"id":0,"nombre":"Frente"},
-    {"id":1,"nombre":"Contrafrente"},
-    {"id":2,"nombre":"Interno"},
-    {"id":3,"nombre":"Lateral"}
-  ];
-  moneda:any = [
-    {"id":2,"nombre":"U$S"},
-    {"id":1,"nombre":"AR$"}
-  ]
-
   constructor(
-    private zonas:  ZonasService,
-    private router: Router,
-    private prop:   PropiedadesService,
-    private user:   UserService,
-    private alert:  AlertService,
+    private zonas:         ZonasService,
+    private router:        Router,
+    private prop:          PropiedadesService,
+    private user:          UserService,
+    private alert:         AlertService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone:        NgZone
   ) {}
 
   onFileChange(event) { //[modificar] //se podrá generalizar?
@@ -73,6 +62,12 @@ export class PropiedadFormComponent implements OnInit {
 
 
   ngOnInit() {
+    if(this.prop.modelVacio){
+      this.model = new Propiedad();
+    } else {
+      this.model = this.prop.getModel();
+    }
+
     this.zonas.setBusqueda({'nivel':1,'root':-1 });
     this.zonas.getZonas().subscribe((r)  => {
       this.zona[0] = r['data'];
@@ -87,10 +82,43 @@ export class PropiedadFormComponent implements OnInit {
     this.prop.getAmbientes().subscribe((r) => { this.ambientes = r['data']; });
     this.prop.getCaraceristicas().subscribe((r) => { this.carac_gral = r['data']; });
 
-    if(this.prop.modelVacio){
-      this.model = new Propiedad();
-    } else {
-      this.model = this.prop.getModel();
+    this.initMaps();
+  }
+
+  private initMaps(){
+    this.setCurrentPosition();
+    this.searchControl = new FormControl();
+
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.model.latitud  = place.geometry.location.lat();
+          this.model.longitud = place.geometry.location.lng();
+          this.mapZoom        = 12;
+        });
+      });
+    });
+  }
+
+  private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.model.latitud  = position.coords.latitude;
+        this.model.longitud = position.coords.longitude;
+        this.mapZoom        = 12;
+      });
     }
   }
 

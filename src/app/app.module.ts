@@ -1,14 +1,15 @@
-import { BrowserModule }            from '@angular/platform-browser';
-import { NgModule }                 from '@angular/core';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { HttpClientModule }         from '@angular/common/http';
-import { FormsModule }              from '@angular/forms';
-import { LOCALE_ID }                from '@angular/core';
+import { BrowserModule }                   from '@angular/platform-browser';
+import { NgModule }                        from '@angular/core';
+import { AngularFontAwesomeModule }        from 'angular-font-awesome';
+import { HttpClientModule }                from '@angular/common/http';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { LOCALE_ID }                       from '@angular/core';
+import { AgmCoreModule }                   from '@agm/core';
 
 import { AppComponent }      from './app.component';
 import { AppRoutingModule }  from './app-routing.module';
 
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
 
 import { PropiedadesService }   from './providers/propiedades.service';
 import { GralInfoService }      from './providers/gral-info.service';
@@ -32,26 +33,25 @@ import { SearchComponent }         from './pages/search/search.component';
 
 import { PropiedadFormComponent }  from './forms/propiedad-form/propiedad-form.component';
 
-import { BarraBusquedaComponent } from './components/barra-busqueda/barra-busqueda.component';
-import { MainMenuComponent }      from './components/main-menu/main-menu.component';
-import { FooterComponent }        from './components/footer/footer.component';
-import { PropResultComponent } from './components/prop-result/prop-result.component';
-import { LoginModalComponent } from './components/login-modal/login-modal.component';
-import { RegisterModalComponent } from './components/register-modal/register-modal.component';
-import { SignupFormBComponent } from './forms/signup-form-b/signup-form-b.component';
-import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.component';
-import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
-import { AlertComponent } from './components/alert/alert.component';
+import { BarraBusquedaComponent }    from './components/barra-busqueda/barra-busqueda.component';
+import { MainMenuComponent }         from './components/main-menu/main-menu.component';
+import { FooterComponent }           from './components/footer/footer.component';
+import { PropResultComponent }       from './components/prop-result/prop-result.component';
+import { LoginModalComponent }       from './components/login-modal/login-modal.component';
+import { RegisterModalComponent }    from './components/register-modal/register-modal.component';
+import { SignupFormBComponent }      from './forms/signup-form-b/signup-form-b.component';
+import { SignupFormPComponent }      from './forms/signup-form-p/signup-form-p.component';
+import { PerfilUsuarioComponent }    from './pages/perfil-usuario/perfil-usuario.component';
+import { AlertComponent }            from './components/alert/alert.component';
 import { DenunciaPropFormComponent } from './forms/denuncia-prop-form/denuncia-prop-form.component';
-import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-modal.component';
-import { SelectPrecioComponent } from './pages/select-precio/select-precio.component';
-import { SelectPlanComponent } from './pages/select-plan/select-plan.component';
-import { PerfilViewComponent } from './components/perfil-view/perfil-view.component';
-import { ImbProfileViewComponent } from './components/imb-profile-view/imb-profile-view.component';
-import { UserProfileFormComponent } from './forms/user-profile-form/user-profile-form.component';
+import { DenunciaModalComponent }    from './components/denuncia-modal/denuncia-modal.component';
+import { SelectPrecioComponent }     from './pages/select-precio/select-precio.component';
+import { SelectPlanComponent }       from './pages/select-plan/select-plan.component';
+import { PerfilViewComponent }       from './components/perfil-view/perfil-view.component';
+import { ImbProfileViewComponent }   from './components/imb-profile-view/imb-profile-view.component';
+import { UserProfileFormComponent }  from './forms/user-profile-form/user-profile-form.component';
 import { UserProfileModalComponent } from './components/user-profile-modal/user-profile-modal.component';
 
-import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 registerLocaleData(localeEs);
 
@@ -93,7 +93,8 @@ registerLocaleData(localeEs);
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,
-    FormsModule
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyD2ohKHAfu3LTRtftC37oMAmy2ldJ1a4Gg', libraries: ["places"] }),
+    FormsModule, ReactiveFormsModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es'},

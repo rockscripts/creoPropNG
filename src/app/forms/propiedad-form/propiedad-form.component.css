@@ -14,3 +14,5 @@ input, select, textarea {font-size: 11px;}
 
 .fi {margin-bottom: 1rem;}
 .titc{margin-top: 20px;}
+
+agm-map { height: 300px; }
