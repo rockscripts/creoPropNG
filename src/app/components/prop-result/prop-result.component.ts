@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router }            from '@angular/router';
 
 import { PropiedadesService } from './../../providers/propiedades.service';
 import { GralInfoService }    from './../../providers/gral-info.service';
@@ -17,13 +18,14 @@ export class PropResultComponent implements OnInit {
   cant_prop:number;
 
   constructor(
+    private router:             Router,
     private propiedadesService: PropiedadesService,
     private gralInfoService:    GralInfoService,
     private user:               UserService
   ) { }
 
   edit(id){
-
+    this.router.navigate(['/propiedad/edit/'+id]);
   }
 
   delete(id){

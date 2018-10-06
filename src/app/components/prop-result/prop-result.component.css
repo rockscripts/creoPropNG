@@ -1,6 +1,5 @@
-.botonera{
-  position:absolute;
-}
+.botonera{ position:absolute; right: 38px; top: 5px; z-index: 2000; }
+.botonera i{ margin-left: 10px; }
 
 .carousel {min-height: 225px;}
 

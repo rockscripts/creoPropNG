@@ -79,6 +79,7 @@ export class PropiedadesService {
       this.model.inmobiliaria        = r['data'].inmobiliaria;
       this.model.carac_gral          = r['data'].carac_gral;
       this.model.files               = r['data'].files;
+      this.model.id                  = r['data'][0].id;
       this.model.cochera             = r['data'][0].cochera;
       this.model.user                = r['data'][0].user;
       this.model.ambientes_c         = r['data'][0].ambientes;

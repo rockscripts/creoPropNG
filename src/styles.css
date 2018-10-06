@@ -168,3 +168,7 @@ h5{
 .text-crp{
   color:#de4758;
 }
+
+.link-btn{margin-left: 0.5rem; color:#000; }
+.link-btn:hover {color: #ed1b24;}
+.link-btn:active {  color: #d01;}

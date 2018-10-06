@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef, Input } from '@angular/core';
 import { Router }            from '@angular/router';
 import { }                   from '@types/googlemaps';
 import { MapsAPILoader }     from '@agm/core';
@@ -17,7 +17,8 @@ import { AlertService }        from '../../components/alert/alert.service';
 })
 export class PropiedadFormComponent implements OnInit {
 
-  model:Propiedad;
+  @Input() model:Propiedad = new Propiedad();;
+
   submitted  = false;
   dataTarget = '';
 
@@ -62,11 +63,6 @@ export class PropiedadFormComponent implements OnInit {
 
 
   ngOnInit() {
-    if(this.prop.modelVacio){
-      this.model = new Propiedad();
-    } else {
-      this.model = this.prop.getModel();
-    }
 
     this.zonas.setBusqueda({'nivel':1,'root':-1 });
     this.zonas.getZonas().subscribe((r)  => {
@@ -143,7 +139,7 @@ export class PropiedadFormComponent implements OnInit {
 
   onSubmit() { this.submitted = true; }
 
-  newProp(){
+  guardar(){
     this.prop.setModel(this.model);
     if (this.user.permiso('new-prop')){
       if (!this.model.formValid()){
@@ -153,8 +149,10 @@ export class PropiedadFormComponent implements OnInit {
 
       this.prop.create()
       .subscribe((r) => {
-          this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
+        this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
+        if (this.model.id == -1){
           this.router.navigate(['/new-prop-ok']);
+        }
       });
     }
   }

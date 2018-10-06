@@ -53,6 +53,7 @@ import { UserProfileFormComponent }  from './forms/user-profile-form/user-profil
 import { UserProfileModalComponent } from './components/user-profile-modal/user-profile-modal.component';
 
 import localeEs from '@angular/common/locales/es';
+import { EditarPropComponent } from './pages/prop/editar-prop/editar-prop.component';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -86,7 +87,8 @@ registerLocaleData(localeEs);
     PerfilViewComponent,
     ImbProfileViewComponent,
     UserProfileFormComponent,
-    UserProfileModalComponent
+    UserProfileModalComponent,
+    EditarPropComponent
   ],
   imports: [
     BrowserModule,

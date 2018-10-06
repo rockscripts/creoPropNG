@@ -15,23 +15,25 @@ import { SearchComponent }         from './pages/search/search.component';
 import { PerfilUsuarioComponent }  from './pages/perfil-usuario/perfil-usuario.component';
 import { SelectPrecioComponent }   from './pages/select-precio/select-precio.component';
 import { SelectPlanComponent }     from './pages/select-plan/select-plan.component';
+import { EditarPropComponent }     from './pages/prop/editar-prop/editar-prop.component';
 
 const routes: Routes = [
-  { path: '',                component: HomeComponent },
-  { path: 'home/:id',        component: HomeComponent },
-  { path: 'propiedad/:id',   component: PropDetailPageComponent },
-  { path: 'privacidad',      component: PrivacidadPageComponent },
-  { path: 'terminos',        component: TermsyCondPageComponent },
-  { path: "404",             component: NotFoundComponent },
-  { path: "signin",          component: SignInComponent },
-  { path: "new-prop",        component: NuevaPropComponent },
-  { path: "new-prop-ok",     component: NuevaPropOkComponent },
-  { path: "mi-cuenta",       component: MiCuentaComponent },
-  { path: "search/:t",       component: SearchComponent },
-  { path: 'perfil/:id',      component: PerfilUsuarioComponent },
-  { path: 'select-plan',     component: SelectPrecioComponent },
-  { path: 'update-plan',     component: SelectPlanComponent },
-  { path: "**",              redirectTo: "/404" },
+  { path: '',                   component: HomeComponent },
+  { path: 'home/:id',           component: HomeComponent },
+  { path: 'propiedad/:id',      component: PropDetailPageComponent },
+  { path: 'propiedad/edit/:id', component: EditarPropComponent },
+  { path: 'privacidad',         component: PrivacidadPageComponent },
+  { path: 'terminos',           component: TermsyCondPageComponent },
+  { path: "404",                component: NotFoundComponent },
+  { path: "signin",             component: SignInComponent },
+  { path: "new-prop",           component: NuevaPropComponent },
+  { path: "new-prop-ok",        component: NuevaPropOkComponent },
+  { path: "mi-cuenta",          component: MiCuentaComponent },
+  { path: "search/:t",          component: SearchComponent },
+  { path: 'perfil/:id',         component: PerfilUsuarioComponent },
+  { path: 'select-plan',        component: SelectPrecioComponent },
+  { path: 'update-plan',        component: SelectPlanComponent },
+  { path: "**",                 redirectTo: "/404" },
 
 ];
 

@@ -301,7 +301,10 @@
 
       <div class="row titc">
         <div class="col">
-          <button class="btn btn-cprop" (click)="newProp()" data-toggle="modal" [attr.data-target]="dataTarget">Publicar ></button>
+          <button class="btn btn-cprop" (click)="guardar()" data-toggle="modal" [attr.data-target]="dataTarget">
+            <span *ngIf="model.id != -1">Guardar ></span>
+            <span *ngIf="model.id == -1">Publicar ></span>
+          </button>
         </div>
       </div>
 
