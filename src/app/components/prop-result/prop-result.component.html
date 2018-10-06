@@ -15,6 +15,11 @@
 
     <div *ngFor="let propiedad of propiedades let j = index" class="col-12 col-sm-6 col-md-4 cp-card">
       <div class="card">
+        <!-- botonera -->
+        <div class="botonera" *ngIf="mode == 'userProp'">
+          <i class="fa fa-pencil link-btn" (click)="edit(propiedad.id)"></i>
+          <i class="fa fa-trash link-btn"  (click)="delete(propiedad.id)"></i>
+        </div>
         <!-- carrusel -->
         <div id="imgs{{j}}" class="carousel slide" data-ride="carousel" data-interval="false">
           <div class="carousel-inner">
@@ -22,7 +27,6 @@
                <img class="card-img" src="./{{v['vista_previa']}}" alt="{{v.titulo}}">
              </div>
           </div>
-
           <a class="carousel-control-prev" href="#imgs{{j}}" data-slide="prev">
              <i class="fa fa-angle-left"></i>
           </a>
@@ -36,6 +40,7 @@
           <div class="img-count">1/{{propiedad.filesCount}}</div>
         </div>
         <div class="card-body">
+          <!--descripción -->
           <div class="cont-b">
             <div class="card-text card-tit" routerLink="propiedad/{{propiedad.id}}">{{propiedad.titulo}}</div>
             <div class="card-text">

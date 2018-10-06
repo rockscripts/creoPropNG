@@ -10,10 +10,10 @@
 					</div>
 
 					<div class="col">
-						<h5 class="card-title">{{propiedad[0].titulo}}</h5>
+						<h5 class="card-title">{{propiedad.titulo}}</h5>
 						<span class="col-12 pl-0 subt">
 							<i class="fa fa-map-marker" aria-hidden="true"></i>
-							{{propiedad[0].direccion}},&nbsp;{{propiedad[0].nombre_zona}}
+							{{propiedad.direccion}},&nbsp;{{propiedad.nombre_zona}}
 						</span>
 					</div>
 
@@ -57,11 +57,11 @@
 					<h5 class="card-title">UBICACIÓN</h5>
 					<span class="col-12 pl-0 subt">
 						<i class="fa fa-map-marker" aria-hidden="true"></i>
-						{{propiedad[0]?.direccion}},&nbsp;{{propiedad[0].nombre_zona}}
+						{{propiedad.direccion}},&nbsp;{{propiedad.nombre_zona}}
 					</span>
 			  </div>
-     		<agm-map [latitude]="latitud" [longitude]="longitud" [zoom]="13">
-     			<agm-marker [latitude]="propiedad[0].latitud" [longitude]="propiedad[0].longitud" [label]="propiedad[0].titulo"></agm-marker>
+     		<agm-map [latitude]="propiedad.latitud" [longitude]="propiedad.longitud" [zoom]="13">
+     			<agm-marker [latitude]="propiedad.latitud" [longitude]="propiedad.longitud" [label]="propiedad.titulo"></agm-marker>
      		</agm-map>
 			</div>
 		</div>
@@ -71,7 +71,7 @@
 				<div class="card">
 				  <div class="card-body">
 				    <h5 class="card-title">DESCRIPCIÓN</h5>
-						{{propiedad[0].texto}}
+						{{propiedad.texto}}
 				  </div>
 				</div>
 			</div>
@@ -144,30 +144,30 @@
 		<div class="col-12 c-card">
 			<div class="card card-det">
 				<div class="card-body">
-					<h5 class="card-title may">PRECIO {{propiedad[0].nombre_operacion}}</h5>
-					<h3 class="modern-single-ad-price">{{propiedad[0].moneda_simbolo}} {{propiedad[0].precio | number:'1.2' }}</h3>
+					<h5 class="card-title may">PRECIO {{propiedad.nombre_operacion}}</h5>
+					<h3 class="modern-single-ad-price">{{propiedad.moneda_simbolo}} {{propiedad.precio | number:'1.2' }}</h3>
 				</div>
 				<div class="card-body topln">
 					<div class="row">
-						<div class="col rw-det" *ngIf="propiedad[0].superficie_cubierta != 0">
+						<div class="col rw-det" *ngIf="propiedad.superficie_cubierta != 0">
 							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-sup" ></div></div>
 							<span class="sp">Sup. Cubierta</span>
-							<div class="row"><div class="col dt-lg">{{propiedad[0].superficie_cubierta}}<small>m²</small></div></div>
+							<div class="row"><div class="col dt-lg">{{propiedad.superficie_cubierta}}<small>m²</small></div></div>
 						</div>
-						<div class="col rw-det" *ngIf="propiedad[0].ambientes != 0">
+						<div class="col rw-det" *ngIf="propiedad.ambientes_c != 0">
 							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-amb" ></div></div>
 							<span class="sp">Ambientes</span>
-							<div class="row"><div class="col dt-lg">{{propiedad[0].ambientes}}</div></div>
+							<div class="row"><div class="col dt-lg">{{propiedad.ambientes_c}}</div></div>
 						</div>
-						<div class="col rw-det" *ngIf="propiedad[0].banios != 0">
+						<div class="col rw-det" *ngIf="propiedad.banios != 0">
 							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/bath" ></div></div>
 							<span class="sp">Baños</span>
-							<div class="row"><div class="col dt-lg">{{propiedad[0].banios}}</div></div>
+							<div class="row"><div class="col dt-lg">{{propiedad.banios}}</div></div>
 						</div>
-						<div class="col rw-det" *ngIf="propiedad[0].cochera != 0">
+						<div class="col rw-det" *ngIf="propiedad.cochera != 0">
 							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-coch"></div></div>
 							<span class="sp">Cochera</span>
-							<div class="row"><div class="col dt-lg">{{propiedad[0].cochera}}</div></div>
+							<div class="row"><div class="col dt-lg">{{propiedad.cochera}}</div></div>
 						</div>
 					</div>
 				</div>
@@ -185,11 +185,11 @@
 						<div class="col-auto">
 							<img *ngIf="propiedad.inmobiliaria != null" src="./{{propiedad.inmobiliaria.logo}}" (click)="goToPerfil()">
 						</div>
-						<div class="col" *ngIf="propiedad[0].user != null">
+						<div class="col" *ngIf="propiedad.user != null">
 							<h3 *ngIf="propiedad.inmobiliaria != null">{{propiedad.inmobiliaria.nombre}}</h3>
-							<div class="col-12">Teléfono:&nbsp;{{propiedad[0].user.celular}}</div>
-							<div class="col-12">Encargado:&nbsp;{{propiedad[0].user.name}}&nbsp;{{propiedad[0].user.surname}} </div>
-							<div class="col-12">Código:&nbsp;{{propiedad[0].user.id}}</div>
+							<div class="col-12">Teléfono:&nbsp;{{propiedad.user.celular}}</div>
+							<div class="col-12">Encargado:&nbsp;{{propiedad.user.name}}&nbsp;{{propiedad.user.surname}} </div>
+							<div class="col-12">Código:&nbsp;{{propiedad.user.id}}</div>
 						</div>
 					</div>
 

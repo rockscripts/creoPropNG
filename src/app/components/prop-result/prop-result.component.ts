@@ -22,6 +22,14 @@ export class PropResultComponent implements OnInit {
     private user:               UserService
   ) { }
 
+  edit(id){
+
+  }
+
+  delete(id){
+
+  }
+
   ngOnInit() {
     if (this.mode == 'userProp'){ //para mostrar solo las propiedades del usuario
       this.propiedadesService.clearParams();

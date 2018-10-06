@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute }    from '@angular/router';
 import { Router }            from '@angular/router';
 import { }                   from '@types/googlemaps';
@@ -7,6 +7,7 @@ import { MapsAPILoader }     from '@agm/core';
 import { PropiedadesService } from './../../../providers/propiedades.service';
 import { DenunciaService }    from './../../../providers/denuncia.service';
 import { ProfileService }     from './../../../providers/profile.service';
+import { Propiedad }          from '../../../models/propiedad';
 
 @Component({
   selector: 'app-prop-detail-page',
@@ -17,10 +18,7 @@ export class PropDetailPageComponent implements OnInit {
 
   id:number;
 
-  propiedad:any = [];
-
-  latitud:number  = -38.341656;
-  longitud:number = -73.9160156;
+  propiedad = new Propiedad();
 
   constructor(
     private activatedRoute:   ActivatedRoute,
@@ -32,21 +30,19 @@ export class PropDetailPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.propiedad[0] = {};
 
     this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
-    this
-      .propiedadService
-      .getPropiedad(this.id)
-      .subscribe((r) => {
-        this.propiedad = r['data'];
-        this.latitud   = Number(r['data'][0].latitud);
-        this.longitud  = Number(r['data'][0].longitud);
+    this.propiedadService.getPropiedad(this.id);
+    this.propiedadService.propiedadLoaded.subscribe({  
+      next: (m) => { this.propiedad = m; } 
     });
 
-    this.mapsAPILoader.load().then(() => {
-    });
+    this.mapsAPILoader.load().then(() => { });
+  }
+
+  ngOnDestroy(){
+    this.propiedadService.propiedadLoaded.unsubscribe();
   }
 
   denunciar(){

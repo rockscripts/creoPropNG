@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable }      from '@angular/core';
+import { HttpClient }      from '@angular/common/http';
+import { Subject }         from 'rxjs/Subject';
 
 import { Busqueda }   from '../models/busqueda';
 import { Propiedad }  from '../models/propiedad';
@@ -27,6 +28,8 @@ export class PropiedadesService {
   private caracGral:any = [];
 
   public modelVacio:boolean = true;
+
+  public propiedadLoaded = new Subject<Propiedad>();
 
   constructor(
     private http:   HttpClient,
@@ -69,7 +72,28 @@ export class PropiedadesService {
   }
 
   getPropiedad(id) {
-    return this.http.post(this.config.getAPIUrl()+this.wsp, {'id':id});
+    this.http.post(this.config.getAPIUrl()+this.wsp, {'id':id}).subscribe((r) => {
+      this.model.amenities           = r['data'].amenities;
+      this.model.servicios           = r['data'].servicios;
+      this.model.ambientes           = r['data'].ambientes;
+      this.model.inmobiliaria        = r['data'].inmobiliaria;
+      this.model.carac_gral          = r['data'].carac_gral;
+      this.model.files               = r['data'].files;
+      this.model.cochera             = r['data'][0].cochera;
+      this.model.user                = r['data'][0].user;
+      this.model.ambientes_c         = r['data'][0].ambientes;
+      this.model.banios              = r['data'][0].banios;
+      this.model.precio              = r['data'][0].precio;
+      this.model.superficie_cubierta = r['data'][0].superficie_cubierta;
+      this.model.moneda_simbolo      = r['data'][0].moneda_simbolo;
+      this.model.nombre_operacion    = r['data'][0].nombre_operacion;
+      this.model.texto               = r['data'][0].texto;
+      this.model.direccion           = r['data'][0].direccion;
+      this.model.nombre_zona         = r['data'][0].nombre_zona;
+      this.model.latitud             = Number(r['data'][0].latitud);
+      this.model.longitud            = Number(r['data'][0].longitud);
+      this.propiedadLoaded.next(this.model);
+    });
   }
 
   getSearchConfig() {

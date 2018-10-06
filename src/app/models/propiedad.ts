@@ -18,15 +18,18 @@ export class Propiedad {
   public expensas:     number = 0;
   public disposicion:  number = 0;
   public equipamiento: any    = [];
-  public moneda:       number = 1;
-  public precio:       number = 0;
+
+  public moneda:number           = 1;
+  public moneda_simbolo:string   = '';
+  public precio:number           = 0;
+  public nombre_operacion:string = '';
 
   public piso: string        = '';
   public dpto: string        = '';
   public calle1: string      = '';
   public calle2: string      = '';
-  public latitud: number     = -38.341656;
-  public longitud:number     = -73.9160156;
+  public latitud: number     = -33.9246855;
+  public longitud:number     = -64.4100692;
   public codigoPostal:number = 0;
 
   public tipo_propiedad_id:  number = 1;
@@ -36,8 +39,10 @@ export class Propiedad {
 
   public ambientes:    any = [];
   public servicios:    any = [];
+  public amenities:    any = [];
   public carac_gral:   any = [];
   public carac_gral_e: any = [];
+  public files:any         = [];
 
   public destacado:    boolean = false;
   
@@ -46,9 +51,13 @@ export class Propiedad {
   public propietario_id:  number = -1;
   public inmobiliaria_id: number = -1;
 
-  public zona_id:number    = -1;
-  public zona:any          = [];
-  public zona_nivel:number = 1;
+  public inmobiliaria:any = {'logo':'', 'nombre':''};
+  public user:any         = {'celular':'','name':'', 'id':'','surname':''};
+
+  public zona_id:number     = -1;
+  public zona:any           = [];
+  public zona_nivel:number  = 1;
+  public nombre_zona:string = '';
 
   //valores posibles
   public tipo_prop:any = [
