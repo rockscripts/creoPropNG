@@ -6,6 +6,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LOCALE_ID }                       from '@angular/core';
 import { AgmCoreModule }                   from '@agm/core';
 
+import { InfiniteScrollModule }            from 'ngx-infinite-scroll';
+
 import { AppComponent }      from './app.component';
 import { AppRoutingModule }  from './app-routing.module';
 
@@ -31,7 +33,14 @@ import { NuevaPropOkComponent }    from './pages/prop/nueva-prop-ok/nueva-prop-o
 import { MiCuentaComponent }       from './pages/mi-cuenta/mi-cuenta.component';
 import { SearchComponent }         from './pages/search/search.component';
 
-import { PropiedadFormComponent }  from './forms/propiedad-form/propiedad-form.component';
+import { PropiedadFormComponent }    from './forms/propiedad-form/propiedad-form.component';
+import { SignupFormBComponent }      from './forms/signup-form-b/signup-form-b.component';
+import { SignupFormPComponent }      from './forms/signup-form-p/signup-form-p.component';
+import { DenunciaPropFormComponent } from './forms/denuncia-prop-form/denuncia-prop-form.component';
+import { UserProfileFormComponent }  from './forms/user-profile-form/user-profile-form.component';
+
+import localeEs from '@angular/common/locales/es';
+registerLocaleData(localeEs);
 
 import { BarraBusquedaComponent }    from './components/barra-busqueda/barra-busqueda.component';
 import { MainMenuComponent }         from './components/main-menu/main-menu.component';
@@ -39,22 +48,15 @@ import { FooterComponent }           from './components/footer/footer.component'
 import { PropResultComponent }       from './components/prop-result/prop-result.component';
 import { LoginModalComponent }       from './components/login-modal/login-modal.component';
 import { RegisterModalComponent }    from './components/register-modal/register-modal.component';
-import { SignupFormBComponent }      from './forms/signup-form-b/signup-form-b.component';
-import { SignupFormPComponent }      from './forms/signup-form-p/signup-form-p.component';
 import { PerfilUsuarioComponent }    from './pages/perfil-usuario/perfil-usuario.component';
 import { AlertComponent }            from './components/alert/alert.component';
-import { DenunciaPropFormComponent } from './forms/denuncia-prop-form/denuncia-prop-form.component';
 import { DenunciaModalComponent }    from './components/denuncia-modal/denuncia-modal.component';
 import { SelectPrecioComponent }     from './pages/select-precio/select-precio.component';
 import { SelectPlanComponent }       from './pages/select-plan/select-plan.component';
 import { PerfilViewComponent }       from './components/perfil-view/perfil-view.component';
 import { ImbProfileViewComponent }   from './components/imb-profile-view/imb-profile-view.component';
-import { UserProfileFormComponent }  from './forms/user-profile-form/user-profile-form.component';
 import { UserProfileModalComponent } from './components/user-profile-modal/user-profile-modal.component';
-
-import localeEs from '@angular/common/locales/es';
-import { EditarPropComponent } from './pages/prop/editar-prop/editar-prop.component';
-registerLocaleData(localeEs);
+import { EditarPropComponent }       from './pages/prop/editar-prop/editar-prop.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,7 @@ registerLocaleData(localeEs);
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,
+    InfiniteScrollModule,
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyD2ohKHAfu3LTRtftC37oMAmy2ldJ1a4Gg', libraries: ["places"] }),
     FormsModule, ReactiveFormsModule
   ],

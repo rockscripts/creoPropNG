@@ -73,6 +73,7 @@ export class PropiedadesService {
 
   getPropiedad(id) {
     this.http.post(this.config.getAPIUrl()+this.wsp, {'id':id}).subscribe((r) => {
+      this.model                     = new Propiedad();
       this.model.amenities           = r['data'].amenities;
       this.model.servicios           = r['data'].servicios;
       this.model.ambientes           = r['data'].ambientes;

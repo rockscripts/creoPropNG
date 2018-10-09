@@ -42,7 +42,7 @@ export class PropDetailPageComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    this.propiedadService.propiedadLoaded.unsubscribe();
+    //this.propiedadService.propiedadLoaded.unsubscribe();
   }
 
   denunciar(){

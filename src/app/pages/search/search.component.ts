@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Busqueda }           from './../../models/busqueda';
+import { PropiedadesService } from './../../providers/propiedades.service';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  busqueda:Busqueda;
+
+  constructor(
+  	private propiedades:PropiedadesService
+  ) { }
 
   ngOnInit() {
+  	this.busqueda = this.propiedades.busqueda;
   }
 
 }

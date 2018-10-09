@@ -17,7 +17,7 @@ import { AlertService }        from '../../components/alert/alert.service';
 })
 export class PropiedadFormComponent implements OnInit {
 
-  @Input() model:Propiedad = new Propiedad();;
+  @Input() model:Propiedad = new Propiedad();
 
   submitted  = false;
   dataTarget = '';

@@ -38,21 +38,7 @@ export class BarraBusquedaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.loadSearchConfig();
-
-  /*  this
-      .zonas.getProvincias()
-      .subscribe((r) => {
-        this.provincias         = r['data'];
-        this.busqueda.provincia = 1;
-    });
-
-    this
-      .zonas.getBarrios(1)
-      .subscribe((r) => {
-        this.barrios = r['data'];
-    });*/
   }
 
   loadSearchConfig(){

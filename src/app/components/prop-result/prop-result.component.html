@@ -11,7 +11,9 @@
       </div>
     </div>
   </div>
-  <div class="row col-12">
+  <div class="row col-12" infiniteScroll [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()"
+            (scrolledUp)="onScrollUp()">
 
     <div *ngFor="let propiedad of propiedades let j = index" class="col-12 col-sm-6 col-md-4 cp-card">
       <div class="card">
@@ -54,5 +56,15 @@
       </div>
     </div>
 
+  </div>
+  <div class="row col-12">
+    <div *ngIf="!scrollFinish">
+      Más propiedades...
+    </div>
+
+
+    <div *ngIf="scrollFinish">
+      
+    </div>
   </div>
 </div>

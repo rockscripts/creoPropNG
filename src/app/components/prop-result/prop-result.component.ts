@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router }                   from '@angular/router';
 
 import { PropiedadesService } from './../../providers/propiedades.service';
 import { GralInfoService }    from './../../providers/gral-info.service';
-import { UserService }        from './../../providers/user.service';
+import { Busqueda }           from './../../models/busqueda';
 
 @Component({
   selector: 'app-prop-result',
@@ -11,18 +11,26 @@ import { UserService }        from './../../providers/user.service';
   styleUrls: ['./prop-result.component.css']
 })
 export class PropResultComponent implements OnInit {
-  @Input() mode:string = '';
+  @Input() busqueda:Busqueda = new Busqueda();
 
   propiedades:any = [];
 
-  cant_prop:number;
+  cant_prop:number     = 0;
+  scrollFinish:boolean = false;
 
   constructor(
     private router:             Router,
     private propiedadesService: PropiedadesService,
-    private gralInfoService:    GralInfoService,
-    private user:               UserService
+    private gralInfoService:    GralInfoService
   ) { }
+
+  onScrollDown() {
+    this.pedirBusqueda();
+  }
+ 
+  onScrollUp() {
+    console.log('scroll up');
+  }
 
   edit(id){
     this.router.navigate(['/propiedad/edit/'+id]);
@@ -32,22 +40,26 @@ export class PropResultComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    if (this.mode == 'userProp'){ //para mostrar solo las propiedades del usuario
-      this.propiedadesService.clearParams();
-      this.propiedadesService.busqueda.propietario_id = this.user.getId();
-    }
+  private pedirBusqueda(){
+    this.propiedadesService.busqueda = this.busqueda;
 
-    this
-      .propiedadesService
-      .getSearch()
-      .subscribe((r) => {
-        this.propiedades = r['data'];
+    this.propiedadesService.getSearch()
+    .subscribe((r) => {
+      let res = r['data'];
+      if (res.length == 0){
+        this.scrollFinish = true;
+        console.log('sscs');
+        return true;
+      }
+      this.propiedades   = this.propiedades.concat(res);
+      this.busqueda.page += 1;
     });
+  }
 
-    this
-      .gralInfoService
-      .getInfo()
+  ngOnInit() {
+    this.pedirBusqueda();
+
+    this.gralInfoService.getInfo()
       .subscribe((r) => {
         r = r ['data'];
         this.cant_prop = r['cantPropiedades'];

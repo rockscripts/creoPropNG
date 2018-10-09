@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Busqueda }          from './../../models/busqueda';
+
+import { UserService }       from './../../providers/user.service';
+
 @Component({
   selector: 'app-mi-cuenta',
   templateUrl: './mi-cuenta.component.html',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MiCuentaComponent implements OnInit {
 
-  constructor() { }
+  busqueda:Busqueda = new Busqueda();
+
+  constructor(
+  	private user: UserService
+  ) { }
 
   ngOnInit() {
+  	this.busqueda.propietario_id = this.user.getId();
   }
 
 }
