@@ -1,10 +1,13 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Router }            from '@angular/router';
 
 import { UserService }            from '../../providers/user.service';
 import { TextsService }           from '../../providers/texts.service';
 import { AlertService }           from '../../components/alert/alert.service';
 import { User }                   from '../../models/user';
+
+import { LoginModalService }      from './login-modal.service';
+import { RegisterModalService }   from '../../components/register-modal/register-modal.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -13,21 +16,31 @@ import { User }                   from '../../models/user';
 })
 
 export class LoginModalComponent implements OnInit {
-  @ViewChild('lgCloseBtn') lgCloseBtn:ElementRef;
 
   model = new User();
 
   showM:boolean  = false;
-  cssProp:string = '';
+
+  private subShow;
+  private subHide;
 
   constructor(
-    private router: Router,
-    private alert:  AlertService,
-    private texts:  TextsService,
-    private US :    UserService
+    private modal:    LoginModalService,
+    private modalReg: RegisterModalService,
+    private router:   Router,
+    private alert:    AlertService,
+    private texts:    TextsService,
+    private US :      UserService
   ) { }
 
   ngOnInit() {
+    this.subShow = this.modal.showModal.subscribe({  next: () => { this.show(); } });
+    this.subHide = this.modal.hideModal.subscribe({  next: () => { this.hide(); } });
+  }
+
+  ngOnDestroy(){
+    this.subShow.unsubscribe();
+    this.subHide.unsubscribe();
   }
 
   login(){
@@ -36,7 +49,7 @@ export class LoginModalComponent implements OnInit {
       .subscribe((r) => {
         if (r['errors'] == ''){
           this.US.setLogin(r);
-          this.lgCloseBtn.nativeElement.click();
+          this.hide();
           this.US.onLogin.next();
           this.US.clearModel();
           this.router.navigate(['/home/1']);
@@ -46,21 +59,12 @@ export class LoginModalComponent implements OnInit {
     });
   }
 
-  show(){
-    this.showM   = true;
-    this.cssProp = 'display: block;';
-  }
+  show(){ this.showM = true;  }
 
-  hide(){
-    this.showM   = false;
-    this.cssProp = 'display: none;';
-  }
-
-  cerrar(){
-    this.lgCloseBtn.nativeElement.click();
-  }
+  hide(){ this.showM = false;  }
 
   irRegistro(){
-    this.cerrar();
+    this.modalReg.show();
+    this.modal.hide();
   }
 }

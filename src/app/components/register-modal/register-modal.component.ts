@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+
+import { RegisterModalService } from './register-modal.service';
+import { LoginModalService }    from '../../components/login-modal/login-modal.service';
 
 @Component({
   selector: 'app-register-modal',
@@ -6,28 +9,33 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./register-modal.component.css']
 })
 export class RegisterModalComponent implements OnInit {
-  @ViewChild('regCloseBtn') regCloseBtn:ElementRef;
-
+  
   showM:boolean  = false;
-  cssProp:string = '';
 
-  constructor() { }
+  private subShow;
+  private subHide;
+
+  constructor(
+    private modal:      RegisterModalService,
+    private modalLogin: LoginModalService
+  ) { }
 
   ngOnInit() {
+    this.subShow = this.modal.showModal.subscribe({  next: () => { this.show(); } });
+    this.subHide = this.modal.hideModal.subscribe({  next: () => { this.hide(); } });
   }
 
-  cerrar(){
-    this.regCloseBtn.nativeElement.click();
+  ngOnDestroy(){
+    this.subShow.unsubscribe();
+    this.subHide.unsubscribe();
   }
 
-  show(){
-    this.showM   = true;
-    this.cssProp = 'display: block;';
-  }
+  show(){ this.showM   = true;  }
 
-  hide(){
-    this.showM   = false;
-    this.cssProp = 'display: none;';
-  }
+  hide(){ this.showM   = false;  }
 
+  goToIngresar(){
+    this.modalLogin.show();
+    this.hide();
+  }
 }

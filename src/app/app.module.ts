@@ -22,6 +22,9 @@ import { SiteService }          from './providers/site.service';
 import { TextsService }         from './providers/texts.service';
 import { ProfileService }       from './providers/profile.service';
 
+import { RegisterModalService } from './components/register-modal/register-modal.service';
+import { LoginModalService }    from './components/login-modal/login-modal.service';
+
 import { PropDetailPageComponent } from './pages/prop/prop-detail-page/prop-detail-page.component';
 import { PrivacidadPageComponent } from './pages/privacidad-page/privacidad-page.component';
 import { TermsyCondPageComponent } from './pages/termsy-cond-page/termsy-cond-page.component';
@@ -111,6 +114,8 @@ import { EditarPropComponent }       from './pages/prop/editar-prop/editar-prop.
     UserService,
     SiteService,
     TextsService,
+    RegisterModalService,
+    LoginModalService,
     ProfileService
   ],
   bootstrap: [

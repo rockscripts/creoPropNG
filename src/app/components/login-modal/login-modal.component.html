@@ -1,11 +1,9 @@
-<div [ngClass]="{'modal':true, 'fade':true, 'show':showM}" id="loginModal" tabindex="-1"
-     role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true"
-     [style]="cssProp">
+<div [ngClass]="{'modal':true, 'fade':true, 'show':showM}" *ngIf="showM" tabindex="-1"  role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
       <div class="modal-body">
-        <button type="button" #lgCloseBtn class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+        <button type="button" class="close" (click)="hide()"> <span aria-hidden="true">&times;</span> </button>
 
 
     	<div class="text-center">

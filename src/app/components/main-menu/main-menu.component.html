@@ -26,10 +26,10 @@
           <a class="nav-link">PUBLICAR UNA PROPIEDAD</a>
         </li>
         <li class="nav-item" data-toggle="modal" data-target="#modalReg" *ngIf = "!registrado">
-          <a class="nav-link">REGISTRARME</a>
+          <a class="nav-link" (click)="showRegistrar()">REGISTRARME</a>
         </li>
-        <li class="nav-item" data-toggle="modal" data-target="#loginModal" *ngIf = "!registrado">
-          <a class="nav-link">INICIAR SESIÓN</a>
+        <li class="nav-item" data-toggle="modal" *ngIf = "!registrado">
+          <a class="nav-link" (click)="showLogin()">INICIAR SESIÓN</a>
         </li>
         <li class="nav-item dropdown" *ngIf = "registrado">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

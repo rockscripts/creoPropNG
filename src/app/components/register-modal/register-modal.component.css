@@ -1,15 +1,3 @@
-a{
-  color: #6d6d6d !important;
-  width: inherit;
-}
-a:hover{
-  border-bottom: solid 3px #6d6d6d !important;
-  display: inline-block !important;
-  transition: .3s !important;
-  transition-property: all !important;
-}
-a.active{
-  border-bottom: solid 3px #6d6d6d !important;
-  display: inline-block !important;
-  transition: .3s !important;
-}
+a{  color: #6d6d6d !important; width: inherit; }
+
+.show { display:block !important; }

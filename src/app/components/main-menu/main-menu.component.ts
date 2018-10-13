@@ -1,7 +1,9 @@
 import { Component, OnInit }   from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
 
-import { UserService } from './../../providers/user.service';
+import { UserService }          from './../../providers/user.service';
+import { RegisterModalService } from '../../components/register-modal/register-modal.service';
+import { LoginModalService }    from '../../components/login-modal/login-modal.service';
 
 @Component({
   selector: 'app-main-menu',
@@ -11,8 +13,10 @@ import { UserService } from './../../providers/user.service';
 export class MainMenuComponent implements OnInit {
 
   constructor(
-    private us:     UserService,
-    private router: Router
+    private us:         UserService,
+    private modalReg:   RegisterModalService,
+    private modalLogin: LoginModalService,
+    private router:     Router
   ){}
 
   registrado = false;
@@ -38,6 +42,9 @@ export class MainMenuComponent implements OnInit {
       }
     });
   }
+
+  showRegistrar(){ this.modalReg.show();   }
+  showLogin() {    this.modalLogin.show(); }
 
   actualizaEstado(){
     this.registrado = this.us.logeado();

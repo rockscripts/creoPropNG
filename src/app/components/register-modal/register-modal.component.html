@@ -1,10 +1,10 @@
-<div [ngClass]="{'modal':true, 'fade':true, 'show':showM}" id="modalReg"
-  tabindex="-1" role="dialog" aria-labelledby="modalReg" aria-hidden="true" [style]="cssProp">
+<div [ngClass]="{'modal':true, 'fade':true, 'show':showM}" *ngIf="showM"
+  tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
       <div class="modal-body">
-        <button type="button" #regCloseBtn class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+        <button type="button" class="close" (click)="hide()"> <span aria-hidden="true">&times;</span> </button>
 
         <ul class="nav nav-tabs navbar-dropdown">
           <li class="nav-item">
@@ -25,7 +25,7 @@
     </div>
 
     <div class="modal-footer ">
-      <span class="w-100"> Ya tengo cuenta, <a>ingresar</a></span>
+      <span class="w-100"> Ya tengo cuenta, <a (click)="goToIngresar()">ingresar</a></span>
     </div>
 
   </div>
