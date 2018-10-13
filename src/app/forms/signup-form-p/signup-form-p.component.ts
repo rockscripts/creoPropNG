@@ -36,7 +36,7 @@ export class SignupFormPComponent implements OnInit {
     this.US.create()
       .subscribe((r) => {
         this.US.setLogin(r);
-        this.modal.cerrar();
+        this.modal.hide();
         this.router.navigate(['/home/1']);
     });
   }
