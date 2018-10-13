@@ -12,6 +12,7 @@ import { Busqueda }           from './../../models/busqueda';
 })
 export class PropResultComponent implements OnInit {
   @Input() busqueda:Busqueda = new Busqueda();
+  @Input() mode:string       = '';
 
   propiedades:any = [];
 
