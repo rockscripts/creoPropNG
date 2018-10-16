@@ -1,45 +1,50 @@
 <div class="row">
-  <div class="col-12 col-md-3 col-lg-2">
-    <app-barra-busqueda></app-barra-busqueda>
-  </div>
-
-  <div class="col-12 col-md-8 col-lg-10 prop-container">
-    <div class="row">
-      <div class="col-12">
-        <div class="row">
-          <div class="col">
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="w-100 btn btn-cprop" routerLink="/update-plan">COMPRAR</button>
-          </div>
+  <div class="col-12 header-container">
+    <div class="header">
+      <div class="left-controls">
+        <div class="user-info">
+          <img src="assets/img/achaval.png" alt="" class="user-logo">
+          <h4 class="user-name">Toribio Achával</h4>
+          <span class="user-plan">VIP 3</span>
+        </div>
+        <div class="tabs">
+          <ul class="nav nav-tabs navbar-dropdown">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#mispropiedades">MIS PROPIEDADES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#visitas">VISITAS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#estadocuenta">ESTADO DE MI CUENTA</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#pagos">PAGOS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#miperfil">EDITAR MI PERFIL</a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="col-12">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs navbar-dropdown">
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#mispropiedades">MIS PROPIEDADES</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#visitas">VISITAS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#mensajes">MENSAJES</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#estadocuenta">ESTADO DE MI CUENTA</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#pagos">PAGOS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#miperfil">MI PERFIL</a>
-          </li>
-        </ul>
+      <div class="right-controls d-flex align-items-center">
+        <button type="button" class="w-100 btn btn-update-plan" routerLink="/update-plan">$ Recargar</button>
+      </div>
+    </div>
+    <!--  -->
+  </div>
+  <div class="col-12">
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane active" id="mispropiedades">
+        <div class="row">
+          <div class="col-12 col-md-3 col-lg-2">
+            <div class="card search-toolbar-container">
+              <app-barra-busqueda></app-barra-busqueda>
+            </div>
+          </div>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div class="tab-pane container active" id="mispropiedades">
+          <div class="col-12 col-md-9 col-lg-10">
             <app-prop-result [busqueda]="busqueda" [mode]="'userProp'"></app-prop-result>
           </div>
           <div class="tab-pane container fade" id="visitas"><app-user-visitas></app-user-visitas></div>
@@ -48,6 +53,12 @@
           <div class="tab-pane container fade" id="mensajes"><app-user-mensajes></app-user-mensajes></div>
           <div class="tab-pane container fade" id="miperfil"><app-perfil-view [editable]="true"></app-perfil-view></div>
         </div>
+      </div>
+      <div class="tab-pane container fade" id="visitas">Aca irian las propiedades visitadas</div>
+      <div class="tab-pane container fade" id="estadocuenta">Aca iria el estado de mi cuenta</div>
+      <div class="tab-pane container fade" id="pagos">Aca irian las propiedades pagas</div>
+      <div class="tab-pane container fade" id="miperfil">
+        <app-perfil-view [editable]="true"></app-perfil-view>
       </div>
     </div>
   </div>

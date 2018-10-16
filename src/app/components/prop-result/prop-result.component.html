@@ -1,44 +1,69 @@
 <div class="row">
-  <div class="col-12">
-    <div class="col-12 hh1 pl-0 res-count row align-items-center">
-      <div class="col-12 pl-0" *ngIf="mode != 'userProp'"><b>{{cant_prop}}</b>&nbsp;Propiedades en Argentina</div></div>
-  </div>
   <div class="col-12" *ngIf="mode != 'userProp'">
-    <div class="col-12 row">
-      <div class="col"></div>
+    <div class="col-12 hh1 pl-0 res-count row align-items-center">
+      <div class="col-12 pl-0"><b>{{cant_prop}}</b>&nbsp;Propiedades en Argentina</div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="col-12 row toolbar">
+      <div class="col-12 col-md-9">
+        <ul class="navbar-nav flex-row align-items-stretch " *ngIf="mode == 'userProp'">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <input type="checkbox" name="check-all-properties" value="true">
+              <fa name="angle-down" size="lg"></fa>
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item">Una opción</a>
+              <a class="dropdown-item">Otra opción</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              MÁS <fa name="angle-down" size="lg"></fa>
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item">Una opción</a>
+              <a class="dropdown-item">Otra opción</a>
+            </div>
+          </li>
+        </ul>
+      </div>
       <div class="col-12 col-md-3 tx-ordenar">
         <span><img src="assets/img/icon-sort.png" style="width:25px"></span> ORDENAR POR
       </div>
     </div>
   </div>
-  <div class="row col-12" infiniteScroll [infiniteScrollDistance]="2"
-            [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()"
-            (scrolledUp)="onScrollUp()">
+  <div class="row col-12" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()"
+    (scrolledUp)="onScrollUp()">
 
     <div *ngFor="let propiedad of propiedades let j = index" class="col-12 col-sm-6 col-md-4 cp-card">
       <div class="card">
+        <div class="checkbox">
+          <input type="checkbox" name="{{'checked-propiedad-' + propiedad.id}}">
+        </div>
         <!-- botonera -->
         <div class="botonera" *ngIf="mode == 'userProp'">
           <i class="fa fa-pencil link-btn" (click)="edit(propiedad.id)"></i>
-          <i class="fa fa-trash link-btn"  (click)="delete(propiedad.id)"></i>
+          <i class="fa fa-trash link-btn" (click)="delete(propiedad.id)"></i>
         </div>
         <!-- carrusel -->
         <div id="imgs{{j}}" class="carousel slide" data-ride="carousel" data-interval="false">
           <div class="carousel-inner">
-             <div class="carousel-item" *ngFor="let v of propiedad.files let f = first" [ngClass]="{'active' : f}">
-               <img class="card-img" src="./{{v['vista_previa']}}" alt="{{v.titulo}}">
-             </div>
+            <div class="carousel-item" *ngFor="let v of propiedad.files let f = first" [ngClass]="{'active' : f}">
+              <img class="card-img" src="./{{v['vista_previa']}}" alt="{{v.titulo}}">
+            </div>
           </div>
           <a class="carousel-control-prev" href="#imgs{{j}}" data-slide="prev">
-             <i class="fa fa-angle-left"></i>
+            <i class="fa fa-angle-left"></i>
           </a>
           <a class="carousel-control-next" href="#imgs{{j}}" data-slide="next">
-             <i class="fa fa-angle-right"></i>
+            <i class="fa fa-angle-right"></i>
           </a>
         </div>
         <!-- resto de la info -->
         <div class="card-img-overlay">
-          <img class="imb-img" src="./{{propiedad.inmobiliaria.logo}}" alt="{{propiedad.inmobiliaria.nombre}}"/>
+          <img class="imb-img" src="./{{propiedad.inmobiliaria.logo}}" alt="{{propiedad.inmobiliaria.nombre}}" />
           <div class="img-count">1/{{propiedad.filesCount}}</div>
         </div>
         <div class="card-body">
@@ -46,10 +71,12 @@
           <div class="cont-b">
             <div class="card-text card-tit" routerLink="propiedad/{{propiedad.id}}">{{propiedad.titulo}}</div>
             <div class="card-text">
-              <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}}     </span>
-              <span *ngIf="propiedad.banios != 0"><img src="assets/img/bed.svg" style="width:15px"> {{propiedad.banios}} </span>
-              <span *ngIf="propiedad.dormitorios != 0"><img src="assets/img/bath.svg" style="width:15px"> {{propiedad.dormitorios}} </span>
-              <span class="card-precio">{{propiedad.moneda_simbolo}} <strong>{{propiedad.precio  | number:'1.0'}}</strong></span>
+              <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span>
+              <span *ngIf="propiedad.banios != 0"><img src="assets/img/bed.svg" style="width:15px">
+                {{propiedad.banios}} </span>
+              <span *ngIf="propiedad.dormitorios != 0"><img src="assets/img/bath.svg" style="width:15px">
+                {{propiedad.dormitorios}} </span>
+              <span class="card-precio">{{propiedad.moneda_simbolo}} <strong>{{propiedad.precio | number:'1.0'}}</strong></span>
             </div>
           </div>
         </div>
@@ -64,7 +91,7 @@
 
 
     <div *ngIf="scrollFinish">
-      
+
     </div>
   </div>
 </div>

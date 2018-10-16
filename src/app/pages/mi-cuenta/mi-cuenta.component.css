@@ -1,15 +1,83 @@
-a{
+a {
   color: #6d6d6d !important;
   width: inherit;
 }
-a:hover{
+a:hover {
   border-bottom: solid 3px #6d6d6d !important;
   display: inline-block !important;
-  transition: .3s !important;
+  transition: 0.3s !important;
   transition-property: all !important;
 }
-a.active{
+a.active {
   border-bottom: solid 3px #6d6d6d !important;
   display: inline-block !important;
-  transition: .3s !important;
+  transition: 0.3s !important;
+}
+
+.btn-update-plan {
+  background-color: #e7585d;
+  color: white;
+  font-size: 20px;
+  padding: 0.1rem 1.05rem;
+  margin-top: -5px;
+}
+
+.header-container {
+  background: #f7f7f7;
+}
+
+.header {
+  display: flex;
+  padding: 10px 30px 0;
+}
+
+.header .left-controls {
+  flex: 1;
+}
+
+.header .right-controls {
+  flex-basis: 80px;
+}
+
+.header .user-info {
+  margin-bottom: 20px;
+}
+
+.header .user-info > * {
+  vertical-align: middle;
+}
+
+.header .user-info .user-name,
+.header .user-info .user-plan {
+  display: inline-block;
+  margin: 0 0 0 30px;
+}
+.header .user-info .user-plan {
+  color: #9b9b9b;
+}
+
+.header .user-info img {
+  max-width: 260px;
+}
+
+.header .nav-tabs {
+  border-bottom: none;
+  font-size: 13px;
+}
+
+.header .nav-link {
+  padding: 0;
+  margin-right: 40px;
+  border: none;
+}
+
+.header .nav-link.active {
+  color: black !important;
+  background-color: transparent;
+}
+
+.search-toolbar-container {
+  padding: 5px 15px 0;
+  background: white;
+  margin: 30px 15px 15px;
 }

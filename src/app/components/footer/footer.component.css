@@ -33,7 +33,7 @@ footer .list-group-item{
 }
 
 .footer-2 {
-  color: #76a6c7;
+  color: #00acee;
   padding-bottom: 1em;
 }
 
@@ -46,4 +46,22 @@ footer .list-group-item{
   color: black;
   font-size: 1.2em;
   margin-bottom: 2px;
+}
+
+.frequent-searches li {
+  color: #00acee;
+}
+
+.copyright a {
+  color: #00acee;
+  font-weight: normal;
+}
+
+.copyright-img,
+.copyright-img img {
+  padding-right: 0;
+}
+
+.copyright-label {
+  padding-left: 0;
 }

@@ -1,25 +1,74 @@
-.botonera{ position:absolute; right: 38px; top: 5px; z-index: 2000; }
-.botonera i{ margin-left: 10px; }
-
-.carousel {min-height: 225px;}
-
-.cont-b{
-  overflow: hidden;
-  width:100%;
+.checkbox {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2000;
+  padding: 3px;
+  background: white;
+  border-bottom: 1px solid #eadddd;
+  border-right: 1px solid #eadddd;
+}
+.checkbox input {
+  display: block;
+}
+.botonera {
+  position: absolute;
+  right: 38px;
+  top: 5px;
+  z-index: 2000;
+}
+.botonera i {
+  margin-left: 10px;
 }
 
-.cp-card{
+.carousel {
+  min-height: 225px;
+}
+
+.cont-b {
+  overflow: hidden;
+  width: 100%;
+}
+
+.cp-card {
   padding-right: 10px;
   padding-left: 0px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-.res-count{
+.res-count {
   border-bottom: 1px solid #d9d9d9;
 }
 
-.tx-ordenar{
+.toolbar {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.toolbar .nav-link {
+  display: inline-block;
+  padding: 0.2rem 1rem;
+  background-color: white;
+  box-shadow: 0px 1px 3px #b1b1b1;
+  color: #9b9b9b;
+  font-weight: normal;
+  font-size: 14px;
+  height: 100%;
+  border-radius: 0.2em;
+  margin-right: 1px;
+}
+
+.toolbar .nav-link > * {
+  vertical-align: middle;
+}
+
+.toolbar .nav-link fa {
+  margin-left: 7px;
+  vertical-align: top;
+}
+
+.tx-ordenar {
   padding-top: 5px;
   padding-bottom: 5px;
   color: #777;
@@ -27,32 +76,32 @@
   font-size: 0.9rem;
 }
 
-.cp-card .card-body{
+.cp-card .card-body {
   position: absolute;
   width: 100%;
   height: 54px;
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   bottom: 0px;
   padding: 9px;
   font-size: 0.8em;
 }
 
-.cp-card .img-count{
+.cp-card .img-count {
   position: absolute;
-  top:5px;
+  top: 5px;
   right: 5px;
   border-radius: 5px;
   padding: 3px;
-  color:#fff !important;
-  background: rgba(0,0,0,0.7);
+  color: #fff !important;
+  background: rgba(0, 0, 0, 0.7);
   font-size: 0.6em;
 }
 
-.cp-card .verif .fa{
-  color:#fff !important;
+.cp-card .verif .fa {
+  color: #fff !important;
 }
 
-.card-tit{
+.card-tit {
   font-weight: bold;
   color: #4b8df8;
   font-size: 0.9rem;
@@ -61,15 +110,15 @@
   text-overflow: "...";
 }
 
-.card-text span{
-  margin-right: .625rem;
+.card-text span {
+  margin-right: 0.625rem;
 }
 
-.card-precio{
-  color:#e20031;
+.card-precio {
+  color: #e20031;
 }
 
-.imb-img{
+.imb-img {
   height: 3rem;
   width: auto;
   position: absolute;
@@ -77,6 +126,6 @@
   left: 0.5em;
 }
 
-.card{
+.card {
   box-shadow: none;
 }
