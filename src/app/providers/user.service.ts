@@ -27,7 +27,12 @@ export class UserService {
     private http:   HttpClient,
     private config: ConfigService,
     private router: Router
-  ) { }
+  ) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.token) {
+      this.userData = currentUser;
+    }
+  }
 
   setLogin(r){
     this.userData.id           = r['data']['id'];//[modificar] esta info es de perfil no de usuario
@@ -59,6 +64,8 @@ export class UserService {
     inm.nombre  = r['data']['inmobiliaria']['nombre'];
     inm.img     = r['data']['inmobiliaria']['logo'];
     this.userData.setInmobiliaria(inm);
+
+    localStorage.setItem('currentUser', JSON.stringify(this.userData));
   }
 
   logeado(){
@@ -85,8 +92,10 @@ export class UserService {
 
   logOut(){ //todaia faltan agregar funcionalidades por acá
     this.userData = new User();
-    this.router.navigate(['/home/exit']);
+    this.router.navigate(['/']);
     this.onLogOut.next();
+
+    localStorage.removeItem('currentUser');
   }
 
   create(){ return this.http.post(this.config.getAPIUrl()+this.wsn, JSON.stringify(this.model)); }
@@ -96,6 +105,7 @@ export class UserService {
   clearModel()  { this.model = new User(); }
   getId()       { return this.userData.id; }
   getUserData() { return this.userData;    }
+  getToken() { return this.userData.token;    }
   getProfile()  { return this.userData.perfil; }
   getName(){
     if (this.userData.nombre == ''){

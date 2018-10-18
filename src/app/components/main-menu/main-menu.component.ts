@@ -29,6 +29,11 @@ export class MainMenuComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.registrado = this.us.logeado();
+    if(this.registrado) {
+      this.userName   = this.us.getName();
+    }
+    
     this.us.onLogin.subscribe({ next: (v) => { this.actualizaEstado(); } });
     this.us.onLogOut.subscribe({ next: (v) => { this.actualizaEstado(); } });
 

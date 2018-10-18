@@ -1,17 +1,19 @@
-import { BrowserModule }                   from '@angular/platform-browser';
-import { NgModule }                        from '@angular/core';
-import { AngularFontAwesomeModule }        from 'angular-font-awesome';
-import { HttpClientModule }                from '@angular/common/http';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { LOCALE_ID }                       from '@angular/core';
-import { AgmCoreModule }                   from '@agm/core';
+import { BrowserModule }                       from '@angular/platform-browser';
+import { NgModule }                            from '@angular/core';
+import { AngularFontAwesomeModule }            from 'angular-font-awesome';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule,ReactiveFormsModule }     from '@angular/forms';
+import { LOCALE_ID }                           from '@angular/core';
+import { AgmCoreModule }                       from '@agm/core';
 
-import { InfiniteScrollModule }            from 'ngx-infinite-scroll';
+import { InfiniteScrollModule }                from 'ngx-infinite-scroll';
 
 import { AppComponent }      from './app.component';
 import { AppRoutingModule }  from './app-routing.module';
 
 import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
+
+import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
 
 import { PropiedadesService }   from './providers/propiedades.service';
 import { GralInfoService }      from './providers/gral-info.service';
@@ -122,6 +124,7 @@ import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-p
     FormsModule, ReactiveFormsModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     {provide: LOCALE_ID, useValue: 'es'},
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     PropiedadesService,

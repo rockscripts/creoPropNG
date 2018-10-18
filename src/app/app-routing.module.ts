@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 
 import { HomeComponent }           from './pages/home/home.component';
 import { PropDetailPageComponent } from './pages/prop/prop-detail-page/prop-detail-page.component';
@@ -25,14 +26,14 @@ const routes: Routes = [
   { path: '',                   component: HomeComponent },
   { path: 'home/:id',           component: HomeComponent },
   { path: 'propiedad/:id',      component: PropDetailPageComponent },
-  { path: 'propiedad/edit/:id', component: EditarPropComponent },
+  { path: 'propiedad/edit/:id', component: EditarPropComponent, canActivate: [AuthGuard] },
   { path: 'privacidad',         component: PrivacidadPageComponent },
   { path: 'terminos',           component: TermsyCondPageComponent },
   { path: "404",                component: NotFoundComponent },
   { path: "signin",             component: SignInComponent },
-  { path: "new-prop",           component: NuevaPropComponent },
-  { path: "new-prop-ok",        component: NuevaPropOkComponent },
-  { path: "mi-cuenta",          component: MiCuentaComponent },
+  { path: "new-prop",           component: NuevaPropComponent, canActivate: [AuthGuard] },
+  { path: "new-prop-ok",        component: NuevaPropOkComponent, canActivate: [AuthGuard] },
+  { path: "mi-cuenta",          component: MiCuentaComponent, canActivate: [AuthGuard] },
   { path: "search/:t",          component: SearchComponent },
   { path: 'perfil/:id',         component: PerfilUsuarioComponent },
   { path: 'select-plan',        component: SelectPrecioComponent },
