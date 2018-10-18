@@ -43,4 +43,16 @@
       </ul>
     </div>
   </div>
+
+  <div class="collapse navbar-collapse row" id="navbarSupportedContent" *ngIf="!navbar_red">
+    <div class="col">
+    </div>
+    <div class="col-sm-auto order-last">
+      <ul class="navbar-nav mr-auto align-self-end">
+        <li class="nav-item" data-toggle="modal" *ngIf = "!registrado">
+          <a class="nav-link" (click)="showLogin()">INICIAR SESIÓN</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>

@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: "search/:t",          component: SearchComponent },
   { path: 'perfil/:id',         component: PerfilUsuarioComponent },
   { path: 'select-plan',        component: SelectPrecioComponent },
-  { path: 'update-plan',        component: SelectPlanComponent },
+  { path: 'update-plan',        component: SelectPrecioComponent },
   { path: 'compraOk',           component: MercadoPagoOkComponent },
   { path: 'compraFail',         component: MercadoPagoFailComponent },
   { path: 'compraPending',      component: MercadoPagoPendComponent },

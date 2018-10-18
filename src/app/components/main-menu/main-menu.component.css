@@ -30,11 +30,16 @@
     box-shadow: 0 1px 6px rgba(0,0,0,.25);
 }
 
+.navbar-white .nav-link{
+  color: #d23f45 !important;
+  font-weight: normal !important;
+}
+
 .navbar-white .navbar-brand{
   color:#ed1b24ff !important;
 }
 
-.navbar-collapse{
+.navbar-red .navbar-collapse{
   background-color:#ed1b24ff !important;
 }
 

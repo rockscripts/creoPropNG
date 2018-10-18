@@ -16,3 +16,9 @@ p{color:#bbb;}
 .pktit {height: 6rem;}
 
 .mp-cont{margin-top: 2rem;}
+
+.btn-cprop {
+  background-color: #d32127;
+  border-radius: 0.3rem;
+  font-size: 13pt;
+}
