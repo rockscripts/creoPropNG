@@ -39,7 +39,7 @@
 
     <div *ngFor="let propiedad of propiedades let j = index" class="col-12 col-sm-6 col-md-4 cp-card">
       <div class="card">
-        <div class="checkbox">
+        <div class="checkbox" *ngIf="mode == 'userProp'">
           <input type="checkbox" name="{{'checked-propiedad-' + propiedad.id}}">
         </div>
         <!-- botonera -->

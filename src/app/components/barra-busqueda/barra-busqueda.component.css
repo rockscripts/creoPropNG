@@ -1,6 +1,7 @@
 .accordion .card-header{
   background: #fff;
   background-color: #fff;
+  font-weight: bold;
 }
 
 .accordion .card-body{
@@ -39,7 +40,7 @@
 
 .accordion .list-group{
   max-height: 200px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .money-select .col{
