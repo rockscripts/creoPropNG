@@ -35,7 +35,7 @@ export class PropDetailPageComponent implements OnInit {
 
     this.propiedadService.getPropiedad(this.id);
     this.propiedadService.propiedadLoaded.subscribe({  
-      next: (m) => { this.propiedad = m; } 
+      next: (m) => { this.propiedad = m; console.log(m); } 
     });
 
     this.mapsAPILoader.load().then(() => { });

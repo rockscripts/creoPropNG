@@ -1,231 +1,297 @@
 <div class="row p-detail-p">
-	<div class="col-12 col-md-8">
+  <div class="col-12 col-md-8">
 
-		<div class="col-12 c-card">
-			<div class="card">
+    <div class="col-12 c-card">
+      <div class="card">
 
-				<div class="card-body row">
-					<div class="col-auto back-arr-btn row align-items-center">
-						<div class="col"><i class="fa fa-arrow-left link-btn" routerLink="/"></i> </div>
-					</div>
+        <div class="card-body row">
+          <div class="col-auto back-arr-btn row align-items-center">
+            <div class="col"><i class="fa fa-arrow-left link-btn" routerLink="/"></i> </div>
+          </div>
 
-					<div class="col">
-						<h5 class="card-title">{{propiedad.titulo}}</h5>
-						<span class="col-12 pl-0 subt">
-							<i class="fa fa-map-marker" aria-hidden="true"></i>
-							{{propiedad.direccion}},&nbsp;{{propiedad.nombre_zona}}
-						</span>
-					</div>
+          <div class="col">
+            <h5 class="card-title">{{propiedad.titulo}}</h5>
+            <span class="col-12 pl-0 subt">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              {{propiedad.direccion}},&nbsp;{{propiedad.nombre_zona}}
+            </span>
+          </div>
 
-					<div class="row col-12 col-md-4  order-12">
-						<div class="col-12 cont-btn">
-							<i class="fa fa-heart link-btn"></i>
-							<i class="fa fa-share-alt link-btn"></i>
-							<i class="fa fa-print link-btn"></i>
-						</div>
-						<div class="col-12 btn-denu"><a data-toggle="modal" data-target="#denunciaModal" (click)="denunciar()">DENUNCIAR AVISO</a></div>
-					</div>
-				</div>
+          <div class="row col-12 col-md-4  order-12">
+            <div class="col-12 cont-btn">
+              <i class="fa fa-heart link-btn"></i>
+              <i class="fa fa-share-alt link-btn"></i>
+              <i class="fa fa-print link-btn"></i>
+            </div>
+            <div class="col-12 btn-denu"><a data-toggle="modal" data-target="#denunciaModal" (click)="denunciar()">DENUNCIAR
+                AVISO</a></div>
+          </div>
+        </div>
 
-				 <div class="card-body img-cont">
-					 	 <div id="imgs-det" class="carousel slide" data-ride="carousel">
-							 <div class="carousel-inner">
-							    <div class="carousel-item" *ngFor="let v of propiedad.files let i = index" [ngClass]="{'active' : i == 0}">
-							      <img class="card-img-bottom img-map" src="./{{v['nombre']}}" alt="{{v.titulo}}">
-							    </div>
-						   </div>
+        <div class="card-body img-cont">
+          <div id="imgs-det" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item" *ngFor="let v of propiedad.files let i = index" [ngClass]="{'active' : i == 0}">
+                <img class="card-img-bottom img-map" src="./{{v['nombre']}}" alt="{{v.titulo}}">
+              </div>
+            </div>
 
-							 <a class="carousel-control-prev" href="#imgs-det" data-slide="prev">
-								 <div class="carrusel-ic">
-								  <i class="fa fa-angle-left"></i>
-								</div>
-							 </a>
-							 <a class="carousel-control-next" href="#imgs-det" data-slide="next">
-								 <div class="carrusel-ic">
-									<i class="fa fa-angle-right"></i>
-								</div>
-							 </a>
-					   </div>
-			  </div>
+            <a class="carousel-control-prev" href="#imgs-det" data-slide="prev">
+              <div class="carrusel-ic">
+                <i class="fa fa-angle-left"></i>
+              </div>
+            </a>
+            <a class="carousel-control-next" href="#imgs-det" data-slide="next">
+              <div class="carrusel-ic">
+                <i class="fa fa-angle-right"></i>
+              </div>
+            </a>
+          </div>
+        </div>
 
-			</div>
-		</div>
+      </div>
+    </div>
 
-		<div class="col-12 c-card">
-			<div class="card">
-			  <div class="card-body">
-					<h5 class="card-title">UBICACIÓN</h5>
-					<span class="col-12 pl-0 subt">
-						<i class="fa fa-map-marker" aria-hidden="true"></i>
-						{{propiedad.direccion}},&nbsp;{{propiedad.nombre_zona}}
-					</span>
-			  </div>
-     		<agm-map [latitude]="propiedad.latitud" [longitude]="propiedad.longitud" [zoom]="16">
-     			<agm-marker [latitude]="propiedad.latitud" [longitude]="propiedad.longitud" [label]="propiedad.titulo"></agm-marker>
-     		</agm-map>
-			</div>
-		</div>
+    <div class="col-12 c-card">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">UBICACIÓN</h5>
+          <span class="col-12 pl-0 subt">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            {{propiedad.direccion}},&nbsp;{{propiedad.nombre_zona}}
+          </span>
+        </div>
+        <agm-map [latitude]="propiedad.latitud" [longitude]="propiedad.longitud" [zoom]="16">
+          <agm-marker [latitude]="propiedad.latitud" [longitude]="propiedad.longitud" [label]="propiedad.titulo"></agm-marker>
+        </agm-map>
+      </div>
+    </div>
 
-		<div class="row">
-			<div class="col-12 col-sm-6 c-card">
-				<div class="card">
-				  <div class="card-body">
-				    <h5 class="card-title">DESCRIPCIÓN</h5>
-						{{propiedad.texto}}
-				  </div>
-				</div>
-			</div>
+    <div class="row">
+      <div class="col-12 col-sm-6 c-card datos-principales">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">DATOS PRINCIPALES</h5>
 
-			<div class="col-12 col-sm-6 c-card">
-				<div class="card">
-				  <div class="card-body">
-				    <h5 class="card-title">CARACTERÍSTICAS GENERALES</h5>
+            <div>
+              <div class="col-12">
+                <img class="icons" src="assets/img/icons/house.png">
+                <span>{{propiedad.tipo_prop[propiedad.tipo_propiedad_id].nombre}}</span>
+              </div>
+              <div class="col-12">
+                <img class="icons" src="assets/img/icons/money.png">
+                <span>Precio Venta: {{propiedad.moneda_simbolo}} {{propiedad.precio | number:'1.0'}}</span>
+              </div>
+              <div class="col-12">
+                <img class="icons" src="assets/img/icons/money.png">
+                <span>Expensas: {{propiedad.moneda_simbolo}} {{propiedad.expensas | number:'1.0'}}</span>
+              </div>
+              <div class="col-12">
+                <img class="icons" src="assets/img/icons/stotal.png">
+                <span>Superficie Total: {{propiedad.superficie_total}}m2</span>
+              </div>
+              <div class="col-12">
+                <img class="icons" src="assets/img/icons/scubierta.png">
+                <span>Superficie Cubierta: {{propiedad.superficie_cubierta}}m2</span>
+              </div>
+              <div class="col-12">
+                <img class="icons" src="assets/img/icons/ambiente.png">
+                <span>Ambientes: {{propiedad.ambientes_c}}</span>
+              </div>
+              <div class="col-12">
+                <img class="icons" src="assets/img/icons/dormitorio.png">
+                <span>Dormitorios: {{propiedad.dormitorios}}</span>
+              </div>
+              <div class="col-12">
+                <img class="icons" src="assets/img/icons/bano.png">
+                <span>Baños: {{propiedad.banios}}</span>
+              </div>
+              <div class="col-12">
+                <img class="icons" src="assets/img/icons/disposicion.png">
+                <span>Disposición: {{propiedad.disposicion_op[propiedad.disposicion].nombre}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-						<div class="col-12">
-		          <div *ngFor="let ub of propiedad.carac_gral" class="col-12">
-								<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.n}}:&nbsp;{{ub.v}}
-							</div>
-		        </div>
+      <div class="col-12 col-sm-6 c-card">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">DESCRIPCIÓN</h5>
+            {{propiedad.texto}}
+          </div>
+        </div>
+      </div>
 
-				  </div>
-				</div>
-			</div>
+      <div class="col-12 col-sm-6 c-card">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">CARACTERÍSTICAS GENERALES</h5>
 
-			<div class="col-12 col-sm-6 c-card">
-				<div class="card">
-				  <div class="card-body">
-				    <h5 class="card-title">AMBIENTES</h5>
+            <div class="col-12">
+              <div *ngFor="let ub of propiedad.carac_gral" class="col-12">
+                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.n}}:&nbsp;{{ub.v}}
+              </div>
+            </div>
 
-						<div class="col-12">
-		          <div *ngFor="let ub of propiedad.ambientes" class="col-12">
-								<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
-							</div>
-		        </div>
+          </div>
+        </div>
+      </div>
 
-				  </div>
-				</div>
-			</div>
+      <div class="col-12 col-sm-6 c-card">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">AMBIENTES</h5>
 
-			<div class="col-12 col-sm-6 c-card">
-				<div class="card">
-				  <div class="card-body">
-				    <h5 class="card-title">SERVICIOS</h5>
+            <div class="col-12">
+              <div *ngFor="let ub of propiedad.ambientes" class="col-12">
+                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
+              </div>
+            </div>
 
-						<div class="col-12">
-		          <div *ngFor="let ub of propiedad.servicios" class="col-12">
-								<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
-							</div>
-		        </div>
+          </div>
+        </div>
+      </div>
 
-				  </div>
-				</div>
-			</div>
+      <div class="col-12 col-sm-6 c-card">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">SERVICIOS</h5>
 
-			<div class="col-12 col-sm-6 c-card">
-				<div class="card">
-				  <div class="card-body">
-				    <h5 class="card-title">AMENITIES</h5>
+            <div class="col-12">
+              <div *ngFor="let ub of propiedad.servicios" class="col-12">
+                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
+              </div>
+            </div>
 
-						<div class="col-12">
-		          <div *ngFor="let ub of propiedad.amenities" class="col-12">
-								<i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
-							</div>
-		        </div>
+          </div>
+        </div>
+      </div>
 
-				  </div>
-				</div>
-			</div>
-		</div>
-	</div>
+      <div class="col-12 col-sm-6 c-card">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">AMENITIES</h5>
 
-	<div class="col-12 col-md-4 c-card">
-	<div class="row c-card">
-		<!-- precio -->
-		<div class="col-12 c-card">
-			<div class="card card-det">
-				<div class="card-body">
-					<h5 class="card-title may">PRECIO {{propiedad.nombre_operacion}}</h5>
-					<h3 class="modern-single-ad-price">{{propiedad.moneda_simbolo}} {{propiedad.precio | number:'1.0' }}</h3>
-				</div>
-				<div class="card-body topln">
-					<div class="row">
-						<div class="col rw-det" *ngIf="propiedad.superficie_cubierta != 0">
-							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-sup" ></div></div>
-							<span class="sp">Sup. Cubierta</span>
-							<div class="row"><div class="col dt-lg">{{propiedad.superficie_cubierta}}<small>m²</small></div></div>
-						</div>
-						<div class="col rw-det" *ngIf="propiedad.ambientes_c != 0">
-							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-amb" ></div></div>
-							<span class="sp">Ambientes</span>
-							<div class="row"><div class="col dt-lg">{{propiedad.ambientes_c}}</div></div>
-						</div>
-						<div class="col rw-det" *ngIf="propiedad.banios != 0">
-							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/bath" ></div></div>
-							<span class="sp">Baños</span>
-							<div class="row"><div class="col dt-lg">{{propiedad.banios}}</div></div>
-						</div>
-						<div class="col rw-det" *ngIf="propiedad.cochera != 0">
-							<div class="row"><div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-coch"></div></div>
-							<span class="sp">Cochera</span>
-							<div class="row"><div class="col dt-lg">{{propiedad.cochera}}</div></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- anunciante -->
-		<div class="col-12 c-card">
-			<div class="card">
-				<div class="card-body">
-					<div class="row">
-						<div class="col"><h5><strong>¡Contactá al anunciante!</strong></h5></div>
-					</div>
+            <div class="col-12">
+              <div *ngFor="let ub of propiedad.amenities" class="col-12">
+                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;{{ub.nombre}}
+              </div>
+            </div>
 
-					<div class="row">
-						<div class="col-auto">
-							<img *ngIf="propiedad.inmobiliaria != null" src="./{{propiedad.inmobiliaria.logo}}" (click)="goToPerfil()">
-						</div>
-						<div class="col" *ngIf="propiedad.user != null">
-							<h3 *ngIf="propiedad.inmobiliaria != null">{{propiedad.inmobiliaria.nombre}}</h3>
-							<div class="col-12">Teléfono:&nbsp;{{propiedad.user.celular}}</div>
-							<div class="col-12">Encargado:&nbsp;{{propiedad.user.name}}&nbsp;{{propiedad.user.surname}} </div>
-							<div class="col-12">Código:&nbsp;{{propiedad.user.id}}</div>
-						</div>
-					</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-					<div class="row">
-						<form class="col-12">
-							<div class="form-group">
-						    <label>Mensaje</label>
-						    <textarea class="form-control">Hola, vi esta propiedad en Creoprop y quiero que me contacten. Gracias.</textarea>
-						  </div>
+  <div class="col-12 col-md-4 c-card">
+    <div class="row c-card">
+      <!-- precio -->
+      <div class="col-12 c-card">
+        <div class="card card-det">
+          <div class="card-body">
+            <h5 class="card-title may">PRECIO {{propiedad.nombre_operacion}}</h5>
+            <h3 class="modern-single-ad-price">{{propiedad.moneda_simbolo}} {{propiedad.precio | number:'1.0' }}</h3>
+          </div>
+          <div class="card-body topln">
+            <div class="row">
+              <div class="col rw-det" *ngIf="propiedad.superficie_cubierta != 0">
+                <div class="row">
+                  <div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-sup.svg"></div>
+                </div>
+                <span class="sp">Sup. Cubierta</span>
+                <div class="row">
+                  <div class="col dt-lg">{{propiedad.superficie_cubierta}}<small>m²</small></div>
+                </div>
+              </div>
+              <div class="col rw-det" *ngIf="propiedad.ambientes_c != 0">
+                <div class="row">
+                  <div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-amb.svg"></div>
+                </div>
+                <span class="sp">Ambientes</span>
+                <div class="row">
+                  <div class="col dt-lg">{{propiedad.ambientes_c}}</div>
+                </div>
+              </div>
+              <div class="col rw-det" *ngIf="propiedad.banios != 0">
+                <div class="row">
+                  <div class="col pl-0 pr-0"><img class="icons" src="assets/img/bath.svg"></div>
+                </div>
+                <span class="sp">Baños</span>
+                <div class="row">
+                  <div class="col dt-lg">{{propiedad.banios}}</div>
+                </div>
+              </div>
+              <div class="col rw-det" *ngIf="propiedad.cochera != 0">
+                <div class="row">
+                  <div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-coch.svg"></div>
+                </div>
+                <span class="sp">Cochera</span>
+                <div class="row">
+                  <div class="col dt-lg">{{propiedad.cochera}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- anunciante -->
+      <div class="col-12 c-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5><strong>¡Contactá al anunciante!</strong></h5>
+              </div>
+            </div>
 
-							<div class="form-group">
-						    <label>Nombre</label>
-						    <input type="text" class="form-control">
-						  </div>
+            <div class="row">
+              <div class="col-auto">
+                <img *ngIf="propiedad.inmobiliaria != null" src="./{{propiedad.inmobiliaria.logo}}" (click)="goToPerfil()">
+              </div>
+              <div class="col" *ngIf="propiedad.user != null">
+                <h3 *ngIf="propiedad.inmobiliaria != null">{{propiedad.inmobiliaria.nombre}}</h3>
+                <div class="col-12">Teléfono:&nbsp;{{propiedad.user.celular}}</div>
+                <div class="col-12">Encargado:&nbsp;{{propiedad.user.name}}&nbsp;{{propiedad.user.surname}} </div>
+                <div class="col-12">Código:&nbsp;{{propiedad.user.id}}</div>
+              </div>
+            </div>
 
-							<div class="form-group">
-						    <label>E-Mail</label>
-						    <input type="email" class="form-control">
-						  </div>
+            <div class="row">
+              <form class="col-12">
+                <div class="form-group">
+                  <label>Mensaje</label>
+                  <textarea class="form-control">Hola, vi esta propiedad en Creoprop y quiero que me contacten. Gracias.</textarea>
+                </div>
 
-							<div class="form-group">
-						    <label>Telefono</label>
-						    <input type="tel" class="form-control">
-						  </div>
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" class="form-control">
+                </div>
 
-							<div class="w-100 text-center">
-								<span type="button" class="btn btn-cprop">ENVIAR MENSAJE</span>
-							</div>
-						</form>
-					</div>
+                <div class="form-group">
+                  <label>E-Mail</label>
+                  <input type="email" class="form-control">
+                </div>
 
-				</div>
-			</div>
-		</div>
+                <div class="form-group">
+                  <label>Telefono</label>
+                  <input type="tel" class="form-control">
+                </div>
 
-	</div>
-</div>
+                <div class="w-100 text-center">
+                  <span type="button" class="btn btn-cprop">ENVIAR MENSAJE</span>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 </div>
