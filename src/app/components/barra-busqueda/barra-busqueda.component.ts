@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router }            from '@angular/router';
 
 import { PropiedadesService } from './../../providers/propiedades.service';
 import { ZonasService }       from '../../providers/zonas.service';
@@ -10,9 +10,9 @@ import { Busqueda }           from './../../models/busqueda';
   templateUrl: './barra-busqueda.component.html',
   styleUrls: ['./barra-busqueda.component.css']
 })
-export class BarraBusquedaComponent implements OnInit {
+export class BarraBusquedaComponent implements OnInit, OnDestroy {
 
-  ubicaciones_busqueda:any = [];
+  ubicaciones:any          = {};
   tipo_operacion:any       = [];
   tipo_propiedad:any       = [];
   cant_banios:any          = [];
@@ -28,28 +28,38 @@ export class BarraBusquedaComponent implements OnInit {
   provincias:any = [];
   barrios:any    = [];
 
-  public busqueda = new Busqueda();
-  modificado:boolean = false;
+  showing_ubicacion_list:string;
+
+  public busqueda  = new Busqueda();
+  public ubicacion_is_modified = false;
+
+  private sub: any;
 
   constructor(
-    private propiedadesService:PropiedadesService,
-    private zonas:ZonasService,
-    private router:Router
+    private propiedadesService: PropiedadesService,
+    private zonas: ZonasService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.loadSearchConfig();
+
+    this.sub = this.activatedRoute.params.subscribe(params => {
+      this.ubicacion_is_modified = false;
+      this.busqueda.fromRouteParams(params);
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   loadSearchConfig(){
-    if(this.modificado){
-      this.propiedadesService.busqueda = this.busqueda;
-    }
     this
       .propiedadesService.getSearchConfig()
       .subscribe((r) => {
         r = r['data'];
-        this.ubicaciones_busqueda = r['ubicaciones_busqueda'];
         this.tipo_operacion       = r['tipo_operacion'];
         this.tipo_propiedad       = r['tipo_propiedad'];
         this.cant_banios          = r['cant_banios'];
@@ -61,20 +71,26 @@ export class BarraBusquedaComponent implements OnInit {
         this.servicios            = r['servicios'];
         this.generales            = r['generales'];
         this.tanunciante          = r['tanunciante'];
+
+        this.ubicaciones = {
+          Argentina: r['ubicaciones_busqueda'][0].children,
+        };
     });
   }
-
-  updateUbicaciones(){
-    this.modificado = true;
-    this.loadSearchConfig();
+  
+  toggleUbicacionList(ub_id) {
+    if(ub_id == this.showing_ubicacion_list) {
+      this.showing_ubicacion_list = null;
+    } else {
+      this.showing_ubicacion_list = ub_id;
+    }
   }
 
-  zonaClick(i){     this.busqueda.zona = i; this.goToBusqueda(i); }
-  tipoOPClick(i){   this.busqueda.tipoOperacion = i; this.goToBusqueda(i); }
-  tipoPropClick(i){ this.busqueda.tipoPropiedad = i; this.goToBusqueda(i); }
+  zonaClick(i){     this.busqueda.zona = i; this.goToBusqueda(); }
+  tipoOPClick(i){   this.busqueda.tipoOperacion = i; this.goToBusqueda(); }
+  tipoPropClick(i){ this.busqueda.tipoPropiedad = i; this.goToBusqueda(); }
 
-  goToBusqueda(t){
-    this.propiedadesService.busqueda = this.busqueda;
-    this.router.navigate(['./search/'+t]);
+  doBusqueda(){
+    this.router.navigate(['search', this.busqueda.toRouteParams()]);
   }
 }

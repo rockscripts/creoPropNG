@@ -13,17 +13,23 @@
       </div>
       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
-          <div class="form-group"> <input type="text" class="form-control" [(ngModel)]="busqueda.termUbicacion" name="termUbicacion"
-              (keyup)="updateUbicaciones()" placeholder="Buscar Ubicación"> </div>
-
           <ul class="list-group list-group-flush">
-            <li (click)="zonaClick(ub.id)" *ngFor="let ub of ubicaciones_busqueda" class="list-group-item d-flex justify-content-between">
-              {{ub.name}} <span class="badge">({{ub.cant}})</span>
+            <li *ngFor="let ub of ubicaciones.Argentina" class="list-group-item">
+              <div (click)="toggleUbicacionList(ub.id)" class="d-flex justify-content-between"><span>{{ub.nombre}}</span> <span class="badge">({{ub.count}})</span></div>
+              <ul class="ubicacion-sublevel" *ngIf="ub.children && ub.children.length" [hidden]="showing_ubicacion_list != ub.id">
+                <li *ngFor="let ub_children of ub.children" class="list-group-item d-flex justify-content-between">
+                  <div class="left">
+                    <input id="ubicacion-{{ub_children.id}}-check" type="checkbox" [checked]="busqueda.ubicacion[ub_children.id]" (change)="ubicacion_is_modified = true; busqueda.ubicacion[ub_children.id] = !busqueda.ubicacion[ub_children.id];">
+                    <label for="ubicacion-{{ub_children.id}}-check">{{ub_children.nombre}}</label>
+                  </div>
+                  <span class="badge">({{ub_children.count}})</span>
+                </li>
+              </ul>
             </li>
           </ul>
 
           <div class="w-100">
-            <button class="w-100 btn btn-sm btn-cprop mtop1">APLICAR</button>
+            <button class="w-100 btn btn-sm btn-cprop mtop1" [ngClass]="{disabled: !ubicacion_is_modified}" (click)="doBusqueda()">APLICAR</button>
           </div>
         </div>
       </div>

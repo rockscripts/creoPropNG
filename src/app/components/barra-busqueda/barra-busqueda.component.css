@@ -29,7 +29,7 @@
 .accordion .card-body{  border-bottom:none;}
 
 .accordion .list-group-item{
-  color: #00acee; padding: 0px;  border: none;  font-size: 0.7em;
+  color: #00acee; padding: 0px;  border: none;  font-size: 0.7rem;
 }
 
 .accordion li{cursor: pointer;}
@@ -63,4 +63,23 @@
 
 .mtop1{
   margin-top: 1em;
+}
+
+.ubicacion-sublevel {
+  padding: 0 0 0 7px;
+}
+
+.ubicacion-sublevel > li {
+  cursor: default;
+}
+
+.ubicacion-sublevel input,
+.ubicacion-sublevel input + label {
+  vertical-align: middle;
+  margin: 0 0 2px;
+  cursor: pointer;
+}
+
+.ubicacion-sublevel input + label {
+  margin-left: 2px;
 }

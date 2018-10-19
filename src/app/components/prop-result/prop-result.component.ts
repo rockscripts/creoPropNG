@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router }                   from '@angular/router';
+import { ActivatedRoute, Router }            from '@angular/router';
 
 import { PropiedadesService } from './../../providers/propiedades.service';
 import { GralInfoService }    from './../../providers/gral-info.service';
@@ -10,8 +10,8 @@ import { Busqueda }           from './../../models/busqueda';
   templateUrl: './prop-result.component.html',
   styleUrls: ['./prop-result.component.css']
 })
-export class PropResultComponent implements OnInit {
-  @Input() busqueda:Busqueda = new Busqueda();
+export class PropResultComponent implements OnInit, OnDestroy {
+  @Input() busqueda:Busqueda;
   @Input() mode:string       = '';
 
   propiedades:any = [];
@@ -19,11 +19,33 @@ export class PropResultComponent implements OnInit {
   cant_prop:number     = 0;
   scrollFinish:boolean = false;
 
+  private sub: any;
+
   constructor(
     private router:             Router,
+    private activatedRoute:     ActivatedRoute,
     private propiedadesService: PropiedadesService,
     private gralInfoService:    GralInfoService
   ) { }
+
+  ngOnInit() {
+    this.sub = this.activatedRoute.params.subscribe(params => {
+      this.propiedades = [];
+      this.busqueda = new Busqueda();
+      this.busqueda.fromRouteParams(params);
+      this.pedirBusqueda();
+    });
+
+    this.gralInfoService.getInfo()
+      .subscribe((r) => {
+        r = r ['data'];
+        this.cant_prop = r['cantPropiedades'];
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
   onScrollDown() {
     this.pedirBusqueda();
@@ -54,16 +76,6 @@ export class PropResultComponent implements OnInit {
       }
       this.propiedades   = this.propiedades.concat(res);
       this.busqueda.page += 1;
-    });
-  }
-
-  ngOnInit() {
-    this.pedirBusqueda();
-
-    this.gralInfoService.getInfo()
-      .subscribe((r) => {
-        r = r ['data'];
-        this.cant_prop = r['cantPropiedades'];
     });
   }
 

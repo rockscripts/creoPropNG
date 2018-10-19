@@ -52,7 +52,7 @@ export class PropiedadesService {
   }
 
   getSearch() {
-    return this.http.post(this.config.getAPIUrl()+this.wsa,JSON.stringify(this.busqueda));
+    return this.http.post(this.config.getAPIUrl()+this.wsa,this.busqueda.toReqParams());
   }
 
   getEquipamiento() {

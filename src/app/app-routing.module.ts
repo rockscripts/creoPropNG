@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: "new-prop",           component: NuevaPropComponent, canActivate: [AuthGuard] },
   { path: "new-prop-ok",        component: NuevaPropOkComponent, canActivate: [AuthGuard] },
   { path: "mi-cuenta",          component: MiCuentaComponent, canActivate: [AuthGuard] },
-  { path: "search/:t",          component: SearchComponent },
+  { path: "search",             component: SearchComponent },
   { path: 'perfil/:id',         component: PerfilUsuarioComponent },
   { path: 'select-plan',        component: SelectPrecioComponent },
   { path: 'update-plan',        component: SelectPrecioComponent },
