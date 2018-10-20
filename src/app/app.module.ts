@@ -21,6 +21,7 @@ import { UserService }          from './providers/user.service';
 import { SiteService }          from './providers/site.service';
 import { TextsService }         from './providers/texts.service';
 import { ProfileService }       from './providers/profile.service';
+import { MercadoPagoService }   from './providers/mercado-pago.service';
 
 import { RegisterModalService } from './components/register-modal/register-modal.service';
 import { LoginModalService }    from './components/login-modal/login-modal.service';
@@ -60,6 +61,14 @@ import { PerfilViewComponent }       from './components/perfil-view/perfil-view.
 import { ImbProfileViewComponent }   from './components/imb-profile-view/imb-profile-view.component';
 import { UserProfileModalComponent } from './components/user-profile-modal/user-profile-modal.component';
 import { EditarPropComponent }       from './pages/prop/editar-prop/editar-prop.component';
+import { EstadoCuentaComponent }     from './components/estado-cuenta/estado-cuenta.component';
+
+import { UserPagosComponent }    from './components/user-pagos/user-pagos.component';
+import { UserMensajesComponent } from './components/user-mensajes/user-mensajes.component';
+import { UserVisitasComponent }  from './components/user-visitas/user-visitas.component';
+
+import { MercadoPagoOkComponent }   from './pages/MP/mercado-pago-ok/mercado-pago-ok.component';
+import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-pago-fail.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +102,13 @@ import { EditarPropComponent }       from './pages/prop/editar-prop/editar-prop.
     ImbProfileViewComponent,
     UserProfileFormComponent,
     UserProfileModalComponent,
-    EditarPropComponent
+    EditarPropComponent,
+    EstadoCuentaComponent,
+    UserPagosComponent,
+    UserMensajesComponent,
+    UserVisitasComponent,
+    MercadoPagoOkComponent,
+    MercadoPagoFailComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +131,8 @@ import { EditarPropComponent }       from './pages/prop/editar-prop/editar-prop.
     TextsService,
     RegisterModalService,
     LoginModalService,
-    ProfileService
+    ProfileService,
+    MercadoPagoService
   ],
   bootstrap: [
     AppComponent

@@ -42,10 +42,10 @@
           <div class="tab-pane container active" id="mispropiedades">
             <app-prop-result [busqueda]="busqueda" [mode]="'userProp'"></app-prop-result>
           </div>
-          <div class="tab-pane container fade" id="visitas">Aca irian las propiedades visitadas</div>
-          <div class="tab-pane container fade" id="estadocuenta">Aca iria el estado de mi cuenta</div>
-          <div class="tab-pane container fade" id="pagos">Aca irian las propiedades pagas</div>
-          <div class="tab-pane container fade" id="mensajes">Aca irian los mensajes intercambiados</div>
+          <div class="tab-pane container fade" id="visitas"><app-user-visitas></app-user-visitas></div>
+          <div class="tab-pane container fade" id="estadocuenta"><app-estado-cuenta></app-estado-cuenta></div>
+          <div class="tab-pane container fade" id="pagos"><app-user-pagos></app-user-pagos></div>
+          <div class="tab-pane container fade" id="mensajes"><app-user-mensajes></app-user-mensajes></div>
           <div class="tab-pane container fade" id="miperfil"><app-perfil-view [editable]="true"></app-perfil-view></div>
         </div>
       </div>

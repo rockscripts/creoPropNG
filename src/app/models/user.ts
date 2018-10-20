@@ -14,6 +14,9 @@ export class User {
   public token        :string = '';
   public id           :number = -1;
 
+  public membresia:string    = '';
+  public membresia_id:number = 0;
+
   public inmobiliaria:Inmobiliaria = new Inmobiliaria();
   public perfil:Perfil             = new Perfil();
 

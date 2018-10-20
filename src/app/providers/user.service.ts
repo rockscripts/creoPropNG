@@ -51,6 +51,9 @@ export class UserService {
     this.userData.perfil.img           = r['data']['profile_img'];
     this.userData.perfil.celular       = r['data']['celular'];
 
+    this.userData.membresia    = r['data']['membresia']['nombre'];
+    this.userData.membresia_id = r['data']['membresia']['id'];
+
     let inm     = new Inmobiliaria();
     inm.id      = r['data']['inmobiliaria']['id'];
     inm.nombre  = r['data']['inmobiliaria']['nombre'];

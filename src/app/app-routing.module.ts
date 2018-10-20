@@ -17,6 +17,9 @@ import { SelectPrecioComponent }   from './pages/select-precio/select-precio.com
 import { SelectPlanComponent }     from './pages/select-plan/select-plan.component';
 import { EditarPropComponent }     from './pages/prop/editar-prop/editar-prop.component';
 
+import { MercadoPagoOkComponent } from './pages/MP/mercado-pago-ok/mercado-pago-ok.component';
+import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-pago-fail.component';
+
 const routes: Routes = [
   { path: '',                   component: HomeComponent },
   { path: 'home/:id',           component: HomeComponent },
@@ -33,6 +36,8 @@ const routes: Routes = [
   { path: 'perfil/:id',         component: PerfilUsuarioComponent },
   { path: 'select-plan',        component: SelectPrecioComponent },
   { path: 'update-plan',        component: SelectPlanComponent },
+  { path: 'compraOk',           component: MercadoPagoOkComponent },
+  { path: 'compraFail',         component: MercadoPagoFailComponent },
   { path: "**",                 redirectTo: "/404" },
 
 ];

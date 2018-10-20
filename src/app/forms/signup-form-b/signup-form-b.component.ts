@@ -1,7 +1,7 @@
 import { Component, OnInit }  from '@angular/core';
 import { Router }             from '@angular/router';
 
-import { RegisterModalComponent } from '../../components/register-modal/register-modal.component';
+import { RegisterModalService } from '../../components/register-modal/register-modal.service';
 
 import { UserService } from '../../providers/user.service';
 import { User }        from '../../models/user';
@@ -17,7 +17,7 @@ export class SignupFormBComponent implements OnInit {
 
   constructor(
     private US:     UserService,
-    private modal:  RegisterModalComponent,
+    private modal:  RegisterModalService,
     private router: Router
   ) { }
 
@@ -29,7 +29,7 @@ export class SignupFormBComponent implements OnInit {
     this.US.create()
       .subscribe((r) => {
         this.US.setLogin(r);
-        this.modal.cerrar();
+        this.modal.hide();
         this.router.navigate(['/home/1']);
     });
   }

@@ -18,7 +18,7 @@
 }
 
 .navbar{
-  height: 3.7em;
+  height: 3.7em; z-index: 3000;
 }
 
 .navbar-red{

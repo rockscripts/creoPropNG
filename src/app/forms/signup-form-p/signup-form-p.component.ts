@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 
-import { RegisterModalComponent } from '../../components/register-modal/register-modal.component';
+import { RegisterModalService } from '../../components/register-modal/register-modal.service';
 
 import { UserService } from '../../providers/user.service';
 import { User }        from '../../models/user';
@@ -21,7 +21,7 @@ export class SignupFormPComponent implements OnInit {
   constructor(
     private router: Router,
     private US :    UserService,
-    private modal:  RegisterModalComponent
+    private modal:  RegisterModalService
   ) { }
 
   ngOnInit() {
