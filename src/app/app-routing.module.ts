@@ -19,6 +19,7 @@ import { EditarPropComponent }     from './pages/prop/editar-prop/editar-prop.co
 
 import { MercadoPagoOkComponent } from './pages/MP/mercado-pago-ok/mercado-pago-ok.component';
 import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-pago-fail.component';
+import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-pago-pend.component';
 
 const routes: Routes = [
   { path: '',                   component: HomeComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'update-plan',        component: SelectPlanComponent },
   { path: 'compraOk',           component: MercadoPagoOkComponent },
   { path: 'compraFail',         component: MercadoPagoFailComponent },
+  { path: 'compraPending',      component: MercadoPagoPendComponent },
   { path: "**",                 redirectTo: "/404" },
 
 ];

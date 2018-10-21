@@ -21,9 +21,10 @@ export class MercadoPagoService {
   public pago = new Pago();
   public onPreferenceCreated = new Subject(); // [Modificar] ahora no se usa luego hacerlo reactivo
 
-  comprar(s){
+  comprar(s,u){
   	this.pago = new Pago();
   	this.pago.idItem = s;
-  	return this.http.post(this.config.getAPIUrl()+this.urlCompra, {idItem:s});
+  	this.pago.idUser = u;
+  	return this.http.post(this.config.getAPIUrl()+this.urlCompra, this.pago);
   }
 }

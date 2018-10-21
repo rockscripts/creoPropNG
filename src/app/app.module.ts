@@ -69,6 +69,7 @@ import { UserVisitasComponent }  from './components/user-visitas/user-visitas.co
 
 import { MercadoPagoOkComponent }   from './pages/MP/mercado-pago-ok/mercado-pago-ok.component';
 import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-pago-fail.component';
+import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-pago-pend.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-p
     UserMensajesComponent,
     UserVisitasComponent,
     MercadoPagoOkComponent,
-    MercadoPagoFailComponent
+    MercadoPagoFailComponent,
+    MercadoPagoPendComponent
   ],
   imports: [
     BrowserModule,
