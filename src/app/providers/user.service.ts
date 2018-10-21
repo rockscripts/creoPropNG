@@ -65,6 +65,13 @@ export class UserService {
     return this.userData.id != -1;
   }
 
+  getPlanId(){
+    if (this.logeado()){
+      return this.userData.membresia_id;
+    }
+    return -1;
+  }
+
   permiso(n){
     if (this.logeado()){
       return true;

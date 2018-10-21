@@ -22,7 +22,11 @@
             <p>{{plan.bd2}}</p>
           </div>
           <div class="row bt-cont">
-            <div class="col-12 col-sm-10 offset-sm-1"><button type="button" class="w-100 btn btn-cprop" data-toggle="modal" [attr.data-target]="dataTarget" (click)="siguiente(plan.id)">Publicar ahora</button></div>
+            <div class="col-12 col-sm-10 offset-sm-1">
+              <button type="button" class="w-100 btn btn-cprop" data-toggle="modal" (click)="siguiente(plan.id)" *ngIf="!(registrado && planActual == plan.id)">
+              <span *ngIf="!registrado">Publicar ahora</span>
+              <span *ngIf="registrado && planActual != plan.id">Comprar</span>
+            </button></div>
           </div>
         </div>
       </div>

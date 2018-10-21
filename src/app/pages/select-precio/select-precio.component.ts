@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router }            from '@angular/router';// [Modificar] esto devería ser un componente
 
-import { PropiedadesService }  from '../../providers/propiedades.service';
 import { UserService }         from '../../providers/user.service';
 import { SiteService }         from '../../providers/site.service';
+
+import { PropiedadesService }  from '../../providers/propiedades.service';
+import { MercadoPagoService }  from '../../providers/mercado-pago.service';
+import { LoginModalService }   from '../../components/login-modal/login-modal.service';
+
 
 @Component({
   selector: 'app-select-precio',
@@ -11,8 +15,6 @@ import { SiteService }         from '../../providers/site.service';
   styleUrls: ['./select-precio.component.css']
 })
 export class SelectPrecioComponent implements OnInit {
-
-  dataTarget = '';
 
   planes:any = [
     {'id':0, 'class':'v0', 't':'Publicación gratis', 'st':'10 avisos gratis para siempre, no se consumen',
@@ -25,27 +27,36 @@ export class SelectPrecioComponent implements OnInit {
      'en1':'VIP 2', 'en2':'Avisos ilimitados + 10 destaques', 'en3':'$770', 'bd1':'%30 de descuento', 'bd2':'Mayor presencia' },
   ];
 
-  medios_pago:any = [];
+  medios_pago:any    = [];
+  registrado:boolean = false;
+  planActual:number  = -1;
 
   constructor(
-    private prop:   PropiedadesService,
-    private router: Router,
-    private user:   UserService,
-    private site:   SiteService
+    private prop:    PropiedadesService,
+    private router:  Router,
+    private user:    UserService,
+    private site:    SiteService,
+    private MP:      MercadoPagoService,
+    private modalLG: LoginModalService
   ) { }
 
   ngOnInit() {
-    if (!this.user.permiso('new-prop')){
-      this.dataTarget = '#loginModal';
-    } else {
-      this.dataTarget = '';
-    }
     //damos la señal de cambio de pagina para indicar al menu y al footer que reaccionen
     this.site.vista.next('select-plan');
+
+    this.registrado = this.user.logeado();
+    this.planActual = this.user.getPlanId();
   }
 
   siguiente(s){
-
+    if (!this.registrado){
+      this.modalLG.show();
+    } else { //si ya esta registrado y se selecciona comprar vamos a mercado pago
+      this.MP.comprar(s).subscribe((r) => {
+        r = r ['data'];
+      
+      });
+    }
   }
 
 }
