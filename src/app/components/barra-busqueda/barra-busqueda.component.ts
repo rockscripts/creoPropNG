@@ -86,9 +86,9 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     }
   }
 
-  zonaClick(i){     this.busqueda.zona = i; this.goToBusqueda(); }
-  tipoOPClick(i){   this.busqueda.tipoOperacion = i; this.goToBusqueda(); }
-  tipoPropClick(i){ this.busqueda.tipoPropiedad = i; this.goToBusqueda(); }
+  zonaClick(i){     /*this.busqueda.zona = i; this.goToBusqueda();*/ }
+  tipoOPClick(i){   /*this.busqueda.tipoOperacion = i; this.goToBusqueda();*/ }
+  tipoPropClick(i){ /*this.busqueda.tipoPropiedad = i; this.goToBusqueda();*/ }
 
   doBusqueda(){
     this.router.navigate(['search', this.busqueda.toRouteParams()]);

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, Router }            from '@angular/router';
 
 import { PropiedadesService } from './../../providers/propiedades.service';

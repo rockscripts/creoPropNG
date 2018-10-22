@@ -1,3 +1,12 @@
+/* .filtros-box {
+  margin-bottom: 2rem;
+  box-shadow: 1px 1px 1px black;
+}
+
+.filtros-box:last-of-type {
+  margin-bottom: 0;
+} */
+
 .accordion .card-header{
   background: #fff;
   background-color: #fff;
