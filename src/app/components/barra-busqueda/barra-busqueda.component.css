@@ -1,76 +1,164 @@
-/* .filtros-box {
+/* Applied filters */
+.applied-filters {
+  padding: 0.7rem;
+  margin: 0;
+  list-style-type: none;
+}
+.single-applied-filter {
+  background-color: #d8d8d8;
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border-radius: 5em;
+  letter-spacing: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.single-applied-filter i {
+  font-size: 1rem;
+  margin-left: 4px;
+}
+.applied-filters-footer {
+  text-align: center;
+}
+.applied-filters-footer a {
+  padding: 0.6rem;
+  display: inline-block;
+  color: #2b9ddd;
+  font-size: 0.9rem;
+}
+.applied-filters-footer a i {
+  color: #2b9ddd;
+  vertical-align: text-top;
+}
+/* END: Applied filters */
+
+/* All filters styles */
+.filters-box {
   margin-bottom: 2rem;
-  box-shadow: 1px 1px 1px black;
+  box-shadow: 0px 2px 3px #868686;
+  background: white;
 }
 
-.filtros-box:last-of-type {
+.filters-box:last-of-type {
   margin-bottom: 0;
-} */
+}
 
-.accordion .card-header{
+.filters-box-header {
+  padding: 0.7rem 1rem 0.2rem;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.filters-box-header h3 {
+  font-size: 1rem;
+}
+
+.filters-box-header i {
+  margin-left: 5px;
+}
+
+.filters-wrapper {
+  padding: 0 0.7rem 0.7rem;
+}
+/* END: All filters styles */
+
+/* Single filter styles */
+.filter-wrapper {
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.filter-wrapper:last-of-type {
+  border-bottom: none;
+}
+
+.filter-header {
+  color: #8a8a8a;
+  padding: 0.6rem 0.5rem;
+}
+
+.filter-content {
+  padding: 0 0.7rem 1rem;
+}
+/* END: Single filter styles */
+
+.accordion .card-header {
   background: #fff;
   background-color: #fff;
   font-weight: bold;
 }
 
-.accordion .card-body{
-  padding:0px;
+.accordion .card-body {
+  padding: 0px;
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
-.accordion .icon{
+.accordion .icon {
   position: absolute;
   right: 18px;
 }
 
-.accordion input{
+.accordion input {
   border: 1px solid #e5e5e5;
   border-radius: 4px;
 }
 
-.accordion .card-header{
+.accordion .card-header {
   padding-left: 0px;
   border-bottom: none;
 }
 
-.accordion .card{  border-bottom: 1px solid #ddd; box-shadow: none;}
-.accordion .card-body{  border-bottom:none;}
-
-.accordion .list-group-item{
-  color: #00acee; padding: 0px;  border: none;  font-size: 0.7rem;
+.accordion .card {
+  border-bottom: 1px solid #ddd;
+  box-shadow: none;
+}
+.accordion .card-body {
+  border-bottom: none;
 }
 
-.accordion li{cursor: pointer;}
+.accordion .list-group-item {
+  color: #00acee;
+  padding: 0px;
+  border: none;
+  font-size: 0.7rem;
+}
 
-.accordion .list-group-item .badge{
+.accordion li {
+  cursor: pointer;
+}
+
+.accordion .list-group-item .badge {
   color: #a5a5a5;
 }
 
-.accordion .list-group{
+.accordion .list-group {
   max-height: 200px;
   overflow-y: auto;
 }
 
-.money-select .col{
+.money-select .col {
   padding-top: 4px;
   padding-bottom: 4px;
   border-left: 1px solid #858585;
 }
 
-.money-select{
+.money-select {
   border: 1px solid #858585;
   color: #858585;
   font-size: 0.8em;
   border-radius: 5px;
 }
 
-.money-select .active{
+.money-select .active {
   background: #858585;
   color: #fff;
 }
 
-.mtop1{
+.mtop1 {
   margin-top: 1em;
 }
 

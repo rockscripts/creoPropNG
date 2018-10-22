@@ -113,9 +113,12 @@ body { padding-top: 3.7em;}
 
 .btn-cprop:hover{background-color: #d01;}
 
+.prop-main{
+  background-color: #fafafa;
+  padding-bottom: 3rem;
+}
+
 .prop-container{
-    background-color: #fafafa;
-    border-left: 1px solid #d9d9d9;
     padding-left: 2em;
 }
 
