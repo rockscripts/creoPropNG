@@ -69,7 +69,7 @@
         <div class="card-body">
           <!--descripción -->
           <div class="cont-b">
-            <div class="card-text card-tit" routerLink="propiedad/{{propiedad.id}}">{{propiedad.titulo}}</div>
+            <div class="card-text card-tit" [routerLink]="['/propiedad/' + propiedad.id]">{{propiedad.titulo}}</div>
             <div class="card-text">
               <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span>
               <span *ngIf="propiedad.banios != 0"><img src="assets/img/bed.svg" style="width:20px">

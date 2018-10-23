@@ -110,14 +110,27 @@
       </div>
 
       <div class="row">
-        <div class="col"> <!--selectores de ubicación -->
+        <div class="col ubicacion"> <!--selectores de ubicación -->
           <div class="row">
             
-            <div class="col-12 col-sm-2 fi" *ngFor="let zz of zona  let iz = index" >
-               <label *ngIf="!!zz[0]">{{denomina[0]}}&nbsp;</label>
-               <ng-select [clearable]="false" bindValue="id" bindLabel="nombre" [items]="zz" *ngIf="!!zz[0]" (change)="changeZonaSelect(iz)" disabled="{{(iz == 0)}}" [(ngModel)]="model.zona[iz]" name="zona{{iz}}">
-               </ng-select>
+            <div class="input-element">
+              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[1]" (change)="changeZonaSelect(1)" [(ngModel)]="selectedZonasByLevel[1]" name="zona-1" placeholder="Elegir una provincia">
+              </ng-select>
             </div>
+
+            <div class="input-element">
+              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[2]" (change)="changeZonaSelect(2)" [(ngModel)]="selectedZonasByLevel[2]" name="zona-2" placeholder="Elegir una ciudad" [disabled]="!zonasForSelect[2]">
+              </ng-select>
+           </div>
+           <div class="input-element">
+              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[3]" (change)="changeZonaSelect(3)" [(ngModel)]="selectedZonasByLevel[3]" name="zona-3" placeholder="Elegir un barrio" [disabled]="!zonasForSelect[3]">
+              </ng-select>
+           </div>
+           
+           <div class="input-element">
+              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[4]" (change)="changeZonaSelect(4)" [(ngModel)]="selectedZonasByLevel[4]" name="zona-4" placeholder="Elegir una subzona" [disabled]="!zonasForSelect[4]">
+              </ng-select>
+           </div>
           
           </div>
         </div>

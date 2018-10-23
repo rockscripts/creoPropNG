@@ -124,7 +124,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-sm-6 c-card" *ngIf="propiedad.carac_gral.length > 0">
+      <div class="col-12 col-sm-6 c-card" *ngIf="propiedad.carac_gral && propiedad.carac_gral.length > 0">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">CARACTERÍSTICAS GENERALES</h5>
@@ -139,7 +139,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-sm-6 c-card" *ngIf="propiedad.ambientes.length > 0">
+      <div class="col-12 col-sm-6 c-card" *ngIf="propiedad.ambientes && propiedad.ambientes.length > 0">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">AMBIENTES</h5>
@@ -154,7 +154,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-sm-6 c-card" *ngIf="propiedad.servicios.length > 0">
+      <div class="col-12 col-sm-6 c-card" *ngIf="propiedad.servicios && propiedad.servicios.length > 0">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">SERVICIOS</h5>
@@ -169,7 +169,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-sm-6 c-card" *ngIf="propiedad.amenities.length > 0">
+      <div class="col-12 col-sm-6 c-card" *ngIf="propiedad.amenities && propiedad.amenities.length > 0">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">AMENITIES</h5>

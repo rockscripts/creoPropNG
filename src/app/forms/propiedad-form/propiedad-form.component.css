@@ -112,3 +112,7 @@ hr {
   margin-right: 7px;
   margin-top: 9px;
 }
+
+.ubicacion .input-element {
+  flex: 1;
+}
