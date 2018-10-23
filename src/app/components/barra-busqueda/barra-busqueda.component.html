@@ -18,7 +18,7 @@
   <div class="accordion filters-wrapper" id="filtersAccordion">
     <form>
       <!-- ubicacion:provincia -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="!busqueda.ubicacion_padre || !ubicaciones_hijas.length">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion" aria-expanded="false"
           aria-controls="collapse-ubicacion">
           Ubicación <i class="fa icon fa-sort-down"></i>
@@ -26,31 +26,44 @@
         <div id="collapse-ubicacion" class="collapse filter-collapse" aria-labelledby="heading-ubicacion" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
-              <li *ngFor="let ub of ubicaciones.Argentina" class="list-group-item">
-                <div (click)="toggleUbicacionList(ub.id)" class="d-flex justify-content-between">
+              <li *ngFor="let ub of ubicaciones_padres.Argentina" class="list-group-item">
+                <div (click)="busqueda.ubicacion_padre = ub.id; doBusqueda();" class="d-flex justify-content-between">
                   <span>{{ub.nombre}}</span>
                   <span class="badge">({{ub.count}})</span>
                 </div>
-                <ul class="ubicacion-sublevel" *ngIf="ub.children && ub.children.length" [hidden]="showing_ubicacion_list != ub.id">
-                  <li *ngFor="let ub_children of ub.children" class="list-group-item d-flex justify-content-between">
-                    <div class="left">
-                      <input id="ubicacion-{{ub_children.id}}-check" type="checkbox" [checked]="busqueda.ubicacion[ub_children.id]"
-                        (change)="ubicacion_is_modified = true; busqueda.ubicacion[ub_children.id] = !busqueda.ubicacion[ub_children.id];">
-                      <label for="ubicacion-{{ub_children.id}}-check">{{ub_children.nombre}}</label>
-                    </div>
-                    <span class="badge">({{ub_children.count}})</span>
-                  </li>
-                </ul>
               </li>
             </ul>
-
-            <div class="w-100">
-              <button class="w-100 btn btn-sm btn-cprop mtop1" [ngClass]="{disabled: !ubicacion_is_modified}" (click)="doBusqueda()">APLICAR</button>
-            </div>
           </div>
         </div>
       </div>
       <!-- END:ubicacion:provincia -->
+
+      <!-- ubicacion:sub-provincia -->
+      <div class="filter-wrapper" *ngIf="ubicaciones_hijas.length">
+          <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion-subprovincia" aria-expanded="false"
+            aria-controls="collapse-ubicacion-subprovincia">
+            Ubicación <i class="fa icon fa-sort-down"></i>
+          </div>
+          <div id="collapse-ubicacion-subprovincia" class="collapse filter-collapse" aria-labelledby="heading-ubicacion-subprovincia" data-parent="#filtersAccordion">
+            <div class="filter-content">
+              <ul class="list-group ubicacion-sublevel">
+                <li *ngFor="let ub_children of ubicaciones_hijas" class="list-group-item d-flex justify-content-between">
+                  <div class="left">
+                    <input id="ubicacion-{{ub_children.id}}-check" type="checkbox" [checked]="busqueda.ubicacion[ub_children.id]"
+                      (change)="ubicacion_is_modified = true; busqueda.ubicacion[ub_children.id] = !busqueda.ubicacion[ub_children.id];">
+                    <label for="ubicacion-{{ub_children.id}}-check">{{ub_children.nombre}}</label>
+                  </div>
+                  <span class="badge">({{ub_children.count}})</span>
+                </li>
+              </ul>
+  
+              <div class="w-100">
+                <button class="w-100 btn btn-sm btn-cprop mtop1" [hidden]="!ubicacion_is_modified" (click)="doBusqueda()">APLICAR</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END:ubicacion:sub-provincia -->
 
       <!-- tipo op -->
       <div class="filter-wrapper">

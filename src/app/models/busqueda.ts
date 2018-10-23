@@ -3,6 +3,7 @@ import { isNumber } from "util";
 
 export class Busqueda {
   public ubicacion:       object = {};
+  public ubicacion_padre: number = -1;
   public termDireccion:   string = '';
   public tipoOperacion:   number = -1;
   public tipoPropiedad:   number = -1;
