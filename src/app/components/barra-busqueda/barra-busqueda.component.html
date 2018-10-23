@@ -1,24 +1,26 @@
-<div class="filters-box">
+<div class="filters-box" *ngIf="appliedFilters.length > 0">
     <div class="filters-box-header">
       <h3><i class="fa fa-search"></i> FILTROS APLICADOS</h3>
     </div>
     <div class="applied-filters-wrapper">
       <ul class="applied-filters">
-        <li class="single-applied-filter"><i class="fa fa-times-circle float-right"></i>Buenos Aires Buenos Aires (fuera de GBA)</li>
+        <li class="single-applied-filter" *ngFor="let filter of appliedFilters">
+          <i class="fa fa-times-circle float-right" (click)="removeFilter(filter)"></i>{{filter.label}}
+        </li>
       </ul>
       <div class="applied-filters-footer">
-        <a><i class="fa fa-trash"></i> ELIMINAR FILTROS</a>
+        <a [routerLink]="['/']"><i class="fa fa-trash"></i> ELIMINAR FILTROS</a>
       </div>
     </div>
 </div>
-<div class="filters-box">
+<div class="filters-box" *ngIf="searchConfig">
   <div class="filters-box-header">
     <h3><i class="fa fa-filter"></i> FILTROS</h3>
   </div>
   <div class="accordion filters-wrapper" id="filtersAccordion">
     <form>
       <!-- ubicacion:provincia -->
-      <div class="filter-wrapper" *ngIf="!busqueda.ubicacion_padre || !ubicaciones_hijas.length">
+      <div class="filter-wrapper" *ngIf="!busqueda.ubicacion_padre || !searchConfig.ubicaciones_hijas">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion" aria-expanded="false"
           aria-controls="collapse-ubicacion">
           Ubicación <i class="fa icon fa-sort-down"></i>
@@ -26,9 +28,9 @@
         <div id="collapse-ubicacion" class="collapse filter-collapse" aria-labelledby="heading-ubicacion" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
-              <li *ngFor="let ub of ubicaciones_padres.Argentina" class="list-group-item">
-                <div (click)="busqueda.ubicacion_padre = ub.id; doBusqueda();" class="d-flex justify-content-between">
-                  <span>{{ub.nombre}}</span>
+              <li *ngFor="let ub of searchConfig.ubicaciones_padres.Argentina" class="list-group-item">
+                <div (click)="addFilter({ubicacion_padre: ub.id})" class="d-flex justify-content-between">
+                  <span>{{ub.name}}</span>
                   <span class="badge">({{ub.count}})</span>
                 </div>
               </li>
@@ -39,7 +41,7 @@
       <!-- END:ubicacion:provincia -->
 
       <!-- ubicacion:sub-provincia -->
-      <div class="filter-wrapper" *ngIf="ubicaciones_hijas.length">
+      <div class="filter-wrapper" *ngIf="searchConfig.ubicaciones_hijas">
           <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion-subprovincia" aria-expanded="false"
             aria-controls="collapse-ubicacion-subprovincia">
             Ubicación <i class="fa icon fa-sort-down"></i>
@@ -47,11 +49,11 @@
           <div id="collapse-ubicacion-subprovincia" class="collapse filter-collapse" aria-labelledby="heading-ubicacion-subprovincia" data-parent="#filtersAccordion">
             <div class="filter-content">
               <ul class="list-group ubicacion-sublevel">
-                <li *ngFor="let ub_children of ubicaciones_hijas" class="list-group-item d-flex justify-content-between">
+                <li *ngFor="let ub_children of searchConfig.ubicaciones_hijas" class="list-group-item d-flex justify-content-between">
                   <div class="left">
                     <input id="ubicacion-{{ub_children.id}}-check" type="checkbox" [checked]="busqueda.ubicacion[ub_children.id]"
                       (change)="ubicacion_is_modified = true; busqueda.ubicacion[ub_children.id] = !busqueda.ubicacion[ub_children.id];">
-                    <label for="ubicacion-{{ub_children.id}}-check">{{ub_children.nombre}}</label>
+                    <label for="ubicacion-{{ub_children.id}}-check">{{ub_children.name}}</label>
                   </div>
                   <span class="badge">({{ub_children.count}})</span>
                 </li>
@@ -74,9 +76,9 @@
         <div id="collapse-tipo-operacion" class="collapse filter-collapse" aria-labelledby="heading-tipo-operacion" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
-              <li (click)="tipoOPClick(op.id)" *ngFor="let op of tipo_operacion" class="list-group-item d-flex justify-content-between align-items-center">
+              <li (click)="addFilter({tipoOperacion: op.value})" *ngFor="let op of searchConfig.tipoOperacion" class="list-group-item d-flex justify-content-between align-items-center">
                 {{op.name}}
-                <span class="badge">({{op.cant}})</span>
+                <span class="badge">({{op.count}})</span>
               </li>
             </ul>
           </div>
@@ -93,9 +95,9 @@
         <div id="collapse-tipo-propiedad" class="collapse filter-collapse" aria-labelledby="heading-tipo-propiedad" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
-              <li (click)="tipoPropClick(tp.id)" *ngFor="let tp of tipo_propiedad" class="list-group-item d-flex justify-content-between align-items-center">
+              <li (click)="addFilter({tipoPropiedad: tp.value})" *ngFor="let tp of searchConfig.tipoPropiedad" class="list-group-item d-flex justify-content-between align-items-center">
                 {{tp.name}}
-                <span class="badge">({{tp.cant}})</span>
+                <span class="badge">({{tp.count}})</span>
               </li>
             </ul>
           </div>
@@ -107,7 +109,7 @@
       <div class="filter-wrapper">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-precio" aria-expanded="false"
           aria-controls="collapse-precio">
-          Precio <i class="fa icon fa-sort-down"></i>
+          *Precio <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-precio" class="collapse filter-collapse" aria-labelledby="heading-precio" data-parent="#filtersAccordion">
           <div class="filter-content">
@@ -123,13 +125,13 @@
               <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
               </div>
-              <input type="text" class="form-control" id="pre1" placeholder="Desde">
+              <input type="text" class="form-control" id="precio-desde" placeholder="Desde">
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
               </div>
-              <input type="text" class="form-control" id="pre2" placeholder="Hasta">
+              <input type="text" class="form-control" id="precio-hasta" placeholder="Hasta">
             </div>
 
             <div class="w-100">
@@ -144,7 +146,7 @@
       <div class="filter-wrapper">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-expensas" aria-expanded="false"
           aria-controls="collapse-expensas">
-          Expensas <i class="fa icon fa-sort-down"></i>
+          *Expensas <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-expensas" class="collapse filter-collapse" aria-labelledby="heading-expensas" data-parent="#filtersAccordion">
           <div class="filter-content">
@@ -178,9 +180,9 @@
         <div id="collapse-ambientes" class="collapse filter-collapse" aria-labelledby="heading-ambientes" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
-              <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of ambientes" class="list-group-item d-flex justify-content-between align-items-center">
-                {{tp.name}}
-                <span class="badge">({{tp.cant}})</span>
+              <li (click)="addFilter({ambientes: amb.value})" *ngFor="let amb of searchConfig.ambientes" class="list-group-item d-flex justify-content-between align-items-center">
+                {{amb.name}}
+                <span class="badge">({{amb.count}})</span>
               </li>
             </ul>
           </div>
@@ -197,9 +199,9 @@
         <div id="collapse-dormitorios" class="collapse filter-collapse" aria-labelledby="heading-dormitorios" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
-              <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of dormitorios" class="list-group-item d-flex justify-content-between align-items-center">
-                {{tp.name}}
-                <span class="badge">({{tp.cant}})</span>
+              <li (click)="addFilter({dormitorios: dorm.value})" *ngFor="let dorm of searchConfig.dormitorios" class="list-group-item d-flex justify-content-between align-items-center">
+                {{dorm.name}}
+                <span class="badge">({{dorm.count}})</span>
               </li>
             </ul>
           </div>
@@ -216,9 +218,9 @@
         <div id="collapse-banios" class="collapse filter-collapse" aria-labelledby="heading-banios" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
-              <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of cant_banios" class="list-group-item d-flex justify-content-between align-items-center">
-                {{tp.name}}
-                <span class="badge">({{tp.cant}})</span>
+              <li (click)="addFilter({cantidadBanios: cantidadBanios.value})" *ngFor="let cantidadBanios of searchConfig.cantidadBanios" class="list-group-item d-flex justify-content-between align-items-center">
+                {{cantidadBanios.name}}
+                <span class="badge">({{cantidadBanios.count}})</span>
               </li>
             </ul>
           </div>
@@ -235,9 +237,9 @@
         <div id="collapse-cocheras" class="collapse filter-collapse" aria-labelledby="heading-cocheras" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
-              <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of cocheras" class="list-group-item d-flex justify-content-between align-items-center">
-                {{tp.name}}
-                <span class="badge">({{tp.cant}})</span>
+              <li (click)="addFilter({cocheras: cochera.value})" *ngFor="let cochera of searchConfig.cocheras" class="list-group-item d-flex justify-content-between align-items-center">
+                {{cochera.name}}
+                <span class="badge">({{cochera.count}})</span>
               </li>
             </ul>
           </div>
@@ -249,7 +251,7 @@
       <div class="filter-wrapper">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-superficie" aria-expanded="false"
           aria-controls="collapse-superficie">
-          Superficie <i class="fa icon fa-sort-down"></i>
+          *Superficie <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-superficie" class="collapse filter-collapse" aria-labelledby="heading-superficie" data-parent="#filtersAccordion">
           <div class="filter-content">
@@ -287,7 +289,7 @@
       <div class="filter-wrapper">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipos-ambientes"
           aria-expanded="false" aria-controls="collapse-tipos-ambientes">
-          Tipos de Ambientes <i class="fa icon fa-sort-down"></i>
+          *Tipos de Ambientes <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-tipos-ambientes" class="collapse filter-collapse" aria-labelledby="heading-tipos-ambientes" data-parent="#filtersAccordion">
           <div class="filter-content">
@@ -296,8 +298,8 @@
             </div>
 
             <ul class="list-group list-group-flush">
-              <li (click)="goToBusqueda(ub.name)" *ngFor="let ub of tipos_ambientes" class="list-group-item d-flex justify-content-between align-items-center">
-                <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.cant}})</span>
+              <li (click)="addFilter({cocheras: ub.value})" *ngFor="let ub of searchConfig.tipoAmbiente" class="list-group-item d-flex justify-content-between align-items-center">
+                <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.count}})</span>
               </li>
             </ul>
 
@@ -313,7 +315,7 @@
       <div class="filter-wrapper">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-servicios" aria-expanded="false"
           aria-controls="collapse-servicios">
-          Servicios <i class="fa icon fa-sort-down"></i>
+          *Servicios <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-servicios" class="collapse filter-collapse" aria-labelledby="heading-servicios" data-parent="#filtersAccordion">
           <div class="filter-content">
@@ -322,8 +324,8 @@
             </div>
 
             <ul class="list-group list-group-flush">
-              <li (click)="goToBusqueda(ub.name)" *ngFor="let ub of servicios" class="list-group-item d-flex justify-content-between align-items-center">
-                <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.cant}})</span>
+              <li (click)="goToBusqueda(ub.name)" *ngFor="let ub of searchConfig.servicios" class="list-group-item d-flex justify-content-between align-items-center">
+                <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.count}})</span>
               </li>
             </ul>
 
@@ -339,7 +341,7 @@
       <div class="filter-wrapper">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-generales" aria-expanded="false"
           aria-controls="collapse-generales">
-          Generales <i class="fa icon fa-sort-down"></i>
+          *Generales <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-generales" class="collapse filter-collapse" aria-labelledby="heading-generales" data-parent="#filtersAccordion">
           <div class="filter-content">
@@ -348,8 +350,8 @@
             </div>
 
             <ul class="list-group list-group-flush">
-              <li (click)="goToBusqueda(ub.name)" *ngFor="let ub of generales" class="list-group-item d-flex justify-content-between align-items-center">
-                <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.cant}})</span>
+              <li (click)="goToBusqueda(ub.name)" *ngFor="let ub of searchConfig.generales" class="list-group-item d-flex justify-content-between align-items-center">
+                <input type="checkbox" value="">{{ub.name}} <span class="badge">({{ub.count}})</span>
               </li>
             </ul>
 
@@ -370,9 +372,9 @@
         <div id="collapse-tipo-anunciante" class="collapse filter-collapse" aria-labelledby="heading-tipo-anunciante" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
-              <li (click)="goToBusqueda(tp.name)" *ngFor="let tp of tanunciante" class="list-group-item d-flex justify-content-between align-items-center">
-                {{tp.name}}
-                <span class="badge">({{tp.cant}})</span>
+              <li (click)="addFilter({tipoAnunciante: ta.value})" *ngFor="let ta of searchConfig.tipoAnunciante" class="list-group-item d-flex justify-content-between align-items-center">
+                {{ta.name}}
+                <span class="badge">({{ta.count}})</span>
               </li>
             </ul>
           </div>

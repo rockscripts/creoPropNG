@@ -6,39 +6,20 @@ import { ZonasService } from "../../providers/zonas.service";
 import { Busqueda } from "./../../models/busqueda";
 import { Observable, Subject } from "rxjs";
 
-
 @Component({
   selector: "app-barra-busqueda",
   templateUrl: "./barra-busqueda.component.html",
   styleUrls: ["./barra-busqueda.component.css"]
 })
 export class BarraBusquedaComponent implements OnInit, OnDestroy {
-  ubicaciones_padres: any = {};
-  ubicaciones_hijas: any = [];
-  tipo_operacion: any = [];
-  tipo_propiedad: any = [];
-  cant_banios: any = [];
-  ambientes: any = [];
-  cocheras: any = [];
-  dormitorios: any = [];
-  antiguedad: any = [];
-  tipos_ambientes: any = [];
-  servicios: any = [];
-  generales: any = [];
-  tanunciante: any = [];
-
-  provincias: any = [];
-  barrios: any = [];
-
-  showing_ubicacion_list: string;
+  public searchConfig: any;
 
   public busqueda = new Busqueda();
   public ubicacion_is_modified = false;
-  
-  private subjectUbicacionesPadres: any = new Subject();
+
+  public appliedFilters: any = [];
 
   private sub: any;
-  private subUbicacionesPadres: any;
 
   constructor(
     private propiedadesService: PropiedadesService,
@@ -47,84 +28,204 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  subscribeUbicacionesPadres() {
-    this.subUbicacionesPadres = this.subjectUbicacionesPadres.subscribe(() => {
-      if (this.busqueda.ubicacion_padre) {
-        for (const ub of this.ubicaciones_padres.Argentina) {
-          if (ub.id === this.busqueda.ubicacion_padre && ub.children) {
-            this.ubicaciones_hijas = ub.children;
-          }
-        }
-      }
-    });
-  }
-
   ngOnInit() {
-    this.loadSearchConfig();
-
     this.sub = this.activatedRoute.params.subscribe(params => {
-      this.ubicacion_is_modified = false;
-      this.busqueda.fromRouteParams(params);
+      this.loadSearchConfig()
+        .then(() => {
+          this.ubicacion_is_modified = false;
+          this.busqueda.fromRouteParams(params);
 
-      if ("undefined" === typeof this.ubicaciones_padres.Argentina) {
-        this.subscribeUbicacionesPadres();
-      } else {
-        this.subjectUbicacionesPadres.next();
-      }
+          if (this.busqueda.ubicacion_padre) {
+            for (const ub of this.searchConfig.ubicaciones_padres.Argentina) {
+              if (ub.value === this.busqueda.ubicacion_padre && ub.children) {
+                this.searchConfig.ubicaciones_hijas = ub.children;
+              }
+            }
+          }
 
+          this.getAppliedFilters();
+        })
+        .catch();
     });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.subUbicacionesPadres.unsubscribe();
   }
 
   loadSearchConfig() {
-    this.propiedadesService.getSearchConfig().subscribe(r => {
-      r = r["data"];
-      this.tipo_operacion = r["tipo_operacion"];
-      this.tipo_propiedad = r["tipo_propiedad"];
-      this.cant_banios = r["cant_banios"];
-      this.ambientes = r["ambientes"];
-      this.cocheras = r["cocheras"];
-      this.dormitorios = r["dormitorios"];
-      this.antiguedad = r["antiguedad"];
-      this.tipos_ambientes = r["tipos_ambientes"];
-      this.servicios = r["servicios"];
-      this.generales = r["generales"];
-      this.tanunciante = r["tanunciante"];
+    return new Promise((resolve, reject) => {
+      if (!this.searchConfig) {
+        this.propiedadesService.getSearchConfig().subscribe(
+          response => {
+            const data = response["data"];
+            this.searchConfig = {
+              tipoOperacion: data["tipoOperacion"],
+              tipoPropiedad: data["tipoPropiedad"],
+              cantidadBanios: data["cantidadBanios"],
+              ambientes: data["ambientes"],
+              cocheras: data["cocheras"],
+              dormitorios: data["dormitorios"],
+              tipoAmbiente: data["tipoAmbiente"],
+              servicios: data["servicios"],
+              generales: data["generales"],
+              tipoAnunciante: data["tipoAnunciante"],
+              ubicaciones_padres: {
+                Argentina: data["ubicaciones"][0].children
+              }
+            };
 
-      this.ubicaciones_padres = {
-        Argentina: r["ubicaciones_busqueda"][0].children
-      };
-      
-      if ("undefined" === typeof this.subUbicacionesPadres) {
-        this.subscribeUbicacionesPadres();
+            resolve();
+          },
+          err => {
+            reject(err);
+          }
+        );
+      } else {
+        resolve();
       }
-      this.subjectUbicacionesPadres.next();
     });
-  }
-
-  toggleUbicacionList(ub_id) {
-    if (ub_id == this.showing_ubicacion_list) {
-      this.showing_ubicacion_list = null;
-    } else {
-      this.showing_ubicacion_list = ub_id;
-    }
-  }
-
-  zonaClick(i) {
-    /*this.busqueda.zona = i; this.goToBusqueda();*/
-  }
-  tipoOPClick(i) {
-    /*this.busqueda.tipoOperacion = i; this.goToBusqueda();*/
-  }
-  tipoPropClick(i) {
-    /*this.busqueda.tipoPropiedad = i; this.goToBusqueda();*/
   }
 
   doBusqueda() {
     this.router.navigate(["search", this.busqueda.toRouteParams()]);
+  }
+
+  addFilter(filters) {
+    for (const f in filters) {
+      if (!filters.hasOwnProperty(f)) {
+        continue;
+      }
+      this.busqueda[f] = filters[f];
+    }
+    this.doBusqueda();
+  }
+
+  removeFilter(filter) {
+    if (Array.isArray(this.busqueda[filter.key])) {
+      for (const option in this.busqueda[filter.key]) {
+        if (
+          this.busqueda[filter.key].hasOwnProperty(option) &&
+          filter.value === option
+        ) {
+          this.busqueda[filter.key][option] = false;
+        }
+      }
+    } else {
+      this.busqueda[filter.key] = false;
+    }
+    this.doBusqueda();
+  }
+
+  getAppliedFilters() {
+    const filters = [];
+    for (const paramName of Object.keys(this.busqueda)) {
+      if (
+        !this.busqueda.hasOwnProperty(paramName) ||
+        !this.busqueda[paramName]
+      ) {
+        continue;
+      }
+      switch (paramName) {
+        case "tiposAmbientes":
+        case "servicios":
+        case "generales":
+        case "ubicacion": //ToDo
+          for (const ub of this.searchConfig.ubicaciones_hijas) {
+            if (this.busqueda.ubicacion[ub.id]) {
+              filters.push({
+                label: ub.name,
+                key: paramName,
+                value: ub.id
+              });
+            }
+          }
+          break;
+        case "ubicacion_padre":
+          for (const ub of this.searchConfig.ubicaciones_padres.Argentina) {
+            if (ub.id === this.busqueda[paramName]) {
+              filters.push({
+                label: ub.name,
+                key: paramName,
+                value: this.busqueda[paramName]
+              });
+            }
+          }
+          break;
+        case "precio": //ToDo
+          for (const ub of this.searchConfig.ubicaciones_padres.Argentina) {
+            if (ub.value === this.busqueda[paramName]) {
+              filters.push({
+                label: ub.name,
+                key: paramName,
+                value: this.busqueda[paramName]
+              });
+            }
+          }
+          break;
+        case "expensas": //ToDo
+          for (const ub of this.searchConfig.ubicaciones_padres.Argentina) {
+            if (ub.value === this.busqueda[paramName]) {
+              filters.push({
+                label: ub.name,
+                key: paramName,
+                value: this.busqueda[paramName]
+              });
+            }
+          }
+          break;
+        case "superficie":
+          for (const ub of this.searchConfig.ubicaciones_padres.Argentina) {
+            if (ub.value === this.busqueda[paramName]) {
+              filters.push({
+                label: ub.name,
+                key: paramName,
+                value: this.busqueda[paramName]
+              });
+            }
+          }
+          break;
+        case "tipoOperacion":
+        case "tipoPropiedad":
+        case "tipoAnunciante":
+          for (const option of this.searchConfig[paramName]) {
+            if (option.value === this.busqueda[paramName]) {
+              filters.push({
+                label: option.name,
+                key: paramName,
+                value: this.busqueda[paramName]
+              });
+            }
+          }
+          break;
+        case "ambientes":
+        case "dormitorios":
+        case "cocheras":
+          for (const option of this.searchConfig[paramName]) {
+            if (option.value === this.busqueda[paramName]) {
+              const capitalizedName =
+                paramName.charAt(0).toUpperCase() + paramName.slice(1);
+              filters.push({
+                label: capitalizedName + ": " + this.busqueda[paramName],
+                key: paramName,
+                value: this.busqueda[paramName]
+              });
+            }
+          }
+          break;
+        case "banios":
+          for (const option of this.searchConfig[paramName]) {
+            if (option.value === this.busqueda[paramName]) {
+              filters.push({
+                label: "Baños: " + this.busqueda[paramName],
+                key: paramName,
+                value: this.busqueda[paramName]
+              });
+            }
+          }
+          break;
+      }
+    }
+    this.appliedFilters = filters;
   }
 }
