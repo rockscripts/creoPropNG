@@ -119,8 +119,8 @@
 
             <div class="col-12 money-select">
               <div class="row">
-                <div class="col text-center" [ngClass]="{active: busqueda.tipoMoneda !== 'dolares'}" (click)="busqueda.tipoMoneda = 'pesos'">PESOS</div>
-                <div class="col text-center" [ngClass]="{active: busqueda.tipoMoneda === 'dolares'}" (click)="busqueda.tipoMoneda = 'dolares'">DÓLARES</div>
+                <div class="col text-center" [ngClass]="{active: busqueda.tipoMoneda !== 'U$D'}" (click)="busqueda.tipoMoneda = 'AR$'">PESOS</div>
+                <div class="col text-center" [ngClass]="{active: busqueda.tipoMoneda === 'U$D'}" (click)="busqueda.tipoMoneda = 'U$D'">DÓLARES</div>
               </div>
             </div>
 

@@ -91,13 +91,26 @@ export class Busqueda {
         continue;
       }
       switch (p) {
+        case "servicios":
+        case "generales":
+        case "tipoAmbiente":
         case "ubicacion":
-          params[p] = this.getMultiParam("ubicacion");
+          params[p] = this.getMultiParam(p);
           break;
         default:
           params[p] = this[p];
       }
     }
+
+    if (params["ubicacion_padre"]) {
+      if (Array.isArray(params["ubicacion"])) {
+        params["ubicacion"].push(params["ubicacion_padre"]);
+      } else {
+        params["ubicacion"] = [params["ubicacion_padre"]];
+      }
+      delete params["ubicacion_padre"];
+    }
+
     return JSON.stringify(params);
   }
 }
