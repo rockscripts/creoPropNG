@@ -9,7 +9,7 @@
       </li>
     </ul>
     <div class="applied-filters-footer">
-      <a [routerLink]="['/']"><i class="fa fa-trash"></i> ELIMINAR FILTROS</a>
+      <a [routerLink]="[searchPath]" [queryParams]="{}"><i class="fa fa-trash"></i> ELIMINAR FILTROS</a>
     </div>
   </div>
 </div>
@@ -20,7 +20,7 @@
   <div class="accordion filters-wrapper" id="filtersAccordion">
     <form>
       <!-- ubicacion:provincia -->
-      <div class="filter-wrapper" *ngIf="!busqueda.ubicacion_padre || !searchConfig.ubicaciones_hijas">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_padre')===-1 && (!busqueda.ubicacion_padre || !searchConfig.ubicaciones_hijas)">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion"
           aria-expanded="false" aria-controls="collapse-ubicacion">
           Ubicación <i class="fa icon fa-sort-down"></i>
@@ -41,7 +41,7 @@
       <!-- END:ubicacion:provincia -->
 
       <!-- ubicacion:sub-provincia -->
-      <div class="filter-wrapper" *ngIf="searchConfig.ubicaciones_hijas">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_hijas')===-1 && searchConfig.ubicaciones_hijas">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion-subprovincia"
           aria-expanded="false" aria-controls="collapse-ubicacion-subprovincia">
           Ubicación <i class="fa icon fa-sort-down"></i>
@@ -69,7 +69,7 @@
       <!-- END:ubicacion:sub-provincia -->
 
       <!-- tipo op -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('tipoOperacion')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipo-operacion"
           aria-expanded="false" aria-controls="collapse-tipo-operacion">
           Tipo de operación <i class="fa icon fa-sort-down"></i>
@@ -89,7 +89,7 @@
       <!-- END:tipo op -->
 
       <!-- tipo prop -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('tipoPropiedad')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipo-propiedad"
           aria-expanded="false" aria-controls="collapse-tipo-propiedad">
           Tipo de propiedad <i class="fa icon fa-sort-down"></i>
@@ -109,7 +109,7 @@
       <!-- END:tipo prop -->
 
       <!-- precio -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('precio')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-precio"
           aria-expanded="false" aria-controls="collapse-precio">
           Precio <i class="fa icon fa-sort-down"></i>
@@ -148,7 +148,7 @@
       <!-- END:precio -->
 
       <!-- expensas -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('expensas')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-expensas"
           aria-expanded="false" aria-controls="collapse-expensas">
           Expensas <i class="fa icon fa-sort-down"></i>
@@ -179,7 +179,7 @@
       <!-- END:expensas -->
 
       <!-- ambientes -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ambientes')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ambientes"
           aria-expanded="false" aria-controls="collapse-ambientes">
           Ambientes <i class="fa icon fa-sort-down"></i>
@@ -198,7 +198,7 @@
       <!-- END:ambientes -->
 
       <!-- dormitorios -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('dormitorios')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-dormitorios"
           aria-expanded="false" aria-controls="collapse-dormitorios">
           Dormitorios <i class="fa icon fa-sort-down"></i>
@@ -218,7 +218,7 @@
       <!-- END:ambientes -->
 
       <!-- banios -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('cantidadBanios')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-banios"
           aria-expanded="false" aria-controls="collapse-banios">
           Baños <i class="fa icon fa-sort-down"></i>
@@ -238,7 +238,7 @@
       <!-- END:banios -->
 
       <!-- cocheras -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('cocheras')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-cocheras"
           aria-expanded="false" aria-controls="collapse-cocheras">
           Cocheras <i class="fa icon fa-sort-down"></i>
@@ -257,7 +257,7 @@
       <!-- END:cocheras -->
 
       <!-- superficie -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('superficie')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-superficie"
           aria-expanded="false" aria-controls="collapse-superficie">
           Superficie <i class="fa icon fa-sort-down"></i>
@@ -297,7 +297,7 @@
       <!-- END:superficie -->
 
       <!-- tipos ambientes -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('tipoAmbiente')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipos-ambientes"
           aria-expanded="false" aria-controls="collapse-tipos-ambientes">
           Tipos de Ambientes <i class="fa icon fa-sort-down"></i>
@@ -325,7 +325,7 @@
       <!-- END:tipos ambientes -->
 
       <!-- servicios -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('servicios')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-servicios"
           aria-expanded="false" aria-controls="collapse-servicios">
           Servicios <i class="fa icon fa-sort-down"></i>
@@ -352,7 +352,7 @@
       <!-- END:servicios -->
 
       <!-- generales -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('generales')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-generales"
           aria-expanded="false" aria-controls="collapse-generales">
           Generales <i class="fa icon fa-sort-down"></i>
@@ -379,7 +379,7 @@
       <!-- END:generales -->
 
       <!-- tipo anunciante -->
-      <div class="filter-wrapper">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('tipoAnunciante')===-1">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipo-anunciante"
           aria-expanded="false" aria-controls="collapse-tipo-anunciante">
           Tipo de anunciante <i class="fa icon fa-sort-down"></i>

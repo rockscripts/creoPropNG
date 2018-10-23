@@ -19,6 +19,7 @@ export class MainMenuComponent implements OnInit {
     private router:     Router
   ){}
 
+  hideSearchBox = false;
   registrado = false;
   navbar_red = true;
 
@@ -39,6 +40,11 @@ export class MainMenuComponent implements OnInit {
 
     this.router.events.subscribe((e) => {
       if(e instanceof RouterEvent){
+        if (e.url.indexOf('/mi-cuenta') === 0){
+          this.hideSearchBox = true;
+        } else {
+          this.hideSearchBox = false;
+        }
         if (e.url == '/select-plan' || e.url == '/update-plan'){
           this.navbar_red = false;
         } else {

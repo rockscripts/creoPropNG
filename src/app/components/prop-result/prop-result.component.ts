@@ -11,9 +11,10 @@ import { Busqueda }           from './../../models/busqueda';
   styleUrls: ['./prop-result.component.css']
 })
 export class PropResultComponent implements OnInit, OnDestroy {
-  @Input() busqueda:Busqueda;
+  @Input() propietario:any;
   @Input() mode:string       = '';
 
+  busqueda:Busqueda;
   propiedades:any = [];
 
   cant_prop:number     = 0;
@@ -33,6 +34,11 @@ export class PropResultComponent implements OnInit, OnDestroy {
       this.propiedades = [];
       this.busqueda = new Busqueda();
       this.busqueda.fromRouteParams(params);
+
+      if (this.propietario) {
+        this.busqueda.propietario_id = this.propietario;
+      }
+      
       this.pedirBusqueda();
     });
 

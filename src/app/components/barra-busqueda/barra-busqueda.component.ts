@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { PropiedadesService } from "./../../providers/propiedades.service";
@@ -12,9 +12,16 @@ import { Observable, Subject } from "rxjs";
   styleUrls: ["./barra-busqueda.component.css"]
 })
 export class BarraBusquedaComponent implements OnInit, OnDestroy {
+  @Input()
+  hideFilter: any = [];
+  @Input()
+  searchPath = "/search";
+  @Input()
+  propietario: any;
+
   public searchConfig: any;
 
-  public busqueda = new Busqueda();
+  public busqueda: Busqueda;
   public is_modified = {};
 
   public listRangeParams: any = ["precio", "expensas", "superficie"];
@@ -42,7 +49,12 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
       this.loadSearchConfig()
         .then(() => {
           this.is_modified = {};
+          this.busqueda = new Busqueda();
           this.busqueda.fromRouteParams(params);
+
+          if (this.propietario) {
+            this.busqueda.propietario_id = this.propietario;
+          }
 
           for (const paramName of this.listRangeParams) {
             if (this.busqueda[paramName]) {
@@ -110,7 +122,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   }
 
   doBusqueda() {
-    this.router.navigate(["search", this.busqueda.toRouteParams()]);
+    this.router.navigate([this.searchPath, this.busqueda.toRouteParams()]);
   }
 
   onMultiParamChange(paramName, value) {

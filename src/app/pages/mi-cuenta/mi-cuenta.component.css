@@ -69,15 +69,16 @@ a.active {
   padding: 0;
   margin-right: 40px;
   border: none;
+  color: #808183;
+  font-weight: normal;
 }
 
 .header .nav-link.active {
+  font-weight: bold;
   color: black !important;
   background-color: transparent;
 }
 
 .search-toolbar-container {
   padding: 5px 15px 0;
-  background: white;
-  margin: 30px 15px 15px;
 }

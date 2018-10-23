@@ -10,15 +10,15 @@ import { UserService }       from './../../providers/user.service';
   styleUrls: ['./mi-cuenta.component.css']
 })
 export class MiCuentaComponent implements OnInit {
-
-  busqueda:Busqueda = new Busqueda();
+  
+  public propietario_id: any;
 
   constructor(
   	private user: UserService
   ) { }
 
   ngOnInit() {
-  	this.busqueda.propietario_id = this.user.getId();
+  	this.propietario_id = this.user.getId();
   }
 
 }

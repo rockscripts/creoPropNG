@@ -76,6 +76,7 @@
 }
 
 .filter-header {
+  position: relative;
   color: #8a8a8a;
   padding: 0.6rem 0.5rem;
   cursor: pointer;

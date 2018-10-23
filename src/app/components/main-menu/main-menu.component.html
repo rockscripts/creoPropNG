@@ -10,7 +10,7 @@
 
   <div class="collapse navbar-collapse row" id="navbarSupportedContent" *ngIf="navbar_red">
     <form class="my-2 my-lg-0 col-sm-4">
-      <div class="input-group add-on">
+      <div class="input-group add-on" [hidden]="hideSearchBox">
       <input class="form-control" placeholder="Buscar por palabra clave" name="srch-term" id="srch-term" type="text" >
       <div class="btn-search"><i class="fa fa-search"></i></div>
     </div>
