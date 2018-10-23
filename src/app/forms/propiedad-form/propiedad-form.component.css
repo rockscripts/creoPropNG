@@ -26,10 +26,16 @@ label {
 .t-ck {
   font-size: 13px;
 }
-input,
 select,
+ng-select,
+input,
 textarea {
   font-size: 11px;
+  box-shadow: 0px 2px 2px #d1d1d1;
+}
+
+ng-select {
+  font-size: 13px;
 }
 
 .fi {
@@ -49,4 +55,60 @@ label {
 
 hr {
   margin: 0.8rem 0;
+}
+
+.input-element {
+  margin: 0 17px 17px;
+}
+
+#tipoOperacion,
+#tipoPropiedad,
+#disposicion {
+  width: 9.8rem;
+}
+
+#ambientes,
+#dormitorios,
+#banios,
+#toilette,
+#cocheras {
+  width: 4.8rem;
+}
+
+#superficie_cubierta,
+#superficie_total {
+  display: inline-block;
+  width: 5rem;
+  margin-right: 0.5rem;
+}
+
+#superficie_cubierta + .after,
+#superficie_total + .after {
+  display: inline-block;
+  font-size: 0.8rem;
+}
+
+#moneda {
+  width: 4.2rem;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+#precio {
+  width: 4.5rem;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#expensas {
+  width: 4.5rem;
+  float: right;
+}
+
+#expensas + .before {
+  float: left;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-right: 7px;
+  margin-top: 9px;
 }

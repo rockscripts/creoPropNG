@@ -15,6 +15,7 @@ export class Propiedad {
   public texto: string = "";
   public ambientes_c: number = 0;
   public banios: number = 0;
+  public toilette: number = 0;
   public expensas: number = 0;
   public disposicion: number = 0;
   public equipamiento: any = [];

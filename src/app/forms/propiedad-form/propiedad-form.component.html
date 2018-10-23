@@ -14,46 +14,56 @@
       </div>
 
       <div class="row">
-        <div class="col-12 col-sm-2 fi">
+        <div class="input-element">
            <label>Tipo de operación</label>
-           <ng-select [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.tipo_op" [(ngModel)]="model.tipo_operacion_id" name="tipo_operacion_id">
+           <ng-select id="tipoOperacion" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.tipo_op" [(ngModel)]="model.tipo_operacion_id" name="tipo_operacion_id">
            </ng-select>
         </div>
 
-        <div class="col-12 col-sm-2 fi">
+        <div class="input-element">
            <label>Tipo de propiedad</label>
-           <ng-select [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.tipo_prop" [(ngModel)]="model.tipo_propiedad_id" name="tipo_propiedad_id">
+           <ng-select id="tipoPropiedad" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.tipo_prop" [(ngModel)]="model.tipo_propiedad_id" name="tipo_propiedad_id">
            </ng-select>
         </div>
 
-        <div class="col-12 col-sm-2 fi">
-           <label>Baños</label> <input type="text" class="form-control" name="banios" [(ngModel)]="model.banios" placeholder="">
+        <div class="input-element">
+           <label>Ambientes</label> <input id="ambientes" type="text" class="form-control" name="ambientes_c" [(ngModel)]="model.ambientes_c" placeholder="">
         </div>
 
-        <div class="col-12 col-sm-2 fi">
-           <label>Dormitorios</label> <input type="text" class="form-control" name="dormitorios" [(ngModel)]="model.dormitorios" placeholder="">
+        <div class="input-element">
+           <label>Dormitorios</label> <input id="dormitorios" type="text" class="form-control" name="dormitorios" [(ngModel)]="model.dormitorios" placeholder="">
         </div>
 
-        <div class="col-12 col-sm-2 fi">
-           <label>Ambientes</label> <input type="text" class="form-control" name="ambientes_c" [(ngModel)]="model.ambientes_c" placeholder="">
+        <div class="input-element">
+           <label>Baños</label> <input id="banios" type="text" class="form-control" name="banios" [(ngModel)]="model.banios" placeholder="">
         </div>
 
-        <div class="col-12 col-sm-2 fi">
-           <label>Cocheras</label> <input type="text" class="form-control" name="cochera" [(ngModel)]="model.cochera" placeholder="">
+        <div class="input-element">
+           <label>Toilette</label> <input id="toilette" type="text" class="form-control" name="toilette" [(ngModel)]="model.toilette" placeholder="">
         </div>
 
-        <div class="col-12 col-sm-2 fi">
-           <label>Superficie cubierta</label> <input type="text" class="form-control" name="superficie_cubierta" [(ngModel)]="model.superficie_cubierta" placeholder="">
+        <div class="input-element">
+           <label>Cocheras</label> <input id="cocheras" type="text" class="form-control" name="cochera" [(ngModel)]="model.cochera" placeholder="">
         </div>
 
-        <div class="col-12 col-sm-2 fi">
-           <label>Superficie total</label> <input type="text" class="form-control" name="superficie_total" [(ngModel)]="model.superficie_total" placeholder="">
-        </div>
-
-        <div class=" col-12 col-sm-3 fi">
+        <div class="input-element">
            <label>Disposición</label>
-           <ng-select [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.disposicion_op" [(ngModel)]="model.disposicion" name="disposicion">
+           <ng-select id="disposicion" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.disposicion_op" [(ngModel)]="model.disposicion" name="disposicion">
            </ng-select>
+        </div>
+
+        <div class="input-element">
+           <label>Superficie cubierta</label>
+           <br />
+           <input id="superficie_cubierta" type="text" class="form-control" name="superficie_cubierta" [(ngModel)]="model.superficie_cubierta" placeholder="">
+           <span class="after">m2</span>
+        </div>
+
+        <div class="input-element">
+           <label>Superficie total</label>
+           <br />
+           <input id="superficie_total" type="text" class="form-control" name="superficie_total" [(ngModel)]="model.superficie_total" placeholder="">
+           <span class="after">m2</span>
         </div>
 
       </div>
@@ -64,38 +74,32 @@
         </div>
       </div>
 
-      <div class="row" *ngIf="model.tipo_operacion_id == 0">
-        <div class="col">
-          <label>Precio de venta</label>
-        </div>
-      </div>
-
       <div class="row">
-        <div class="col-12 col-sm-1 fi"  *ngIf="model.tipo_operacion_id == 0">
-          <label>Moneda</label>
-          <ng-select [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda" name="moneda">
+        <div class="input-element"  *ngIf="model.tipo_operacion_id == 0">
+          <label>Precio de venta</label>
+          <br />
+          <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda" name="moneda">
           </ng-select>
+          <input id="precio" type="text" class="form-control" [(ngModel)]="model.precio" name="precio">
         </div>
 
-        <div class="col-12 col-sm-3 fi"  *ngIf="model.tipo_operacion_id == 0">
-          <label>Precio</label>
-          <input type="text" class="form-control" [(ngModel)]="model.precio" name="precio">
-        </div>
-
-        <div class="col-12 col-sm-3 fi">
-           <label>Expensas</label> <input type="text" class="form-control" name="expensas" [(ngModel)]="model.expensas" placeholder="">
+        <div class="input-element">
+            <label>Expensas</label>
+            <br />
+            <input id="expensas" type="text" class="form-control" name="expensas" [(ngModel)]="model.expensas" placeholder="">
+            <span class="before">$</span>
         </div>
       </div>
 
       <div class="row" *ngIf="model.tipo_operacion_id != 0">
-        <div class="col-12 col-sm-2 fi">
-           <label>Valor día</label> <input type="text" class="form-control" name="valor_dia" [(ngModel)]="model.valor_dia" placeholder="Valor día">
+        <div class="input-element">
+           <label>Valor día</label> <input id="valor_dia" type="text" class="form-control" name="valor_dia" [(ngModel)]="model.valor_dia" placeholder="Valor día">
         </div>
-        <div class="col-12 col-sm-2 fi">
-           <label>Valor semana</label> <input type="text" class="form-control" name="valor_semana" [(ngModel)]="model.valor_semana" placeholder="Valor semana">
+        <div class="input-element">
+           <label>Valor semana</label> <input id="valor_semana" type="text" class="form-control" name="valor_semana" [(ngModel)]="model.valor_semana" placeholder="Valor semana">
         </div>
-        <div class="col-12 col-sm-2 fi">
-           <label>Valor mes</label> <input type="text" class="form-control" name="valor_mes" [(ngModel)]="model.valor_mes" placeholder="Valor mes">
+        <div class="input-element">
+           <label>Valor mes</label> <input id="valor_mes" type="text" class="form-control" name="valor_mes" [(ngModel)]="model.valor_mes" placeholder="Valor mes">
         </div>
      </div>
 
