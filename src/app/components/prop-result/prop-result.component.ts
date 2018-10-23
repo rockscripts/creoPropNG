@@ -75,7 +75,7 @@ export class PropResultComponent implements OnInit, OnDestroy {
         return true;
       }
       this.propiedades   = this.propiedades.concat(res);
-      this.busqueda.page += 1;
+      this.busqueda.page = this.busqueda.page ? this.busqueda.page + 1 : 1;
     });
   }
 

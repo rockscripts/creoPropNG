@@ -151,6 +151,7 @@
   color: #858585;
   font-size: 0.8em;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .money-select .active {
@@ -162,21 +163,21 @@
   margin-top: 1em;
 }
 
-.ubicacion-sublevel {
+.checkbox-list {
   padding: 0 0 0 7px;
 }
 
-.ubicacion-sublevel > li {
+.checkbox-list > li {
   cursor: default;
 }
 
-.ubicacion-sublevel input,
-.ubicacion-sublevel input + label {
+.checkbox-list input,
+.checkbox-list input + label {
   vertical-align: middle;
   margin: 0 0 2px;
   cursor: pointer;
 }
 
-.ubicacion-sublevel input + label {
+.checkbox-list input + label {
   margin-left: 2px;
 }

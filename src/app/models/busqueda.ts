@@ -2,20 +2,22 @@ import { SwitchView } from "@angular/common/src/directives/ng_switch";
 import { isNumber } from "util";
 
 export class Busqueda {
-  public ubicacion: object;
+  public ubicacion: any = {};
   public ubicacion_padre: number;
   public tipoOperacion: number;
   public tipoPropiedad: number;
-  public precio: number;
-  public expensas: number;
+  public precio: string;
+  public tipoMoneda: string;
+  public expensas: string;
   public ambientes: number;
   public dormitorios: number;
   public cantidadBanios: number;
   public cocheras: number;
-  public superficie: number;
-  public tipoAmbiente: number;
-  public servicios: number;
-  public generales: number;
+  public superficie: string;
+  public tipoSuperficie: string;
+  public tipoAmbiente: any = {};
+  public servicios: any = {};
+  public generales: any = {};
   public tipoAnunciante: number;
 
   public propietario_id: number;
@@ -24,54 +26,60 @@ export class Busqueda {
 
   constructor() {}
 
-  getUbicacion() {
-    const cleaned_ubicacion = [];
-    for (const u in this.ubicacion) {
-      if (!this.ubicacion.hasOwnProperty(u)) {
+  getMultiParam(paramName) {
+    const cleaned = [];
+    for (const u in this[paramName]) {
+      if (!this[paramName].hasOwnProperty(u)) {
         continue;
       }
-      if (this.ubicacion[u]) {
-        cleaned_ubicacion.push(u);
+      if (this[paramName][u]) {
+        cleaned.push(u);
       }
     }
-    return cleaned_ubicacion;
+    return cleaned;
   }
 
   toRouteParams() {
     const params = {};
-    for (const p of Object.keys(this)) {
-      if (!this.hasOwnProperty(p) || !this[p]) {
+    for (const paramName of Object.keys(this)) {
+      if (!this.hasOwnProperty(paramName) || !this[paramName]) {
         continue;
       }
-      switch (p) {
+      switch (paramName) {
+        case "servicios":
+        case "generales":
+        case "tipoAmbiente":
         case "ubicacion":
-          params[p] = this.getUbicacion().join(",");
+          if (this.getMultiParam(paramName).length > 0) {
+            params[paramName] = this.getMultiParam(paramName).join(",");
+          }
           break;
         default:
-          params[p] = this[p];
+          params[paramName] = this[paramName];
       }
     }
     return params;
   }
 
   fromRouteParams(params) {
-    for (const p in params) {
-      if (!params.hasOwnProperty(p)) {
+    for (const paramName in params) {
+      if (!params.hasOwnProperty(paramName)) {
         continue;
       }
-      switch (p) {
+      switch (paramName) {
+        case "servicios":
+        case "generales":
+        case "tipoAmbiente":
         case "ubicacion":
-          const ubicacion = params[p].split(",");
-          for (const u of ubicacion) {
-            console.log(u);
-
-            if (0 !== +u) {
-              this[p][+u] = true;
+          const values = params[paramName].split(",");
+          for (const v of values) {
+            if (0 !== +v) {
+              this[paramName][+v] = true;
             }
           }
           break;
         default:
-          this[p] = params[p];
+          this[paramName] = params[paramName];
       }
     }
   }
@@ -84,7 +92,7 @@ export class Busqueda {
       }
       switch (p) {
         case "ubicacion":
-          params[p] = this.getUbicacion();
+          params[p] = this.getMultiParam("ubicacion");
           break;
         default:
           params[p] = this[p];
