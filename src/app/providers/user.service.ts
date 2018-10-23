@@ -59,11 +59,13 @@ export class UserService {
     this.userData.membresia    = r['data']['membresia']['nombre'];
     this.userData.membresia_id = r['data']['membresia']['id'];
 
-    let inm     = new Inmobiliaria();
-    inm.id      = r['data']['inmobiliaria']['id'];
-    inm.nombre  = r['data']['inmobiliaria']['nombre'];
-    inm.img     = r['data']['inmobiliaria']['logo'];
-    this.userData.setInmobiliaria(inm);
+    if ( r['data']['inmobiliaria'] ) {
+      let inm     = new Inmobiliaria();
+      inm.id      = r['data']['inmobiliaria']['id'];
+      inm.nombre  = r['data']['inmobiliaria']['nombre'];
+      inm.img     = r['data']['inmobiliaria']['logo'];
+      this.userData.setInmobiliaria(inm);
+    }
 
     localStorage.setItem('currentUser', JSON.stringify(this.userData));
   }

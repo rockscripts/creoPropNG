@@ -3,6 +3,7 @@ import { NgModule }                            from '@angular/core';
 import { AngularFontAwesomeModule }            from 'angular-font-awesome';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule }     from '@angular/forms';
+import { NgSelectModule }                      from '@ng-select/ng-select';
 import { LOCALE_ID }                           from '@angular/core';
 import { AgmCoreModule }                       from '@agm/core';
 
@@ -121,7 +122,8 @@ import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-p
     AngularFontAwesomeModule,
     InfiniteScrollModule,
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyD2ohKHAfu3LTRtftC37oMAmy2ldJ1a4Gg', libraries: ["places"] }),
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule,
+    NgSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

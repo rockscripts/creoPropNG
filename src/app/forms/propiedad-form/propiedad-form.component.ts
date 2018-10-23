@@ -3,6 +3,7 @@ import { Router }            from '@angular/router';
 import { }                   from '@types/googlemaps';
 import { MapsAPILoader }     from '@agm/core';
 import { FormControl }       from '@angular/forms'; //[Modificar] despues se usará este componente para todos los formularios?
+import { NgSelectModule }    from '@ng-select/ng-select';
 
 import { Propiedad }           from '../../models/propiedad';
 import { ZonasService }        from '../../providers/zonas.service';

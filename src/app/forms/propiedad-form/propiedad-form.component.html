@@ -16,16 +16,14 @@
       <div class="row">
         <div class="col-12 col-sm-2 fi">
            <label>Tipo de operación</label>
-           <select class="form-control" [(ngModel)]="model.tipo_operacion_id" name="tipo_operacion_id">
-             <option *ngFor="let ciud of model.tipo_op" [value]="ciud.id">{{ciud.nombre}}</option>
-           </select>
+           <ng-select [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.tipo_op" [(ngModel)]="model.tipo_operacion_id" name="tipo_operacion_id">
+           </ng-select>
         </div>
 
         <div class="col-12 col-sm-2 fi">
            <label>Tipo de propiedad</label>
-           <select class="form-control" [(ngModel)]="model.tipo_propiedad_id" name="tipo_propiedad_id">
-             <option *ngFor="let prov of model.tipo_prop" [value]="prov.id">{{prov.nombre}}</option>
-           </select>
+           <ng-select [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.tipo_prop" [(ngModel)]="model.tipo_propiedad_id" name="tipo_propiedad_id">
+           </ng-select>
         </div>
 
         <div class="col-12 col-sm-2 fi">
@@ -54,9 +52,8 @@
 
         <div class=" col-12 col-sm-3 fi">
            <label>Disposición</label>
-           <select class="form-control" [(ngModel)]="model.disposicion" name="disposicion">
-             <option *ngFor="let ciud of model.disposicion_op" [value]="ciud.id">{{ciud.nombre}}</option>
-           </select>
+           <ng-select [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.disposicion_op" [(ngModel)]="model.disposicion" name="disposicion">
+           </ng-select>
         </div>
 
       </div>
@@ -76,9 +73,8 @@
       <div class="row">
         <div class="col-12 col-sm-1 fi"  *ngIf="model.tipo_operacion_id == 0">
           <label>Moneda</label>
-          <select class="form-control" [(ngModel)]="model.moneda" name="moneda">
-            <option *ngFor="let m of model.moneda_op" [value]="m.id">{{m.nombre}}</option>
-          </select>
+          <ng-select [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda" name="moneda">
+          </ng-select>
         </div>
 
         <div class="col-12 col-sm-3 fi"  *ngIf="model.tipo_operacion_id == 0">
@@ -115,9 +111,8 @@
             
             <div class="col-12 col-sm-2 fi" *ngFor="let zz of zona  let iz = index" >
                <label *ngIf="!!zz[0]">{{denomina[0]}}&nbsp;</label>
-               <select *ngIf="!!zz[0]" (change)="changeZonaSelect(iz)" disabled="{{(iz == 0)}}" class="form-control" [(ngModel)]="model.zona[iz]" name="zona{{iz}}">
-                 <option *ngFor="let zon of zz  let izz = index" [value]="zon.id">{{zon.nombre}}</option>
-               </select>
+               <ng-select [clearable]="false" bindValue="id" bindLabel="nombre" [items]="zz" *ngIf="!!zz[0]" (change)="changeZonaSelect(iz)" disabled="{{(iz == 0)}}" [(ngModel)]="model.zona[iz]" name="zona{{iz}}">
+               </ng-select>
             </div>
           
           </div>
