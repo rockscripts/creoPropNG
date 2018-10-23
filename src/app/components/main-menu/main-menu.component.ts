@@ -4,6 +4,8 @@ import { Router, RouterEvent } from '@angular/router';
 import { UserService }          from './../../providers/user.service';
 import { RegisterModalService } from '../../components/register-modal/register-modal.service';
 import { LoginModalService }    from '../../components/login-modal/login-modal.service';
+import { ProfileService }          from './../../providers/profile.service';
+import { Perfil }                  from './../../models/perfil';
 
 @Component({
   selector: 'app-main-menu',
@@ -12,11 +14,14 @@ import { LoginModalService }    from '../../components/login-modal/login-modal.s
 })
 export class MainMenuComponent implements OnInit {
 
+  perfil = new Perfil();
+
   constructor(
     private us:         UserService,
     private modalReg:   RegisterModalService,
     private modalLogin: LoginModalService,
-    private router:     Router
+    private router:     Router,
+    private profile: ProfileService
   ){}
 
   hideSearchBox = false;
@@ -34,6 +39,23 @@ export class MainMenuComponent implements OnInit {
     if(this.registrado) {
       this.userName   = this.us.getName();
     }
+
+
+    this.profile.getProfile(this.us.getId()).subscribe((r) => {
+      r = r["data"];
+      this.perfil.nombre        = r['name'];
+      this.perfil.apellido      = r['surname'];
+      this.perfil.ubicacion     = '';
+      this.perfil.usuario_desde = r['created_at'];
+      this.perfil.prop_count    = r['cant_prop'];
+      this.perfil.user_id       = r['id'];
+      this.perfil.img           = r['profile_img'];
+      this.perfil.celular       = r['celular'];
+
+      this.perfil.inmobiliaria.nombre = r['inmobiliaria']['nombre'];
+      this.perfil.inmobiliaria.id     = r['inmobiliaria']['id'];
+      this.perfil.inmobiliaria.img    = r['inmobiliaria']['logo'];
+    });
     
     this.us.onLogin.subscribe({ next: (v) => { this.actualizaEstado(); } });
     this.us.onLogOut.subscribe({ next: (v) => { this.actualizaEstado(); } });

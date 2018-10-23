@@ -21,8 +21,22 @@ export class PerfilViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.editable){
-      this.perfil = this.user.getProfile();
+    if (this.editable) {
+      this.profile.getProfile(this.user.getId()).subscribe((r) => {
+        r = r["data"];
+        this.perfil.nombre        = r['name'];
+        this.perfil.apellido      = r['surname'];
+        this.perfil.ubicacion     = '';
+        this.perfil.usuario_desde = r['created_at'];
+        this.perfil.prop_count    = r['cant_prop'];
+        this.perfil.user_id       = r['id'];
+        this.perfil.img           = r['profile_img'];
+        this.perfil.celular       = r['celular'];
+
+        this.perfil.inmobiliaria.nombre = r['inmobiliaria']['nombre'];
+        this.perfil.inmobiliaria.id     = r['inmobiliaria']['id'];
+        this.perfil.inmobiliaria.img    = r['inmobiliaria']['logo'];
+      });
     } else {
       this.perfil = this.profile.actualProfile();
     }

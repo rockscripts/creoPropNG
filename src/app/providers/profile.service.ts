@@ -18,10 +18,7 @@ export class ProfileService {
   private wspu    = 'user/editProfile';
 
   getProfile(id){
-    this.http.post(this.config.getAPIUrl()+this.wsp,{'id':id}).subscribe((r) => {
-      r = r ['data'];
-      this.profileGet.next(r);
-    });
+    return this.http.post(this.config.getAPIUrl()+this.wsp,{'id':id});
   }
 
   updateProfile(model){
@@ -36,22 +33,5 @@ export class ProfileService {
   constructor(
     private http:   HttpClient,
     private config: ConfigService
-  ) {
-    this.profileGet.subscribe({
-      next: (v) => {
-        this.profile.nombre        = v['name'];
-        this.profile.apellido      = v['surname'];
-        this.profile.ubicacion     = '';
-        this.profile.usuario_desde = v['created_at'];
-        this.profile.prop_count    = v['cant_prop'];
-        this.profile.user_id       = v['id'];
-        this.profile.img           = v['profile_img'];
-        this.profile.celular       = v['celular'];
-
-        this.profile.inmobiliaria.nombre = v['inmobiliaria']['nombre'];
-        this.profile.inmobiliaria.id     = v['inmobiliaria']['id'];
-        this.profile.inmobiliaria.img    = v['inmobiliaria']['logo'];
-      }
-    });
-  }
+  ) {}
 }

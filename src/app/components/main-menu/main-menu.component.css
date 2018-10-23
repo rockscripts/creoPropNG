@@ -6,6 +6,7 @@
 .nav-link{
   font-family: 'Roboto-Bold';
   margin-left: 35px;
+  outline: none;
 }
 
 .navbar-brand {
@@ -79,3 +80,16 @@ nav .form-control {
 nav .form-control::placeholder { color: #777; }
 
 nav form{margin-left: 1.5rem;}
+
+.user-profile-image {
+  padding: 0;
+}
+
+.user-profile-image::after {
+  display: none;
+}
+
+.user-profile-image img {
+  width: 10rem;
+  max-height: 45px;
+}
