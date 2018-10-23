@@ -61,7 +61,7 @@
             </ul>
 
             <div class="w-100">
-              <button class="w-100 btn btn-sm btn-cprop mtop1" [hidden]="!is_modified['ubicacion']" (click)="doBusqueda()">APLICAR</button>
+              <button class="w-100 btn btn-sm btn-cprop mtop1" [hidden]="!is_modified['ubicacion']" (click)="doBusqueda()">APLICAR ({{countSelectedFilters.ubicacion}})</button>
             </div>
           </div>
         </div>
@@ -317,7 +317,7 @@
             </ul>
 
             <div class="w-100">
-              <button class="w-100 btn btn-sm btn-cprop mtop1" [hidden]="!is_modified['tipoAmbiente']" (click)="doBusqueda()">APLICAR</button>
+              <button class="w-100 btn btn-sm btn-cprop mtop1" [hidden]="!is_modified['tipoAmbiente']" (click)="doBusqueda()">APLICAR ({{countSelectedFilters.tipoAmbiente}})</button>
             </div>
           </div>
         </div>
@@ -344,7 +344,7 @@
             </ul>
 
             <div class="w-100">
-              <button class="w-100 btn btn-sm btn-cprop mtop1" [hidden]="!is_modified['servicios']" (click)="doBusqueda()">APLICAR</button>
+              <button class="w-100 btn btn-sm btn-cprop mtop1" [hidden]="!is_modified['servicios']" (click)="doBusqueda()">APLICAR ({{countSelectedFilters.servicios}})</button>
             </div>
           </div>
         </div>
@@ -371,7 +371,7 @@
             </ul>
 
             <div class="w-100">
-              <button class="w-100 btn btn-sm btn-cprop mtop1" [hidden]="!is_modified['generales']" (click)="doBusqueda()">APLICAR</button>
+              <button class="w-100 btn btn-sm btn-cprop mtop1" [hidden]="!is_modified['generales']" (click)="doBusqueda()">APLICAR ({{countSelectedFilters.generales}})</button>
             </div>
           </div>
         </div>

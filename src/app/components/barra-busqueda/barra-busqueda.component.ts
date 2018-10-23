@@ -17,7 +17,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   public busqueda = new Busqueda();
   public is_modified = {};
 
-  public listRangeParams: any = ["precio","expensas","superficie"];
+  public listRangeParams: any = ["precio", "expensas", "superficie"];
   public precioDesde: string;
   public precioHasta: string;
   public expensasDesde: string;
@@ -26,6 +26,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   public superficieHasta: string;
 
   public appliedFilters: any = [];
+  public countSelectedFilters: any = {};
 
   private sub: any;
 
@@ -46,11 +47,11 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
           for (const paramName of this.listRangeParams) {
             if (this.busqueda[paramName]) {
               const splitted = this.busqueda[paramName].split("-");
-              this[paramName + 'Desde'] = splitted[0];
-              this[paramName + 'Hasta'] = splitted[1];
+              this[paramName + "Desde"] = splitted[0];
+              this[paramName + "Hasta"] = splitted[1];
             } else {
-              this[paramName + 'Desde'] = null;
-              this[paramName + 'Hasta'] = null;
+              this[paramName + "Desde"] = null;
+              this[paramName + "Hasta"] = null;
             }
           }
 
@@ -118,6 +119,11 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     }
     this.busqueda[paramName][value] = !this.busqueda[paramName][value];
     this.is_modified[paramName] = true;
+    this.countSelectedFilters[paramName] = Object.keys(
+      this.busqueda[paramName]
+    ).map(x => {
+      return x;
+    }).length;
   }
 
   addFilter(filters) {
@@ -213,12 +219,17 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
           break;
         case "precio":
         case "expensas":
-          const splittedPrice = this.busqueda[paramName].split('-');
+          const splittedPrice = this.busqueda[paramName].split("-");
           if (splittedPrice.length > 0) {
             const capitalizedName =
               paramName.charAt(0).toUpperCase() + paramName.slice(1);
             filters.push({
-              label: capitalizedName + ': $' + splittedPrice[0] + '-$' + splittedPrice[1],
+              label:
+                capitalizedName +
+                ": $" +
+                splittedPrice[0] +
+                "-$" +
+                splittedPrice[1],
               key: paramName,
               value: this.busqueda[paramName]
             });
@@ -227,7 +238,8 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
         case "tipoMoneda":
           if (this.busqueda[paramName]) {
             const capitalizedValue =
-              this.busqueda[paramName].charAt(0).toUpperCase() + this.busqueda[paramName].slice(1);
+              this.busqueda[paramName].charAt(0).toUpperCase() +
+              this.busqueda[paramName].slice(1);
             filters.push({
               label: "Moneda: " + capitalizedValue,
               key: paramName,
@@ -236,10 +248,15 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
           }
           break;
         case "superficie":
-          const splittedSurface = this.busqueda[paramName].split('-');
+          const splittedSurface = this.busqueda[paramName].split("-");
           if (splittedSurface.length > 0) {
             filters.push({
-              label: 'Superficie: ' + splittedSurface[0] + 'm²-' + splittedSurface[1] +'m²',
+              label:
+                "Superficie: " +
+                splittedSurface[0] +
+                "m²-" +
+                splittedSurface[1] +
+                "m²",
               key: paramName,
               value: this.busqueda[paramName]
             });
@@ -248,7 +265,8 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
         case "tipoSuperficie":
           if (this.busqueda[paramName]) {
             const capitalizedValue =
-              this.busqueda[paramName].charAt(0).toUpperCase() + this.busqueda[paramName].slice(1);
+              this.busqueda[paramName].charAt(0).toUpperCase() +
+              this.busqueda[paramName].slice(1);
             filters.push({
               label: "Superficie: " + capitalizedValue,
               key: paramName,

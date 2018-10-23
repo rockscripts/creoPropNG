@@ -72,9 +72,9 @@
             <div class="card-text card-tit" routerLink="propiedad/{{propiedad.id}}">{{propiedad.titulo}}</div>
             <div class="card-text">
               <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span>
-              <span *ngIf="propiedad.banios != 0"><img src="assets/img/bed.svg" style="width:15px">
+              <span *ngIf="propiedad.banios != 0"><img src="assets/img/bed.svg" style="width:20px">
                 {{propiedad.banios}} </span>
-              <span *ngIf="propiedad.dormitorios != 0"><img src="assets/img/bath.svg" style="width:15px">
+              <span *ngIf="propiedad.dormitorios != 0"><img src="assets/img/bath.svg" style="width:20px">
                 {{propiedad.dormitorios}} </span>
               <span class="card-precio">{{propiedad.moneda_simbolo}} <strong>{{propiedad.precio | number:'1.0'}}</strong></span>
             </div>
