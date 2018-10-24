@@ -18,7 +18,7 @@ export class MiCuentaComponent implements OnInit {
   userName:string = '';
 
   constructor(
-  	private user: UserService
+  	private user: UserService,
     private profile: ProfileService
     ) { }
 

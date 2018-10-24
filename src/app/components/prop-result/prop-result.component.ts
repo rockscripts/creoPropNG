@@ -54,7 +54,9 @@ export class PropResultComponent implements OnInit, OnDestroy {
   }
 
   onScrollDown() {
-    this.pedirBusqueda();
+    if(this.propiedades.length > 0){
+      this.pedirBusqueda();
+    }
   }
  
   onScrollUp() {
@@ -80,8 +82,14 @@ export class PropResultComponent implements OnInit, OnDestroy {
         console.log('sscs');
         return true;
       }
-      this.propiedades   = this.propiedades.concat(res);
+      console.log(this.busqueda.page, JSON.stringify(this.busqueda.page));
+      
       this.busqueda.page = this.busqueda.page ? this.busqueda.page + 1 : 1;
+      if(this.busqueda.page > 1 ){
+        this.propiedades = this.propiedades.concat(res);
+      } else {
+        this.propiedades = res;
+      }
     });
   }
 

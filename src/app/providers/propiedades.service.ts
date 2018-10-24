@@ -88,9 +88,12 @@ export class PropiedadesService {
       this.model.id                  = r['data'][0].id;
       this.model.cochera             = r['data'][0].cochera;
       this.model.user                = r['data'][0].user;
+      this.model.dormitorios         = r['data'][0].dormitorios;
       this.model.ambientes_c         = r['data'][0].ambientes;
       this.model.banios              = r['data'][0].banios;
       this.model.precio              = r['data'][0].precio;
+      this.model.expensas              = r['data'][0].expensas;
+      this.model.superficie_total = r['data'][0].superficie_total;
       this.model.superficie_cubierta = r['data'][0].superficie_cubierta;
       this.model.moneda_simbolo      = r['data'][0].moneda_simbolo;
       this.model.nombre_operacion    = r['data'][0].nombre_operacion;

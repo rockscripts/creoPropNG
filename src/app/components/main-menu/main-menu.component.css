@@ -81,6 +81,15 @@ nav .form-control::placeholder { color: #777; }
 
 nav form{margin-left: 1.5rem;}
 
+.nav-item {
+  display: flex;
+}
+
+.nav-link {
+  flex: 1;
+  align-self: center;
+}
+
 .user-profile-image {
   padding: 0;
 }
