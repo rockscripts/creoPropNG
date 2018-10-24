@@ -37,6 +37,7 @@ export class PropiedadFormComponent implements OnInit {
 
   equipamiento: any;
   servicios: any;
+  tiposPropiedad: any;
   ambientes: any;
   carac_gral: any;
 
@@ -84,6 +85,9 @@ export class PropiedadFormComponent implements OnInit {
     });
     this.prop.getServicios().subscribe(r => {
       this.servicios = r["data"];
+    });
+    this.prop.getTiposPropiedad().subscribe(r => {
+      this.tiposPropiedad = r["data"];
     });
     this.prop.getAmbientes().subscribe(r => {
       this.ambientes = r["data"];

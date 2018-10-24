@@ -22,6 +22,7 @@ export class PropiedadesService {
   private wscg = 'propiedad/caracteristicas';
   private wsam = 'ambientes/all';
   private wser = 'servicios/all';
+  private wtpr = 'tipos-propiedad/all';
 
   public busqueda = new Busqueda();
   private model   = new Propiedad();
@@ -65,6 +66,10 @@ export class PropiedadesService {
 
   getServicios() {
     return this.http.get(this.config.getAPIUrl()+this.wser);
+  }
+
+  getTiposPropiedad() {
+    return this.http.get(this.config.getAPIUrl()+this.wtpr);
   }
 
   getCaraceristicas() { //[modificar] para no hacer peticiones de gusto
