@@ -35,6 +35,8 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   public ubicacionProvincia: any;
   public ubicacionPartido: any;
 
+  private ID_CAPITAL_FEDERAL = 8;
+
   public appliedFilters: any = [];
   public countSelectedFilters: any = {};
 
@@ -72,7 +74,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
 
           this.searchConfig.ubicaciones_partidos = null;
           this.searchConfig.ubicaciones_localidad = null;
-          
+
           if (this.busqueda.ubicacion_provincia) {
             for (const ub of this.searchConfig.ubicaciones_provincias.Argentina) {
               if (ub.id === this.busqueda.ubicacion_provincia && ub.children) {
@@ -81,10 +83,21 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
               }
             }
           }
-          
+
           if (this.busqueda.ubicacion_partido && this.searchConfig.ubicaciones_partidos) {
             for (const ub of this.searchConfig.ubicaciones_partidos) {
               if (ub.id === this.busqueda.ubicacion_partido && ub.children) {
+                this.searchConfig.ubicaciones_localidad = ub.children;
+                break;
+              }
+            }
+          }
+
+          // Capital federal se trata como partido pero aparece como provincia
+          if(this.busqueda.ubicacion_provincia == this.ID_CAPITAL_FEDERAL) {
+            this.busqueda.ubicacion_partido = this.busqueda.ubicacion_provincia;
+            for (const ub of this.searchConfig.ubicaciones_provincias.Argentina) {
+              if (ub.id === this.busqueda.ubicacion_provincia && ub.children) {
                 this.searchConfig.ubicaciones_localidad = ub.children;
                 break;
               }
