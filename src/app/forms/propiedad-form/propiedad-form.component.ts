@@ -138,7 +138,7 @@ export class PropiedadFormComponent implements OnInit {
   changeZonaSelect(actualLevel) {
     const nextLevel = actualLevel + 1;
 
-    this.model.zona_id = this.selectedZonasByLevel[actualLevel].id;
+    this.model.zona = [this.selectedZonasByLevel[actualLevel]];
 
     //Clean all next fields
     for (let i = nextLevel; i <= this.zonasService.MAX_LEVELS; i++) {

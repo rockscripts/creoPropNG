@@ -161,8 +161,8 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     this.is_modified[paramName] = true;
     this.countSelectedFilters[paramName] = Object.keys(
       this.busqueda[paramName]
-    ).map(x => {
-      return x;
+    ).filter(x => {
+      return this.busqueda[paramName][x];
     }).length;
   }
 
