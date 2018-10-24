@@ -103,21 +103,14 @@ export class Busqueda {
       }
     }
 
-    if (params["ubicacion_provincia"]) {
-      if (Array.isArray(params["ubicacion"])) {
-        params["ubicacion"].push(params["ubicacion_provincia"]);
-      } else {
+    if (params["ubicacion"].length === 0) {
+      if (params["ubicacion_partido"]) {
+        params["ubicacion"] = [params["ubicacion_partido"]];
+      } else if (params["ubicacion_provincia"]) {
         params["ubicacion"] = [params["ubicacion_provincia"]];
       }
+    } else {
       delete params["ubicacion_provincia"];
-    }
-
-    if (params["ubicacion_partido"]) {
-      if (Array.isArray(params["ubicacion"])) {
-        params["ubicacion"].push(params["ubicacion_partido"]);
-      } else {
-        params["ubicacion"] = [params["ubicacion_partido"]];
-      }
       delete params["ubicacion_partido"];
     }
 
