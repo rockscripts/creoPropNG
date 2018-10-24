@@ -1,9 +1,9 @@
 <div class="row f-prop">
-  <div class="container container-980">
+  <div class="container container-1060">
     <form #propForm="ngForm">
       <div class="row">
         <div class="col">
-          <h3>Nueva Propiedad</h3>
+          <h3>Nueva propiedad</h3>
         </div>
       </div>
 
@@ -59,7 +59,7 @@
            <span class="after">m2</span>
         </div>
 
-        <div class="input-element">
+        <div class="input-element" style="margin-left: 45px;">
            <label>Superficie total</label>
            <br />
            <input id="superficie_total" type="text" class="form-control" name="superficie_total" [(ngModel)]="model.superficie_total" placeholder="">
@@ -189,15 +189,7 @@
       </div>
 
       <div class="row">
-        <div class="col">
-          <label>Agregar fotos</label>
-        </div>
-      </div>
-
-      <div class="row">
         <div class="col-12  form-group pull-right">
-           <h4>Fotos de la propiedad</h4>
-           <hr>
            <div  id="preview">
            </div>
            <a class="btn btn-primary seleccionar-fotos">
@@ -313,9 +305,9 @@
 
       <div class="row titc">
         <div class="col">
-          <button class="btn btn-cprop" (click)="guardar()" data-toggle="modal" [attr.data-target]="dataTarget">
-            <span *ngIf="model.id != -1">Guardar ></span>
-            <span *ngIf="model.id == -1">Publicar ></span>
+          <button class="btn btn-cprop btn-publicar" (click)="guardar()" data-toggle="modal" [attr.data-target]="dataTarget">
+            <span *ngIf="model.id != -1">Guardar <span class="icon">&gt;</span></span>
+            <span *ngIf="model.id == -1">Publicar <span class="icon">&gt;</span></span>
           </button>
         </div>
       </div>

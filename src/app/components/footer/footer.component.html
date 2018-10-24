@@ -1,38 +1,40 @@
 <footer class="row justify-content-md-center footer" *ngIf="!disable_footer">
-  <div class="row footer-1 text-center">
-    <h4 class="tit">Búsquedas frecuentes</h4>
-  </div>
-  <div class="row col-12 footer-2 frequent-searches">
-    <div class="col">
-      <div class="row subtitle">PROPIEDADES EN ALQUILER</div>
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
-        {{ub.tit}}</li>
-      </ul>
+  <div class="col-12" *ngIf="!disable_frequent_searches">
+    <div class="row footer-1 text-center">
+      <h4 class="tit">Búsquedas frecuentes</h4>
     </div>
+    <div class="row col-12 footer-2 frequent-searches">
+      <div class="col">
+        <div class="row subtitle">PROPIEDADES EN ALQUILER</div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
+            {{ub.tit}}</li>
+        </ul>
+      </div>
 
-    <div class="col">
-      <div class="row subtitle">PROPIEDADES EN VENTA</div>
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let ub of propiedades_venta" class="list-group-item d-flex justify-content-between align-items-center">
-        {{ub.tit}}</li>
-      </ul>
-    </div>
+      <div class="col">
+        <div class="row subtitle">PROPIEDADES EN VENTA</div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let ub of propiedades_venta" class="list-group-item d-flex justify-content-between align-items-center">
+            {{ub.tit}}</li>
+        </ul>
+      </div>
 
-    <div class="col">
-      <div class="row subtitle">PROPIEDADES EN ARGENTINA</div>
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
-        {{ub.tit}}</li>
-      </ul>
-    </div>
+      <div class="col">
+        <div class="row subtitle">PROPIEDADES EN ARGENTINA</div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
+            {{ub.tit}}</li>
+        </ul>
+      </div>
 
-    <div class="col">
-      <div class="row subtitle">PROPIEDADES EN CONSTRUCCIÓN</div>
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
-        {{ub.tit}}</li>
-      </ul>
+      <div class="col">
+        <div class="row subtitle">PROPIEDADES EN CONSTRUCCIÓN</div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let ub of propiedades_alquiler" class="list-group-item d-flex justify-content-between align-items-center">
+            {{ub.tit}}</li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="row col-12 footer-3 copyright">

@@ -1,3 +1,14 @@
+.sidebar {
+  width: 21%;
+  float: left;
+  padding: 0 0.9rem;
+}
+.content {
+  width: 79%;
+  float: left;
+  padding: 0 0.9rem;
+}
+
 a {
   color: #6d6d6d !important;
   width: inherit;
@@ -28,7 +39,7 @@ a.active {
 
 .header {
   display: flex;
-  padding: 10px 30px 0;
+  padding: 10px 30px 0 60px;
 }
 
 .header .left-controls {
@@ -80,5 +91,5 @@ a.active {
 }
 
 .search-toolbar-container {
-  padding: 5px 15px 0;
+  padding: 43px 15px 0;
 }

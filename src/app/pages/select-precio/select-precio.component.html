@@ -1,10 +1,10 @@
 <div class="row cont">
 
-  <div class="col-md-4 col-12" *ngFor="let plan of planes">
+  <div class="col-md-4 col-12 plan" *ngFor="let plan of planes">
     <div class="col-12 pktit">
       <div class="row text-center">
         <h2 class="col-12 text-crp">{{plan.t}}</h2>
-        <h5 class="col-12">{{plan.st}}</h5>
+        <h5 class="col-12 gray-text">{{plan.st}}</h5>
       </div>
     </div>
     <div class="col-12">
@@ -22,8 +22,8 @@
             <p>{{plan.bd2}}</p>
           </div>
           <div class="row bt-cont">
-            <div class="col-12 col-sm-10 offset-sm-1">
-              <button type="button" class="w-100 btn btn-cprop" data-toggle="modal" (click)="siguiente(plan.id)" *ngIf="!(registrado && planActual == plan.id)">
+            <div class="col-12 col-sm-10 offset-sm-1 text-center">
+              <button type="button" class="btn btn-cprop" data-toggle="modal" (click)="siguiente(plan.id)" *ngIf="!(registrado && planActual == plan.id)">
               <span *ngIf="!registrado">Publicar ahora</span>
               <span *ngIf="registrado && planActual != plan.id">Comprar</span>
             </button></div>

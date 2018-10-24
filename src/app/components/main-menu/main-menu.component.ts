@@ -62,7 +62,7 @@ export class MainMenuComponent implements OnInit {
 
     this.router.events.subscribe((e) => {
       if(e instanceof RouterEvent){
-        if (e.url.indexOf('/mi-cuenta') === 0){
+        if (e.url.indexOf('/mi-cuenta') === 0 || e.url.indexOf('/new-prop') === 0){
           this.hideSearchBox = true;
         } else {
           this.hideSearchBox = false;

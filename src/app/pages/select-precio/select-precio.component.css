@@ -1,6 +1,6 @@
 .cont{margin-top:3.5rem;}
 
-p{color:#bbb;}
+p, .gray-text{color:#9b9b9b;}
 
 .card-precio .card-header .col{ text-align:center;font-weight: bold;}
 .card-precio {min-height: 16rem;}
@@ -18,12 +18,23 @@ p{color:#bbb;}
 .mp-cont{margin-top: 2rem;}
 
 .btn-cprop {
-  background-color: #d32127;
+  background-color: #ed1b24;
   border-radius: 0.3rem;
   font-size: 13pt;
+  font-weight: normal;
+  width: 70%;
 }
 
 .medios-pago img{
-  max-width: 100%;
+  max-width: 86%;
   height: auto;
+  margin-right: 10px;
+}
+
+.plan {
+  border-right: 1px solid #e0e0e0;
+}
+
+.plan:last-of-type {
+  border-right: none;
 }

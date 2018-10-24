@@ -2,8 +2,8 @@
   background-color: #eee;
   padding-bottom: 225px;
 }
-.container-980 {
-  max-width: 980px;
+.container-1060 {
+  max-width: 1060px;
 }
 
 form {
@@ -58,7 +58,7 @@ hr {
 }
 
 .input-element {
-  margin: 0 17px 17px;
+  margin: 0 25px 17px;
 }
 
 #tipoOperacion,
@@ -115,4 +115,16 @@ hr {
 
 .ubicacion .input-element {
   flex: 1;
+}
+
+.btn-publicar {
+  border-radius: 0.2rem;
+  text-transform: uppercase;
+  box-shadow: 0 1px 1px gray;
+  font-weight: normal;
+}
+
+.btn-publicar .icon {
+  line-height: 1;
+  vertical-align: text-top;
 }

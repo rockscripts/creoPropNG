@@ -38,13 +38,13 @@
     <div class="tab-content">
       <div class="tab-pane active" id="mispropiedades">
         <div class="row">
-          <div class="col-12 col-md-4 col-lg-3">
+          <div class="sidebar">
             <div class="search-toolbar-container">
               <app-barra-busqueda [propietario]="propietario_id" searchPath='/mi-cuenta' [hideFilter]="['precio','expensas','superficie','tipoAmbiente','generales','servicios','tipoAnunciante']"></app-barra-busqueda>
             </div>
           </div>
 
-          <div class="col-12 col-md-8 col-lg-9">
+          <div class="content">
             <app-prop-result [propietario]="propietario_id" [mode]="'userProp'"></app-prop-result>
           </div>
           <div class="tab-pane container fade" id="visitas"><app-user-visitas></app-user-visitas></div>
