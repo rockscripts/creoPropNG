@@ -37,7 +37,11 @@ export class MainMenuComponent implements OnInit {
   ngOnInit() {
     this.registrado = this.us.logeado();
     if(this.registrado) {
-      this.userName   = this.us.getName();
+      if (this.perfil.nombre != ''){
+        this.userName   = this.perfil.nombre + ' ' + this.perfil.apellido;
+      } else {
+        this.userName = this.us.getEmail();
+      }
     }
 
     this.getProfile();
@@ -63,6 +67,9 @@ export class MainMenuComponent implements OnInit {
 
   getProfile() {
     this.profile.getProfile(this.us.getId()).subscribe((r) => {
+      if(!r || !r["data"]){
+        return;
+      }
       r = r["data"];
       this.perfil.nombre        = r['name'];
       this.perfil.apellido      = r['surname'];
@@ -76,6 +83,10 @@ export class MainMenuComponent implements OnInit {
       this.perfil.inmobiliaria.nombre = r['inmobiliaria']['nombre'];
       this.perfil.inmobiliaria.id     = r['inmobiliaria']['id'];
       this.perfil.inmobiliaria.img    = r['inmobiliaria']['logo'];
+
+      if (this.perfil.nombre != ''){
+        this.userName   = this.perfil.nombre + ' ' + this.perfil.apellido;
+      }
     });
   }
 
@@ -85,7 +96,11 @@ export class MainMenuComponent implements OnInit {
   actualizaEstado(){
     this.registrado = this.us.logeado();
     if(this.registrado) {
-      this.userName   = this.us.getName();
+      if (this.perfil.nombre != ''){
+        this.userName   = this.perfil.nombre + ' ' + this.perfil.apellido;
+      } else {
+        this.userName = this.us.getEmail();
+      }
     }
   }
 

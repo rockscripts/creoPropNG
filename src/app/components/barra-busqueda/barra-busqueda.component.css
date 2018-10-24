@@ -137,7 +137,7 @@
   color: #a5a5a5;
 }
 
-.accordion .list-group {
+.accordion .list-container {
   max-height: 200px;
   overflow-y: auto;
 }

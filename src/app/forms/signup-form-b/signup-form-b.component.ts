@@ -25,6 +25,7 @@ export class SignupFormBComponent implements OnInit {
   }
 
   nuevo(){
+    this.model.tipoUser = 1;
     this.US.model = this.model;
     this.US.create()
       .subscribe((r) => {

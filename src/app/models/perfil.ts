@@ -15,6 +15,9 @@ export class Perfil {
 
   public inmobiliaria:Inmobiliaria = new Inmobiliaria();
 
-  constructor() {  }
+
+
+  constructor(
+  ) {  }
 
 }

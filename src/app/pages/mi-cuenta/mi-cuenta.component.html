@@ -3,8 +3,8 @@
     <div class="header">
       <div class="left-controls">
         <div class="user-info">
-          <img src="assets/img/achaval.png" alt="" class="user-logo">
-          <h4 class="user-name">Toribio Achával</h4>
+          <img src="{{perfil.img}}" alt="Sin imagen" class="user-logo">
+          <h4 class="user-name">{{userName}}</h4>
           <span class="user-plan">VIP 3</span>
         </div>
         <div class="tabs">
@@ -47,19 +47,13 @@
           <div class="content">
             <app-prop-result [propietario]="propietario_id" [mode]="'userProp'"></app-prop-result>
           </div>
-          <div class="tab-pane container fade" id="visitas"><app-user-visitas></app-user-visitas></div>
-          <div class="tab-pane container fade" id="estadocuenta"><app-estado-cuenta></app-estado-cuenta></div>
-          <div class="tab-pane container fade" id="pagos"><app-user-pagos></app-user-pagos></div>
-          <div class="tab-pane container fade" id="mensajes"><app-user-mensajes></app-user-mensajes></div>
-          <div class="tab-pane container fade" id="miperfil"><app-perfil-view [editable]="true"></app-perfil-view></div>
         </div>
       </div>
-      <div class="tab-pane container fade" id="visitas">Aca irian las propiedades visitadas</div>
-      <div class="tab-pane container fade" id="estadocuenta">Aca iria el estado de mi cuenta</div>
-      <div class="tab-pane container fade" id="pagos">Aca irian las propiedades pagas</div>
-      <div class="tab-pane container fade" id="miperfil">
-        <app-perfil-view [editable]="true"></app-perfil-view>
-      </div>
+      <div class="tab-pane container fade" id="visitas"><app-user-visitas></app-user-visitas></div>
+      <div class="tab-pane container fade" id="estadocuenta"><app-estado-cuenta></app-estado-cuenta></div>
+      <div class="tab-pane container fade" id="pagos"><app-user-pagos></app-user-pagos></div>
+      <div class="tab-pane container fade" id="mensajes"><app-user-mensajes></app-user-mensajes></div>
+      <div class="tab-pane container fade" id="miperfil"><app-perfil-view [editable]="true"></app-perfil-view></div>
     </div>
   </div>
 </div>

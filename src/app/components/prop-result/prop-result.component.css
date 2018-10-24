@@ -134,7 +134,8 @@
 .direccion {
   position: absolute;
   bottom: 100%;
-  text-shadow: 0px 0px 2px white;
+  text-shadow: 0px 0px 2px black;
+  color: white;
 }
 
 .direccion i.fa {

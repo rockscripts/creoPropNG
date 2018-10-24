@@ -27,14 +27,16 @@
         </div>
         <div id="collapse-ubicacion" class="collapse filter-collapse" aria-labelledby="heading-ubicacion" data-parent="#filtersAccordion">
           <div class="filter-content">
-            <ul class="list-group list-group-flush">
-              <li *ngFor="let ub of searchConfig.ubicaciones_provincias.Argentina" class="list-group-item">
-                <div (click)="addFilter({ubicacion_provincia: ub.id})" class="d-flex justify-content-between">
-                  <span>{{ub.name}}</span>
-                  <span class="badge">({{ub.count}})</span>
-                </div>
-              </li>
-            </ul>
+            <div class="list-container">
+              <ul class="list-group list-group-flush">
+                <li *ngFor="let ub of searchConfig.ubicaciones_provincias.Argentina" class="list-group-item">
+                  <div (click)="addFilter({ubicacion_provincia: ub.id})" class="d-flex justify-content-between">
+                    <span>{{ub.name}}</span>
+                    <span class="badge">({{ub.count}})</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -48,14 +50,16 @@
         </div>
         <div id="collapse-ubicacion" class="collapse filter-collapse" aria-labelledby="heading-ubicacion" data-parent="#filtersAccordion">
           <div class="filter-content">
-            <ul class="list-group list-group-flush">
-              <li *ngFor="let ub of searchConfig.ubicaciones_partidos" class="list-group-item">
-                <div (click)="addFilter({ubicacion_partido: ub.id})" class="d-flex justify-content-between">
-                  <span>{{ub.name}}</span>
-                  <span class="badge">({{ub.count}})</span>
-                </div>
-              </li>
-            </ul>
+            <div class="list-container">
+              <ul class="list-group list-group-flush">
+                <li *ngFor="let ub of searchConfig.ubicaciones_partidos" class="list-group-item">
+                  <div (click)="addFilter({ubicacion_partido: ub.id})" class="d-flex justify-content-between">
+                    <span>{{ub.name}}</span>
+                    <span class="badge">({{ub.count}})</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -70,16 +74,18 @@
         <div id="collapse-ubicacion-subprovincia" class="collapse filter-collapse" aria-labelledby="heading-ubicacion-subprovincia"
           data-parent="#filtersAccordion">
           <div class="filter-content">
-            <ul class="list-group checkbox-list">
-              <li *ngFor="let ub_children of searchConfig.ubicaciones_localidad" class="list-group-item d-flex justify-content-between">
-                <div class="left">
-                  <input id="ubicacion-{{ub_children.id}}-check" type="checkbox" [checked]="busqueda.ubicacion[ub_children.id]"
-                    (change)="onMultiParamChange('ubicacion', ub_children.id)">
-                  <label for="ubicacion-{{ub_children.id}}-check">{{ub_children.name}}</label>
-                </div>
-                <span class="badge">({{ub_children.count}})</span>
-              </li>
-            </ul>
+            <div class="list-container">
+              <ul class="list-group checkbox-list">
+                <li *ngFor="let ub_children of searchConfig.ubicaciones_localidad" class="list-group-item d-flex justify-content-between">
+                  <div class="left">
+                    <input id="ubicacion-{{ub_children.id}}-check" type="checkbox" [checked]="busqueda.ubicacion[ub_children.id]"
+                      (change)="onMultiParamChange('ubicacion', ub_children.id)">
+                    <label for="ubicacion-{{ub_children.id}}-check">{{ub_children.name}}</label>
+                  </div>
+                  <span class="badge">({{ub_children.count}})</span>
+                </li>
+              </ul>
+            </div>
 
             <div class="w-100">
               <button class="w-100 btn btn-sm btn-cprop mtop1" [hidden]="!is_modified['ubicacion']" (click)="doBusqueda()">APLICAR ({{countSelectedFilters.ubicacion}})</button>

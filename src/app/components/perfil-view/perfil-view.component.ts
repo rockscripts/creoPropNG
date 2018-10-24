@@ -23,6 +23,9 @@ export class PerfilViewComponent implements OnInit {
   ngOnInit() {
     if (this.editable) {
       this.profile.getProfile(this.user.getId()).subscribe((r) => {
+        if(!r || !r["data"]){
+          return;
+        }
         r = r["data"];
         this.perfil.nombre        = r['name'];
         this.perfil.apellido      = r['surname'];
