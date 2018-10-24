@@ -3,7 +3,8 @@ import { isNumber } from "util";
 
 export class Busqueda {
   public ubicacion: any = {};
-  public ubicacion_padre: number;
+  public ubicacion_provincia: number;
+  public ubicacion_partido: number;
   public tipoOperacion: number;
   public tipoPropiedad: number;
   public precio: string;
@@ -102,13 +103,22 @@ export class Busqueda {
       }
     }
 
-    if (params["ubicacion_padre"]) {
+    if (params["ubicacion_provincia"]) {
       if (Array.isArray(params["ubicacion"])) {
-        params["ubicacion"].push(params["ubicacion_padre"]);
+        params["ubicacion"].push(params["ubicacion_provincia"]);
       } else {
-        params["ubicacion"] = [params["ubicacion_padre"]];
+        params["ubicacion"] = [params["ubicacion_provincia"]];
       }
-      delete params["ubicacion_padre"];
+      delete params["ubicacion_provincia"];
+    }
+
+    if (params["ubicacion_partido"]) {
+      if (Array.isArray(params["ubicacion"])) {
+        params["ubicacion"].push(params["ubicacion_partido"]);
+      } else {
+        params["ubicacion"] = [params["ubicacion_partido"]];
+      }
+      delete params["ubicacion_partido"];
     }
 
     return JSON.stringify(params);

@@ -20,7 +20,7 @@
   <div class="accordion filters-wrapper" id="filtersAccordion">
     <form>
       <!-- ubicacion:provincia -->
-      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_padre')===-1 && (!busqueda.ubicacion_padre || !searchConfig.ubicaciones_hijas)">
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_provincia')===-1 && (!busqueda.ubicacion_provincia || !searchConfig.ubicaciones_partidos)">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion"
           aria-expanded="false" aria-controls="collapse-ubicacion">
           Ubicación <i class="fa icon fa-sort-down"></i>
@@ -28,8 +28,8 @@
         <div id="collapse-ubicacion" class="collapse filter-collapse" aria-labelledby="heading-ubicacion" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
-              <li *ngFor="let ub of searchConfig.ubicaciones_padres.Argentina" class="list-group-item">
-                <div (click)="addFilter({ubicacion_padre: ub.id})" class="d-flex justify-content-between">
+              <li *ngFor="let ub of searchConfig.ubicaciones_provincias.Argentina" class="list-group-item">
+                <div (click)="addFilter({ubicacion_provincia: ub.id})" class="d-flex justify-content-between">
                   <span>{{ub.name}}</span>
                   <span class="badge">({{ub.count}})</span>
                 </div>
@@ -40,8 +40,29 @@
       </div>
       <!-- END:ubicacion:provincia -->
 
-      <!-- ubicacion:sub-provincia -->
-      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_hijas')===-1 && searchConfig.ubicaciones_hijas">
+      <!-- ubicacion:partido -->
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_partido')===-1 && searchConfig.ubicaciones_partidos && (!busqueda.ubicacion_partido || !searchConfig.ubicaciones_localidad)">
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion"
+          aria-expanded="false" aria-controls="collapse-ubicacion">
+          Ubicación <i class="fa icon fa-sort-down"></i>
+        </div>
+        <div id="collapse-ubicacion" class="collapse filter-collapse" aria-labelledby="heading-ubicacion" data-parent="#filtersAccordion">
+          <div class="filter-content">
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let ub of searchConfig.ubicaciones_partidos" class="list-group-item">
+                <div (click)="addFilter({ubicacion_partido: ub.id})" class="d-flex justify-content-between">
+                  <span>{{ub.name}}</span>
+                  <span class="badge">({{ub.count}})</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- END:ubicacion:partido -->
+
+      <!-- ubicacion:localidad -->
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_localidad')===-1 && searchConfig.ubicaciones_localidad">
         <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion-subprovincia"
           aria-expanded="false" aria-controls="collapse-ubicacion-subprovincia">
           Ubicación <i class="fa icon fa-sort-down"></i>
@@ -50,7 +71,7 @@
           data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group checkbox-list">
-              <li *ngFor="let ub_children of searchConfig.ubicaciones_hijas" class="list-group-item d-flex justify-content-between">
+              <li *ngFor="let ub_children of searchConfig.ubicaciones_localidad" class="list-group-item d-flex justify-content-between">
                 <div class="left">
                   <input id="ubicacion-{{ub_children.id}}-check" type="checkbox" [checked]="busqueda.ubicacion[ub_children.id]"
                     (change)="onMultiParamChange('ubicacion', ub_children.id)">
@@ -66,7 +87,7 @@
           </div>
         </div>
       </div>
-      <!-- END:ubicacion:sub-provincia -->
+      <!-- END:ubicacion:localidad -->
 
       <!-- tipo op -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('tipoOperacion')===-1">

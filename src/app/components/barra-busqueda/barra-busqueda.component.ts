@@ -32,6 +32,9 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   public superficieDesde: string;
   public superficieHasta: string;
 
+  public ubicacionProvincia: any;
+  public ubicacionPartido: any;
+
   public appliedFilters: any = [];
   public countSelectedFilters: any = {};
 
@@ -67,11 +70,22 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
             }
           }
 
-          this.searchConfig.ubicaciones_hijas = null;
-          if (this.busqueda.ubicacion_padre) {
-            for (const ub of this.searchConfig.ubicaciones_padres.Argentina) {
-              if (ub.id === this.busqueda.ubicacion_padre && ub.children) {
-                this.searchConfig.ubicaciones_hijas = ub.children;
+          this.searchConfig.ubicaciones_partidos = null;
+          this.searchConfig.ubicaciones_localidad = null;
+          
+          if (this.busqueda.ubicacion_provincia) {
+            for (const ub of this.searchConfig.ubicaciones_provincias.Argentina) {
+              if (ub.id === this.busqueda.ubicacion_provincia && ub.children) {
+                this.searchConfig.ubicaciones_partidos = ub.children;
+                break;
+              }
+            }
+          }
+          
+          if (this.busqueda.ubicacion_partido && this.searchConfig.ubicaciones_partidos) {
+            for (const ub of this.searchConfig.ubicaciones_partidos) {
+              if (ub.id === this.busqueda.ubicacion_partido && ub.children) {
+                this.searchConfig.ubicaciones_localidad = ub.children;
                 break;
               }
             }
@@ -104,9 +118,10 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
               servicios: data["servicios"],
               generales: data["generales"],
               tipoAnunciante: data["tipoAnunciante"],
-              ubicaciones_padres: {
+              ubicaciones_provincias: {
                 Argentina: data["ubicaciones"][0].children
-              }
+              },
+              ubicaciones_partidos: null,
             };
 
             resolve();
@@ -164,8 +179,12 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     } else {
       this.busqueda[filter.key] = false;
     }
-    if (filter.key == "ubicacion_padre") {
-      this.busqueda["ubicacion"] = false;
+    if (filter.key == "ubicacion_provincia") {
+      this.busqueda["ubicacion_partido"] = null;
+      this.busqueda["ubicacion"] = null;
+    }
+    if (filter.key == "ubicacion_partido") {
+      this.busqueda["ubicacion"] = null;
     }
     this.doBusqueda();
   }
@@ -181,12 +200,34 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
         continue;
       }
       switch (paramName) {
+        case "ubicacion_provincia":
+          for (const ub of this.searchConfig.ubicaciones_provincias.Argentina) {
+            if (ub.id === this.busqueda[paramName]) {
+              filters.push({
+                label: ub.name,
+                key: paramName,
+                value: this.busqueda[paramName]
+              });
+            }
+          }
+          break;
+        case "ubicacion_partido":
+          for (const ub of this.searchConfig.ubicaciones_partidos) {
+            if (ub.id === this.busqueda[paramName]) {
+              filters.push({
+                label: ub.name,
+                key: paramName,
+                value: this.busqueda[paramName]
+              });
+            }
+          }
+          break;
         case "ubicacion":
           if (
-            this.searchConfig.ubicaciones_hijas &&
-            this.searchConfig.ubicaciones_hijas.length
+            this.searchConfig.ubicaciones_localidad &&
+            this.searchConfig.ubicaciones_localidad.length
           ) {
-            for (const ub of this.searchConfig.ubicaciones_hijas) {
+            for (const ub of this.searchConfig.ubicaciones_localidad) {
               if (this.busqueda.ubicacion && this.busqueda.ubicacion[ub.id]) {
                 filters.push({
                   label: ub.name,
@@ -194,17 +235,6 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
                   value: ub.id
                 });
               }
-            }
-          }
-          break;
-        case "ubicacion_padre":
-          for (const ub of this.searchConfig.ubicaciones_padres.Argentina) {
-            if (ub.id === this.busqueda[paramName]) {
-              filters.push({
-                label: ub.name,
-                key: paramName,
-                value: this.busqueda[paramName]
-              });
             }
           }
           break;
