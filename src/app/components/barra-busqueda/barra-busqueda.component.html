@@ -426,4 +426,8 @@
       <!-- END:tipo anunciante -->
     </form>
   </div>
+  <div class="propiedades-activas-inactivas" *ngIf="hideFilter.indexOf('ActivasInactivas')===-1">
+      <button (click)="addFilter({activo: 1})" type="button" class="w-100 btn btn-update-plan">({{pActivas}}) PROPIEDADES ACTIVAS</button>
+      <button (click)="addFilter({activo: 0})" type="button" class="w-100 btn btn-update-plan">({{pInactivas}}) PROPIEDADES INACTIVAS</button>
+  </div>
 </div>

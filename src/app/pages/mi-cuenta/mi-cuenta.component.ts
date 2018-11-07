@@ -5,6 +5,7 @@ import { Busqueda }          from './../../models/busqueda';
 import { UserService }       from './../../providers/user.service';
 import { ProfileService }          from './../../providers/profile.service';
 import { Perfil }                  from './../../models/perfil';
+import { PropiedadesService } from '../../providers/propiedades.service';
 
 @Component({
   selector: 'app-mi-cuenta',
@@ -16,16 +17,22 @@ export class MiCuentaComponent implements OnInit {
   public propietario_id: any;
   perfil = new Perfil();
   userName:string = '';
+  pActivas: number = 0;
+  pInactivas: number = 0;
 
   constructor(
   	private user: UserService,
-    private profile: ProfileService
+    private profile: ProfileService,
+    private Propiedades: PropiedadesService
     ) { }
 
   ngOnInit() {
   	this.propietario_id = this.user.getId();
-
     this.getProfile();
+    var counts = this.Propiedades.getCountsPropiedades(this.user.getId()).subscribe((r) => {
+    this.pActivas = r['data']['pActivas'];
+    this.pInactivas = r['data']['pInactivas'];
+    });
   }
 
   getProfile() {

@@ -128,3 +128,16 @@ hr {
   line-height: 1;
   vertical-align: text-top;
 }
+
+
+img{
+  width: 250px;
+}
+
+.foto-input{
+  display:none;
+}
+
+.seleccionar-fotos{
+  margin-top: 30px;
+}

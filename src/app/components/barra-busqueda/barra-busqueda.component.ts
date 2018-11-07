@@ -18,6 +18,10 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   searchPath = "/search";
   @Input()
   propietario: any;
+  @Input()
+  pActivas: number;
+  @Input()
+  pInactivas: number;
 
   public searchConfig: any;
 

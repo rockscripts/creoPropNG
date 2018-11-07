@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="right-controls d-flex align-items-center">
-        <button type="button" class="w-100 btn btn-update-plan" routerLink="/update-plan">$ Recargar</button>
+          <button type="button" class="w-100 btn btn-update-plan" routerLink="/update-plan">$ Recargar</button>
       </div>
     </div>
     <!--  -->
@@ -40,7 +40,7 @@
         <div class="row">
           <div class="sidebar">
             <div class="search-toolbar-container">
-              <app-barra-busqueda [propietario]="propietario_id" searchPath='/mi-cuenta' [hideFilter]="['precio','expensas','superficie','tipoAmbiente','generales','servicios','tipoAnunciante']"></app-barra-busqueda>
+              <app-barra-busqueda [pActivas]=pActivas [pInactivas]=pInactivas [propietario]="propietario_id" searchPath='/mi-cuenta' [hideFilter]="['precio','expensas','superficie','tipoAmbiente','generales','servicios','tipoAnunciante']"></app-barra-busqueda>
             </div>
           </div>
 

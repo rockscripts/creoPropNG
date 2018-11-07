@@ -27,6 +27,12 @@ export class PropiedadFormComponent implements OnInit {
   @Input()
   model: Propiedad = new Propiedad();
 
+  ngOnChanges(model: Propiedad = new Propiedad()) {
+    if(this.model.files.length>0 && this.imgsloaded == false){
+    this.loadfiles();
+    this.imgsloaded = true;
+    }
+  } 
   submitted = false;
   dataTarget = "";
 
@@ -48,6 +54,12 @@ export class PropiedadFormComponent implements OnInit {
 
   pais_id: number = -1;
 
+  urls = new Array<string>();
+
+  imgsloaded = false;
+
+  
+
   constructor(
     private zonasService: ZonasService,
     private router: Router,
@@ -56,26 +68,58 @@ export class PropiedadFormComponent implements OnInit {
     private alert: AlertService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
-  ) {}
+  ) {
+    
+  }
+
+  loadfiles(){
+    this.model.files.forEach(file => {
+      fetch('/'+file.nombre)
+        .then(res => res.blob())
+        .then(blob => {
+          let reader = new FileReader();
+          reader.readAsDataURL(blob);
+        reader.onload = (e: any) => {
+          this.model.imgs.push({
+            filename: file.nombre,
+            filetype: file.tipo,
+            value: reader.result.split(",")[1],
+            url: e.target.result,
+            new: false
+        });
+      }
+      });
+  });
+}
+
+ 
 
   onFileChange(event) {
-    //[modificar] //se podrá generalizar?
-    let reader = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      let file = event.target.files[0];
+      for (let file of event.target.files) {
+      let reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = () => {
+      reader.onload = (e: any) => {
+        if(this.model.imgs.length < 20){
         this.model.imgs.push({
           filename: file.name,
           filetype: file.type,
-          value: reader.result.split(",")[1]
+          value: reader.result.split(",")[1],
+          url: e.target.result,
+          new: true
         });
+      }
+      else
+      alert("No se puede subir más de 20 Imagenes por propiedad");
       };
     }
   }
 
+  
+
   ngOnInit() {
-    this.zonasService.getZonas().subscribe(r => {
+
+
+   this.zonasService.getZonas().subscribe(r => {
       this.zonas = r["data"][0].children; //Children zonas of Argentina
       this.zonasForSelect[1] = this.zonas;
     });
@@ -104,6 +148,7 @@ export class PropiedadFormComponent implements OnInit {
     this.searchControl = new FormControl();
 
     this.mapsAPILoader.load().then(() => {
+      
       let autocomplete = new google.maps.places.Autocomplete(
         this.searchElementRef.nativeElement,
         {
@@ -164,12 +209,21 @@ export class PropiedadFormComponent implements OnInit {
 
   guardar() {
     this.prop.setModel(this.model);
+
+    //Edición de propiedad
+    if(this.model.id != -1){
+      this.prop.edit().subscribe(r => {
+        this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
+        this.router.navigate(["mi-cuenta"]);
+      });    
+    }
+    else{
+
     if (this.user.permiso("new-prop")) {
       if (!this.model.formValid()) {
         this.alert.show(this.model.errors);
         return false;
       }
-
       this.prop.create().subscribe(r => {
         this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
         if (this.model.id == -1) {
@@ -178,4 +232,5 @@ export class PropiedadFormComponent implements OnInit {
       });
     }
   }
+}
 }

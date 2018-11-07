@@ -191,10 +191,11 @@
       <div class="row">
         <div class="col-12  form-group pull-right">
            <div  id="preview">
+           <img *ngFor="let img of model.imgs; let i = index" src="{{img.url}}">
            </div>
-           <a class="btn btn-primary seleccionar-fotos">
+           <a class="btn btn-primary seleccionar-fotos" (click)="file.click()">
            <i class="fa fa-plus" aria-hidden="true"></i> Agregar Foto</a>
-           <input id="img-input" type="file" (change)="onFileChange($event)" #fileInput  multiple class="foto-input hidden">
+           <input id="img-input" type="file" (change)="onFileChange($event)" #file multiple class="foto-input hidden">
         </div>
       </div>
 
@@ -302,7 +303,6 @@
           </div>
         </div>
       </div>
-
       <div class="row titc">
         <div class="col">
           <button class="btn btn-cprop btn-publicar" (click)="guardar()" data-toggle="modal" [attr.data-target]="dataTarget">
@@ -311,7 +311,6 @@
           </button>
         </div>
       </div>
-
     </form>
   </div>
 </div>

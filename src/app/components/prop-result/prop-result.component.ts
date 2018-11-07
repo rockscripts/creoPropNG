@@ -19,7 +19,6 @@ export class PropResultComponent implements OnInit, OnDestroy {
 
   cant_prop:number     = 0;
   scrollFinish:boolean = false;
-
   private sub: any;
 
   constructor(
