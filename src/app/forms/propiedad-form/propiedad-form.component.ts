@@ -46,7 +46,7 @@ export class PropiedadFormComponent implements OnInit {
   tiposPropiedad: any;
   ambientes: any;
   carac_gral: any;
-
+  cargando = false;
   selectedZonasByLevel: any = [null, null, null, null, null];
   zonasForSelect: any = [null, null, null, null, null];
   zonas: any;
@@ -209,10 +209,12 @@ export class PropiedadFormComponent implements OnInit {
 
   guardar() {
     this.prop.setModel(this.model);
+    this.cargando = true;
 
     //Edición de propiedad
     if(this.model.id != -1){
       this.prop.edit().subscribe(r => {
+        this.cargando = false;
         this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
         this.router.navigate(["mi-cuenta"]);
       });    
@@ -221,10 +223,12 @@ export class PropiedadFormComponent implements OnInit {
 
     if (this.user.permiso("new-prop")) {
       if (!this.model.formValid()) {
+        this.cargando = false;
         this.alert.show(this.model.errors);
         return false;
       }
       this.prop.create().subscribe(r => {
+        this.cargando = false;
         this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
         if (this.model.id == -1) {
           this.router.navigate(["/new-prop-ok"]);

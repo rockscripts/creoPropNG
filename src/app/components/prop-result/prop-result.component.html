@@ -28,6 +28,10 @@
             </div>
           </li>
         </ul>
+        <div class="propiedades-activas-inactivas" *ngIf="pActivas">
+          <button [ngClass]="{'filtro-inactivo-btn': activas == 0}"  (click)="ToogleActivas(1)" type="button"  class="btn filtro-activo-btn">{{pActivas}} Activas</button>
+          <button [ngClass]="{'filtro-inactivo-btn': activas == 1}"  (click)="ToogleActivas(0)" type="button"  class="btn filtro-activo-btn">{{pInactivas}} Inactivas</button>
+      </div>
       </div>
       <div class="col-12 col-md-3 tx-ordenar">
         <span><img src="assets/img/icon-sort.png" style="width:25px"></span> ORDENAR POR

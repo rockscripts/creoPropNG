@@ -40,12 +40,12 @@
         <div class="row">
           <div class="sidebar">
             <div class="search-toolbar-container">
-              <app-barra-busqueda [pActivas]=pActivas [pInactivas]=pInactivas [propietario]="propietario_id" searchPath='/mi-cuenta' [hideFilter]="['precio','expensas','superficie','tipoAmbiente','generales','servicios','tipoAnunciante']"></app-barra-busqueda>
+              <app-barra-busqueda [propietario]="propietario_id" searchPath='/mi-cuenta' [hideFilter]="['precio','expensas','superficie','tipoAmbiente','generales','servicios','tipoAnunciante']"></app-barra-busqueda>
             </div>
           </div>
 
           <div class="content">
-            <app-prop-result [propietario]="propietario_id" [mode]="'userProp'"></app-prop-result>
+            <app-prop-result [pActivas]=pActivas [pInactivas]=pInactivas [propietario]="propietario_id" [mode]="'userProp'"></app-prop-result>
           </div>
         </div>
       </div>
