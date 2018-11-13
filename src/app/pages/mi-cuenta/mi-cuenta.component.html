@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="right-controls d-flex align-items-center">
-          <button type="button" class="w-100 btn btn-update-plan" routerLink="/update-plan">$ Recargar</button>
+        <button type="button" class="w-100 btn btn-update-plan" routerLink="/update-plan">$ Recargar</button>
       </div>
     </div>
     <!--  -->
@@ -45,15 +45,25 @@
           </div>
 
           <div class="content">
-            <app-prop-result [pActivas]=pActivas [pInactivas]=pInactivas [propietario]="propietario_id" [mode]="'userProp'"></app-prop-result>
+            <app-prop-result [listMode]="true" [pActivas]=pActivas [pInactivas]=pInactivas [propietario]="propietario_id" [mode]="'userProp'"></app-prop-result>
           </div>
         </div>
       </div>
-      <div class="tab-pane container fade" id="visitas"><app-user-visitas></app-user-visitas></div>
-      <div class="tab-pane container fade" id="estadocuenta"><app-estado-cuenta></app-estado-cuenta></div>
-      <div class="tab-pane container fade" id="pagos"><app-user-pagos></app-user-pagos></div>
-      <div class="tab-pane container fade" id="mensajes"><app-user-mensajes></app-user-mensajes></div>
-      <div class="tab-pane container fade" id="miperfil"><app-perfil-view [editable]="true"></app-perfil-view></div>
+      <div class="tab-pane container fade" id="visitas">
+        <app-user-visitas></app-user-visitas>
+      </div>
+      <div class="tab-pane container fade" id="estadocuenta">
+        <app-estado-cuenta></app-estado-cuenta>
+      </div>
+      <div class="tab-pane container fade" id="pagos">
+        <app-user-pagos></app-user-pagos>
+      </div>
+      <div class="tab-pane container fade" id="mensajes">
+        <app-user-mensajes></app-user-mensajes>
+      </div>
+      <div class="tab-pane container fade" id="miperfil">
+        <app-perfil-view [editable]="true"></app-perfil-view>
+      </div>
     </div>
   </div>
 </div>

@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { ActivatedRoute, Router }            from '@angular/router';
+import { Component, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { PropiedadesService } from './../../providers/propiedades.service';
-import { GralInfoService }    from './../../providers/gral-info.service';
-import { Busqueda }           from './../../models/busqueda';
+import { GralInfoService } from './../../providers/gral-info.service';
+import { Busqueda } from './../../models/busqueda';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-prop-result',
@@ -11,101 +12,136 @@ import { Busqueda }           from './../../models/busqueda';
   styleUrls: ['./prop-result.component.css']
 })
 export class PropResultComponent implements OnInit, OnDestroy {
-  @Input() propietario:any;
-  @Input() mode:string       = '';
+  @ViewChild('content') content;
+  @Input() propietario: any;
+  @Input() mode: string = '';
   @Input()
   pActivas: number;
   @Input()
   pInactivas: number;
+  @Input()
+  listMode: boolean = false;
 
-  activas = 1;
-
-
-  busqueda:Busqueda;
-  propiedades:any = [];
-
-  cant_prop:number     = 0;
-  scrollFinish:boolean = false;
-  private sub: any;
+  activas: number = 1;
+  busqueda: Busqueda;
+  propiedades: any = [];
+  cant_prop: number = 0;
+  scrollFinish: boolean = false;
+  panelCheckboxState: number = 0;
+  alertType: string = '';
 
   constructor(
-    private router:             Router,
-    private activatedRoute:     ActivatedRoute,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private propiedadesService: PropiedadesService,
-    private gralInfoService:    GralInfoService
+    private gralInfoService: GralInfoService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
-    this.sub = this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {
       this.propiedades = [];
       this.busqueda = new Busqueda();
       this.busqueda.fromRouteParams(params);
-
       this.activas = params['activo'];
 
-      if(this.activas==null) this.activas = 1;
+      if (this.activas == null) this.activas = 1;
 
       if (this.propietario) {
         this.busqueda.propietario_id = this.propietario;
       }
-      
+
       this.pedirBusqueda();
     });
 
     this.gralInfoService.getInfo()
       .subscribe((r) => {
-        r = r ['data'];
+        r = r['data'];
         this.cant_prop = r['cantPropiedades'];
-    });
+      });
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
-  onScrollDown() {
-    if(this.propiedades.length > 0){
-      this.pedirBusqueda();
-    }
-  }
- 
-  onScrollUp() {
-    console.log('scroll up');
-  }
+  // onScrollDown() {
+  //   if (this.propiedades.length > 0) {
+  //     this.pedirBusqueda();
+  //   }
+  // }
 
-  edit(id){
-    this.router.navigate(['/propiedad/edit/'+id]);
-  } 
+  // onScrollUp() {
+  //   console.log('scroll up');
+  // }
 
-  delete(id){
-
+  edit(id) {
+    this.router.navigate(['/propiedad/edit/' + id]);
   }
 
+  delete(id: number, propietyState: number) {
+    this.alertType = `${+propietyState ? 'desactivar' : 'eliminar'} esta propiedad`;
 
-  ToogleActivas(x){
-    this.router.navigate(['/mi-cuenta', {'activo': x}]);
+    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then((result) => {
+        console.log(`Closed with: ${result}`);
+      }, (reason) => {
+        console.log(`Dismissed`);
+      });
   }
 
-  private pedirBusqueda(){
+  deleteAllSelecteds(propietyState: number) {
+    this.alertType = `${+propietyState ? 'desactivar' : 'eliminar'} las propiedades seleccionadas`;
+
+    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then((result) => {
+        console.log(`Closed with: ${result}`);
+      }, (reason) => {
+        console.log(`Dismissed`);
+      });
+  }
+
+
+  ToogleActivas(x) {
+    this.router.navigate(['/mi-cuenta', { 'activo': x }]);
+  }
+
+  pedirBusqueda() {
     this.propiedadesService.busqueda = this.busqueda;
 
     this.propiedadesService.getSearch()
-    .subscribe((r) => {
-      let res = r['data'];
-      if (res.length == 0){
-        this.scrollFinish = true;
-        console.log('sscs');
-        return true;
-      }
-      console.log(this.busqueda.page, JSON.stringify(this.busqueda.page));
-      
-      this.busqueda.page = this.busqueda.page ? this.busqueda.page + 1 : 1;
-      if(this.busqueda.page > 1 ){
-        this.propiedades = this.propiedades.concat(res);
-      } else {
-        this.propiedades = res;
-      }
-    });
+      .subscribe((r) => {
+        let res = r['data'];
+
+        if (res.length == 0) {
+          this.scrollFinish = true;
+          return true;
+        }
+
+        this.busqueda.page = this.busqueda.page ? this.busqueda.page + 1 : 1;
+        if (this.busqueda.page > 1) {
+          this.propiedades = this.propiedades.concat(res);
+        } else {
+          this.propiedades = res;
+        }
+
+        this.propiedades = this.propiedades.map(prop => {
+          prop.isSelected = false;
+          prop.isFav = false;
+          prop.rowActive = false;
+          return prop;
+        });
+      });
   }
 
+  hasRowSelecteds(): boolean {
+    return this.propiedades.filter(prop => prop.isSelected).length;
+  }
+
+  setPanelCheckState(state: number) {
+    this.propiedades
+      .filter(prop => prop.isSelected)
+      .forEach(prop => {
+        prop.isSelected = state === 1 ? false : true;
+      });
+  }
 }

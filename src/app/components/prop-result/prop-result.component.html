@@ -1,7 +1,8 @@
-<div class="row">
+<div class="row" *ngIf="!listMode">
   <div class="col-12" *ngIf="mode != 'userProp'">
     <div class="col-12 hh1 pl-0 res-count row align-items-center">
-      <div class="col-12 pl-0"><b>{{cant_prop}}</b>&nbsp;Propiedades en Argentina</div>
+      <div class="col-12 pl-0">
+        <b>{{cant_prop}}</b>&nbsp;Propiedades en Argentina</div>
     </div>
   </div>
   <div class="col-12">
@@ -20,7 +21,8 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              MÁS <fa name="angle-down" size="lg"></fa>
+              MÁS
+              <fa name="angle-down" size="lg"></fa>
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item">Una opción</a>
@@ -29,18 +31,20 @@
           </li>
         </ul>
         <div class="propiedades-activas-inactivas" *ngIf="pActivas">
-          <button [ngClass]="{'filtro-inactivo-btn': activas == 0}"  (click)="ToogleActivas(1)" type="button"  class="btn filtro-activo-btn">{{pActivas}} Activas</button>
-          <button [ngClass]="{'filtro-inactivo-btn': activas == 1}"  (click)="ToogleActivas(0)" type="button"  class="btn filtro-activo-btn">{{pInactivas}} Inactivas</button>
-      </div>
+          <button [ngClass]="{'filtro-inactivo-btn': activas == 0}" (click)="ToogleActivas(1)" type="button" class="btn filtro-activo-btn">{{pActivas}} Activas</button>
+          <button [ngClass]="{'filtro-inactivo-btn': activas == 1}" (click)="ToogleActivas(0)" type="button" class="btn filtro-activo-btn">{{pInactivas}} Inactivas</button>
+        </div>
       </div>
       <div class="col-12 col-md-3 tx-ordenar">
-        <span><img src="assets/img/icon-sort.png" style="width:25px"></span> ORDENAR POR
+        <span>
+          <img src="assets/img/icon-sort.png" style="width:25px">
+        </span> ORDENAR POR
       </div>
     </div>
   </div>
-  <div class="row col-12" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()"
-    (scrolledUp)="onScrollUp()">
-
+  <!-- <div class="row col-12" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()"
+    (scrolledUp)="onScrollUp()"> -->
+  <div class="row col-12">
     <div *ngFor="let propiedad of propiedades let j = index" class="col-12 col-sm-6 col-md-4 cp-card">
       <div class="card">
         <div class="checkbox" *ngIf="mode == 'userProp'">
@@ -82,26 +86,139 @@
             <div class="card-text card-tit" [routerLink]="['/propiedad/' + propiedad.id]">{{propiedad.titulo}}</div>
             <div class="card-text">
               <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span>
-              <span *ngIf="propiedad.banios != 0"><img src="assets/img/bed.svg" style="width:20px">
-                {{propiedad.banios}} </span>
-              <span *ngIf="propiedad.dormitorios != 0"><img src="assets/img/bath.svg" style="width:20px">
-                {{propiedad.dormitorios}} </span>
-              <span class="card-precio">{{propiedad.moneda_simbolo}} <strong>{{propiedad.precio | number:'1.0'}}</strong></span>
+              <span *ngIf="propiedad.banios != 0">
+                <img src="assets/img/bed.svg" style="width:20px"> {{propiedad.banios}} </span>
+              <span *ngIf="propiedad.dormitorios != 0">
+                <img src="assets/img/bath.svg" style="width:20px"> {{propiedad.dormitorios}} </span>
+              <span class="card-precio">{{propiedad.moneda_simbolo}}
+                <strong>{{propiedad.precio | number:'1.0'}}</strong>
+              </span>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
+
   <div class="row col-12">
-    <div class="col-12 text-center" *ngIf="!scrollFinish">
-      <span>Más propiedades...</span>
-    </div>
-
-
-    <div *ngIf="scrollFinish">
-
+    <div class="col-12 text-center">
+      <button class="btn btn-default" (click)="pedirBusqueda()" style="margin-top: 30px;">Ver más
+        <i class="material-icons">arrow_downward</i>
+      </button>
     </div>
   </div>
 </div>
+
+<div class="row" *ngIf="listMode">
+  <div class="col-12 row p-0 toolbar">
+    <div class="col-12 col-md-9 p-0">
+      <ul class="navbar-nav flex-row align-items-stretch " *ngIf="mode == 'userProp' && !hasRowSelecteds()">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <input type="checkbox" name="check-all-properties" value="true">
+            <fa name="angle-down" size="lg"></fa>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item">Una opción</a>
+            <a class="dropdown-item">Otra opción</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            MÁS
+            <fa name="angle-down" size="lg"></fa>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item">Una opción</a>
+            <a class="dropdown-item">Otra opción</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="table-panel" *ngIf="hasRowSelecteds()">
+        <!-- <button class="btn-icon-flat" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="icon-button material-icons icon-checked">{{ panelCheckboxState === 0 ? 'indeterminate_check_box' : panelCheckboxState === 1 ? 'check_box_outline_blank'
+            : 'check_box' }}</i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" (click)="setPanelCheckState(1)">
+            <i class="icon-button material-icons icon-checked">check_box_outline_blank</i>
+          </a>
+          <a class="dropdown-item" (click)="setPanelCheckState(2)">
+            <i class="icon-button material-icons icon-checked">check_box</i>
+          </a>
+        </div> -->
+
+        <button class="btn-icon-flat">
+          <i class="icon-button material-icons icon-checked" (click)="setPanelCheckState(1)">indeterminate_check_box</i>
+        </button>
+        <button class="btn-icon-flat">
+          <i class="icon-button material-icons icon-checked">start</i>
+        </button>
+        <button class="btn-icon-flat">
+          <i class="icon-button material-icons icon-checked" (click)="deleteAllSelecteds(activas)">delete</i>
+        </button>
+      </div>
+
+      <div class="propiedades-activas-inactivas" *ngIf="pActivas">
+        <button [ngClass]="{'filtro-inactivo-btn': activas == 0}" (click)="ToogleActivas(1)" type="button" class="btn filtro-activo-btn">{{ pActivas }} Activas</button>
+        <button [ngClass]="{'filtro-inactivo-btn': activas == 1}" (click)="ToogleActivas(0)" type="button" class="btn filtro-activo-btn">{{ pInactivas }} Inactivas</button>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3 tx-ordenar">
+      <span>
+        <img src="assets/img/icon-sort.png" style="width:25px">
+      </span> ORDENAR POR
+    </div>
+  </div>
+
+  <div class="col-12">
+    <table class="propierties-table-list">
+      <tbody>
+        <tr *ngFor="let propiedad of propiedades; let idx = index;" [class.row-selected]="propiedad.isSelected" (mouseover)="propiedad.rowActive = true"
+          (mouseout)="propiedad.rowActive = false">
+          <td class="td-icon-button">
+            <i class="icon-button material-icons" [class.icon-checked]="propiedad.isSelected" (click)="propiedad.isSelected = !propiedad.isSelected">{{ !propiedad.isSelected ? 'check_box_outline_blank' : 'check_box' }}</i>
+          </td>
+          <td class="td-icon-button" *ngIf="+activas">
+            <i class="icon-button material-icons" [class.icon-checked]="propiedad.isFav" (click)="propiedad.isFav = !propiedad.isFav">{{ !propiedad.isFav ? 'star_border' : 'star' }}</i>
+          </td>
+          <td>Venta</td>
+          <td>{{ propiedad.tipo_prop_nombre }}</td>
+          <td>{{ propiedad.nombre_zona }}</td>
+          <td>{{ propiedad.direccion }}</td>
+          <td>{{ propiedad.ambientes }} Amb.</td>
+          <td>Dorm.</td>
+          <td>{{ propiedad.banios }} Banios</td>
+          <td>Cocheras</td>
+          <td>superficie</td>
+          <td>{{ propiedad.moneda_simbolo + ' ' + propiedad.precio }}</td>
+          <td>
+            <i class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="edit(propiedad.id)">edit</i>
+          </td>
+          <td>
+            <span [hidden]="propiedad.rowActive">{{ propiedad.created_at | date:'shortTime' }}</span>
+            <i class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="delete(propiedad.id, activas)">delete</i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Advertencia!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Esta seguro que desea {{ alertType }}?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Aceptar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancelar</button>
+  </div>
+</ng-template>
