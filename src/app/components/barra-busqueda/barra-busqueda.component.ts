@@ -48,7 +48,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     private zonas: ZonasService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {
@@ -95,7 +95,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
           }
 
           // Capital federal se trata como partido pero aparece como provincia
-          if(this.busqueda.ubicacion_provincia == this.ID_CAPITAL_FEDERAL) {
+          if (this.busqueda.ubicacion_provincia == this.ID_CAPITAL_FEDERAL) {
             this.busqueda.ubicacion_partido = this.busqueda.ubicacion_provincia;
             for (const ub of this.searchConfig.ubicaciones_provincias.Argentina) {
               if (ub.id === this.busqueda.ubicacion_provincia && ub.children) {
@@ -137,6 +137,8 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
               },
               ubicaciones_partidos: null,
             };
+
+            console.log(this.searchConfig)
 
             resolve();
           },
@@ -372,5 +374,6 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
       }
     }
     this.appliedFilters = filters;
+    // console.log(this.appliedFilters)
   }
 }

@@ -1,6 +1,7 @@
 <div class="filters-box" *ngIf="appliedFilters.length > 0">
   <div class="filters-box-header">
-    <h3><i class="fa fa-search"></i> FILTROS APLICADOS</h3>
+    <h3>
+      <i class="fa fa-search"></i> FILTROS APLICADOS</h3>
   </div>
   <div class="applied-filters-wrapper">
     <ul class="applied-filters">
@@ -9,23 +10,27 @@
       </li>
     </ul>
     <div class="applied-filters-footer">
-      <a [routerLink]="[searchPath]" [queryParams]="{}"><i class="fa fa-trash"></i> ELIMINAR FILTROS</a>
+      <a [routerLink]="[searchPath]" [queryParams]="{}">
+        <i class="fa fa-trash"></i> ELIMINAR FILTROS</a>
     </div>
   </div>
 </div>
 <div class="filters-box" *ngIf="searchConfig">
   <div class="filters-box-header">
-    <h3><i class="fa fa-filter"></i> FILTROS</h3>
+    <h3>
+      <i class="fa fa-filter"></i> FILTROS</h3>
   </div>
   <div class="accordion filters-wrapper" id="filtersAccordion">
     <form>
       <!-- ubicacion:provincia -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_provincia')===-1 && (!busqueda.ubicacion_provincia || !searchConfig.ubicaciones_partidos)">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion"
-          aria-expanded="false" aria-controls="collapse-ubicacion">
-          Ubicación <i class="fa icon fa-sort-down"></i>
+        <!-- <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion" aria-expanded="false" aria-controls="collapse-ubicacion"> -->
+        <div class="filter-header">
+          Ubicación
+          <!-- <i class="fa icon fa-sort-down"></i> -->
         </div>
-        <div id="collapse-ubicacion" class="collapse filter-collapse" aria-labelledby="heading-ubicacion" data-parent="#filtersAccordion">
+        <!-- <div id="collapse-ubicacion" class="collapse filter-collapse" aria-labelledby="heading-ubicacion" data-parent="#filtersAccordion"> -->
+        <div id="collapse-ubicacion" class="filter-collapse">
           <div class="filter-content">
             <div class="list-container">
               <ul class="list-group list-group-flush">
@@ -43,12 +48,14 @@
       <!-- END:ubicacion:provincia -->
 
       <!-- ubicacion:partido -->
-      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_partido')===-1 && searchConfig.ubicaciones_partidos && (!busqueda.ubicacion_partido || !searchConfig.ubicaciones_localidad)">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion"
-          aria-expanded="false" aria-controls="collapse-ubicacion">
-          Ubicación <i class="fa icon fa-sort-down"></i>
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_partido') === -1 && searchConfig.ubicaciones_partidos && (!busqueda.ubicacion_partido || !searchConfig.ubicaciones_localidad)">
+        <!-- <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion" aria-expanded="false" aria-controls="collapse-ubicacion"> -->
+        <div class="filter-header">
+          Ubicación
+          <!-- <i class="fa icon fa-sort-down"></i> -->
         </div>
-        <div id="collapse-ubicacion" class="collapse filter-collapse" aria-labelledby="heading-ubicacion" data-parent="#filtersAccordion">
+        <!-- <div id="collapse-ubicacion" class="collapse filter-collapse" aria-labelledby="heading-ubicacion" data-parent="#filtersAccordion"> -->
+        <div id="collapse-ubicacion" class="filter-collapse">
           <div class="filter-content">
             <div class="list-container">
               <ul class="list-group list-group-flush">
@@ -66,20 +73,20 @@
       <!-- END:ubicacion:partido -->
 
       <!-- ubicacion:localidad -->
-      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_localidad')===-1 && searchConfig.ubicaciones_localidad">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion-subprovincia"
-          aria-expanded="false" aria-controls="collapse-ubicacion-subprovincia">
-          Ubicación <i class="fa icon fa-sort-down"></i>
+      <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ubicacion_localidad') === -1 && searchConfig.ubicaciones_localidad">
+        <!-- <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ubicacion-subprovincia" aria-expanded="false" aria-controls="collapse-ubicacion-subprovincia"> -->
+        <div class="filter-header">
+          Ubicación
+          <!-- <i class="fa icon fa-sort-down"></i> -->
         </div>
-        <div id="collapse-ubicacion-subprovincia" class="collapse filter-collapse" aria-labelledby="heading-ubicacion-subprovincia"
-          data-parent="#filtersAccordion">
+        <!-- <div id="collapse-ubicacion-subprovincia" class="collapse filter-collapse" aria-labelledby="heading-ubicacion-subprovincia" data-parent="#filtersAccordion"> -->
+        <div id="collapse-ubicacion-subprovincia" class="filter-collapse">
           <div class="filter-content">
             <div class="list-container">
               <ul class="list-group checkbox-list">
                 <li *ngFor="let ub_children of searchConfig.ubicaciones_localidad" class="list-group-item d-flex justify-content-between">
                   <div class="left">
-                    <input id="ubicacion-{{ub_children.id}}-check" type="checkbox" [checked]="busqueda.ubicacion[ub_children.id]"
-                      (change)="onMultiParamChange('ubicacion', ub_children.id)">
+                    <input id="ubicacion-{{ub_children.id}}-check" type="checkbox" [checked]="busqueda.ubicacion[ub_children.id]" (change)="onMultiParamChange('ubicacion', ub_children.id)">
                     <label for="ubicacion-{{ub_children.id}}-check">{{ub_children.name}}</label>
                   </div>
                   <span class="badge">({{ub_children.count}})</span>
@@ -97,12 +104,12 @@
 
       <!-- tipo op -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('tipoOperacion')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipo-operacion"
-          aria-expanded="false" aria-controls="collapse-tipo-operacion">
-          Tipo de operación <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipo-operacion" aria-expanded="false"
+          aria-controls="collapse-tipo-operacion">
+          Tipo de operación
+          <i class="fa icon fa-sort-down"></i>
         </div>
-        <div id="collapse-tipo-operacion" class="collapse filter-collapse" aria-labelledby="heading-tipo-operacion"
-          data-parent="#filtersAccordion">
+        <div id="collapse-tipo-operacion" class="collapse filter-collapse" aria-labelledby="heading-tipo-operacion" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
               <li (click)="addFilter({tipoOperacion: op.value})" *ngFor="let op of searchConfig.tipoOperacion" class="list-group-item d-flex justify-content-between align-items-center">
@@ -117,12 +124,12 @@
 
       <!-- tipo prop -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('tipoPropiedad')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipo-propiedad"
-          aria-expanded="false" aria-controls="collapse-tipo-propiedad">
-          Tipo de propiedad <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipo-propiedad" aria-expanded="false"
+          aria-controls="collapse-tipo-propiedad">
+          Tipo de propiedad
+          <i class="fa icon fa-sort-down"></i>
         </div>
-        <div id="collapse-tipo-propiedad" class="collapse filter-collapse" aria-labelledby="heading-tipo-propiedad"
-          data-parent="#filtersAccordion">
+        <div id="collapse-tipo-propiedad" class="collapse filter-collapse" aria-labelledby="heading-tipo-propiedad" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
               <li (click)="addFilter({tipoPropiedad: tp.value})" *ngFor="let tp of searchConfig.tipoPropiedad" class="list-group-item d-flex justify-content-between align-items-center">
@@ -137,11 +144,14 @@
 
       <!-- precio -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('precio')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-precio"
-          aria-expanded="false" aria-controls="collapse-precio">
-          Precio <i class="fa icon fa-sort-down"></i>
+        <!-- <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-precio" aria-expanded="true"
+          aria-controls="collapse-precio"> -->
+        <div class="filter-header">
+          Precio
+          <!-- <i class="fa icon fa-sort-down"></i> -->
         </div>
-        <div id="collapse-precio" class="collapse filter-collapse" aria-labelledby="heading-precio" data-parent="#filtersAccordion">
+        <!-- <div id="collapse-precio" class="collapse filter-collapse" aria-labelledby="heading-precio" data-parent="#filtersAccordion"> -->
+        <div id="collapse-precio" class="filter-collapse">
           <div class="filter-content">
 
             <div class="col-12 money-select">
@@ -155,15 +165,13 @@
               <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
               </div>
-              <input type="text" class="form-control" placeholder="Desde" [(ngModel)]="precioDesde" name="precioDesde"
-                (change)="busqueda.precio = precioDesde + '-' + precioHasta">
+              <input type="text" class="form-control" placeholder="Desde" [(ngModel)]="precioDesde" name="precioDesde" (change)="busqueda.precio = precioDesde + '-' + precioHasta">
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
               </div>
-              <input type="text" class="form-control" placeholder="Hasta" [(ngModel)]="precioHasta" name="precioHasta"
-                (change)="busqueda.precio = precioDesde + '-' + precioHasta">
+              <input type="text" class="form-control" placeholder="Hasta" [(ngModel)]="precioHasta" name="precioHasta" (change)="busqueda.precio = precioDesde + '-' + precioHasta">
             </div>
 
             <div class="w-100">
@@ -176,9 +184,10 @@
 
       <!-- expensas -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('expensas')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-expensas"
-          aria-expanded="false" aria-controls="collapse-expensas">
-          Expensas <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-expensas" aria-expanded="false"
+          aria-controls="collapse-expensas">
+          Expensas
+          <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-expensas" class="collapse filter-collapse" aria-labelledby="heading-expensas" data-parent="#filtersAccordion">
           <div class="filter-content">
@@ -186,15 +195,13 @@
               <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
               </div>
-              <input type="text" class="form-control" placeholder="Desde" [(ngModel)]="expensasDesde" name="expensasDesde"
-                (change)="busqueda.expensas = expensasDesde + '-' + expensasHasta">
+              <input type="text" class="form-control" placeholder="Desde" [(ngModel)]="expensasDesde" name="expensasDesde" (change)="busqueda.expensas = expensasDesde + '-' + expensasHasta">
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
               </div>
-              <input type="text" class="form-control" placeholder="Hasta" [(ngModel)]="expensasHasta" name="expensasHasta"
-                (change)="busqueda.expensas = expensasDesde + '-' + expensasHasta">
+              <input type="text" class="form-control" placeholder="Hasta" [(ngModel)]="expensasHasta" name="expensasHasta" (change)="busqueda.expensas = expensasDesde + '-' + expensasHasta">
             </div>
 
             <div class="w-100">
@@ -207,9 +214,10 @@
 
       <!-- ambientes -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('ambientes')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ambientes"
-          aria-expanded="false" aria-controls="collapse-ambientes">
-          Ambientes <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-ambientes" aria-expanded="false"
+          aria-controls="collapse-ambientes">
+          Ambientes
+          <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-ambientes" class="collapse filter-collapse" aria-labelledby="heading-ambientes" data-parent="#filtersAccordion">
           <div class="filter-content">
@@ -226,12 +234,12 @@
 
       <!-- dormitorios -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('dormitorios')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-dormitorios"
-          aria-expanded="false" aria-controls="collapse-dormitorios">
-          Dormitorios <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-dormitorios" aria-expanded="false"
+          aria-controls="collapse-dormitorios">
+          Dormitorios
+          <i class="fa icon fa-sort-down"></i>
         </div>
-        <div id="collapse-dormitorios" class="collapse filter-collapse" aria-labelledby="heading-dormitorios"
-          data-parent="#filtersAccordion">
+        <div id="collapse-dormitorios" class="collapse filter-collapse" aria-labelledby="heading-dormitorios" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
               <li (click)="addFilter({dormitorios: dorm.value})" *ngFor="let dorm of searchConfig.dormitorios" class="list-group-item d-flex justify-content-between align-items-center">
@@ -246,9 +254,10 @@
 
       <!-- banios -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('cantidadBanios')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-banios"
-          aria-expanded="false" aria-controls="collapse-banios">
-          Baños <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-banios" aria-expanded="false"
+          aria-controls="collapse-banios">
+          Baños
+          <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-banios" class="collapse filter-collapse" aria-labelledby="heading-banios" data-parent="#filtersAccordion">
           <div class="filter-content">
@@ -266,9 +275,10 @@
 
       <!-- cocheras -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('cocheras')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-cocheras"
-          aria-expanded="false" aria-controls="collapse-cocheras">
-          Cocheras <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-cocheras" aria-expanded="false"
+          aria-controls="collapse-cocheras">
+          Cocheras
+          <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-cocheras" class="collapse filter-collapse" aria-labelledby="heading-cocheras" data-parent="#filtersAccordion">
           <div class="filter-content">
@@ -285,17 +295,18 @@
 
       <!-- superficie -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('superficie')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-superficie"
-          aria-expanded="false" aria-controls="collapse-superficie">
-          Superficie <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-superficie" aria-expanded="false"
+          aria-controls="collapse-superficie">
+          Superficie
+          <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-superficie" class="collapse filter-collapse" aria-labelledby="heading-superficie" data-parent="#filtersAccordion">
           <div class="filter-content">
 
             <div class="col-12 money-select">
               <div class="row">
-                <div class="col text-center" [ngClass]="{active: busqueda.tipoSuperficie !== 'total'}"(click)="busqueda.tipoSuperficie = 'cubierta'">CUBIERTA</div>
-                <div class="col text-center" [ngClass]="{active: busqueda.tipoSuperficie === 'total'}"(click)="busqueda.tipoSuperficie = 'total'">TOTAL</div>
+                <div class="col text-center" [ngClass]="{active: busqueda.tipoSuperficie !== 'total'}" (click)="busqueda.tipoSuperficie = 'cubierta'">CUBIERTA</div>
+                <div class="col text-center" [ngClass]="{active: busqueda.tipoSuperficie === 'total'}" (click)="busqueda.tipoSuperficie = 'total'">TOTAL</div>
               </div>
             </div>
 
@@ -303,15 +314,13 @@
               <div class="input-group-prepend">
                 <div class="input-group-text">m²</div>
               </div>
-              <input type="text" class="form-control" placeholder="Desde" [(ngModel)]="superficieDesde" name="superficieDesde"
-                (change)="busqueda.superficie = superficieDesde + '-' + superficieHasta">
+              <input type="text" class="form-control" placeholder="Desde" [(ngModel)]="superficieDesde" name="superficieDesde" (change)="busqueda.superficie = superficieDesde + '-' + superficieHasta">
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text">m²</div>
               </div>
-              <input type="text" class="form-control" placeholder="Hasta" [(ngModel)]="superficieHasta" name="superficieHasta"
-                (change)="busqueda.superficie = superficieDesde + '-' + superficieHasta">
+              <input type="text" class="form-control" placeholder="Hasta" [(ngModel)]="superficieHasta" name="superficieHasta" (change)="busqueda.superficie = superficieDesde + '-' + superficieHasta">
             </div>
 
             <div class="w-100">
@@ -325,18 +334,17 @@
 
       <!-- tipos ambientes -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('tipoAmbiente')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipos-ambientes"
-          aria-expanded="false" aria-controls="collapse-tipos-ambientes">
-          Tipos de Ambientes <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipos-ambientes" aria-expanded="false"
+          aria-controls="collapse-tipos-ambientes">
+          Tipos de Ambientes
+          <i class="fa icon fa-sort-down"></i>
         </div>
-        <div id="collapse-tipos-ambientes" class="collapse filter-collapse" aria-labelledby="heading-tipos-ambientes"
-          data-parent="#filtersAccordion">
+        <div id="collapse-tipos-ambientes" class="collapse filter-collapse" aria-labelledby="heading-tipos-ambientes" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group checkbox-list">
               <li *ngFor="let amb of searchConfig.tipoAmbiente" class="list-group-item d-flex justify-content-between">
                 <div class="left">
-                  <input id="tipoAmbiente-{{amb.value}}-check" type="checkbox" [checked]="busqueda.tipoAmbiente[amb.value]"
-                    (change)="onMultiParamChange('tipoAmbiente', amb.value)">
+                  <input id="tipoAmbiente-{{amb.value}}-check" type="checkbox" [checked]="busqueda.tipoAmbiente[amb.value]" (change)="onMultiParamChange('tipoAmbiente', amb.value)">
                   <label for="tipoAmbiente-{{amb.value}}-check">{{amb.name}}</label>
                 </div>
                 <span class="badge">({{amb.count}})</span>
@@ -353,17 +361,17 @@
 
       <!-- servicios -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('servicios')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-servicios"
-          aria-expanded="false" aria-controls="collapse-servicios">
-          Servicios <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-servicios" aria-expanded="false"
+          aria-controls="collapse-servicios">
+          Servicios
+          <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-servicios" class="collapse filter-collapse" aria-labelledby="heading-servicios" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group checkbox-list">
               <li *ngFor="let servicio of searchConfig.servicios" class="list-group-item d-flex justify-content-between">
                 <div class="left">
-                  <input id="servicios-{{servicio.value}}-check" type="checkbox" [checked]="busqueda.servicios[servicio.value]"
-                    (change)="onMultiParamChange('servicios', servicio.value)">
+                  <input id="servicios-{{servicio.value}}-check" type="checkbox" [checked]="busqueda.servicios[servicio.value]" (change)="onMultiParamChange('servicios', servicio.value)">
                   <label for="servicios-{{servicio.value}}-check">{{servicio.name}}</label>
                 </div>
                 <span class="badge">({{servicio.count}})</span>
@@ -380,17 +388,17 @@
 
       <!-- generales -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('generales')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-generales"
-          aria-expanded="false" aria-controls="collapse-generales">
-          Generales <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-generales" aria-expanded="false"
+          aria-controls="collapse-generales">
+          Generales
+          <i class="fa icon fa-sort-down"></i>
         </div>
         <div id="collapse-generales" class="collapse filter-collapse" aria-labelledby="heading-generales" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group checkbox-list">
               <li *ngFor="let general of searchConfig.generales" class="list-group-item d-flex justify-content-between">
                 <div class="left">
-                  <input id="generales-{{general.value}}-check" type="checkbox" [checked]="busqueda.generales[general.value]"
-                    (change)="onMultiParamChange('generales', general.value)">
+                  <input id="generales-{{general.value}}-check" type="checkbox" [checked]="busqueda.generales[general.value]" (change)="onMultiParamChange('generales', general.value)">
                   <label for="generales-{{general.value}}-check">{{general.name}}</label>
                 </div>
                 <span class="badge">({{general.count}})</span>
@@ -407,12 +415,12 @@
 
       <!-- tipo anunciante -->
       <div class="filter-wrapper" *ngIf="hideFilter.indexOf('tipoAnunciante')===-1">
-        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipo-anunciante"
-          aria-expanded="false" aria-controls="collapse-tipo-anunciante">
-          Tipo de anunciante <i class="fa icon fa-sort-down"></i>
+        <div class="filter-header collapsed" type="div" data-toggle="collapse" data-target="#collapse-tipo-anunciante" aria-expanded="false"
+          aria-controls="collapse-tipo-anunciante">
+          Tipo de anunciante
+          <i class="fa icon fa-sort-down"></i>
         </div>
-        <div id="collapse-tipo-anunciante" class="collapse filter-collapse" aria-labelledby="heading-tipo-anunciante"
-          data-parent="#filtersAccordion">
+        <div id="collapse-tipo-anunciante" class="collapse filter-collapse" aria-labelledby="heading-tipo-anunciante" data-parent="#filtersAccordion">
           <div class="filter-content">
             <ul class="list-group list-group-flush">
               <li (click)="addFilter({tipoAnunciante: ta.value})" *ngFor="let ta of searchConfig.tipoAnunciante" class="list-group-item d-flex justify-content-between align-items-center">
