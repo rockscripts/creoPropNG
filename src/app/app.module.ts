@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { LOCALE_ID } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
@@ -73,6 +73,7 @@ import { UserVisitasComponent } from './components/user-visitas/user-visitas.com
 import { MercadoPagoOkComponent } from './pages/MP/mercado-pago-ok/mercado-pago-ok.component';
 import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-pago-fail.component';
 import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-pago-pend.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +114,8 @@ import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-p
     UserVisitasComponent,
     MercadoPagoOkComponent,
     MercadoPagoFailComponent,
-    MercadoPagoPendComponent
+    MercadoPagoPendComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -124,7 +126,8 @@ import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-p
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyD2ohKHAfu3LTRtftC37oMAmy2ldJ1a4Gg', libraries: ["places"] }),
     FormsModule, ReactiveFormsModule,
     NgSelectModule,
-    NgbModalModule
+    NgbModalModule,
+    NgbCarouselModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

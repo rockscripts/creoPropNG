@@ -89,7 +89,7 @@
     font-size: 0.8em;
 }
 
-.cp-card .img-count {
+/* .cp-card .img-count {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -98,7 +98,7 @@
     color: #fff !important;
     background: rgba(0, 0, 0, 0.7);
     font-size: 0.6em;
-}
+} */
 
 .cp-card .verif .fa {
     color: #fff !important;
@@ -132,6 +132,7 @@
 
 .card {
     box-shadow: none;
+    background-color: #656565;
 }
 
 .direccion {

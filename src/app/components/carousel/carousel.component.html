@@ -1,0 +1,6 @@
+<ngb-carousel #carousel *ngIf="files.length" (slide)="getCurrentSlide($event)">
+  <ng-template ngbSlide *ngFor="let file of files">
+    <img class="card-img" [src]="'http://192.168.0.13/' + file.vista_previa" [alt]="file.titulo">
+    <div class="img-count">{{ current }}/{{ files.length }}</div>
+  </ng-template>
+</ngb-carousel>

@@ -1,26 +1,23 @@
-import { Component, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PropiedadesService } from './../../providers/propiedades.service';
 import { GralInfoService } from './../../providers/gral-info.service';
 import { Busqueda } from './../../models/busqueda';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-prop-result',
   templateUrl: './prop-result.component.html',
   styleUrls: ['./prop-result.component.css']
 })
-export class PropResultComponent implements OnInit, OnDestroy {
+export class PropResultComponent implements OnInit {
   @ViewChild('content') content;
   @Input() propietario: any;
   @Input() mode: string = '';
-  @Input()
-  pActivas: number;
-  @Input()
-  pInactivas: number;
-  @Input()
-  listMode: boolean = false;
+  @Input() pActivas: number;
+  @Input() pInactivas: number;
+  @Input() listMode: boolean = false;
 
   activas: number = 1;
   busqueda: Busqueda;
@@ -39,20 +36,21 @@ export class PropResultComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.propiedades = [];
-      this.busqueda = new Busqueda();
-      this.busqueda.fromRouteParams(params);
-      this.activas = params['activo'];
+    this.activatedRoute.params
+      .subscribe(params => {
+        this.propiedades = [];
+        this.busqueda = new Busqueda();
+        this.busqueda.fromRouteParams(params);
+        this.activas = params['activo'];
 
-      if (this.activas == null) this.activas = 1;
+        if (this.activas == null) this.activas = 1;
 
-      if (this.propietario) {
-        this.busqueda.propietario_id = this.propietario;
-      }
+        if (this.propietario) {
+          this.busqueda.propietario_id = this.propietario;
+        }
 
-      this.pedirBusqueda();
-    });
+        this.pedirBusqueda();
+      });
 
     this.gralInfoService.getInfo()
       .subscribe((r) => {
@@ -61,18 +59,7 @@ export class PropResultComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
-  }
-
-  // onScrollDown() {
-  //   if (this.propiedades.length > 0) {
-  //     this.pedirBusqueda();
-  //   }
-  // }
-
-  // onScrollUp() {
-  //   console.log('scroll up');
-  // }
+  // ngOnDestroy() {}
 
   edit(id) {
     this.router.navigate(['/propiedad/edit/' + id]);

@@ -2,7 +2,7 @@
   <div class="col-12" *ngIf="mode != 'userProp'">
     <div class="col-12 hh1 pl-0 res-count row align-items-center">
       <div class="col-12 pl-0">
-        <b>{{cant_prop}}</b>&nbsp;Propiedades en Argentina</div>
+        <b>{{ cant_prop }}</b> Propiedades en Argentina</div>
     </div>
   </div>
   <div class="col-12">
@@ -42,10 +42,9 @@
       </div>
     </div>
   </div>
-  <!-- <div class="row col-12" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()"
-    (scrolledUp)="onScrollUp()"> -->
+
   <div class="row col-12">
-    <div *ngFor="let propiedad of propiedades let j = index" class="col-12 col-sm-6 col-md-4 cp-card">
+    <div *ngFor="let propiedad of propiedades; let idx = index" class="col-12 col-sm-6 col-md-4 cp-card">
       <div class="card">
         <div class="checkbox" *ngIf="mode == 'userProp'">
           <input type="checkbox" name="{{'checked-propiedad-' + propiedad.id}}">
@@ -55,30 +54,20 @@
           <i class="fa fa-pencil link-btn" (click)="edit(propiedad.id)"></i>
           <i class="fa fa-trash link-btn" (click)="delete(propiedad.id)"></i>
         </div>
+
         <!-- carrusel -->
-        <div id="imgs{{j}}" class="carousel slide" data-ride="carousel" data-interval="false">
-          <div class="carousel-inner">
-            <div class="carousel-item" *ngFor="let v of propiedad.files let f = first" [ngClass]="{'active' : f}">
-              <img class="card-img" src="./{{v['vista_previa']}}" alt="{{v.titulo}}">
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#imgs{{j}}" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-          </a>
-          <a class="carousel-control-next" href="#imgs{{j}}" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </div>
+        <app-carousel [files]="propiedad.files"></app-carousel>
+
         <!-- resto de la info -->
         <div class="card-img-overlay">
           <img class="imb-img" src="./{{propiedad.inmobiliaria.logo}}" alt="{{propiedad.inmobiliaria.nombre}}" />
-          <div class="img-count">1/{{propiedad.filesCount}}</div>
         </div>
+
         <div class="card-body">
           <div class="card-text direccion">
             <span>
               <i class="fa fa-map-marker" aria-hidden="true"></i>
-              {{propiedad.direccion}}
+              {{ propiedad.direccion }}
             </span>
           </div>
           <!--descripción -->
@@ -103,7 +92,7 @@
   <div class="row col-12">
     <div class="col-12 text-center">
       <button class="btn btn-default" (click)="pedirBusqueda()" style="margin-top: 30px;">Ver más
-        <i class="material-icons">arrow_downward</i>
+        <i class="material-icons" style="vertical-align: top;">arrow_downward</i>
       </button>
     </div>
   </div>
@@ -184,15 +173,15 @@
           <td class="td-icon-button" *ngIf="+activas">
             <i class="icon-button material-icons" [class.icon-checked]="propiedad.isFav" (click)="propiedad.isFav = !propiedad.isFav">{{ !propiedad.isFav ? 'star_border' : 'star' }}</i>
           </td>
-          <td>Venta</td>
+          <td>{{ propiedad.tipo_operacion_name }}</td>
           <td>{{ propiedad.tipo_prop_nombre }}</td>
-          <td>{{ propiedad.nombre_zona }}</td>
           <td>{{ propiedad.direccion }}</td>
+          <td>{{ propiedad.nombre_zona }}</td>
           <td>{{ propiedad.ambientes }} Amb.</td>
-          <td>Dorm.</td>
+          <td>{{ propiedad.dormitorios }} Dorm.</td>
           <td>{{ propiedad.banios }} Banios</td>
-          <td>Cocheras</td>
-          <td>superficie</td>
+          <td>{{ propiedad.cochera }} Cocheras</td>
+          <td>{{ propiedad.superficie_total }}m2 Tot.</td>
           <td>{{ propiedad.moneda_simbolo + ' ' + propiedad.precio }}</td>
           <td>
             <i class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="edit(propiedad.id)">edit</i>
