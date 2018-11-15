@@ -1,41 +1,45 @@
 <nav [ngClass]="{'navbar':true, 'navbar-white':!navbar_red, 'navbar-red':navbar_red, 'navbar-expand-lg':true, 'fixed-top':true, 'navbar-light':true}">
   <a class="navbar-brand" routerLink="/">
     <img src="assets/logo.svg" width="auto" height="50px" alt="" *ngIf="navbar_red">
-    <img src="assets/logo-red.svg" width="auto" height="50px" alt="" *ngIf="!navbar_red">
-    creoprop
+    <img src="assets/logo-red.svg" width="auto" height="50px" alt="" *ngIf="!navbar_red"> creoprop
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse row" id="navbarSupportedContent" *ngIf="navbar_red">
     <form class="my-2 my-lg-0 col-sm-4">
       <div class="input-group add-on" [hidden]="hideSearchBox">
-      <input class="form-control" placeholder="Buscar por palabra clave" name="srch-term" id="srch-term" type="text" >
-      <div class="btn-search"><i class="fa fa-search"></i></div>
-    </div>
+        <input class="form-control" placeholder="Busca por palabra clave" name="srch-term" id="srch-term" type="text">
+        <div class="btn-search">
+          <i class="fa fa-search"></i>
+        </div>
+      </div>
     </form>
     <div class="col">
     </div>
     <div class="col-sm-auto order-last">
       <ul class="navbar-nav mr-auto align-self-end">
-        <li class="nav-item" routerLink="/select-plan" *ngIf = "!registrado">
+        <li class="nav-item" routerLink="/select-plan" *ngIf="!registrado">
           <a class="nav-link">PUBLICAR UNA PROPIEDAD</a>
         </li>
-        <li class="nav-item" routerLink="/new-prop" *ngIf = "registrado">
+        <li class="nav-item" routerLink="/new-prop" *ngIf="registrado">
           <a class="nav-link">PUBLICAR UNA PROPIEDAD</a>
         </li>
-        <li class="nav-item" data-toggle="modal" data-target="#modalReg" *ngIf = "!registrado">
+        <li class="nav-item" data-toggle="modal" data-target="#modalReg" *ngIf="!registrado">
           <a class="nav-link" (click)="showRegistrar()">REGISTRARME</a>
         </li>
-        <li class="nav-item" data-toggle="modal" *ngIf = "!registrado">
+        <li class="nav-item" data-toggle="modal" *ngIf="!registrado">
           <a class="nav-link" (click)="showLogin()">INICIAR SESIÓN</a>
         </li>
-        <li class="nav-item dropdown" *ngIf = "registrado">
-          <a *ngIf="perfil.img === ''" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown" *ngIf="registrado">
+          <a *ngIf="perfil.img === ''" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             MI CUENTA ({{userName}})
           </a>
-          <a *ngIf="perfil.img !== ''" class="nav-link dropdown-toggle user-profile-image" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a *ngIf="perfil.img !== ''" class="nav-link dropdown-toggle user-profile-image" href="#" id="navbarDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="{{perfil.img}}" alt="">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -52,7 +56,7 @@
     </div>
     <div class="col-sm-auto order-last">
       <ul class="navbar-nav mr-auto align-self-end">
-        <li class="nav-item" data-toggle="modal" *ngIf = "!registrado">
+        <li class="nav-item" data-toggle="modal" *ngIf="!registrado">
           <a class="nav-link" (click)="showLogin()">INICIAR SESIÓN</a>
         </li>
       </ul>
