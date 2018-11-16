@@ -268,6 +268,7 @@
     justify-content: flex-end;
     width: 100%;
     position: relative;
+    padding-top: 10px;
 }
 
 .paginator .page-counter {
@@ -276,7 +277,7 @@
 }
 
 .paginator .icon-button {
-    margin-left: 10px;
+    margin-left: 20px;
     font-size: 1.2rem;
 }
 
@@ -285,4 +286,9 @@
     height: 30px;
     top: -4px;
     left: -9px;
+}
+
+.toolbar .nav-link.btn-orderby {
+    background-color: transparent;
+    box-shadow: none;
 }

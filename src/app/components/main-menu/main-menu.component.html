@@ -40,7 +40,7 @@
           </a>
           <a *ngIf="perfil.img !== ''" class="nav-link dropdown-toggle user-profile-image" href="#" id="navbarDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="{{perfil.img}}" alt="">
+            <img [src]="'http://192.168.0.13/' + perfil.img" alt="">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/mi-cuenta">MI CUENTA</a>

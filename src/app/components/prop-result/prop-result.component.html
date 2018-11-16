@@ -38,8 +38,8 @@
       <div class="col-12 col-md-3 tx-ordenar">
         <ul class="navbar-nav flex-row align-items-stretch justify-content-end">
           <li class="nav-item dropdown">
-            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="assets/img/icon-sort.png" style="width:25px">ORDENAR POR
+            <a class="nav-link btn-orderby" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons"> swap_vert </i> ORDENAR POR
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" (click)="pedirBusqueda(true, 'destacados')">Destacados</a>
@@ -100,9 +100,9 @@
     </div>
   </div>
 
-  <div class="row col-12">
+  <div class="row col-12" *ngIf="pagination && pagination.next">
     <div class="col-12 text-center">
-      <button class="btn btn-default" (click)="pedirBusqueda()" style="margin-top: 30px;">Ver más
+      <button class="btn btn-default" (click)="nextPage()" style="margin-top: 30px;">Ver más
         <i class="material-icons" style="vertical-align: top;">arrow_downward</i>
       </button>
     </div>
@@ -151,10 +151,10 @@
         </div>
 
         <div class="col-4">
-          <div class="paginator">
-            <span class="page-counter">1 - 50 de 2.500</span>
-            <i class="icon-button material-icons" (click)="prevPage()">arrow_back_ios</i>
-            <i class="icon-button material-icons" (click)="nextPage()">arrow_forward_ios</i>
+          <div class="paginator" *ngIf="pagination">
+            <span class="page-counter">{{ pagination.range }} propiedades de {{ pagination.total }}</span>
+            <i class="icon-button material-icons" (click)="prevPage()" *ngIf="pagination.prev">arrow_back_ios</i>
+            <i class="icon-button material-icons" (click)="nextPage()" *ngIf="pagination.next">arrow_forward_ios</i>
           </div>
         </div>
 
@@ -168,7 +168,7 @@
     <div class="col-12 col-md-3 tx-ordenar">
       <ul class="navbar-nav flex-row align-items-stretch justify-content-end">
         <li class="nav-item dropdown">
-          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link btn-orderby" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="assets/img/icon-sort.png" style="width:25px">ORDENAR POR
           </a>
           <div class="dropdown-menu">

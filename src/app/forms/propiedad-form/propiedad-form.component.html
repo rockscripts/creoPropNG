@@ -1,4 +1,7 @@
-<div *ngIf="cargando==true" id="loadercontainer"><div id="loader"></div><h1>PUBLICANDO PROPIEDAD</h1></div>
+<div *ngIf="cargando==true" id="loadercontainer">
+  <div id="loader"></div>
+  <h1>PUBLICANDO PROPIEDAD</h1>
+</div>
 <div class="row f-prop">
   <div class="container container-1060">
     <form #propForm="ngForm">
@@ -10,143 +13,167 @@
 
       <div class="row titc">
         <div class="col">
-          <h4>Datos principales</h4><hr>
+          <h4>Datos principales</h4>
+          <hr>
         </div>
       </div>
 
       <div class="row">
         <div class="input-element">
-           <label>Tipo de operación</label>
-           <ng-select id="tipoOperacion" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.tipo_op" [(ngModel)]="model.tipo_operacion_id" name="tipo_operacion_id">
-           </ng-select>
+          <label>Tipo de operación</label>
+          <ng-select id="tipoOperacion" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.tipo_op" [(ngModel)]="model.tipo_operacion_id"
+            name="tipo_operacion_id">
+          </ng-select>
         </div>
 
         <div class="input-element">
-           <label>Tipo de propiedad</label>
-           <ng-select id="tipoPropiedad" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="tiposPropiedad" [(ngModel)]="model.tipo_propiedad_id" name="tipo_propiedad_id">
-           </ng-select>
+          <label>Tipo de propiedad</label>
+          <ng-select id="tipoPropiedad" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="tiposPropiedad" [(ngModel)]="model.tipo_propiedad_id"
+            name="tipo_propiedad_id">
+          </ng-select>
         </div>
 
         <div class="input-element">
-           <label>Ambientes</label> <input id="ambientes" type="text" class="form-control" name="ambientes_c" [(ngModel)]="model.ambientes_c" placeholder="">
+          <label>Ambientes</label>
+          <input id="ambientes" type="text" class="form-control" name="ambientes_c" [(ngModel)]="model.ambientes_c" placeholder="">
         </div>
 
         <div class="input-element">
-           <label>Dormitorios</label> <input id="dormitorios" type="text" class="form-control" name="dormitorios" [(ngModel)]="model.dormitorios" placeholder="">
+          <label>Dormitorios</label>
+          <input id="dormitorios" type="text" class="form-control" name="dormitorios" [(ngModel)]="model.dormitorios" placeholder="">
         </div>
 
         <div class="input-element">
-           <label>Baños</label> <input id="banios" type="text" class="form-control" name="banios" [(ngModel)]="model.banios" placeholder="">
+          <label>Baños</label>
+          <input id="banios" type="text" class="form-control" name="banios" [(ngModel)]="model.banios" placeholder="">
         </div>
 
         <div class="input-element">
-           <label>Toilette</label> <input id="toilette" type="text" class="form-control" name="toilette" [(ngModel)]="model.toilette" placeholder="">
+          <label>Toilette</label>
+          <input id="toilette" type="text" class="form-control" name="toilette" [(ngModel)]="model.toilette" placeholder="">
         </div>
 
         <div class="input-element">
-           <label>Cocheras</label> <input id="cocheras" type="text" class="form-control" name="cochera" [(ngModel)]="model.cochera" placeholder="">
+          <label>Cocheras</label>
+          <input id="cocheras" type="text" class="form-control" name="cochera" [(ngModel)]="model.cochera" placeholder="">
         </div>
 
         <div class="input-element">
-           <label>Disposición</label>
-           <ng-select id="disposicion" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.disposicion_op" [(ngModel)]="model.disposicion" name="disposicion">
-           </ng-select>
+          <label>Disposición</label>
+          <ng-select id="disposicion" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.disposicion_op" [(ngModel)]="model.disposicion"
+            name="disposicion">
+          </ng-select>
         </div>
 
         <div class="input-element">
-           <label>Superficie cubierta</label>
-           <br />
-           <input id="superficie_cubierta" type="text" class="form-control" name="superficie_cubierta" [(ngModel)]="model.superficie_cubierta" placeholder="">
-           <span class="after">m2</span>
+          <label>Superficie cubierta</label>
+          <br />
+          <input id="superficie_cubierta" type="text" class="form-control" name="superficie_cubierta" [(ngModel)]="model.superficie_cubierta"
+            placeholder="">
+          <span class="after">m2</span>
         </div>
 
         <div class="input-element" style="margin-left: 45px;">
-           <label>Superficie total</label>
-           <br />
-           <input id="superficie_total" type="text" class="form-control" name="superficie_total" [(ngModel)]="model.superficie_total" placeholder="">
-           <span class="after">m2</span>
+          <label>Superficie total</label>
+          <br />
+          <input id="superficie_total" type="text" class="form-control" name="superficie_total" [(ngModel)]="model.superficie_total"
+            placeholder="">
+          <span class="after">m2</span>
         </div>
 
       </div>
 
       <div class="row titc">
         <div class="col">
-          <h4>Precio</h4><hr>
+          <h4>Precio</h4>
+          <hr>
         </div>
       </div>
 
       <div class="row">
-        <div class="input-element"  *ngIf="model.tipo_operacion_id == 0">
+        <div class="input-element" *ngIf="model.tipo_operacion_id == 0">
           <label>Precio de venta</label>
           <br />
-          <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda" name="moneda">
+          <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
+            name="moneda">
           </ng-select>
           <input id="precio" type="text" class="form-control" [(ngModel)]="model.precio" name="precio">
         </div>
 
         <div class="input-element">
-            <label>Expensas</label>
-            <br />
-            <input id="expensas" type="text" class="form-control" name="expensas" [(ngModel)]="model.expensas" placeholder="">
-            <span class="before">$</span>
+          <label>Expensas</label>
+          <br />
+          <input id="expensas" type="text" class="form-control" name="expensas" [(ngModel)]="model.expensas" placeholder="">
+          <span class="before">$</span>
         </div>
       </div>
 
       <div class="row" *ngIf="model.tipo_operacion_id != 0">
         <div class="input-element">
-           <label>Valor día</label> <input id="valor_dia" type="text" class="form-control" name="valor_dia" [(ngModel)]="model.valor_dia" placeholder="Valor día">
+          <label>Valor día</label>
+          <input id="valor_dia" type="text" class="form-control" name="valor_dia" [(ngModel)]="model.valor_dia" placeholder="Valor día">
         </div>
         <div class="input-element">
-           <label>Valor semana</label> <input id="valor_semana" type="text" class="form-control" name="valor_semana" [(ngModel)]="model.valor_semana" placeholder="Valor semana">
+          <label>Valor semana</label>
+          <input id="valor_semana" type="text" class="form-control" name="valor_semana" [(ngModel)]="model.valor_semana" placeholder="Valor semana">
         </div>
         <div class="input-element">
-           <label>Valor mes</label> <input id="valor_mes" type="text" class="form-control" name="valor_mes" [(ngModel)]="model.valor_mes" placeholder="Valor mes">
+          <label>Valor mes</label>
+          <input id="valor_mes" type="text" class="form-control" name="valor_mes" [(ngModel)]="model.valor_mes" placeholder="Valor mes">
         </div>
-     </div>
+      </div>
 
       <div class="row titc">
         <div class="col">
-          <h4>Ubicación</h4><hr>
+          <h4>Ubicación</h4>
+          <hr>
         </div>
       </div>
 
       <div class="row">
-        <div class="col ubicacion"> <!--selectores de ubicación -->
+        <div class="col ubicacion">
+          <!--selectores de ubicación -->
           <div class="row">
-            
+
             <div class="input-element">
-              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[1]" (change)="changeZonaSelect(1)" [(ngModel)]="selectedZonasByLevel[1]" name="zona-1" placeholder="Elegir una provincia">
+              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[1]" (change)="changeZonaSelect(1)"
+                [(ngModel)]="selectedZonasByLevel[1]" name="zona-1" placeholder="Elegir una provincia">
               </ng-select>
             </div>
 
             <div class="input-element">
-              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[2]" (change)="changeZonaSelect(2)" [(ngModel)]="selectedZonasByLevel[2]" name="zona-2" placeholder="Elegir una ciudad" [disabled]="!zonasForSelect[2]">
+              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[2]" (change)="changeZonaSelect(2)"
+                [(ngModel)]="selectedZonasByLevel[2]" name="zona-2" placeholder="Elegir una ciudad" [disabled]="!zonasForSelect[2]">
               </ng-select>
-           </div>
-           <div class="input-element">
-              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[3]" (change)="changeZonaSelect(3)" [(ngModel)]="selectedZonasByLevel[3]" name="zona-3" placeholder="Elegir un barrio" [disabled]="!zonasForSelect[3]">
+            </div>
+            <div class="input-element">
+              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[3]" (change)="changeZonaSelect(3)"
+                [(ngModel)]="selectedZonasByLevel[3]" name="zona-3" placeholder="Elegir un barrio" [disabled]="!zonasForSelect[3]">
               </ng-select>
-           </div>
-           
-           <div class="input-element">
-              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[4]" (change)="changeZonaSelect(4)" [(ngModel)]="selectedZonasByLevel[4]" name="zona-4" placeholder="Elegir una subzona" [disabled]="!zonasForSelect[4]">
+            </div>
+
+            <div class="input-element">
+              <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[4]" (change)="changeZonaSelect(4)"
+                [(ngModel)]="selectedZonasByLevel[4]" name="zona-4" placeholder="Elegir una subzona" [disabled]="!zonasForSelect[4]">
               </ng-select>
-           </div>
-          
+            </div>
+
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <h4>Localización en el mapa</h4><hr>
+          <h4>Localización en el mapa</h4>
+          <hr>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
           <label>Dirección</label>
-          <input autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl" name="direccion" [(ngModel)]="model.direccion">
+          <input autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl"
+            name="direccion" [(ngModel)]="model.direccion">
         </div>
 
         <div class="col-12 col-sm-3">
@@ -157,45 +184,53 @@
 
       <div class="row">
         <div class="col-12">
-          <agm-map [latitude]="model.latitud" [longitude]="model.longitud" [zoom]="mapZoom">
+          <agm-map [latitude]="model.latitud" [longitude]="model.longitud" [zoom]="mapZoom" [scrollwheel]="false">
             <agm-marker [latitude]="model.latitud" [longitude]="model.longitud" [label]="model.titulo"></agm-marker>
-          </agm-map> 
+          </agm-map>
         </div>
       </div>
 
       <div class="row titc">
         <div class="col">
-          <h4>Título y descripción</h4><hr>
+          <h4>Título y descripción</h4>
+          <hr>
         </div>
       </div>
 
       <div class="row">
         <div class="col-12">
-           <label><strong>Título</strong> (incluye el tipo de propiedad y su característica principal)</label>
-           <input type="text" class="form-control" [(ngModel)]="model.titulo" name="titulo" placeholder="">
+          <label>
+            <strong>Título</strong> (incluye el tipo de propiedad y su característica principal)</label>
+          <input type="text" class="form-control" [(ngModel)]="model.titulo" name="titulo" placeholder="">
         </div>
       </div>
 
       <div class="row">
         <div class="col-12">
-          <label><strong>Descripción</strong> Contanos sobre tu propiedad, incluí todos los detalles que la hagan más atractiva para los usuarios (no uses código HTML)</label>
+          <label>
+            <strong>Descripción</strong> Contanos sobre tu propiedad, incluí todos los detalles que la hagan más atractiva para los
+            usuarios (no uses código HTML)</label>
           <textarea class="form-control" name="texto" [(ngModel)]="model.texto" rows="3"></textarea>
         </div>
       </div>
 
       <div class="row titc">
         <div class="col">
-          <h4>Fotos</h4><hr>
+          <h4>Fotos</h4>
+          <hr>
         </div>
       </div>
 
       <div class="row">
         <div class="col-3 col-files  pull-right">
-           <div class="file-button-conainter">
-           <a class="btn btn-primary seleccionar-fotos" (click)="file.click()">
-           <div class="icon-round"><i class="fa fa-plus" aria-hidden="true"></i></div><br>AGREGAR FOTOS</a>
+          <div class="file-button-conainter">
+            <a class="btn btn-primary seleccionar-fotos" (click)="file.click()">
+              <div class="icon-round">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+              </div>
+              <br>AGREGAR FOTOS</a>
           </div>
-           <input id="img-input" type="file" (change)="onFileChange($event)" #file multiple class="foto-input hidden">
+          <input id="img-input" type="file" (change)="onFileChange($event)" #file multiple class="foto-input hidden">
         </div>
         <div class="col-3 col-files" *ngFor="let img of model.imgs; let i = index">
           <img src="{{img.url}}">
@@ -204,39 +239,52 @@
 
       <div class="row titc">
         <div class="col">
-          <h4>Ambientes</h4><hr>
+          <h4>Ambientes</h4>
+          <hr>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
           <div class="form-group row">
-             <div class="checkbox col-md-6 col-12"  *ngFor="let e of ambientes">
-                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" [value]="e.id" name="ambientes{{e.id}}" [(ngModel)]="model.ambientes[e.id]">&nbsp;{{e.nombre}}</div></div></label>
-             </div>
+            <div class="checkbox col-md-6 col-12" *ngFor="let e of ambientes">
+              <label class="w-100">
+                <div class="row col-12">
+                  <div class="col">
+                    <input type="checkbox" [value]="e.id" name="ambientes{{e.id}}" [(ngModel)]="model.ambientes[e.id]">&nbsp;{{e.nombre}}</div>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="row titc">
         <div class="col">
-          <h4>Servicios</h4><hr>
+          <h4>Servicios</h4>
+          <hr>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
           <div class="form-group row">
-             <div class="checkbox col-md-6 col-12"  *ngFor="let e of servicios">
-                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" [value]="e.id" name="servicios{{e.id}}" [(ngModel)]="model.servicios[e.id]">&nbsp;{{e.nombre}}</div></div></label>
-             </div>
+            <div class="checkbox col-md-6 col-12" *ngFor="let e of servicios">
+              <label class="w-100">
+                <div class="row col-12">
+                  <div class="col">
+                    <input type="checkbox" [value]="e.id" name="servicios{{e.id}}" [(ngModel)]="model.servicios[e.id]">&nbsp;{{e.nombre}}</div>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="row titc">
         <div class="col">
-          <h4>Características</h4><hr>
+          <h4>Características</h4>
+          <hr>
         </div>
       </div>
 
@@ -244,31 +292,36 @@
         <div class="col">
 
           <div class="form-group row">
-             <div class="checkbox col-md-6 col-12"  *ngFor="let e of carac_gral" [ngSwitch]="e.type">
-                <label class="form-inline" *ngSwitchCase="'ck'">
-                  <div class="row col-12">
-                    <div class="col t-ck"><input type="checkbox" [value]="e.id" name="caracteristicas{{e.id}}" [(ngModel)]="model.carac_gral[e.id]">&nbsp;{{e.nombre}}</div>
+            <div class="checkbox col-md-6 col-12" *ngFor="let e of carac_gral" [ngSwitch]="e.type">
+              <label class="form-inline" *ngSwitchCase="'ck'">
+                <div class="row col-12">
+                  <div class="col t-ck">
+                    <input type="checkbox" [value]="e.id" name="caracteristicas{{e.id}}" [(ngModel)]="model.carac_gral[e.id]">&nbsp;{{e.nombre}}</div>
+                </div>
+              </label>
+
+              <label class="form-inline ck-label" *ngSwitchCase="'tx'">
+                <div class="row col-12">
+                  <div class="col t-ck">
+                    <input type="checkbox" [value]="false" name="caracteristicas{{e.id}}" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;{{e.nombre}}:&nbsp;</div>
+                  <div class="col">
+                    <input type="text" [value]="e.id" name="caracteristicasS{{e.id}}" [(ngModel)]="model.carac_gral[e.id]">
                   </div>
-                </label>
+                </div>
+              </label>
 
-                <label class="form-inline ck-label" *ngSwitchCase="'tx'">
-                  <div class="row col-12">
-                    <div class="col t-ck"><input type="checkbox" [value]="false" name="caracteristicas{{e.id}}" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;{{e.nombre}}:&nbsp;</div>
-                    <div class="col"><input type="text" [value]="e.id" name="caracteristicasS{{e.id}}" [(ngModel)]="model.carac_gral[e.id]"></div>
+              <label class="form-inline" *ngSwitchCase="'sl'">
+                <div class="row col-12">
+                  <div class="col t-ck">
+                    <input type="checkbox" [value]="false" name="caracteristicas{{e.id}}" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;{{e.nombre}}:&nbsp;</div>
+                  <div class="col">
+                    <select class="form-control form-control-sm" [(ngModel)]="model.carac_gral[e.id]" name="caracteristicasS{{e.id}}">
+                      <option *ngFor="let b of e.o" [value]="b.id">{{b.nombre}}</option>
+                    </select>
                   </div>
-                </label>
-
-                <label class="form-inline" *ngSwitchCase="'sl'">
-                  <div class="row col-12">
-                    <div class="col t-ck"><input type="checkbox" [value]="false" name="caracteristicas{{e.id}}" [(ngModel)]="model.carac_gral_e[e.id]">&nbsp;{{e.nombre}}:&nbsp;</div>
-                    <div class="col">
-                      <select class="form-control form-control-sm" [(ngModel)]="model.carac_gral[e.id]" name="caracteristicasS{{e.id}}">
-                        <option *ngFor="let b of e.o" [value]="b.id">{{b.nombre}}</option>
-                      </select>
-                    </div>
-                  </div>
-                </label>
-             </div>
+                </div>
+              </label>
+            </div>
           </div>
 
         </div>
@@ -276,41 +329,56 @@
 
       <div class="row titc">
         <div class="col">
-          <h4>Características generales</h4><hr>
+          <h4>Características generales</h4>
+          <hr>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
           <div class="form-group row">
-             <div class="checkbox col-md-6 col-12"  *ngFor="let e of equipamiento">
-                <label class="w-100"><div class="row col-12"><div class="col">
-                  <input type="checkbox" [value]="e.id" name="{{e.nombre}}" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</div></div></label>
-             </div>
+            <div class="checkbox col-md-6 col-12" *ngFor="let e of equipamiento">
+              <label class="w-100">
+                <div class="row col-12">
+                  <div class="col">
+                    <input type="checkbox" [value]="e.id" name="{{e.nombre}}" [(ngModel)]="model.equipamiento[e.id]">&nbsp;{{e.nombre}}</div>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="row titc">
         <div class="col">
-          <h4>Destacar propiedad</h4><hr>
+          <h4>Destacar propiedad</h4>
+          <hr>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
           <div class="form-group row">
-             <div class="checkbox col-md-6 col-12">
-                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" name="destacado" [(ngModel)]="model.destacado">Destacar publicación</div></div></label>
-             </div>
+            <div class="checkbox col-md-6 col-12">
+              <label class="w-100">
+                <div class="row col-12">
+                  <div class="col">
+                    <input type="checkbox" name="destacado" [(ngModel)]="model.destacado">Destacar publicación</div>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
       <div class="row titc">
         <div class="col">
           <button class="btn btn-cprop btn-publicar" (click)="guardar()" data-toggle="modal" [attr.data-target]="dataTarget">
-            <span *ngIf="model.id != -1">Guardar <span class="icon">&gt;</span></span>
-            <span *ngIf="model.id == -1">Publicar <span class="icon">&gt;</span></span>
+            <span *ngIf="model.id != -1">Guardar
+              <span class="icon">&gt;</span>
+            </span>
+            <span *ngIf="model.id == -1">Publicar
+              <span class="icon">&gt;</span>
+            </span>
           </button>
         </div>
       </div>

@@ -2,10 +2,17 @@
   <div class="col-12 header-container">
     <div class="header">
       <div class="left-controls">
-        <div class="user-info">
-          <img src="{{perfil.img}}" alt="Sin imagen" class="user-logo">
-          <h4 class="user-name">{{userName}}</h4>
-          <span class="user-plan">VIP 3</span>
+        <div class="user-info container-fluid">
+          <div class="row">
+            <div class="col-4">
+              <img [src]="'http://192.168.0.13/' + perfil.img" alt="Sin imagen" class="user-logo">
+            </div>
+            <div class="col-8">
+              <p class="user-name">{{ userName }}</p>
+              <p class="user-name">{{ userLog.tipoUser }}</p>
+              <p class="user-plan">VIP 3</p>
+            </div>
+          </div>
         </div>
         <div class="tabs">
           <ul class="nav nav-tabs navbar-dropdown">

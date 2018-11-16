@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router } from '@angular/router';
 
 import { RegisterModalService } from '../../components/register-modal/register-modal.service';
 
 import { UserService } from '../../providers/user.service';
-import { User }        from '../../models/user';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-signup-form-p',
@@ -16,29 +16,38 @@ export class SignupFormPComponent implements OnInit {
 
   model = new User();
 
-  tipo_us:any = [];
+  tipo_us: any = [];
 
   constructor(
     private router: Router,
-    private US :    UserService,
-    private modal:  RegisterModalService
+    private US: UserService,
+    private modal: RegisterModalService
   ) { }
 
   ngOnInit() {
     this.US.getTypes()
       .subscribe((r) => {
-        this.tipo_us =  r ['data'];
-    });
+        this.tipo_us = r['data'];
+      });
+
+    this.model.tipoUser = 1;
   }
 
-  nuevo(){
+  nuevo() {
+    let formValid = this.model.formValid();
+
+    if (!formValid.valid) {
+      alert('Hay errores en formulario: \n Por favor ' + formValid.msg)
+      return;
+    }
+
     this.US.model = this.model;
     this.US.create()
       .subscribe((r) => {
         this.US.setLogin(r);
         this.modal.hide();
         this.router.navigate(['/home/1']);
-    });
+      });
   }
 
 }

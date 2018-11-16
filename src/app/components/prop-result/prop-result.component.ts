@@ -6,6 +6,7 @@ import { GralInfoService } from './../../providers/gral-info.service';
 import { Busqueda } from './../../models/busqueda';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { forkJoin } from 'rxjs';
+import { Pagination } from '../../models/pagination';
 
 @Component({
   selector: 'app-prop-result',
@@ -27,6 +28,7 @@ export class PropResultComponent implements OnInit {
   scrollFinish: boolean = false;
   panelCheckboxState: number = 0;
   alertType: string = '';
+  pagination: Pagination;
 
   constructor(
     private router: Router,
@@ -149,14 +151,14 @@ export class PropResultComponent implements OnInit {
   }
 
   nextPage() {
-    alert('en desarrollo next');
+    this.pedirBusqueda(false, null, this.pagination.next);
   }
 
   prevPage() {
-    alert('en desarrollo prev');
+    this.pedirBusqueda(false, null, this.pagination.prev);
   }
 
-  pedirBusqueda(reset: boolean = false, orderBy?: string) {
+  pedirBusqueda(reset: boolean = false, orderBy?: string, page?: number) {
     if (reset) {
       delete this.busqueda.page;
     }
@@ -164,16 +166,19 @@ export class PropResultComponent implements OnInit {
     this.busqueda.orderBy = orderBy ? orderBy : '';
     this.propiedadesService.busqueda = this.busqueda;
 
+    if (page) {
+      this.busqueda.page = page;
+    }
+
     this.propiedadesService.getSearch()
       .subscribe(r => {
         let res = r['data'];
+        this.pagination = r['pagination'];
 
         if (!res.length && !Object.keys(this.busqueda).includes('page')) {
           this.propiedades = [];
           return;
         }
-
-        this.busqueda.page = this.busqueda.page ? this.busqueda.page + 1 : 1;
 
         if (this.busqueda.page > 1) {
           this.propiedades = this.propiedades.concat(res);

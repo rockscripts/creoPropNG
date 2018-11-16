@@ -1,13 +1,88 @@
-p{
-margin-bottom: 0px;
-  font-size: .8em;
+.container {
+    padding: 30px;
 }
 
-.profilecard{
-  min-height: 132px;
+.contact-card {
+    max-width: 400px;
 }
 
-.btn-edit{
-  top: 0px;right: 5px;
-  position: absolute;
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #868686;
+}
+
+.card-list-info {
+    list-style: none;
+    color: #868686;
+    padding: 0;
+}
+
+.card-list-info .card-list-item {
+    margin-bottom: 20px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.card-list-info .card-list-item .card-list-item__data,
+.card-list-info .card-list-item .card-list-item__data-dark {
+    margin-left: 15px;
+}
+
+.card-list-info .card-list-item .card-list-item__data-dark {
+    color: #000;
+}
+
+.card-list-info .card-list-item .card-list-item__title {
+    color: #b9b9b9;
+}
+
+.card-list-info .card-list-item .card-list-item__icon {
+    color: #000;
+}
+
+.btn-icon-flat {
+    border: none;
+    background: transparent;
+    width: 60px;
+    outline: none;
+    display: inline-flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.btn-icon-flat i {
+    width: 25px;
+}
+
+.icon-button {
+    position: relative;
+    font-weight: normal;
+    cursor: pointer !important;
+    outline: none;
+    color: #868686;
+    z-index: 1;
+}
+
+.icon-button::before {
+    content: " ";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: whitesmoke;
+    z-index: -1;
+    top: -7px;
+    left: -8px;
+    border-radius: 50%;
+    display: none;
+}
+
+.icon-button:hover::before {
+    display: block;
+    transition: .3s ease-out;
+    -webkit-transition: .3s ease-out;
+    -moz-transition: .3s ease-out;
+    -ms-transition: .3s ease-out;
+    -o-transition: .3s ease-out;
 }
