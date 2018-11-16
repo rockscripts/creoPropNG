@@ -36,9 +36,20 @@
         </div>
       </div>
       <div class="col-12 col-md-3 tx-ordenar">
-        <span>
-          <img src="assets/img/icon-sort.png" style="width:25px">
-        </span> ORDENAR POR
+        <ul class="navbar-nav flex-row align-items-stretch justify-content-end">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="assets/img/icon-sort.png" style="width:25px">ORDENAR POR
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'destacados')">Destacados</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'lowPrice')">Menor precio</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'bigPrice')">Mayor precio</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'lowM2')">Menos m2</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'bigM2')">Más m2</a>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -101,64 +112,74 @@
 <div class="row" *ngIf="listMode">
   <div class="col-12 row p-0 toolbar">
     <div class="col-12 col-md-9 p-0">
-      <ul class="navbar-nav flex-row align-items-stretch " *ngIf="mode == 'userProp' && !hasRowSelecteds()">
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <input type="checkbox" name="check-all-properties" value="true">
-            <fa name="angle-down" size="lg"></fa>
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item">Una opción</a>
-            <a class="dropdown-item">Otra opción</a>
+      <div class="row">
+        <div class="col-8">
+          <ul class="navbar-nav flex-row align-items-stretch " *ngIf="mode == 'userProp' && !hasRowSelecteds()">
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <input type="checkbox" name="check-all-properties" value="true">
+                <fa name="angle-down" size="lg"></fa>
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item">Una opción</a>
+                <a class="dropdown-item">Otra opción</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                MÁS
+                <fa name="angle-down" size="lg"></fa>
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item">Una opción</a>
+                <a class="dropdown-item">Otra opción</a>
+              </div>
+            </li>
+          </ul>
+
+          <div class="table-panel" *ngIf="hasRowSelecteds()">
+            <button class="btn-icon-flat">
+              <i class="icon-button material-icons icon-checked" (click)="setPanelCheckState(1)">indeterminate_check_box</i>
+            </button>
+            <button class="btn-icon-flat">
+              <i class="icon-button material-icons icon-checked" (click)="destacarAllSelecteds()">start</i>
+            </button>
+            <button class="btn-icon-flat">
+              <i class="icon-button material-icons icon-checked" (click)="deleteAllSelecteds(activas)">delete</i>
+            </button>
           </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            MÁS
-            <fa name="angle-down" size="lg"></fa>
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item">Una opción</a>
-            <a class="dropdown-item">Otra opción</a>
+        </div>
+
+        <div class="col-4">
+          <div class="paginator">
+            <span class="page-counter">1 - 50 de 2.500</span>
+            <i class="icon-button material-icons" (click)="prevPage()">arrow_back_ios</i>
+            <i class="icon-button material-icons" (click)="nextPage()">arrow_forward_ios</i>
           </div>
-        </li>
-      </ul>
+        </div>
 
-      <div class="table-panel" *ngIf="hasRowSelecteds()">
-        <!-- <button class="btn-icon-flat" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="icon-button material-icons icon-checked">{{ panelCheckboxState === 0 ? 'indeterminate_check_box' : panelCheckboxState === 1 ? 'check_box_outline_blank'
-            : 'check_box' }}</i>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" (click)="setPanelCheckState(1)">
-            <i class="icon-button material-icons icon-checked">check_box_outline_blank</i>
-          </a>
-          <a class="dropdown-item" (click)="setPanelCheckState(2)">
-            <i class="icon-button material-icons icon-checked">check_box</i>
-          </a>
-        </div> -->
-
-        <button class="btn-icon-flat">
-          <i class="icon-button material-icons icon-checked" (click)="setPanelCheckState(1)">indeterminate_check_box</i>
-        </button>
-        <button class="btn-icon-flat">
-          <i class="icon-button material-icons icon-checked">start</i>
-        </button>
-        <button class="btn-icon-flat">
-          <i class="icon-button material-icons icon-checked" (click)="deleteAllSelecteds(activas)">delete</i>
-        </button>
-      </div>
-
-      <div class="propiedades-activas-inactivas" *ngIf="pActivas">
-        <button [ngClass]="{'filtro-inactivo-btn': activas == 0}" (click)="ToogleActivas(1)" type="button" class="btn filtro-activo-btn">{{ pActivas }} Activas</button>
-        <button [ngClass]="{'filtro-inactivo-btn': activas == 1}" (click)="ToogleActivas(0)" type="button" class="btn filtro-activo-btn">{{ pInactivas }} Inactivas</button>
+        <div class="col-12 propiedades-activas-inactivas" *ngIf="pActivas">
+          <button [ngClass]="{'filtro-inactivo-btn': activas == 0}" (click)="ToogleActivas(1)" type="button" class="btn filtro-activo-btn">{{ pActivas }} Activas</button>
+          <button [ngClass]="{'filtro-inactivo-btn': activas == 1}" (click)="ToogleActivas(0)" type="button" class="btn filtro-activo-btn">{{ pInactivas }} Inactivas</button>
+        </div>
       </div>
     </div>
 
     <div class="col-12 col-md-3 tx-ordenar">
-      <span>
-        <img src="assets/img/icon-sort.png" style="width:25px">
-      </span> ORDENAR POR
+      <ul class="navbar-nav flex-row align-items-stretch justify-content-end">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="assets/img/icon-sort.png" style="width:25px">ORDENAR POR
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="pedirBusqueda(true, 'destacados')">Destacados</a>
+            <a class="dropdown-item" (click)="pedirBusqueda(true, 'lowPrice')">Menor precio</a>
+            <a class="dropdown-item" (click)="pedirBusqueda(true, 'bigPrice')">Mayor precio</a>
+            <a class="dropdown-item" (click)="pedirBusqueda(true, 'lowM2')">Menos m2</a>
+            <a class="dropdown-item" (click)="pedirBusqueda(true, 'bigM2')">Más m2</a>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 
@@ -171,7 +192,7 @@
             <i class="icon-button material-icons" [class.icon-checked]="propiedad.isSelected" (click)="propiedad.isSelected = !propiedad.isSelected">{{ !propiedad.isSelected ? 'check_box_outline_blank' : 'check_box' }}</i>
           </td>
           <td class="td-icon-button" *ngIf="+activas">
-            <i class="icon-button material-icons" [class.icon-checked]="propiedad.isFav" (click)="propiedad.isFav = !propiedad.isFav">{{ !propiedad.isFav ? 'star_border' : 'star' }}</i>
+            <i class="icon-button material-icons" [class.icon-checked]="propiedad.destacado" (click)="destacar(propiedad.id)">{{ !propiedad.destacado ? 'star_border' : 'star' }}</i>
           </td>
           <td>{{ propiedad.tipo_operacion_name }}</td>
           <td>{{ propiedad.tipo_prop_nombre }}</td>
@@ -197,17 +218,19 @@
 </div>
 
 <ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Advertencia!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>Esta seguro que desea {{ alertType }}?</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Aceptar</button>
-    <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancelar</button>
+  <div id="modal-confirm">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Advertencia!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Esta seguro que desea {{ alertType }}?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Aceptar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancelar</button>
+    </div>
   </div>
 </ng-template>

@@ -89,17 +89,6 @@
     font-size: 0.8em;
 }
 
-/* .cp-card .img-count {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    border-radius: 5px;
-    padding: 3px;
-    color: #fff !important;
-    background: rgba(0, 0, 0, 0.7);
-    font-size: 0.6em;
-} */
-
 .cp-card .verif .fa {
     color: #fff !important;
 }
@@ -170,6 +159,10 @@
 
 /*------------------*/
 
+.propierties-table-list * {
+    cursor: default;
+}
+
 .propierties-table-list {
     width: 100%;
     border-collapse: collapse;
@@ -200,7 +193,7 @@
 .icon-button {
     position: relative;
     font-weight: normal;
-    cursor: pointer;
+    cursor: pointer !important;
     outline: none;
     color: #c5c5c5;
 }
@@ -243,4 +236,53 @@
     -moz-transition: .3s ease-out;
     -ms-transition: .3s ease-out;
     -o-transition: .3s ease-out;
+}
+
+#modal-confirm * {
+    outline: none;
+}
+
+#modal-confirm .modal-footer {
+    padding: 15px;
+    height: auto;
+    line-height: auto;
+    box-shadow: none;
+}
+
+#modal-confirm .modal-footer .btn-outline-primary {
+    color: #ED1B24;
+    border-color: #ED1B24;
+}
+
+#modal-confirm .modal-footer .btn-outline-primary:hover {
+    border-color: #ED1B24;
+    background-color: #ED1B24;
+    color: #FFF;
+}
+
+.paginator {
+    color: #9b9b9b;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    position: relative;
+}
+
+.paginator .page-counter {
+    margin-right: 20px;
+    font-size: .8rem;
+}
+
+.paginator .icon-button {
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+.paginator .icon-button::before {
+    width: 30px;
+    height: 30px;
+    top: -4px;
+    left: -9px;
 }

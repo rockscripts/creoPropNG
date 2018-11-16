@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PropiedadesService } from './../../providers/propiedades.service';
 import { GralInfoService } from './../../providers/gral-info.service';
 import { Busqueda } from './../../models/busqueda';
-import { NgbModal, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-prop-result',
@@ -70,7 +71,18 @@ export class PropResultComponent implements OnInit {
 
     this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {
-        console.log(`Closed with: ${result}`);
+        this.propiedadesService.delete(id)
+          .subscribe(res => {
+            this.pedirBusqueda(true);
+            this.propiedadesService.getCountsPropiedades(this.propietario)
+              .subscribe(res => {
+                this.pActivas = res['data']['pActivas'];
+                this.pInactivas = res['data']['pInactivas'];
+              });
+          }, err => {
+            console.log(err)
+          });
+
       }, (reason) => {
         console.log(`Dismissed`);
       });
@@ -81,9 +93,53 @@ export class PropResultComponent implements OnInit {
 
     this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {
-        console.log(`Closed with: ${result}`);
+        let request = this.propiedades.map(prop => {
+          if (prop.isSelected) {
+            return this.propiedadesService.delete(+prop.id);
+          }
+        })
+
+        forkJoin(request)
+          .subscribe(res => {
+            this.pedirBusqueda(true);
+            this.propiedadesService.getCountsPropiedades(this.propietario)
+              .subscribe(res => {
+                this.pActivas = res['data']['pActivas'];
+                this.pInactivas = res['data']['pInactivas'];
+              });
+          }, err => {
+            console.log(err);
+          });
+
       }, (reason) => {
         console.log(`Dismissed`);
+      });
+  }
+
+  destacar(id: number) {
+    let propiedad = this.propiedades.find(prop => +prop.id === +id)
+    propiedad.destacado = propiedad.destacado ? 0 : 1;
+
+    this.propiedadesService.destacar(id)
+      .subscribe(res => {
+        this.pedirBusqueda(true);
+      }, err => {
+        console.log(err)
+      });
+  }
+
+  destacarAllSelecteds() {
+    let request = this.propiedades.map(prop => {
+      if (prop.isSelected) {
+        return this.propiedadesService.destacar(+prop.id);
+      }
+    })
+
+    forkJoin(request)
+      .subscribe(res => {
+        this.pedirBusqueda(true);
+      }, err => {
+        console.log(err);
       });
   }
 
@@ -92,19 +148,33 @@ export class PropResultComponent implements OnInit {
     this.router.navigate(['/mi-cuenta', { 'activo': x }]);
   }
 
-  pedirBusqueda() {
+  nextPage() {
+    alert('en desarrollo next');
+  }
+
+  prevPage() {
+    alert('en desarrollo prev');
+  }
+
+  pedirBusqueda(reset: boolean = false, orderBy?: string) {
+    if (reset) {
+      delete this.busqueda.page;
+    }
+
+    this.busqueda.orderBy = orderBy ? orderBy : '';
     this.propiedadesService.busqueda = this.busqueda;
 
     this.propiedadesService.getSearch()
-      .subscribe((r) => {
+      .subscribe(r => {
         let res = r['data'];
 
-        if (res.length == 0) {
-          this.scrollFinish = true;
-          return true;
+        if (!res.length && !Object.keys(this.busqueda).includes('page')) {
+          this.propiedades = [];
+          return;
         }
 
         this.busqueda.page = this.busqueda.page ? this.busqueda.page + 1 : 1;
+
         if (this.busqueda.page > 1) {
           this.propiedades = this.propiedades.concat(res);
         } else {
@@ -113,7 +183,7 @@ export class PropResultComponent implements OnInit {
 
         this.propiedades = this.propiedades.map(prop => {
           prop.isSelected = false;
-          prop.isFav = false;
+          prop.destacado = +prop.destacado;
           prop.rowActive = false;
           return prop;
         });
