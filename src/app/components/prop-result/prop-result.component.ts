@@ -29,6 +29,7 @@ export class PropResultComponent implements OnInit {
   panelCheckboxState: number = 0;
   alertType: string = '';
   pagination: Pagination;
+  mainCheckState: number = 2;
 
   constructor(
     private router: Router,
@@ -201,9 +202,17 @@ export class PropResultComponent implements OnInit {
 
   setPanelCheckState(state: number) {
     this.propiedades
-      .filter(prop => prop.isSelected)
       .forEach(prop => {
         prop.isSelected = state === 1 ? false : true;
       });
+  }
+
+  showCheckIconState(): string {
+    let allSelected = this.propiedades.every(item => item.isSelected);
+    let allUncheck = this.propiedades.every(item => !item.isSelected);
+
+    this.mainCheckState = allUncheck ? 2 : 1;
+
+    return allUncheck ? 'check_box_outline_blank' : allSelected ? 'check_box' : 'indeterminate_check_box';
   }
 }

@@ -46,7 +46,6 @@
 
 .toolbar {
     margin-top: 20px;
-    margin-bottom: 30px;
 }
 
 .toolbar .nav-link {
@@ -159,6 +158,10 @@
 
 /*------------------*/
 
+.table-panel {
+    display: flex;
+}
+
 .propierties-table-list * {
     cursor: default;
 }
@@ -170,6 +173,10 @@
     font-size: .7rem;
     color: #000;
     font-weight: bold;
+}
+
+.propierties-table-list tr {
+    position: relative;
 }
 
 .propierties-table-list tr:hover {
@@ -205,11 +212,22 @@
 .btn-icon-flat {
     border: none;
     background: transparent;
-    width: 60px;
+    width: 40px;
     outline: none;
     display: inline-flex;
     justify-content: center;
     flex-flow: row wrap;
+}
+
+.btn-icon-flat-split {
+    width: 15px;
+    padding: 0;
+}
+
+.row-points {
+    position: absolute;
+    left: 8px;
+    color: #dcdcdc;
 }
 
 .icon-checked {
@@ -227,6 +245,19 @@
     left: -8px;
     border-radius: 50%;
     display: none;
+}
+
+.btn-icon-flat-split .icon-button::before {
+    width: 16px;
+    height: 35px;
+    z-index: -1;
+    top: -5px;
+    left: 4px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 .icon-button:hover::before {
