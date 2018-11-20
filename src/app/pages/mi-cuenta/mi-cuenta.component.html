@@ -2,16 +2,33 @@
   <div class="col-12 header-container">
     <div class="header">
       <div class="left-controls">
-        <div class="user-info container-fluid">
-          <div class="row">
-            <div class="col-4">
-              <img [src]="'http://192.168.0.13/' + perfil.img" alt="Sin imagen" class="user-logo">
-            </div>
-            <div class="col-8">
-              <p class="user-name">{{ userName }}</p>
-              <p class="user-name">{{ userLog.tipoUser }}</p>
-              <p class="user-plan">VIP 3</p>
-            </div>
+        <div class="user-info-container">
+          <div class="img-profile-container">
+            <img [src]="'http://192.168.0.13/' + perfil.img" alt="profile" class="user-logo">
+          </div>
+          <div class="profile-info-container">
+
+            <ng-container *ngIf="!nameState">
+              <h2 style="max-width: 65%;">
+                {{ perfil.nombre + ' ' + perfil.apellido | uppercase }}
+              </h2>
+              <button class="btn-icon-flat">
+                <i class="icon-button material-icons" (click)="nameState = !nameState">edit</i>
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="nameState">
+              <label for="">Nombre:</label>
+              <input type="text" class="form-control name-edit" [(ngModel)]="perfil.nombre" name="nombre">
+              <label for="">Apellido:</label>
+              <input type="text" class="form-control name-edit" [(ngModel)]="perfil.apellido" name="apellido">
+
+              <button class="btn btn-primary" style="margin-top: 5px;" (click)="edit('name')">GUARDAR</button>
+              <button class="btn btn-outline-danger" style="margin-top: 5px; margin-left: 15px;" (click)="nameState = !nameState">CANCELAR</button>
+            </ng-container>
+
+            <p>{{ perfil.tipoUsuario | titlecase }}</p>
+            <p>{{ perfil.membresia | uppercase }}</p>
           </div>
         </div>
         <div class="tabs">
@@ -68,7 +85,7 @@
       <div class="tab-pane container fade" id="mensajes">
         <app-user-mensajes></app-user-mensajes>
       </div>
-      <div class="tab-pane container fade" id="miperfil">
+      <div class="tab-pane container-fluid fade" id="miperfil">
         <app-perfil-view [editable]="true"></app-perfil-view>
       </div>
     </div>

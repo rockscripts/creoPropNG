@@ -153,8 +153,8 @@
         <div class="col-4">
           <div class="paginator" *ngIf="pagination">
             <span class="page-counter">{{ pagination.range }} propiedades de {{ pagination.total }}</span>
-            <i class="icon-button material-icons" (click)="prevPage()" *ngIf="pagination.prev">arrow_back_ios</i>
-            <i class="icon-button material-icons" (click)="nextPage()" *ngIf="pagination.next">arrow_forward_ios</i>
+            <i class="icon-button material-icons" (click)="prevPage(true)" *ngIf="pagination.prev">arrow_back_ios</i>
+            <i class="icon-button material-icons" (click)="nextPage(true)" *ngIf="pagination.next">arrow_forward_ios</i>
           </div>
         </div>
 
@@ -169,7 +169,7 @@
       <ul class="navbar-nav flex-row align-items-stretch justify-content-end">
         <li class="nav-item dropdown">
           <a class="nav-link btn-orderby" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="assets/img/icon-sort.png" style="width:25px">ORDENAR POR
+            <i class="material-icons"> swap_vert </i> ORDENAR POR
           </a>
           <div class="dropdown-menu">
             <a class="dropdown-item" (click)="pedirBusqueda(true, 'destacados')">Destacados</a>

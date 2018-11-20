@@ -150,12 +150,12 @@ export class PropResultComponent implements OnInit {
     this.router.navigate(['/mi-cuenta', { 'activo': x }]);
   }
 
-  nextPage() {
-    this.pedirBusqueda(false, null, this.pagination.next);
+  nextPage(reset: boolean = false) {
+    this.pedirBusqueda(reset, null, this.pagination.next);
   }
 
-  prevPage() {
-    this.pedirBusqueda(false, null, this.pagination.prev);
+  prevPage(reset: boolean = false) {
+    this.pedirBusqueda(reset, null, this.pagination.prev);
   }
 
   pedirBusqueda(reset: boolean = false, orderBy?: string, page?: number) {

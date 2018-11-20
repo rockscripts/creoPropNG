@@ -1,100 +1,180 @@
 .sidebar {
-  width: 21%;
-  float: left;
-  padding: 0 0.9rem;
+    width: 21%;
+    float: left;
+    padding: 0 0.9rem;
 }
+
 .content {
-  width: 79%;
-  float: left;
-  padding: 0 0.9rem;
+    width: 79%;
+    float: left;
+    padding: 0 0.9rem;
 }
 
 a {
-  color: #6d6d6d !important;
-  width: inherit;
+    color: #6d6d6d !important;
+    width: inherit;
 }
+
 a:hover {
-  border-bottom: solid 3px #6d6d6d !important;
-  display: inline-block !important;
-  transition: 0.3s !important;
-  transition-property: all !important;
+    border-bottom: solid 3px #6d6d6d !important;
+    display: inline-block !important;
+    transition: 0.3s !important;
+    transition-property: all !important;
 }
+
 a.active {
-  border-bottom: solid 3px #6d6d6d !important;
-  display: inline-block !important;
-  transition: 0.3s !important;
+    border-bottom: solid 3px #6d6d6d !important;
+    display: inline-block !important;
+    transition: 0.3s !important;
 }
 
 .btn-update-plan {
-  background-color: #e7585d;
-  color: white;
-  font-size: 22px;
-  padding: 0.1rem 1.05rem;
-  margin-top: -5px;
+    background-color: #e7585d;
+    color: white;
+    font-size: 22px;
+    padding: 0.1rem 1.05rem;
+    margin-top: -5px;
 }
 
 .header-container {
-  background: #f7f7f7;
+    background: #f7f7f7;
 }
 
 .header {
-  display: flex;
-  padding: 10px 30px 0 60px;
+    display: flex;
 }
 
 .header .left-controls {
-  flex: 1;
+    flex: 1;
+    padding-top: 10px;
+    padding-left: 50px;
 }
 
 .header .right-controls {
-  flex-basis: 80px;
-}
-
-.header .user-info {
-  margin-bottom: 20px;
-}
-
-.header .user-info > * {
-  vertical-align: middle;
-}
-
-.header .user-info .user-name,
-.header .user-info .user-plan {
-  display: inline-block;
-  margin: 0 0 0 30px;
-}
-.header .user-info .user-plan {
-  color: #9b9b9b;
-}
-
-.header .user-info img {
-  max-width: 260px;
+    flex-basis: 80px;
+    padding-bottom: 70px;
 }
 
 .header .nav-tabs {
-  border-bottom: none;
-  font-size: 13px;
+    margin-bottom: 30px;
+    font-size: 13px;
+    border-bottom: none;
 }
 
 .header .nav-link {
-  padding: 0;
-  margin-right: 40px;
-  border: none;
-  color: #808183;
-  font-weight: normal;
+    padding: 0;
+    margin-right: 40px;
+    border: none;
+    color: #808183;
+    font-weight: normal;
 }
 
 .header .nav-link.active {
-  font-weight: bold;
-  color: black !important;
-  background-color: transparent;
+    font-weight: bold;
+    color: black !important;
+    background-color: transparent;
 }
 
 .search-toolbar-container {
-  padding: 43px 15px 0;
+    padding: 43px 15px 0;
 }
 
+.propiedades-activas-inactiva button {
+    margin-top: 20px !important;
+}
 
-.propiedades-activas-inactiva button{
-  margin-top: 20px !important;
+.user-info-container {
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.img-profile-container {
+    display: inline-flex;
+    min-width: 200px;
+    max-width: 400px;
+    height: 200px;
+}
+
+.img-profile-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.profile-info-container {
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    max-width: 50%;
+    padding: 20px;
+}
+
+.profile-info-container p,
+.profile-info-container h2 {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.profile-info-container h2 {
+    font-size: 1.5rem;
+}
+
+.profile-info-container p:nth-of-type(1) {
+    color: #868686;
+    font-weight: bold;
+}
+
+.profile-info-container p:nth-of-type(2) {
+    color: #b9b9b9;
+}
+
+.btn-icon-flat {
+    border: none;
+    background: transparent;
+    width: 60px;
+    outline: none;
+    display: inline-flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.btn-icon-flat i {
+    width: 25px;
+}
+
+.icon-button {
+    position: relative;
+    font-weight: normal;
+    cursor: pointer !important;
+    outline: none;
+    color: #868686;
+    z-index: 1;
+}
+
+.icon-button::before {
+    content: " ";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #e2e2e2;
+    z-index: -1;
+    top: -7px;
+    left: -8px;
+    border-radius: 50%;
+    display: none;
+}
+
+.icon-button:hover::before {
+    display: block;
+    transition: .3s ease-out;
+    -webkit-transition: .3s ease-out;
+    -moz-transition: .3s ease-out;
+    -ms-transition: .3s ease-out;
+    -o-transition: .3s ease-out;
+}
+
+.name-edit {
+    margin-bottom: 15px;
 }
