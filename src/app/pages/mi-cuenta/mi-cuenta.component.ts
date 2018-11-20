@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { Busqueda } from './../../models/busqueda';
 
@@ -14,6 +14,7 @@ import { User } from '../../models/user';
   styleUrls: ['./mi-cuenta.component.css']
 })
 export class MiCuentaComponent implements OnInit {
+  @ViewChild('loadImg') loadImg: ElementRef;
 
   public propietario_id: any;
   perfil = new Perfil();
@@ -38,7 +39,7 @@ export class MiCuentaComponent implements OnInit {
       });
   }
 
-  getProfile() {
+  getProfile(onUpdate: boolean = false) {
     this.profile.getProfile(this.user.getId()).subscribe((r) => {
       if (!r || !r["data"]) {
         return;
@@ -58,6 +59,10 @@ export class MiCuentaComponent implements OnInit {
       this.perfil.inmobiliaria.nombre = r['inmobiliaria']['nombre'];
       this.perfil.inmobiliaria.id = r['inmobiliaria']['id'];
       this.perfil.inmobiliaria.img = r['inmobiliaria']['logo'];
+
+      if (onUpdate) {
+        this.profile.profileUpdated.next(r['profile_img']);
+      }
     });
   }
 
@@ -68,5 +73,30 @@ export class MiCuentaComponent implements OnInit {
           this.nameState = false;
         }
       });
+  }
+
+  saveProfileImg(files: FileList) {
+    let reader = new FileReader();
+
+    if (files && files.length > 0) {
+      let file: File = files[0];
+
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.perfil.img_data = [
+          {
+            filename: file.name,
+            filetype: file.type,
+            value: reader.result.split(',')[1]
+          }
+        ];
+
+        this.profile.updateProfile(this.perfil)
+          .subscribe(res => {
+            this.loadImg.nativeElement.value = "";
+            this.getProfile(true);
+          });
+      };
+    }
   }
 }

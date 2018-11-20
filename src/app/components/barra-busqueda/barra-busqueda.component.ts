@@ -138,8 +138,6 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
               ubicaciones_partidos: null,
             };
 
-            console.log(this.searchConfig)
-
             resolve();
           },
           err => {

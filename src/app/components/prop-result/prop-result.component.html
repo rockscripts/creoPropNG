@@ -208,7 +208,7 @@
             <i class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="edit(propiedad.id)">edit</i>
           </td>
           <td>
-            <span [hidden]="propiedad.rowActive">{{ propiedad.created_at | date:'shortTime' }}</span>
+            <span [hidden]="propiedad.rowActive">{{ propiedad.created_at | createdAt }}</span>
             <i class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="delete(propiedad.id, activas)">delete</i>
           </td>
         </tr>

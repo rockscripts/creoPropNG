@@ -5,9 +5,15 @@
         <div class="user-info-container">
           <div class="img-profile-container">
             <img [src]="'http://192.168.0.13/' + perfil.img" alt="profile" class="user-logo">
-          </div>
-          <div class="profile-info-container">
 
+            <input #loadImg type="file" name="profile-img" accept="image/*" (change)="saveProfileImg($event.target.files)" hidden>
+
+            <button class="btn-icon-flat btn-edit-img">
+              <i class="icon-button material-icons" (click)="loadImg.click()">edit</i>
+            </button>
+          </div>
+
+          <div class="profile-info-container">
             <ng-container *ngIf="!nameState">
               <h2 style="max-width: 65%;">
                 {{ perfil.nombre + ' ' + perfil.apellido | uppercase }}
@@ -31,6 +37,7 @@
             <p>{{ perfil.membresia | uppercase }}</p>
           </div>
         </div>
+
         <div class="tabs">
           <ul class="nav nav-tabs navbar-dropdown">
             <li class="nav-item">

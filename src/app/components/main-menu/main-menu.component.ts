@@ -49,6 +49,11 @@ export class MainMenuComponent implements OnInit {
     this.us.onLogin.subscribe({ next: (v) => { this.actualizaEstado(); this.getProfile(); } });
     this.us.onLogOut.subscribe({ next: (v) => { this.actualizaEstado(); } });
 
+    this.profile.profileUpdated
+      .subscribe({
+        next: (imgRoute: string) => this.perfil.img = imgRoute
+      });
+
     this.router.events.subscribe((e) => {
       if (e instanceof RouterEvent) {
         if (e.url.indexOf('/mi-cuenta') === 0 || e.url.indexOf('/new-prop') === 0) {
