@@ -266,19 +266,20 @@
             <div class="row">
               <div class="col-auto img-profile-container">
                 <ng-container *ngIf="propiedad.user.tipo_user_id == 2">
-                  <img *ngIf="propiedad.inmobiliaria && propiedad.inmobiliaria.logo" [src]="'http://192.168.0.13/' + propiedad.inmobiliaria.logo"
+                  <img class="c-pointer" *ngIf="propiedad.inmobiliaria && propiedad.inmobiliaria.logo" [src]="'http://192.168.0.13/' + propiedad.inmobiliaria.logo"
                     (click)="goToPerfil()">
                 </ng-container>
                 <ng-container *ngIf="propiedad.user.tipo_user_id != 2">
-                  <img *ngIf="propiedad.user && propiedad.user.profile_img" [src]="'http://192.168.0.13/' + propiedad.user.profile_img" (click)="goToPerfil()">
+                  <img class="c-pointer" *ngIf="propiedad.user && propiedad.user.profile_img" [src]="'http://192.168.0.13/' + propiedad.user.profile_img"
+                    (click)="goToPerfil()">
                 </ng-container>
               </div>
               <div class="col contact-info-container" *ngIf="propiedad.user">
                 <ng-container *ngIf="propiedad.user.tipo_user_id == 2">
-                  <h3 *ngIf="propiedad.inmobiliaria">{{ propiedad.inmobiliaria.nombre }}</h3>
+                  <h3 class="c-pointer" *ngIf="propiedad.inmobiliaria" (click)="goToPerfil()">{{ propiedad.inmobiliaria.nombre }}</h3>
                 </ng-container>
                 <ng-container *ngIf="propiedad.user.tipo_user_id != 2">
-                  <h3>{{ propiedad.user.name + ' ' + propiedad.user.surname }}</h3>
+                  <h3 class="c-pointer" (click)="goToPerfil()">{{ propiedad.user.name + ' ' + propiedad.user.surname }}</h3>
                 </ng-container>
 
                 <div class="col-12 mg-bottom" *ngIf="propiedad.user.tel">

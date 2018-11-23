@@ -97,6 +97,7 @@ export class PropiedadesService {
         this.model.carac_gral = r['data'].carac_gral;
         this.model.files = r['data'].files;
         this.model.id = r['data'][0].id;
+        this.model.propietario_id = r['data'][0].propietario_id;
         this.model.cochera = r['data'][0].cochera;
         this.model.user = r['data'][0].user;
         this.model.dormitorios = r['data'][0].dormitorios;
