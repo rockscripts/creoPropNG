@@ -51,7 +51,7 @@ export class MainMenuComponent implements OnInit {
 
     this.profile.profileUpdated
       .subscribe({
-        next: (imgRoute: string) => this.perfil.img = imgRoute
+        next: (imgRoute: string) => this.perfil.tipo_user_id === 2 ? this.perfil.inmobiliaria.img = imgRoute : this.perfil.img = imgRoute
       });
 
     this.router.events.subscribe((e) => {
@@ -78,20 +78,16 @@ export class MainMenuComponent implements OnInit {
       r = r["data"];
       this.perfil.nombre = r['name'];
       this.perfil.apellido = r['surname'];
-      this.perfil.ubicacion = '';
       this.perfil.usuario_desde = r['created_at'];
       this.perfil.prop_count = r['cant_prop'];
       this.perfil.id = r['id'];
+      this.perfil.tipo_user_id = +r['tipo_user_id'];
       this.perfil.img = r['profile_img'];
       this.perfil.celular = r['celular'];
 
       this.perfil.inmobiliaria.nombre = r['inmobiliaria']['nombre'];
       this.perfil.inmobiliaria.id = r['inmobiliaria']['id'];
       this.perfil.inmobiliaria.img = r['inmobiliaria']['logo'];
-
-      if (this.perfil.nombre != '') {
-        this.userName = this.perfil.nombre + ' ' + this.perfil.apellido;
-      }
     });
   }
 

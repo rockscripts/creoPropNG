@@ -54,6 +54,7 @@ export class MiCuentaComponent implements OnInit {
       this.perfil.img = r['profile_img'];
       // this.perfil.celular = r['celular'];
       this.perfil.tipoUsuario = r['tipo_user_name'];
+      this.perfil.tipo_user_id = +r['tipo_user_id'];
       this.perfil.membresia = r['membresia'];
 
       this.perfil.inmobiliaria.nombre = r['inmobiliaria']['nombre'];
@@ -61,7 +62,7 @@ export class MiCuentaComponent implements OnInit {
       this.perfil.inmobiliaria.img = r['inmobiliaria']['logo'];
 
       if (onUpdate) {
-        this.profile.profileUpdated.next(r['profile_img']);
+        this.profile.profileUpdated.next(this.perfil.tipo_user_id === 2 ? this.perfil.inmobiliaria.img : this.perfil.img);
       }
     });
   }

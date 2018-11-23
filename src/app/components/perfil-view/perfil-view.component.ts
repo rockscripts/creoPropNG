@@ -4,6 +4,7 @@ import { UserService } from './../../providers/user.service';
 import { ProfileService } from './../../providers/profile.service';
 import { UserProfileModalService } from './../../components/user-profile-modal/user-profile-modal.service';
 import { Perfil } from './../../models/perfil';
+import { Inmobiliaria } from '../../models/inmobiliaria';
 @Component({
   selector: 'app-perfil-view',
   templateUrl: './perfil-view.component.html',
@@ -16,6 +17,7 @@ export class PerfilViewComponent implements OnInit {
   perfilState: any = {};
 
   //profile keys segun tipo usuario
+  inmobiliarias: any[] = [];
   private ownerProfile: ProfileKey[] = [
     {
       key: 'nacionalidad',
@@ -50,6 +52,12 @@ export class PerfilViewComponent implements OnInit {
       state: false
     },
     {
+      key: 'id_inmobiliaria',
+      name: 'perteneciente a la inmobiliaria',
+      state: false,
+      showSelect: true,
+    },
+    {
       key: 'matricula',
       name: 'número de matrícula',
       state: false
@@ -77,7 +85,8 @@ export class PerfilViewComponent implements OnInit {
       state: false
     },
     {
-      key: 'ceo',
+      key: 'nombre',
+      key2: 'apellido',
       name: 'ceo',
       state: false
     },
@@ -92,9 +101,10 @@ export class PerfilViewComponent implements OnInit {
       state: false
     },
     {
-      key: 'oficina',
+      key: 'direccion',
       name: 'oficina central',
-      state: false
+      state: false,
+      inmobiliaria: true
     }
   ];
   public contactData: ProfileKey[] = [
@@ -120,6 +130,7 @@ export class PerfilViewComponent implements OnInit {
   public currentProfile: ProfileKey[] = [];
   public descripcionState: boolean = false;
 
+
   constructor(
     private user: UserService,
     private pModal: UserProfileModalService,
@@ -135,10 +146,12 @@ export class PerfilViewComponent implements OnInit {
           }
 
           r = r['data'];
+          this.perfil.tipo_user_id = +r['tipo_user_id'];
           this.perfil.nombre = r['name'];
           this.perfil.apellido = r['surname'];
 
           this.perfil.id = r['id'];
+          this.perfil.id_inmobiliaria = +r['id_inmobiliaria'];
           this.perfil.celular = r['celular'];
           this.perfil.tel = r['tel'];
           this.perfil.email = r['email'];
@@ -156,6 +169,7 @@ export class PerfilViewComponent implements OnInit {
 
           if (r['id_inmobiliaria']) {
             this.perfil.inmobiliaria.nombre = r['inmobiliaria']['nombre'];
+            this.perfil.inmobiliaria.direccion = r['inmobiliaria']['direccion'];
             this.perfil.inmobiliaria.id = r['inmobiliaria']['id'];
             this.perfil.inmobiliaria.img = r['inmobiliaria']['logo'];
           }
@@ -167,6 +181,16 @@ export class PerfilViewComponent implements OnInit {
     } else {
       this.perfil = this.profile.actualProfile();
     }
+
+    this.user.getInmobiliarias()
+      .subscribe(res => {
+        this.inmobiliarias = res.data.map((item: Inmobiliaria) => {
+          return {
+            id: item.id,
+            name: item.nombre
+          }
+        });
+      });
   }
 
   edit(key: string, type: string = '') {
@@ -179,11 +203,20 @@ export class PerfilViewComponent implements OnInit {
         }
       });
   }
+
+  showInmobiliariaName(id): string {
+    let inmo = this.inmobiliarias.find(item => (+item.id) === id);
+
+    return inmo ? inmo.name : '';
+  }
 }
 
 export interface ProfileKey {
   name: string;
   key: string;
+  key2?: string;
   state: boolean;
   icon?: string;
+  inmobiliaria?: boolean;
+  showSelect?: boolean;
 }

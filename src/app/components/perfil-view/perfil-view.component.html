@@ -2,13 +2,22 @@
   <div class="col-7">
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">ACERCA DE {{ perfil.nombre + ' ' + perfil.apellido | uppercase }}</h3>
+        <h3 class="card-title">ACERCA DE {{ perfil.getFullName() | uppercase }}</h3>
 
         <ul class="card-list-info">
           <li class="card-list-item" *ngFor="let optInfo of currentProfile">
             <ng-container *ngIf="!optInfo.state">
               <span class="card-list-item__title">{{ optInfo.name | uppercase }}:</span>
-              <span class="card-list-item__data-dark">{{ perfil[optInfo.key] || 'sin agregar' }}</span>
+
+              <ng-container *ngIf="!optInfo.showSelect">
+                <span class="card-list-item__data-dark" *ngIf="optInfo.inmobiliaria">{{ perfil.inmobiliaria[optInfo.key] || 'sin agregar' }}</span>
+                <span class="card-list-item__data-dark" *ngIf="!optInfo.inmobiliaria">{{ !optInfo.key2 ? perfil[optInfo.key] : perfil[optInfo.key] + ' ' + perfil[optInfo.key2] || 'sin agregar'
+                  }}
+                </span>
+              </ng-container>
+
+              <span class="card-list-item__data-dark" *ngIf="optInfo.showSelect">{{ showInmobiliariaName(+perfil[optInfo.key]) || 'sin agregar' }}</span>
+
               <button class="btn-icon-flat">
                 <i class="icon-button material-icons" (click)="optInfo.state = !optInfo.state">edit</i>
               </button>
@@ -16,7 +25,19 @@
 
             <ng-container *ngIf="optInfo.state">
               <span class="card-list-item__title">{{ optInfo.name | uppercase }}:</span>
-              <input type="text" class="form-control" [(ngModel)]="perfil[optInfo.key]" [name]="optInfo.key">
+
+              <ng-container *ngIf="!optInfo.showSelect">
+                <input type="text" class="form-control" [(ngModel)]="perfil[optInfo.key]" [name]="optInfo.key" *ngIf="!optInfo.inmobiliaria">
+                <input type="text" class="form-control" [(ngModel)]="perfil.inmobiliaria[optInfo.key]" [name]="optInfo.key" *ngIf="optInfo.inmobiliaria">
+
+                <input type="text" class="form-control" style="margin: 10px auto;" [(ngModel)]="perfil[optInfo.key2]" [name]="optInfo.key2"
+                  *ngIf="optInfo.key2">
+              </ng-container>
+
+              <select [name]="optInfo.key" class="form-control" [(ngModel)]="perfil[optInfo.key]" *ngIf="optInfo.showSelect">
+                <option value=0>Seleccione una inmobiliaria</option>
+                <option [value]="item.id" *ngFor="let item of inmobiliarias">{{ item.name }}</option>
+              </select>
 
               <button class="btn btn-primary" style="margin-top: 5px;" (click)="edit(optInfo.key)">GUARDAR</button>
               <button class="btn btn-outline-danger" style="margin-top: 5px; margin-left: 15px;" (click)="optInfo.state = !optInfo.state">CANCELAR</button>

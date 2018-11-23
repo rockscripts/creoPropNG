@@ -5,6 +5,7 @@ import { RegisterModalService } from '../../components/register-modal/register-m
 
 import { UserService } from '../../providers/user.service';
 import { User } from '../../models/user';
+import { Inmobiliaria } from '../../models/inmobiliaria';
 
 @Component({
   selector: 'app-signup-form-p',
@@ -17,6 +18,7 @@ export class SignupFormPComponent implements OnInit {
   model = new User();
 
   tipo_us: any = [];
+  inmobiliarias: any[] = [];
 
   constructor(
     private router: Router,
@@ -30,7 +32,17 @@ export class SignupFormPComponent implements OnInit {
         this.tipo_us = r['data'];
       });
 
-    this.model.tipoUser = 1;
+    this.US.getInmobiliarias()
+      .subscribe(res => {
+        this.inmobiliarias = res.data.map((item: Inmobiliaria) => {
+          return {
+            id: item.id,
+            name: item.nombre
+          }
+        });
+      });
+
+    this.model.tipo_user_id = 1;
   }
 
   nuevo() {
@@ -43,9 +55,12 @@ export class SignupFormPComponent implements OnInit {
 
     this.US.model = this.model;
     this.US.create()
-      .subscribe((r) => {
-        this.US.setLogin(r);
+      .subscribe(res => {
+        this.US.setLogin(res);
         this.modal.hide();
+        this.US.onLogin.next();
+        this.US.clearModel();
+        this.model = new User();
         this.router.navigate(['/home/1']);
       });
   }

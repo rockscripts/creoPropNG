@@ -34,13 +34,13 @@
           <a class="nav-link" (click)="showLogin()">INICIAR SESIÓN</a>
         </li>
         <li class="nav-item dropdown" *ngIf="registrado">
-          <a *ngIf="perfil.img === ''" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          <a *ngIf="!perfil.getImgRoute()" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            MI CUENTA ({{userName}})
+            MI CUENTA ({{ perfil.getFullName() }})
           </a>
-          <a *ngIf="perfil.img !== ''" class="nav-link dropdown-toggle user-profile-image" href="#" id="navbarDropdown" role="button"
+          <a *ngIf="perfil.getImgRoute()" class="nav-link dropdown-toggle user-profile-image" href="#" id="navbarDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img [src]="'http://192.168.0.13/' + perfil.img" alt="">
+            <img [src]="'http://192.168.0.13/' + perfil.getImgRoute()" alt="">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/mi-cuenta">MI CUENTA</a>

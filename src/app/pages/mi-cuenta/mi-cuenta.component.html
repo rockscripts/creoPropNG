@@ -4,7 +4,7 @@
       <div class="left-controls">
         <div class="user-info-container">
           <div class="img-profile-container">
-            <img [src]="'http://192.168.0.13/' + perfil.img" alt="profile" class="user-logo">
+            <img [src]="'http://192.168.0.13/' + perfil.getImgRoute()" alt="profile" class="user-logo">
 
             <input #loadImg type="file" name="profile-img" accept="image/*" (change)="saveProfileImg($event.target.files)" hidden>
 
@@ -16,7 +16,7 @@
           <div class="profile-info-container">
             <ng-container *ngIf="!nameState">
               <h2 style="max-width: 65%;">
-                {{ perfil.nombre + ' ' + perfil.apellido | uppercase }}
+                {{ perfil.getFullName() | uppercase }}
               </h2>
               <button class="btn-icon-flat">
                 <i class="icon-button material-icons" (click)="nameState = !nameState">edit</i>
@@ -24,10 +24,20 @@
             </ng-container>
 
             <ng-container *ngIf="nameState">
-              <label for="">Nombre:</label>
-              <input type="text" class="form-control name-edit" [(ngModel)]="perfil.nombre" name="nombre">
-              <label for="">Apellido:</label>
-              <input type="text" class="form-control name-edit" [(ngModel)]="perfil.apellido" name="apellido">
+              <ng-container *ngIf="perfil.tipo_user_id !== 2; then user; else inmo"></ng-container>
+
+              <ng-template #user>
+                <label for="">Nombre:</label>
+                <input type="text" class="form-control name-edit" [(ngModel)]="perfil.nombre" name="nombre">
+
+                <label for="">Apellido:</label>
+                <input type="text" class="form-control name-edit" [(ngModel)]="perfil.apellido" name="apellido">
+              </ng-template>
+
+              <ng-template #inmo>
+                <label for="">Nombre:</label>
+                <input type="text" class="form-control name-edit" [(ngModel)]="perfil.inmobiliaria.nombre" name="inmoNombre">
+              </ng-template>
 
               <button class="btn btn-primary" style="margin-top: 5px;" (click)="edit('name')">GUARDAR</button>
               <button class="btn btn-outline-danger" style="margin-top: 5px; margin-left: 15px;" (click)="nameState = !nameState">CANCELAR</button>
