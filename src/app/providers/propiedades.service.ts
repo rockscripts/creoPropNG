@@ -92,7 +92,13 @@ export class PropiedadesService {
       this.model.ambientes = r['data'].ambientes;
       this.model.inmobiliaria = r['data'].inmobiliaria;
       this.model.carac_gral = r['data'].carac_gral;
+      this.model.latitud = Number(r['data'][0].latitud);
+      this.model.longitud = Number(r['data'][0].longitud);
       this.model.files = r['data'].files;
+      this.model.files.push({
+        nombre: 'googlemapimage',
+        url: `https://maps.googleapis.com/maps/api/staticmap?center=${this.model.latitud},${this.model.longitud}&markers=color:red%7Clabel:C%7C${this.model.latitud},${this.model.longitud}&zoom=12&size=600x400&key=AIzaSyBKx9GpEdjBOL7bxeTLPgwgRKwaylnTXp0`
+      });
       this.model.id = r['data'][0].id;
       this.model.cochera = r['data'][0].cochera;
       this.model.user = r['data'][0].user;
@@ -108,8 +114,6 @@ export class PropiedadesService {
       this.model.texto = r['data'][0].texto;
       this.model.direccion = r['data'][0].direccion;
       this.model.nombre_zona = r['data'][0].nombre_zona;
-      this.model.latitud = Number(r['data'][0].latitud);
-      this.model.longitud = Number(r['data'][0].longitud);
       this.model.titulo = r['data'][0].titulo;
       this.model.zona = r['data'][0].zona_id;
       //Ingresar imagenes reales de la propiedad

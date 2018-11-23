@@ -126,7 +126,7 @@ import { CreatedAtPipe } from './components/prop-result/created-at.pipe';
     HttpClientModule,
     AngularFontAwesomeModule,
     InfiniteScrollModule,
-    AgmCoreModule.forRoot({ apiKey: 'AIzaSyD2ohKHAfu3LTRtftC37oMAmy2ldJ1a4Gg', libraries: ["places"] }),
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBKx9GpEdjBOL7bxeTLPgwgRKwaylnTXp0', libraries: ["places"] }),
     FormsModule, ReactiveFormsModule,
     NgSelectModule,
     NgbModalModule,
