@@ -41,7 +41,6 @@ import { MiCuentaComponent } from './pages/mi-cuenta/mi-cuenta.component';
 import { SearchComponent } from './pages/search/search.component';
 
 import { PropiedadFormComponent } from './forms/propiedad-form/propiedad-form.component';
-import { SignupFormBComponent } from './forms/signup-form-b/signup-form-b.component';
 import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.component';
 import { DenunciaPropFormComponent } from './forms/denuncia-prop-form/denuncia-prop-form.component';
 import { UserProfileFormComponent } from './forms/user-profile-form/user-profile-form.component';
@@ -55,7 +54,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PropResultComponent } from './components/prop-result/prop-result.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { RegisterModalComponent } from './components/register-modal/register-modal.component';
-import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
+import { PublicProfileComponent } from './pages/public-profile/public-profile.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { DenunciaModalComponent } from './components/denuncia-modal/denuncia-modal.component';
 import { SelectPrecioComponent } from './pages/select-precio/select-precio.component';
@@ -95,9 +94,8 @@ import { CreatedAtPipe } from './components/prop-result/created-at.pipe';
     BarraBusquedaComponent,
     PropResultComponent,
     LoginModalComponent,
-    PerfilUsuarioComponent,
+    PublicProfileComponent,
     RegisterModalComponent,
-    SignupFormBComponent,
     SignupFormPComponent,
     AlertComponent,
     DenunciaPropFormComponent,

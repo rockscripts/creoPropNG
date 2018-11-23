@@ -6,7 +6,9 @@
 
         <div class="card-body row">
           <div class="col-auto back-arr-btn row align-items-center">
-            <div class="col"><i class="fa fa-arrow-left link-btn" routerLink="/"></i> </div>
+            <div class="col">
+              <i class="fa fa-arrow-left link-btn" routerLink="/"></i>
+            </div>
           </div>
 
           <div class="col">
@@ -23,8 +25,10 @@
               <i class="fa fa-share-alt link-btn"></i>
               <i class="fa fa-print link-btn"></i>
             </div>
-            <div class="col-12 btn-denu"><a data-toggle="modal" data-target="#denunciaModal" (click)="denunciar()">DENUNCIAR
-                AVISO</a></div>
+            <div class="col-12 btn-denu">
+              <a data-toggle="modal" data-target="#denunciaModal" (click)="denunciar()">DENUNCIAR AVISO
+              </a>
+            </div>
           </div>
         </div>
 
@@ -32,7 +36,7 @@
           <div id="imgs-det" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item" *ngFor="let v of propiedad.files let i = index" [ngClass]="{'active' : i == 0}">
-                <img class="card-img-bottom img-map" src="./{{v['nombre']}}" alt="{{v.titulo}}">
+                <img class="card-img-bottom img-map" [src]="'http://192.168.0.13/' + v['nombre']" [alt]="v.titulo">
               </div>
             </div>
 
@@ -61,7 +65,7 @@
             {{propiedad.direccion}},&nbsp;{{propiedad.nombre_zona}}
           </span>
         </div>
-        <agm-map [latitude]="propiedad.latitud" [longitude]="propiedad.longitud" [zoom]="16">
+        <agm-map [latitude]="propiedad.latitud" [longitude]="propiedad.longitud" [zoom]="16" [scrollwheel]="false">
           <agm-marker [latitude]="propiedad.latitud" [longitude]="propiedad.longitud" [label]="propiedad.titulo"></agm-marker>
         </agm-map>
       </div>
@@ -199,16 +203,22 @@
             <div class="row">
               <div class="col rw-det" *ngIf="propiedad.superficie_cubierta != 0">
                 <div class="row">
-                  <div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-sup.svg"></div>
+                  <div class="col pl-0 pr-0">
+                    <img class="icons" src="assets/img/icons/icon-sup.svg">
+                  </div>
                 </div>
                 <span class="sp">Sup. Cubierta</span>
                 <div class="row">
-                  <div class="col dt-lg">{{propiedad.superficie_cubierta}}<small>m²</small></div>
+                  <div class="col dt-lg">{{propiedad.superficie_cubierta}}
+                    <small>m²</small>
+                  </div>
                 </div>
               </div>
               <div class="col rw-det" *ngIf="propiedad.ambientes_c != 0">
                 <div class="row">
-                  <div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-amb.svg"></div>
+                  <div class="col pl-0 pr-0">
+                    <img class="icons" src="assets/img/icons/icon-amb.svg">
+                  </div>
                 </div>
                 <span class="sp">Ambientes</span>
                 <div class="row">
@@ -217,7 +227,9 @@
               </div>
               <div class="col rw-det" *ngIf="propiedad.banios != 0">
                 <div class="row">
-                  <div class="col pl-0 pr-0"><img class="icons" src="assets/img/bath.svg"></div>
+                  <div class="col pl-0 pr-0">
+                    <img class="icons" src="assets/img/bath.svg">
+                  </div>
                 </div>
                 <span class="sp">Baños</span>
                 <div class="row">
@@ -226,7 +238,9 @@
               </div>
               <div class="col rw-det" *ngIf="propiedad.cochera != 0">
                 <div class="row">
-                  <div class="col pl-0 pr-0"><img class="icons" src="assets/img/icons/icon-coch.svg"></div>
+                  <div class="col pl-0 pr-0">
+                    <img class="icons" src="assets/img/icons/icon-coch.svg">
+                  </div>
                 </div>
                 <span class="sp">Cochera</span>
                 <div class="row">
@@ -243,19 +257,38 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <h5><strong>¡Contactá al anunciante!</strong></h5>
+                <h5>
+                  <strong>¡Contactá al anunciante!</strong>
+                </h5>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-auto">
-                <img *ngIf="propiedad.inmobiliaria != null" src="./{{propiedad.inmobiliaria.logo}}" (click)="goToPerfil()">
+              <div class="col-auto img-profile-container">
+                <ng-container *ngIf="propiedad.user.tipo_user_id == 2">
+                  <img *ngIf="propiedad.inmobiliaria && propiedad.inmobiliaria.logo" [src]="'http://192.168.0.13/' + propiedad.inmobiliaria.logo"
+                    (click)="goToPerfil()">
+                </ng-container>
+                <ng-container *ngIf="propiedad.user.tipo_user_id != 2">
+                  <img *ngIf="propiedad.user && propiedad.user.profile_img" [src]="'http://192.168.0.13/' + propiedad.user.profile_img" (click)="goToPerfil()">
+                </ng-container>
               </div>
-              <div class="col" *ngIf="propiedad.user != null">
-                <h3 *ngIf="propiedad.inmobiliaria != null">{{propiedad.inmobiliaria.nombre}}</h3>
-                <div class="col-12">Teléfono:&nbsp;{{propiedad.user.celular}}</div>
-                <div class="col-12">Encargado:&nbsp;{{propiedad.user.name}}&nbsp;{{propiedad.user.surname}} </div>
-                <div class="col-12">Código:&nbsp;{{propiedad.user.id}}</div>
+              <div class="col contact-info-container" *ngIf="propiedad.user">
+                <ng-container *ngIf="propiedad.user.tipo_user_id == 2">
+                  <h3 *ngIf="propiedad.inmobiliaria">{{ propiedad.inmobiliaria.nombre }}</h3>
+                </ng-container>
+                <ng-container *ngIf="propiedad.user.tipo_user_id != 2">
+                  <h3>{{ propiedad.user.name + ' ' + propiedad.user.surname }}</h3>
+                </ng-container>
+
+                <div class="col-12 mg-bottom" *ngIf="propiedad.user.tel">
+                  <strong>Teléfono oficina:</strong> {{ propiedad.user.tel }}</div>
+                <div class="col-12 mg-bottom" *ngIf="propiedad.user.celular">
+                  <strong>Teléfono móvil:</strong>
+                  <img src="assets/whatsapp.svg" alt="whatsapp" width="25px" style="margin-left: 12px; margin-top: -5px;"> {{ propiedad.user.celular }}
+                </div>
+                <div class="col-12 mg-bottom" *ngIf="propiedad.user.email">
+                  <strong>E-mail:</strong> {{ propiedad.user.email }}</div>
               </div>
             </div>
 
@@ -277,7 +310,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Telefono</label>
+                  <label>Teléfono</label>
                   <input type="tel" class="form-control">
                 </div>
 

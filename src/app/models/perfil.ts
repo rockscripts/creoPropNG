@@ -28,15 +28,22 @@ export class Perfil {
   matricula: string = '';
   nacionalidad: string = '';
   oficina: string = '';
+  id_inmobiliaria: number;
 
   //mostrar en mi cuenta
   membresia: string = '';
+  tipo_user_id: number;
 
   public inmobiliaria: Inmobiliaria = new Inmobiliaria();
 
+  constructor() { }
 
+  getFullName() {
+    return (+this.tipo_user_id) === 2 ? this.inmobiliaria.nombre : this.nombre + ' ' + this.apellido;
+  }
 
-  constructor(
-  ) { }
+  getImgRoute() {
+    return (+this.tipo_user_id) === 2 ? this.inmobiliaria.img : this.img;
+  }
 
 }
