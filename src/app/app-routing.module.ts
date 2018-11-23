@@ -21,6 +21,7 @@ import { EditarPropComponent } from './pages/prop/editar-prop/editar-prop.compon
 import { MercadoPagoOkComponent } from './pages/MP/mercado-pago-ok/mercado-pago-ok.component';
 import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-pago-fail.component';
 import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-pago-pend.component';
+import {VerificationComponent} from './pages/verification/verification.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'compraOk', component: MercadoPagoOkComponent },
   { path: 'compraFail', component: MercadoPagoFailComponent },
   { path: 'compraPending', component: MercadoPagoPendComponent },
+  { path: 'verify/:id', component: VerificationComponent },
   { path: "**", redirectTo: "/404" },
 
 ];

@@ -74,6 +74,7 @@ import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-p
 import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-pago-pend.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CreatedAtPipe } from './components/prop-result/created-at.pipe';
+import { VerificationComponent } from './pages/verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { CreatedAtPipe } from './components/prop-result/created-at.pipe';
     MercadoPagoPendComponent,
     CarouselComponent,
     //pipes
-    CreatedAtPipe
+    CreatedAtPipe,
+    VerificationComponent
   ],
   imports: [
     BrowserModule,
