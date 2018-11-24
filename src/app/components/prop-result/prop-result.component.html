@@ -1,12 +1,12 @@
 <div class="row" *ngIf="!listMode">
   <div class="col-12" *ngIf="mode != 'userProp'">
-    <div class="col-12 hh1 pl-0 res-count row align-items-center">
-      <div class="col-12 pl-0">
-        <b>{{ cant_prop }}</b> Propiedades en Argentina</div>
+    <div class="row align-items-center hh1 res-count">
+      <strong style="margin-right: 10px;">{{ cant_prop }}</strong> Propiedades en Argentina
     </div>
   </div>
+
   <div class="col-12">
-    <div class="col-12 row p-0 toolbar">
+    <div class="row toolbar">
       <div class="col-12 col-md-9 p-0">
         <ul class="navbar-nav flex-row align-items-stretch " *ngIf="mode == 'userProp'">
           <li class="nav-item dropdown">
@@ -54,45 +54,47 @@
     </div>
   </div>
 
-  <div class="row col-12">
-    <div *ngFor="let propiedad of propiedades; let idx = index" class="col-12 col-sm-6 col-md-4 cp-card">
-      <div class="card">
-        <div class="checkbox" *ngIf="mode == 'userProp'">
-          <input type="checkbox" name="{{'checked-propiedad-' + propiedad.id}}">
-        </div>
-        <!-- botonera -->
-        <div class="botonera" *ngIf="mode == 'userProp'">
-          <i class="fa fa-pencil link-btn" (click)="edit(propiedad.id)"></i>
-          <i class="fa fa-trash link-btn" (click)="delete(propiedad.id)"></i>
-        </div>
-
-        <!-- carrusel -->
-        <app-carousel [files]="propiedad.files"></app-carousel>
-
-        <!-- resto de la info -->
-        <div class="card-img-overlay">
-          <img class="imb-img" src="./{{propiedad.inmobiliaria.logo}}" alt="{{propiedad.inmobiliaria.nombre}}" />
-        </div>
-
-        <div class="card-body">
-          <div class="card-text direccion">
-            <span>
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              {{ propiedad.direccion }}
-            </span>
+  <div class="col-12">
+    <div class="row">
+      <div *ngFor="let propiedad of propiedades; let idx = index" class="col-12 col-sm-6 col-md-4 cp-card">
+        <div class="card">
+          <div class="checkbox" *ngIf="mode == 'userProp'">
+            <input type="checkbox" name="{{'checked-propiedad-' + propiedad.id}}">
           </div>
-          <!--descripción -->
-          <div class="cont-b">
-            <div class="card-text card-tit" [routerLink]="['/propiedad/' + propiedad.id]">{{propiedad.titulo}}</div>
-            <div class="card-text">
-              <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span>
-              <span *ngIf="propiedad.banios != 0">
-                <img src="assets/img/bed.svg" style="width:20px"> {{propiedad.banios}} </span>
-              <span *ngIf="propiedad.dormitorios != 0">
-                <img src="assets/img/bath.svg" style="width:20px"> {{propiedad.dormitorios}} </span>
-              <span class="card-precio">{{propiedad.moneda_simbolo}}
-                <strong>{{propiedad.precio | number:'1.0'}}</strong>
+          <!-- botonera -->
+          <div class="botonera" *ngIf="mode == 'userProp'">
+            <i class="fa fa-pencil link-btn" (click)="edit(propiedad.id)"></i>
+            <i class="fa fa-trash link-btn" (click)="delete(propiedad.id)"></i>
+          </div>
+
+          <!-- carrusel -->
+          <app-carousel [files]="propiedad.files"></app-carousel>
+
+          <!-- resto de la info -->
+          <div class="card-img-overlay">
+            <img class="imb-img" src="./{{propiedad.inmobiliaria.logo}}" alt="{{propiedad.inmobiliaria.nombre}}" />
+          </div>
+
+          <div class="card-body">
+            <div class="card-text direccion">
+              <span>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{ propiedad.direccion }}
               </span>
+            </div>
+            <!--descripción -->
+            <div class="cont-b">
+              <div class="card-text card-tit" [routerLink]="['/propiedad/' + propiedad.id]">{{propiedad.titulo}}</div>
+              <div class="card-text">
+                <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span>
+                <span *ngIf="propiedad.banios != 0">
+                  <img src="assets/img/bed.svg" style="width:20px"> {{propiedad.banios}} </span>
+                <span *ngIf="propiedad.dormitorios != 0">
+                  <img src="assets/img/bath.svg" style="width:20px"> {{propiedad.dormitorios}} </span>
+                <span class="card-precio">{{propiedad.moneda_simbolo}}
+                  <strong>{{propiedad.precio | number:'1.0'}}</strong>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -100,12 +102,10 @@
     </div>
   </div>
 
-  <div class="row col-12" *ngIf="pagination && pagination.next">
-    <div class="col-12 text-center">
-      <button class="btn btn-show-more" (click)="nextPage()" style="margin-top: 30px;">Ver más
-        <i class="material-icons" style="vertical-align: top;">arrow_downward</i>
-      </button>
-    </div>
+  <div class="col-12 text-center" *ngIf="pagination && pagination.next">
+    <button class="btn btn-show-more" (click)="nextPage()" style="margin-top: 30px;">Ver más
+      <i class="material-icons" style="vertical-align: top;">arrow_downward</i>
+    </button>
   </div>
 </div>
 
