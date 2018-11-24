@@ -36,7 +36,7 @@
           <div id="imgs-det" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item" *ngFor="let v of propiedad.files let i = index" [ngClass]="{'active' : i == 0}">
-                <img class="card-img-bottom img-map" [src]="'http://192.168.0.13/' + v['nombre']" [alt]="v.titulo">
+                <img class="card-img-bottom img-map" src="{{ v['nombre'] != 'googlemapimage' ? 'http://192.168.0.13/' + v['nombre'] : v['url'] }}" alt="{{v.titulo}}">
               </div>
             </div>
 

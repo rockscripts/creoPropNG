@@ -191,6 +191,10 @@ export class PropResultComponent implements OnInit {
           prop.isSelected = false;
           prop.destacado = +prop.destacado;
           prop.rowActive = false;
+          prop.files.push({
+            nombre: 'googlemapimage',
+            url: `https://maps.googleapis.com/maps/api/staticmap?center=${prop.latitud},${prop.longitud}&markers=color:red%7Clabel:C%7C${prop.latitud},${prop.longitud}&zoom=12&size=600x400&key=AIzaSyBKx9GpEdjBOL7bxeTLPgwgRKwaylnTXp0`
+          });
           return prop;
         });
       });
