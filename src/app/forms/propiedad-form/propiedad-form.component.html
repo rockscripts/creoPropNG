@@ -301,7 +301,17 @@
         <div class="col">
           <div class="form-group row">
              <div class="checkbox col-md-6 col-12">
-                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" name="destacado" [(ngModel)]="model.destacado">Destacar publicación</div></div></label>
+                <label class="w-100"><div class="row col-12">
+                    <div class="col" *ngIf="subscription.max_destaques_disponibles > 0">
+                     <input type="checkbox" name="destacado" [(ngModel)]="model.destacado">
+                      Destacar publicación
+                     </div>
+                     <div class="col" *ngIf="subscription.max_destaques_disponibles == 0">
+                         <input type="checkbox" name="destacado" [(ngModel)]="model.destacado" disabled="disabled" style="cursor:not-allowed;">
+                         Destacar publicación <br><a href="#/select-plan"><small>Cambiar plan</small></a>
+                         </div>
+                   </div>
+                 </label>
              </div>
           </div>
         </div>

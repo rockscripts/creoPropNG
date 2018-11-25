@@ -1,3 +1,44 @@
-<p>
-  mercado-pago-fail works!
-</p>
+<div class="container">
+    <div *ngIf="subscription.responsePayment == 'already_created' else otherContent" class="subscription-page-message">
+        <h1>El pago ya existe</h1>
+        <div class="row"><i class="fa fa-exclamation-triangle fail-warning"></i></div>
+        <h4>No se pudo completar la petición porque este pago ya fue realizado</h4>
+        <div class="row">
+          <button class="btn btn-info"  routerLink="/mi-cuenta">
+            <div class="icon-big-button">
+              <i class="fa fa-user"></i>
+            </div>
+            <div  class="text-big-text">Mi cuenta</div></button>
+          </div>
+    </div>
+    <ng-template #otherContent>
+        <div  class="subscription-page-message">
+            <h1>Petición erronea</h1>
+            <div class="row"><i class="fa fa-exclamation-triangle fail-warning"></i></div>
+            <h4>No se pudo procesar el pago porque hubo un respuesta inesperada por parte de Mercado Pago. </h4>
+            <p>Por favor intenta de nuevo.</p>
+            
+            <div class=" col-centered">
+                <div class="row row-buttons">
+                    <div class="col-sm-6 right-align">
+                        <button class="btn btn-info"   routerLink="/mi-cuenta">
+                            <div class="icon-big-button">
+                              <i class="fa fa-user"></i>
+                            </div>
+                            <div  class="text-big-text">Mi cuenta</div>
+                          </button>
+                    </div>
+                    <div class="col-sm-6 left-align">
+                        <button class="btn btn-info"   routerLink="/select-plan">
+                            <div class="icon-big-button">
+                              <i class="fa fa-money"></i>
+                            </div>
+                            <div  class="text-big-text">Recargar</div>
+                          </button>
+                    </div>  
+            </div>
+                                      
+              </div>
+        </div> 
+    </ng-template>
+</div>

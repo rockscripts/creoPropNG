@@ -1,5 +1,4 @@
 <div class="row cont">
-
   <div class="col-md-4 col-12 plan" *ngFor="let plan of planes">
     <div class="col-12 pktit">
       <div class="row text-center">
@@ -22,11 +21,21 @@
             <p>{{plan.bd2}}</p>
           </div>
           <div class="row bt-cont">
-            <div class="col-12 col-sm-10 offset-sm-1 text-center">
-              <button type="button" class="btn btn-cprop" data-toggle="modal" (click)="siguiente(plan.id)" *ngIf="!(registrado && planActual == plan.id)">
-              <span *ngIf="!registrado">Publicar ahora</span>
-              <span *ngIf="registrado && planActual != plan.id">Comprar</span>
-            </button></div>
+            <div class="col-12 col-sm-10 offset-sm-1 text-center" *ngIf="registrado && subscription.id_plan==plan.id else shop-button">
+              <div *ngIf="(subscription.max_avisos_disponibles>0 || subscription.max_avisos_disponibles==-1)">
+                  <button type="button" class="btn btn-cprop btn-publish-now" data-toggle="modal"  routerLink="/new-prop" >
+                    <span *ngIf="registrado && subscription.id_plan==plan.id">Publicar</span>
+                  </button>
+              </div>
+              <div *ngIf="(subscription.max_avisos_disponibles==0)" >
+                  <span>No quedan publicaciones</span>
+              </div>
+          </div>
+          <div id="shop-button" class="col-12 col-sm-10 offset-sm-1 text-center" *ngIf="registrado && subscription.id_plan!=plan.id &&plan.id!=1">
+            <a href="{{ plan.mercadopago_url }}" name="MP-Checkout" class="blue-M-Rn-Ar btn-mercadopago" mp-mode="modal" class="btn btn-cprop" data-toggle="modal" >
+            Comprar
+            </a>
+        </div>
           </div>
         </div>
       </div>
@@ -47,4 +56,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> 

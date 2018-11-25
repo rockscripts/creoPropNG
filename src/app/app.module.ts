@@ -24,6 +24,7 @@ import { UserService }          from './providers/user.service';
 import { SiteService }          from './providers/site.service';
 import { TextsService }         from './providers/texts.service';
 import { ProfileService }       from './providers/profile.service';
+import { SubscriptionService }       from './providers/subscription.service';
 import { MercadoPagoService }   from './providers/mercado-pago.service';
 
 import { RegisterModalService } from './components/register-modal/register-modal.service';
@@ -73,6 +74,7 @@ import { UserVisitasComponent }  from './components/user-visitas/user-visitas.co
 import { MercadoPagoOkComponent }   from './pages/MP/mercado-pago-ok/mercado-pago-ok.component';
 import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-pago-fail.component';
 import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-pago-pend.component';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -123,7 +125,8 @@ import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-p
     InfiniteScrollModule,
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyD2ohKHAfu3LTRtftC37oMAmy2ldJ1a4Gg', libraries: ["places"] }),
     FormsModule, ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
+    SweetAlert2Module
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
@@ -139,7 +142,8 @@ import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-p
     RegisterModalService,
     LoginModalService,
     ProfileService,
-    MercadoPagoService
+    MercadoPagoService,
+    SubscriptionService,
   ],
   bootstrap: [
     AppComponent

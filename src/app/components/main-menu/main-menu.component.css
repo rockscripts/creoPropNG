@@ -19,7 +19,7 @@
 }
 
 .navbar{
-  height: 3.7em; z-index: 3000;
+  height: 3.7em; z-index: 44;
 }
 
 .navbar-red{
@@ -101,4 +101,8 @@ nav form{margin-left: 1.5rem;}
 .user-profile-image img {
   width: 10rem;
   max-height: 45px;
+}
+.searchFromBar
+{
+  display: none;
 }

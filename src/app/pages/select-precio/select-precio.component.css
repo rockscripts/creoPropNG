@@ -23,8 +23,12 @@ p, .gray-text{color:#9b9b9b;}
   font-size: 13pt;
   font-weight: normal;
   width: 70%;
+  color:white!important;
 }
-
+.btn-cprop:hover
+{
+  opacity: 0.7;
+}
 .medios-pago img{
   max-width: 86%;
   height: auto;
@@ -37,4 +41,21 @@ p, .gray-text{color:#9b9b9b;}
 
 .plan:last-of-type {
   border-right: none;
+}
+.btn-publish-now
+{
+  background-color: #57a639;
+}
+.btn-mercadopago
+{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.navbar
+{
+  z-index: 44!important;
+}  
+footer,.searchForm{
+  display:none!important
 }

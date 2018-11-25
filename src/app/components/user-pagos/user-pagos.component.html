@@ -1,3 +1,125 @@
-<p>
-  user-pagos works!
-</p>
+
+  <br>
+<div>
+    <button id="display-payments-history" class="btn btn-default display-payments-history" (click)="displayPaymentsHistory()"><i class="fa fa-th-list"></i>&nbsp;Historial de Pagos</button>
+    <button id="hide-payments-history" class="btn btn-default" (click)="hidePaymentsHistory()"><i class="fa fa-chevron-left"></i>&nbsp;Volver</button>
+  </div>
+  <br>
+<div class="historial-pagos" id="historial-pagos">
+  <table>
+      <thead>
+    <tr class="table-header">
+      <th>TID</th>
+      <th>Pagador</th>
+      <th>Concepto</th>
+      <th>Estado</th>
+      <th>Monto (ARS)</th>
+      <th>Fecha</th>
+    </tr>
+  </thead>
+    <tbody id="history-payment">
+
+    </tbody>
+  </table>
+</div>
+<div class="plan-beneficio-container" id="plan-beneficio-container">
+ 
+    <div class="row">
+        <div class="col-sm-4">
+          <h4>Plan actual</h4>
+          <div class="row">
+              <div class="col-sm-3">
+                <label class="label-subscripcion">Plan:</label>
+              </div>
+              <div class="col-sm-8">
+                 <span>{{subscription.nombrePlan}}</span>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                  <label class="label-subscripcion">Monto:</label>
+                </div> 
+                <div class="col-sm-8">
+                   <span>${{subscription.monto}} / mes</span>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="subscription.metodo != ''">
+                  <div class="col-sm-3">
+                    <label class="label-subscripcion">Método:</label>
+                  </div>
+                  <div class="col-sm-8">
+                     <span>{{subscription.metodo}}</span>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                      <label class="label-subscripcion">Fecha:</label>
+                    </div>
+                    <div class="col-sm-8">
+                       <span>{{subscription.fecha}}</span>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="subscription.metodo != ''">
+                    <div class="col-sm-3">
+                      <label class="label-subscripcion">Siguiente Pago:</label>
+                    </div>
+                    <div class="col-sm-8">
+                       <span>{{subscription.fechaSiguientePago}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-3">
+                        <label class="label-subscripcion">Estado:</label>
+                      </div>
+                      <div class="col-sm-8">
+                         <span >
+                           <i class="fa fa-check-circle icon-subscription-active" *ngIf="subscription.estado=='Activo'"></i>
+                           <i class="fa fa-pause icon-subscription-paused" *ngIf="subscription.estado=='Pausado'"></i>
+                           <i class="fa fa-ban icon-subscription-ban" *ngIf="subscription.estado=='Cancelado'"></i>
+                           <i class="fa fa-watch icon-subscription-pending" *ngIf="subscription.estado=='Pendiente'"></i>
+                          &nbsp;{{subscription.estado}}
+                         
+                        </span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <label class="label-subscripcion">Avisos:</label>
+                      </div>
+                      <div class="col-sm-8">
+                         <span>{{subscription.max_avisos}}</span><br>
+                         <span *ngIf="subscription.max_avisos > 0">{{subscription.total_properties_published}} publicados</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <label class="label-subscripcion">Destaques:</label>
+                      </div>
+                      <div class="col-sm-8">
+                         <span  >{{subscription.max_destaques}}</span><br>
+                         <span *ngIf="subscription.max_destaques > 0">{{subscription.max_destaques_disponibles}} disponibles</span>
+                      </div>
+                    </div>
+                    <div class="row" >
+
+                        <button *ngIf="subscription.id_plan != 3" class="update-plan btn btn-primary" routerLink="/update-plan">Mejorar&nbsp;<i class="fa fa-angle-right"></i></button>
+                        <button *ngIf="subscription.id_plan == 3" class="update-plan btn btn-primary" routerLink="/update-plan">Cambiar&nbsp;<i class="fa fa-angle-right"></i></button>
+                       
+                        &nbsp;&nbsp;&nbsp;<button (click)="darPausarSubscripcion($event, subscription.idUserSubscripcion)" *ngIf="subscription.id_plan != 1  && (subscription.estado=='Activo' && subscription.estado!='Cancelado')" class="eliminar-plan btn btn-warning">Pausar&nbsp;<i class="fa fa-angle-right"></i></button>
+
+                        &nbsp;&nbsp;&nbsp;<button (click)="darBajaSubscripcion($event, subscription.idUserSubscripcion)" *ngIf="subscription.id_plan != 1 && (subscription.estado=='Activo' && subscription.estado!='Cancelado')" class="eliminar-plan btn btn-danger">Dar de baja&nbsp;<i class="fa fa-angle-right"></i></button>
+                        
+                        &nbsp;&nbsp;&nbsp;<button (click)="darActivarSubscripcion($event, subscription.idUserSubscripcion)" *ngIf="subscription.id_plan != 1 && subscription.estado=='Pausado'" class="eliminar-plan btn btn-success">Activar&nbsp;<i class="fa fa-angle-right"></i></button>
+                     
+                    </div>
+          </div>
+        <div class="col-sm-4">
+          
+        </div>
+      </div>
+    
+</div>
+
+

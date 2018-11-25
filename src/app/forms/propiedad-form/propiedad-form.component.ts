@@ -17,7 +17,9 @@ import { ZonasService } from "../../providers/zonas.service";
 import { PropiedadesService } from "../../providers/propiedades.service";
 import { UserService } from "../../providers/user.service";
 import { AlertService } from "../../components/alert/alert.service";
-
+import { ProfileService }          from './../../providers/profile.service';
+import { SubscriptionService } from "../../providers/subscription.service";
+import { Subscripcion }                  from './../../models/subscripcion';
 @Component({
   selector: "app-propiedad-form",
   templateUrl: "./propiedad-form.component.html",
@@ -58,7 +60,9 @@ export class PropiedadFormComponent implements OnInit {
 
   imgsloaded = false;
 
-  
+  permitirDestaque :any = false;
+  public subscription = new Subscripcion();
+  profileResponse:any=null;
 
   constructor(
     private zonasService: ZonasService,
@@ -67,7 +71,9 @@ export class PropiedadFormComponent implements OnInit {
     private user: UserService,
     private alert: AlertService,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private profile: ProfileService,
+    private profileSubscription : SubscriptionService
   ) {
     
   }
@@ -117,7 +123,23 @@ export class PropiedadFormComponent implements OnInit {
   
 
   ngOnInit() {
+    this.profile.getProfile(this.user.getId()).subscribe((r) => 
+    {
+      if(!r || !r["data"])
+      {
+        return;
+      }
+      this.profileResponse = r["data"];
+      try
+        {
+          this.subscription.max_avisos_disponibles    = this.profileResponse.subscripcion[0].subscripcion.max_avisos_disponibles; 
+          this.subscription.max_destaques_disponibles = this.profileResponse.subscripcion[0].subscripcion.max_destaques_disponibles;
+        }
+        catch(e)
+        {
 
+        }
+    });
 
    this.zonasService.getZonas().subscribe(r => {
       this.zonas = r["data"][0].children; //Children zonas of Argentina

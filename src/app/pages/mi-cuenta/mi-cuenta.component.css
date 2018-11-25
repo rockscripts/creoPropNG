@@ -98,3 +98,8 @@ a.active {
 .propiedades-activas-inactiva button{
   margin-top: 20px !important;
 }
+
+.estado-cuenta
+{
+  display: none;
+}
