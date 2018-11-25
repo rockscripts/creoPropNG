@@ -17,7 +17,9 @@ import { ZonasService } from "../../providers/zonas.service";
 import { PropiedadesService } from "../../providers/propiedades.service";
 import { UserService } from "../../providers/user.service";
 import { AlertService } from "../../components/alert/alert.service";
-
+import { ProfileService }          from './../../providers/profile.service';
+import { SubscriptionService } from "../../providers/subscription.service";
+import { Subscripcion }                  from './../../models/subscripcion';
 @Component({
   selector: "app-propiedad-form",
   templateUrl: "./propiedad-form.component.html",
@@ -27,6 +29,12 @@ export class PropiedadFormComponent implements OnInit {
   @Input()
   model: Propiedad = new Propiedad();
 
+  ngOnChanges(model: Propiedad = new Propiedad()) {
+    if(this.model.files.length>0 && this.imgsloaded == false){
+    this.loadfiles();
+    this.imgsloaded = true;
+    }
+  } 
   submitted = false;
   dataTarget = "";
 
@@ -40,13 +48,21 @@ export class PropiedadFormComponent implements OnInit {
   tiposPropiedad: any;
   ambientes: any;
   carac_gral: any;
-
+  cargando = false;
   selectedZonasByLevel: any = [null, null, null, null, null];
   zonasForSelect: any = [null, null, null, null, null];
   zonas: any;
   denomina: any = ["", "Provincia", "", "", ""];
 
   pais_id: number = -1;
+
+  urls = new Array<string>();
+
+  imgsloaded = false;
+
+  permitirDestaque :any = false;
+  public subscription = new Subscripcion();
+  profileResponse:any=null;
 
   constructor(
     private zonasService: ZonasService,
@@ -55,27 +71,77 @@ export class PropiedadFormComponent implements OnInit {
     private user: UserService,
     private alert: AlertService,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
-  ) {}
+    private ngZone: NgZone,
+    private profile: ProfileService,
+    private profileSubscription : SubscriptionService
+  ) {
+    
+  }
+
+  loadfiles(){
+    this.model.files.forEach(file => {
+      fetch('/'+file.nombre)
+        .then(res => res.blob())
+        .then(blob => {
+          let reader = new FileReader();
+          reader.readAsDataURL(blob);
+        reader.onload = (e: any) => {
+          this.model.imgs.push({
+            filename: file.nombre,
+            filetype: file.tipo,
+            value: reader.result.split(",")[1],
+            url: e.target.result,
+            new: false
+        });
+      }
+      });
+  });
+}
+
+ 
 
   onFileChange(event) {
-    //[modificar] //se podrá generalizar?
-    let reader = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      let file = event.target.files[0];
+      for (let file of event.target.files) {
+      let reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = () => {
+      reader.onload = (e: any) => {
+        if(this.model.imgs.length < 20){
         this.model.imgs.push({
           filename: file.name,
           filetype: file.type,
-          value: reader.result.split(",")[1]
+          value: reader.result.split(",")[1],
+          url: e.target.result,
+          new: true
         });
+      }
+      else
+      alert("No se puede subir más de 20 Imagenes por propiedad");
       };
     }
   }
 
+  
+
   ngOnInit() {
-    this.zonasService.getZonas().subscribe(r => {
+    this.profile.getProfile(this.user.getId()).subscribe((r) => 
+    {
+      if(!r || !r["data"])
+      {
+        return;
+      }
+      this.profileResponse = r["data"];
+      try
+        {
+          this.subscription.max_avisos_disponibles    = this.profileResponse.subscripcion[0].subscripcion.max_avisos_disponibles; 
+          this.subscription.max_destaques_disponibles = this.profileResponse.subscripcion[0].subscripcion.max_destaques_disponibles;
+        }
+        catch(e)
+        {
+
+        }
+    });
+
+   this.zonasService.getZonas().subscribe(r => {
       this.zonas = r["data"][0].children; //Children zonas of Argentina
       this.zonasForSelect[1] = this.zonas;
     });
@@ -104,6 +170,7 @@ export class PropiedadFormComponent implements OnInit {
     this.searchControl = new FormControl();
 
     this.mapsAPILoader.load().then(() => {
+      
       let autocomplete = new google.maps.places.Autocomplete(
         this.searchElementRef.nativeElement,
         {
@@ -164,13 +231,26 @@ export class PropiedadFormComponent implements OnInit {
 
   guardar() {
     this.prop.setModel(this.model);
+    this.cargando = true;
+
+    //Edición de propiedad
+    if(this.model.id != -1){
+      this.prop.edit().subscribe(r => {
+        this.cargando = false;
+        this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
+        this.router.navigate(["mi-cuenta"]);
+      });    
+    }
+    else{
+
     if (this.user.permiso("new-prop")) {
       if (!this.model.formValid()) {
+        this.cargando = false;
         this.alert.show(this.model.errors);
         return false;
       }
-
       this.prop.create().subscribe(r => {
+        this.cargando = false;
         this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
         if (this.model.id == -1) {
           this.router.navigate(["/new-prop-ok"]);
@@ -178,4 +258,5 @@ export class PropiedadFormComponent implements OnInit {
       });
     }
   }
+}
 }

@@ -1,0 +1,82 @@
+.plan-beneficio-container
+{
+    margin-top: 29px;
+    border-radius: 5px;
+    padding: 12px;
+    background: #f4f4f4;
+}
+.icon-subscription-active
+{
+    color: green;
+    font-size: 22px;
+    vertical-align: top;
+}
+.icon-subscription-ban
+{
+    color: red;
+    font-size: 22px;
+    vertical-align: top;
+}
+.icon-subscription-paused
+{
+    color: blue;
+    font-size: 22px;
+    vertical-align: top;
+}
+.icon-subscription-pending
+{
+    color: gray;
+    font-size: 22px;
+    vertical-align: top;
+}
+.update-plan
+{
+    margin-left: 15px;
+}
+.plan-beneficio-container .row
+{
+    border-bottom: 1px dashed #ccc;
+    padding: 7px;
+}
+.plan-beneficio-container .row:last-child 
+{
+    border-bottom:0px;
+}
+button.update-plan i , button.eliminar-plan i
+{
+    color: white;
+}
+.display-payments-history
+{
+    float: left;
+}
+.historial-pagos
+{
+    clear: both;
+    margin: 10px;
+    display: none;
+}
+.historial-pagos table
+{
+    width: 100%;
+}
+.historial-pagos table tr
+{
+    
+}
+.historial-pagos table td
+{
+    
+}
+.historial-pagos table th
+{
+    
+}
+#hide-payments-history
+{
+    display:none;
+}
+.table-header
+{
+    border-bottom: 1px solid #ccc;
+}

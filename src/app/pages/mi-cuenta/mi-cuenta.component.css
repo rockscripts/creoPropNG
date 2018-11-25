@@ -93,3 +93,13 @@ a.active {
 .search-toolbar-container {
   padding: 43px 15px 0;
 }
+
+
+.propiedades-activas-inactiva button{
+  margin-top: 20px !important;
+}
+
+.estado-cuenta
+{
+  display: none;
+}

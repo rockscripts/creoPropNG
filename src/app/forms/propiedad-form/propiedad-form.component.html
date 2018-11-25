@@ -1,3 +1,4 @@
+<div *ngIf="cargando==true" id="loadercontainer"><div id="loader"></div><h1>PUBLICANDO PROPIEDAD</h1></div>
 <div class="row f-prop">
   <div class="container container-1060">
     <form #propForm="ngForm">
@@ -189,12 +190,15 @@
       </div>
 
       <div class="row">
-        <div class="col-12  form-group pull-right">
-           <div  id="preview">
-           </div>
-           <a class="btn btn-primary seleccionar-fotos">
-           <i class="fa fa-plus" aria-hidden="true"></i> Agregar Foto</a>
-           <input id="img-input" type="file" (change)="onFileChange($event)" #fileInput  multiple class="foto-input hidden">
+        <div class="col-3 col-files  pull-right">
+           <div class="file-button-conainter">
+           <a class="btn btn-primary seleccionar-fotos" (click)="file.click()">
+           <div class="icon-round"><i class="fa fa-plus" aria-hidden="true"></i></div><br>AGREGAR FOTOS</a>
+          </div>
+           <input id="img-input" type="file" (change)="onFileChange($event)" #file multiple class="foto-input hidden">
+        </div>
+        <div class="col-3 col-files" *ngFor="let img of model.imgs; let i = index">
+          <img src="{{img.url}}">
         </div>
       </div>
 
@@ -297,12 +301,21 @@
         <div class="col">
           <div class="form-group row">
              <div class="checkbox col-md-6 col-12">
-                <label class="w-100"><div class="row col-12"><div class="col"><input type="checkbox" name="destacado" [(ngModel)]="model.destacado">Destacar publicación</div></div></label>
+                <label class="w-100"><div class="row col-12">
+                    <div class="col" *ngIf="subscription.max_destaques_disponibles > 0">
+                     <input type="checkbox" name="destacado" [(ngModel)]="model.destacado">
+                      Destacar publicación
+                     </div>
+                     <div class="col" *ngIf="subscription.max_destaques_disponibles == 0">
+                         <input type="checkbox" name="destacado" [(ngModel)]="model.destacado" disabled="disabled" style="cursor:not-allowed;">
+                         Destacar publicación <br><a href="#/select-plan"><small>Cambiar plan</small></a>
+                         </div>
+                   </div>
+                 </label>
              </div>
           </div>
         </div>
       </div>
-
       <div class="row titc">
         <div class="col">
           <button class="btn btn-cprop btn-publicar" (click)="guardar()" data-toggle="modal" [attr.data-target]="dataTarget">
@@ -311,7 +324,6 @@
           </button>
         </div>
       </div>
-
     </form>
   </div>
 </div>

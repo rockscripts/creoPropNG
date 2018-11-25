@@ -19,6 +19,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   @Input()
   propietario: any;
 
+
   public searchConfig: any;
 
   public busqueda: Busqueda;

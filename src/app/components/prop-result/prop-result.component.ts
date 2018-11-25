@@ -13,13 +13,19 @@ import { Busqueda }           from './../../models/busqueda';
 export class PropResultComponent implements OnInit, OnDestroy {
   @Input() propietario:any;
   @Input() mode:string       = '';
+  @Input()
+  pActivas: number;
+  @Input()
+  pInactivas: number;
+
+  activas = 1;
+
 
   busqueda:Busqueda;
   propiedades:any = [];
 
   cant_prop:number     = 0;
   scrollFinish:boolean = false;
-
   private sub: any;
 
   constructor(
@@ -34,6 +40,10 @@ export class PropResultComponent implements OnInit, OnDestroy {
       this.propiedades = [];
       this.busqueda = new Busqueda();
       this.busqueda.fromRouteParams(params);
+
+      this.activas = params['activo'];
+
+      if(this.activas==null) this.activas = 1;
 
       if (this.propietario) {
         this.busqueda.propietario_id = this.propietario;
@@ -65,10 +75,15 @@ export class PropResultComponent implements OnInit, OnDestroy {
 
   edit(id){
     this.router.navigate(['/propiedad/edit/'+id]);
-  }
+  } 
 
   delete(id){
 
+  }
+
+
+  ToogleActivas(x){
+    this.router.navigate(['/mi-cuenta', {'activo': x}]);
   }
 
   private pedirBusqueda(){

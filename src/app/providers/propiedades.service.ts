@@ -16,6 +16,8 @@ export class PropiedadesService {
   private wsa  = 'location/search';
   private wsp  = 'propiedad/getInfo';
   private wsn  = 'propiedad/create';
+  private wsed  = 'propiedad/edit';
+
   private wsc  = 'search/config';
 
   private wse  = 'equipamientos/all';
@@ -23,6 +25,8 @@ export class PropiedadesService {
   private wsam = 'ambientes/all';
   private wser = 'servicios/all';
   private wtpr = 'tipos-propiedad/all';
+
+  private cpr = 'propiedad/count';
 
   public busqueda = new Busqueda();
   private model   = new Propiedad();
@@ -37,6 +41,10 @@ export class PropiedadesService {
     private config: ConfigService,
     private user:   UserService
   ) {
+  }
+
+  getCountsPropiedades(id){
+    return this.http.post(this.config.getAPIUrl()+this.cpr, {'id' : id }); 
   }
 
   getModel(){
@@ -102,6 +110,9 @@ export class PropiedadesService {
       this.model.nombre_zona         = r['data'][0].nombre_zona;
       this.model.latitud             = Number(r['data'][0].latitud);
       this.model.longitud            = Number(r['data'][0].longitud);
+      this.model.titulo              = r['data'][0].titulo;
+      this.model.zona                = r['data'][0].zona_id;
+      //Ingresar imagenes reales de la propiedad
       this.propiedadLoaded.next(this.model);
     });
   }
@@ -114,6 +125,12 @@ export class PropiedadesService {
     this.model.propietario_id  = this.user.getId();
     this.model.inmobiliaria_id = this.user.getIdInmobiliaria();
     return this.http.post(this.config.getAPIUrl()+this.wsn, this.model);
+  }
+
+  edit(){
+    this.model.propietario_id  = this.user.getId();
+    this.model.inmobiliaria_id = this.user.getIdInmobiliaria();
+    return this.http.post(this.config.getAPIUrl()+this.wsed, this.model);
   }
 
   clearParams(){

@@ -43,7 +43,7 @@ export class Busqueda {
   toRouteParams() {
     const params = {};
     for (const paramName of Object.keys(this)) {
-      if (!this.hasOwnProperty(paramName) || !this[paramName]) {
+      if (!this.hasOwnProperty(paramName) || !this[paramName] && paramName != 'activo') {
         continue;
       }
       switch (paramName) {

@@ -20,7 +20,6 @@ export class EditarPropComponent implements OnInit {
 
   ngOnInit() {
   	this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-
   	this.propiedades.getPropiedad(this.id);
     this.propiedades.propiedadLoaded.subscribe({  
       next: (m) => { this.model = m; } 
@@ -28,7 +27,6 @@ export class EditarPropComponent implements OnInit {
   }
 
   ngOnDestroy(){
-  	this.propiedades.propiedadLoaded.unsubscribe();
   }
 
 }

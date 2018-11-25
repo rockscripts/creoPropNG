@@ -1,0 +1,41 @@
+.subscription-page-message ,.subscription-page-message .row
+{
+    text-align: center;
+    padding: 20px;
+    display: block;
+}
+.icon-big-button
+{
+
+}
+.icon-big-button i
+{
+    font-size: 64px;
+    color: cornsilk;
+    text-shadow: 3px 2px #bbb;
+}
+.text-big-button{
+
+}
+.fail-warning
+{
+    font-size: 44px;
+    color: orange;
+}
+.row-buttons
+{
+    display: flex!important;
+}
+.col-centered {
+    float: none;
+    margin-right: auto;
+    margin-left: auto;
+  }
+ .left-align
+  {
+   text-align: left;
+  }
+  .right-align
+  {
+   text-align: right;
+  }

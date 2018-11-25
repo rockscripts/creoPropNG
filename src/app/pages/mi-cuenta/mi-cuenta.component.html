@@ -13,13 +13,13 @@
               <a class="nav-link active" data-toggle="tab" href="#mispropiedades">MIS PROPIEDADES</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#visitas">VISITAS</a>
+              <a class="nav-link  estado-cuenta" data-toggle="tab" href="#visitas">VISITAS</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item estado-cuenta">
               <a class="nav-link" data-toggle="tab" href="#estadocuenta">ESTADO DE MI CUENTA</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#pagos">PAGOS</a>
+              <a class="nav-link" data-toggle="tab" href="#pagos">VIP</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#miperfil">EDITAR MI PERFIL</a>
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="right-controls d-flex align-items-center">
-        <button type="button" class="w-100 btn btn-update-plan" routerLink="/update-plan">$ Recargar</button>
+          <button type="button" class="w-100 btn btn-update-plan" routerLink="/update-plan">$ Recargar</button>
       </div>
     </div>
     <!--  -->
@@ -45,7 +45,7 @@
           </div>
 
           <div class="content">
-            <app-prop-result [propietario]="propietario_id" [mode]="'userProp'"></app-prop-result>
+            <app-prop-result [pActivas]=pActivas [pInactivas]=pInactivas [propietario]="propietario_id" [mode]="'userProp'"></app-prop-result>
           </div>
         </div>
       </div>
