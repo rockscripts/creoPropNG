@@ -1,14 +1,29 @@
 export class Inmobiliaria {
 
-  public nombre    :string = '';
-  public img       :string = '';
-  public telefono  :string = '';
-  public direccion :string = '';
-  public email     :string = '';
-  public web       :string = '';
+  public id: number = -1;
+  public nombre: string = '';
+  public img: string = '';
+  public direccion: string = '';
+  public logo: string = '';
 
-  public id :number = -1;
+  constructor(data?: Inmobiliaria) {
+    if (data) {
+      Object.assign(this, this.toNumber(data));
+      delete this.img;
 
-  constructor() {  }
+      return this;
+    }
+  }
+
+  private toNumber(data: any): any {
+    data = { ...data };
+    Object.keys(data).forEach(key => {
+      if (/^[0-9]+$/g.test(data[key])) {
+        data[key] = +data[key];
+      }
+    });
+
+    return data;
+  }
 
 }

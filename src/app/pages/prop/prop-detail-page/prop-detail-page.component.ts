@@ -59,12 +59,7 @@ export class PropDetailPageComponent implements OnInit {
   }
 
   goToPerfil() {
-    this.perfil.getProfile(this.propiedad[0]['propietario_id']);
-    this.perfil.profileGet.subscribe({
-      next: () => {
-        this.router.navigate(['/perfil/1']);
-      }
-    });
+    this.router.navigate(['/perfil', this.propiedad.propietario_id]);
   }
 
   sendContact() {

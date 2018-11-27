@@ -159,3 +159,16 @@ agm-map {
 .mg-bottom {
     margin-bottom: 10px;
 }
+
+.c-pointer {
+    cursor: pointer;
+}
+
+.c-pointer:hover {
+    transition: .2s ease-out;
+    color: #00acee;
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    -ms-transition: .2s ease-out;
+    -o-transition: .2s ease-out;
+}

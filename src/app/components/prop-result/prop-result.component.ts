@@ -165,7 +165,7 @@ export class PropResultComponent implements OnInit {
       delete this.busqueda.page;
     }
 
-    this.busqueda.orderBy = orderBy ? orderBy : '';
+    this.busqueda.orderBy = orderBy ? orderBy : this.busqueda.orderBy ? this.busqueda.orderBy : '';
     this.propiedadesService.busqueda = this.busqueda;
 
     if (page) {

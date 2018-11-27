@@ -1,3 +1,68 @@
-<p>
-  public-profile works!
-</p>
+<div class="row bg-color" *ngIf="profile">
+  <div class="col-12">
+    <p>
+      <a href="#" class="link-blue">Agentes inmobiliarios</a> > {{ profile.getFullName(true) }}</p>
+    <hr>
+  </div>
+  <div class="col-8">
+    <div class="box">
+      <div class="box-header">
+        <div class="profile-img">
+          <img [src]="'http://192.168.0.13/' + profile.getImgRoute(true)" alt="">
+        </div>
+        <div class="main-info">
+          <h2>{{ profile.getFullName(true) }}</h2>
+          <p>PROPIEDADES ACTIVAS:
+            <a href="#" class="link-blue">{{ profile.cant_prop }} Propiedades</a>
+          </p>
+          <p>IDIOMAS: {{ profile.idiomas }}</p>
+        </div>
+      </div>
+      <div class="box-body"></div>
+      <div class="box-border-bottom"></div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="box">
+      <div class="box-body">
+        <div class="contact-info">
+          <h3>CONTACTAR A ESTA INMOBILIARIA</h3>
+
+          <a class="btn btn-contact" [href]="'tel:' + profile.celular" *ngIf="profile.celular">
+            <img src="assets/whatsapp.svg" alt="whatsapp" style="margin-top: -5px;"> {{ profile.celular }}
+          </a>
+          <a class="btn btn-contact" [href]="'mailto:' + profile.tel" *ngIf="profile.tel">
+            <i class="material-icons">phone</i> {{ profile.tel }}</a>
+          <a class="btn btn-contact" [href]="'mailto:' + profile.email" *ngIf="profile.email">
+            <i class="material-icons">mail_box</i> {{ profile.email }}</a>
+        </div>
+      </div>
+      <div class="box-border-bottom"></div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="box-taps">
+      <button class="tap" [class.tap-active]="!showProps" (click)="showProps = !showProps">Acerca de {{ profile.tipo_user_id == 2 ? 'nostros' : 'mi' }}</button>
+      <button class="tap" [class.tap-active]="showProps" (click)="showProps = !showProps">
+        <span class="link-blue">{{ profile.tipo_user_id == 2 ? 'Nuestras' : 'Mis' }} propiedades</span> ({{ profile.cant_prop }})</button>
+    </div>
+    <div class="box">
+      <div class="box-body">
+        <ng-container *ngIf="!showProps; then des; else props"></ng-container>
+
+        <ng-template #props>
+          <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+            <app-prop-result></app-prop-result>
+          </div>
+        </ng-template>
+
+        <ng-template #des>
+          <p style="padding: 30px;">{{ profile.descripcion }}</p>
+        </ng-template>
+
+        <div class="box-border-bottom"></div>
+      </div>
+    </div>
+  </div>
+</div>
