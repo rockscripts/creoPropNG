@@ -17,6 +17,8 @@ import { ZonasService } from "../../providers/zonas.service";
 import { PropiedadesService } from "../../providers/propiedades.service";
 import { UserService } from "../../providers/user.service";
 import { AlertService } from "../../components/alert/alert.service";
+import {ConfigService} from '../../providers/config.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: "app-propiedad-form",
@@ -159,6 +161,7 @@ export class PropiedadFormComponent implements OnInit {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          console.log(place);
 
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
@@ -229,12 +232,18 @@ export class PropiedadFormComponent implements OnInit {
       }
       this.prop.create().subscribe(r => {
         this.cargando = false;
-        this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
-        if (this.model.id == -1) {
-          this.router.navigate(["/new-prop-ok"]);
+        if (!r['errors']) {
+          this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
+          if (this.model.id == -1) {
+            this.router.navigate(["/new-prop-ok"]);
+          }
+        } else {
+          this.alert.showAlert.next({ t: 'a', m: r['errors']});
         }
+
       });
     }
   }
 }
+
 }

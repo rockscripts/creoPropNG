@@ -297,26 +297,26 @@
               <form class="col-12">
                 <div class="form-group">
                   <label>Mensaje</label>
-                  <textarea class="form-control">Hola, vi esta propiedad en Creoprop y quiero que me contacten. Gracias.</textarea>
+                  <textarea class="form-control" name="message" [(ngModel)]="contact.message">Hola, vi esta propiedad en Creoprop y quiero que me contacten. Gracias.</textarea>
                 </div>
 
                 <div class="form-group">
                   <label>Nombre</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" name="name" [(ngModel)]="contact.name">
                 </div>
 
                 <div class="form-group">
                   <label>E-Mail</label>
-                  <input type="email" class="form-control">
+                  <input type="email" class="form-control" name="email" [(ngModel)]="contact.email">
                 </div>
 
                 <div class="form-group">
                   <label>Teléfono</label>
-                  <input type="tel" class="form-control">
+                  <input type="tel" class="form-control" name="phone" [(ngModel)]="contact.phone">
                 </div>
 
                 <div class="w-100 text-center">
-                  <span type="button" class="btn btn-cprop">ENVIAR MENSAJE</span>
+                  <span type="button" class="btn btn-cprop" (click)="sendContact()">ENVIAR MENSAJE</span>
                 </div>
               </form>
             </div>

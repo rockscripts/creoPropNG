@@ -8,6 +8,9 @@ import { PropiedadesService } from './../../../providers/propiedades.service';
 import { DenunciaService } from './../../../providers/denuncia.service';
 import { ProfileService } from './../../../providers/profile.service';
 import { Propiedad } from '../../../models/propiedad';
+import {ConfigService} from '../../../providers/config.service';
+import {HttpClient} from '@angular/common/http';
+import {AlertService} from '../../../components/alert/alert.service';
 
 @Component({
   selector: 'app-prop-detail-page',
@@ -18,6 +21,7 @@ export class PropDetailPageComponent implements OnInit {
 
   id: number;
   propiedad = new Propiedad();
+  contact: any = {};
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,7 +29,10 @@ export class PropDetailPageComponent implements OnInit {
     private router: Router,
     private denuncia: DenunciaService,
     private perfil: ProfileService,
-    private mapsAPILoader: MapsAPILoader
+    private mapsAPILoader: MapsAPILoader,
+    private config: ConfigService,
+    private http: HttpClient,
+    private alert: AlertService
   ) { }
 
   ngOnInit() {
@@ -53,6 +60,23 @@ export class PropDetailPageComponent implements OnInit {
 
   goToPerfil() {
     this.router.navigate(['/perfil', this.propiedad.propietario_id]);
+  }
+
+  sendContact() {
+    let data = {
+      name: this.contact.name,
+      email: this.contact.email,
+      body: this.contact.message,
+      phone: this.contact.phone
+    };
+
+    this.http.post(this.config.getAPIUrl() + `propiedad/${this.propiedad.id}/contact`, data, { observe: 'response' })
+      .subscribe( r => {
+        this.alert.showAlert.next({ t: 's', m: 'Mensaje enviado exitosamente'});
+      },
+        error => {
+          this.alert.showAlert.next({ t: 'a', m: 'Ha ocurrido un error, intenta de nuevo'});
+        });
   }
 
 }

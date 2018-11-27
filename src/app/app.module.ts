@@ -8,7 +8,7 @@ import { LOCALE_ID } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 import { NgbModalModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
+import { environment} from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -74,6 +74,7 @@ import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-p
 import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-pago-pend.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CreatedAtPipe } from './components/prop-result/created-at.pipe';
+import { VerificationComponent } from './pages/verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { CreatedAtPipe } from './components/prop-result/created-at.pipe';
     MercadoPagoPendComponent,
     CarouselComponent,
     //pipes
-    CreatedAtPipe
+    CreatedAtPipe,
+    VerificationComponent
   ],
   imports: [
     BrowserModule,
@@ -124,7 +126,7 @@ import { CreatedAtPipe } from './components/prop-result/created-at.pipe';
     HttpClientModule,
     AngularFontAwesomeModule,
     InfiniteScrollModule,
-    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBKx9GpEdjBOL7bxeTLPgwgRKwaylnTXp0', libraries: ["places"] }),
+    AgmCoreModule.forRoot({ apiKey: environment.googleApiKey, libraries: ["places"] }),
     FormsModule, ReactiveFormsModule,
     NgSelectModule,
     NgbModalModule,
