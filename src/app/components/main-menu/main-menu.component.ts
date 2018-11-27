@@ -24,7 +24,8 @@ export class MainMenuComponent implements OnInit {
     private profile: ProfileService
   ) { }
 
-  hideSearchBox = false;
+  showSearchBox = true;
+  showNavMenu = true;
   registrado = false;
   navbar_red = true;
 
@@ -54,20 +55,29 @@ export class MainMenuComponent implements OnInit {
         next: (imgRoute: string) => this.perfil.tipo_user_id === 2 ? this.perfil.inmobiliaria.img = imgRoute : this.perfil.img = imgRoute
       });
 
-    this.router.events.subscribe((e) => {
-      if (e instanceof RouterEvent) {
-        if (e.url.indexOf('/mi-cuenta') === 0 || e.url.indexOf('/new-prop') === 0) {
-          this.hideSearchBox = true;
-        } else {
-          this.hideSearchBox = false;
+    this.router.events
+      .subscribe(e => {
+        if (e instanceof RouterEvent) {
+          if (/(\/search;(\w?)+)|(^\/$)/g.test(e.url)) {
+            this.showSearchBox = true;
+          } else {
+            this.showSearchBox = false;
+          }
+
+          if (e.url == '/select-plan' || e.url == '/update-plan') {
+            this.navbar_red = false;
+            this.showNavMenu = false;
+          } else {
+            this.navbar_red = true;
+            this.showNavMenu = true;
+          }
+
+          if (/\/perfil\/\d+/g.test(e.url)) {
+            this.navbar_red = false;
+            this.showNavMenu = true;
+          }
         }
-        if (e.url == '/select-plan' || e.url == '/update-plan') {
-          this.navbar_red = false;
-        } else {
-          this.navbar_red = true;
-        }
-      }
-    });
+      });
   }
 
   getProfile() {

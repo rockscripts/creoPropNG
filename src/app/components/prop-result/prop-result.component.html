@@ -1,12 +1,12 @@
-<div class="row" *ngIf="!listMode">
-  <div class="col-12" *ngIf="mode != 'userProp'">
+<div class="row" *ngIf="!listMode" [class.row-mg-0]="showInProfile">
+  <div class="col-12" *ngIf="mode != 'userProp' && !showInProfile">
     <div class="row align-items-center hh1 res-count">
       <strong style="margin-right: 10px;">{{ cant_prop }}</strong> Propiedades en Argentina
     </div>
   </div>
 
   <div class="col-12">
-    <div class="row toolbar">
+    <div class="row toolbar" *ngIf="!showInProfile">
       <div class="col-12 col-md-9 p-0">
         <ul class="navbar-nav flex-row align-items-stretch " *ngIf="mode == 'userProp'">
           <li class="nav-item dropdown">
@@ -52,11 +52,42 @@
         </ul>
       </div>
     </div>
+
+    <div class="row profile-toolbar" *ngIf="showInProfile">
+      <div class="col-2">
+        <span>Ordernar por</span>
+      </div>
+      <div class="col-3 arrow-down-container">
+        <div class="arrow-down material-icons">expand_more</div>
+        <select name="profile-orderby" (change)="pedirBusqueda(true, $event.target.value)" class="form-control">
+          <option class="dropdown-item" value="destacados">Destacados</option>
+          <option class="dropdown-item" value="lowPrice">Menor precio</option>
+          <option class="dropdown-item" value="bigPrice">Mayor precio</option>
+          <option class="dropdown-item" value="lowM2">Menos m2</option>
+          <option class="dropdown-item" value="bigM2">Más m2</option>
+        </select>
+      </div>
+      <div class="col-3 arrow-down-container">
+        <div class="arrow-down material-icons">expand_more</div>
+        <select name="profile-orderby" class="form-control">
+          <option class="dropdown-item" value="destacados">Todas</option>
+          <option class="dropdown-item" value="lowPrice">En venta</option>
+          <option class="dropdown-item" value="bigM2">En alquiler</option>
+          <option class="dropdown-item" value="bigM2">Venta comercial</option>
+          <option class="dropdown-item" value="bigM2">Alquiler comercial</option>
+        </select>
+      </div>
+      <div class="col-4">
+        <span style="float: right;">Propiedades totales:
+          <strong style="color: #000;">{{ pagination.total }}</strong>
+        </span>
+      </div>
+    </div>
   </div>
 
   <div class="col-12">
-    <div class="row">
-      <div *ngFor="let propiedad of propiedades; let idx = index" class="col-12 col-sm-6 col-md-4 cp-card">
+    <div class="row" [class.row-mg-0]="showInProfile">
+      <div *ngFor="let propiedad of propiedades; let idx = index" class="col-12 col-sm-6 col-md-4 cp-card" [class.card-margin]="showInProfile">
         <div class="card">
           <div class="checkbox" *ngIf="mode == 'userProp'">
             <input type="checkbox" name="{{'checked-propiedad-' + propiedad.id}}">
@@ -72,7 +103,9 @@
 
           <!-- resto de la info -->
           <div class="card-img-overlay">
-            <img class="imb-img" src="./{{propiedad.inmobiliaria.logo}}" alt="{{propiedad.inmobiliaria.nombre}}" />
+            <img *ngIf="propiedad.tipo_user_id == 2" class="imb-img" [src]="'http://192.168.0.13/' + propiedad.inmobiliaria.logo" [alt]="propiedad.inmobiliaria.nombre"
+            />
+            <img *ngIf="propiedad.tipo_user_id != 2" class="imb-img" [src]="'http://192.168.0.13/' + propiedad.profile_img" />
           </div>
 
           <div class="card-body">

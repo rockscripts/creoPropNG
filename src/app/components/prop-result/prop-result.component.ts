@@ -20,6 +20,7 @@ export class PropResultComponent implements OnInit {
   @Input() pActivas: number;
   @Input() pInactivas: number;
   @Input() listMode: boolean = false;
+  @Input() showInProfile: boolean = false;
 
   activas: number = 1;
   busqueda: Busqueda;

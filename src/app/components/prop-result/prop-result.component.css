@@ -112,8 +112,8 @@
 }
 
 .imb-img {
-    height: 3rem;
-    width: auto;
+    max-height: 60px;
+    max-width: 60px;
     position: absolute;
     top: 0.5em;
     left: 0.5em;
@@ -326,9 +326,44 @@
 }
 
 .btn-show-more {
-  margin-top: 30px;
-  color: #00acee;
-  border: solid 1px;
-  background-color: #FFF;
-  width: 300px;
+    margin-top: 30px;
+    color: #00acee;
+    border: solid 1px;
+    background-color: #FFF;
+    width: 300px;
+}
+
+.profile-toolbar {
+    margin-bottom: 25px;
+    color: #9a9a9a;
+    font-weight: normal;
+    align-items: center;
+}
+
+.profile-toolbar .form-control {
+    color: #9a9a9a;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.arrow-down-container {
+    position: relative;
+}
+
+.arrow-down-container .arrow-down {
+    position: absolute;
+    top: 7px;
+    right: 18px;
+    width: 35px;
+    height: 24px;
+    background-color: #FFF;
+}
+
+.row-mg-0 {
+  margin: 0;
+}
+
+.cp-card.card-margin {
+  padding: 0 5px;
+  margin: 5px 0;
 }

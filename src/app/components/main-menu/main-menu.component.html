@@ -8,18 +8,20 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse row" id="navbarSupportedContent" *ngIf="navbar_red">
+  <div class="collapse navbar-collapse row" id="navbarSupportedContent">
     <form class="my-2 my-lg-0 col-sm-4">
-      <div class="input-group add-on" [hidden]="hideSearchBox">
+      <div class="input-group add-on" *ngIf="showSearchBox">
         <input class="form-control" placeholder="Busca por palabra clave" name="srch-term" id="srch-term" type="text">
         <div class="btn-search">
           <i class="fa fa-search"></i>
         </div>
       </div>
     </form>
+
     <div class="col">
     </div>
-    <div class="col-sm-auto order-last" style="margin-right: 30px;">
+
+    <div class="col-sm-auto order-last" style="margin-right: 30px;" *ngIf="showNavMenu">
       <ul class="navbar-nav mr-auto align-self-end">
         <li class="nav-item" routerLink="/select-plan" *ngIf="!registrado">
           <a class="nav-link">PUBLICAR UNA PROPIEDAD</a>
@@ -51,7 +53,7 @@
     </div>
   </div>
 
-  <div class="collapse navbar-collapse row" id="navbarSupportedContent" *ngIf="!navbar_red">
+  <div class="collapse navbar-collapse row" id="navbarSupportedContent" *ngIf="!navbar_red && !showNavMenu">
     <div class="col">
     </div>
     <div class="col-sm-auto order-last">

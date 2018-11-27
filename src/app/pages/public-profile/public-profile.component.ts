@@ -39,6 +39,21 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      let profileContainerHeight: number = document.querySelector('.profile-info-container').clientHeight;
+      let contactContainerHeight: number = document.querySelector('.contact-info-container').clientHeight;
+      let tapsContainer = <HTMLElement>document.querySelector('.tabs-container');
+
+      if (profileContainerHeight > contactContainerHeight) {
+        tapsContainer.style.marginTop = '20px';
+      } else {
+        let diff = contactContainerHeight - profileContainerHeight;
+        tapsContainer.style.marginTop = `${diff <= 65 ? 20 : (diff - 70) + 20}px`;
+      }
+    }, 300);
+  }
+
   ngOnDestroy(): void {
     this._onDestroy.next();
     this._onDestroy.complete();

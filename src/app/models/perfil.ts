@@ -1,16 +1,16 @@
 import { Inmobiliaria } from './inmobiliaria';
 
 export class Perfil {
-  public nombre: string = '';
-  public apellido: string = '';
-  public homePhone: string = '';
-  public ubicacion: string = '';
-  public usuario_desde: string = '';
-  public img: string = '';
-  public tipoUsuario: string = '';
-  public img_data: any = [];
-  public prop_count: number = 0;
-  public user_id: number = -1;
+  nombre: string = '';
+  apellido: string = '';
+  homePhone: string = '';
+  ubicacion: string = '';
+  usuario_desde: string = '';
+  img: string = '';
+  tipoUsuario: string = '';
+  img_data: any = [];
+  prop_count: number = 0;
+  user_id: number = -1;
 
   //keys nombre real
   name: string;
@@ -18,6 +18,7 @@ export class Perfil {
   profile_img: string;
   created_at: string;
   cant_prop: number;
+  active_prop: number;
 
   //perfil keys
   email: string = '';
@@ -40,6 +41,7 @@ export class Perfil {
   //mostrar en mi cuenta
   membresia: string = '';
   tipo_user_id: number;
+  tipo_user_name: string;
 
 
   constructor(profileData?, inmoData?: Inmobiliaria) {
@@ -95,4 +97,11 @@ export class Perfil {
     return data;
   }
 
+  getTypeUserFirstWord(): string {
+    return (this.tipo_user_name || '').split(' ')[0].toUpperCase();
+  }
+
+  getPhoneNumber(type: string): number {
+    return +String(this['cel' ? 'celular' : 'tel']).replace(/\+/g, '');
+  }
 }
