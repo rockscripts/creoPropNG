@@ -4,7 +4,7 @@
       <div class="left-controls">
         <div class="user-info-container">
           <div class="img-profile-container">
-            <img [src]="'http://192.168.0.13/' + perfil.getImgRoute()" alt="profile" class="user-logo">
+            <img [src]="perfil.getImgRoute()" alt="profile" class="user-logo">
 
             <input #loadImg type="file" name="profile-img" accept="image/*" (change)="saveProfileImg($event.target.files)" hidden>
 

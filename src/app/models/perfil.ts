@@ -68,7 +68,7 @@ export class Perfil {
     }
   }
 
-  getFullName(isPublic: boolean) {
+  getFullName(isPublic?: boolean) {
     if (!isPublic) {
       return (+this.tipo_user_id) === 2 ? this.inmobiliaria.nombre : this.nombre + ' ' + this.apellido;
 
@@ -77,7 +77,7 @@ export class Perfil {
     }
   }
 
-  getImgRoute(isPublic: boolean) {
+  getImgRoute(isPublic?: boolean) {
     if (!isPublic) {
       return (+this.tipo_user_id) === 2 ? this.inmobiliaria.img : this.img;
 

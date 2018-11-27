@@ -103,9 +103,9 @@
 
           <!-- resto de la info -->
           <div class="card-img-overlay">
-            <img *ngIf="propiedad.tipo_user_id == 2" class="imb-img" [src]="'http://192.168.0.13/' + propiedad.inmobiliaria.logo" [alt]="propiedad.inmobiliaria.nombre"
+            <img *ngIf="propiedad.tipo_user_id == 2" class="imb-img" [src]="propiedad.inmobiliaria.logo" [alt]="propiedad.inmobiliaria.nombre"
             />
-            <img *ngIf="propiedad.tipo_user_id != 2" class="imb-img" [src]="'http://192.168.0.13/' + propiedad.profile_img" />
+            <img *ngIf="propiedad.tipo_user_id != 2" class="imb-img" [src]="propiedad.profile_img" />
           </div>
 
           <div class="card-body">
