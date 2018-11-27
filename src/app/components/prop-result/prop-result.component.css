@@ -1,166 +1,369 @@
 .checkbox {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 2000;
-  padding: 3px;
-  background: white;
-  border-bottom: 1px solid #eadddd;
-  border-right: 1px solid #eadddd;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2000;
+    padding: 3px;
+    background: white;
+    border-bottom: 1px solid #eadddd;
+    border-right: 1px solid #eadddd;
 }
+
 .checkbox input {
-  display: block;
+    display: block;
 }
+
 .botonera {
-  position: absolute;
-  right: 38px;
-  top: 5px;
-  z-index: 2000;
+    position: absolute;
+    right: 38px;
+    top: 5px;
+    z-index: 2000;
 }
+
 .botonera i {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
 .carousel {
-  min-height: 225px;
+    min-height: 225px;
 }
 
 .cont-b {
-  overflow: hidden;
-  width: 100%;
+    overflow: hidden;
+    width: 100%;
 }
 
 .cp-card {
-  padding-right: 10px;
-  padding-left: 0px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .res-count {
-  border-bottom: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
 }
 
 .toolbar {
-  margin-top: 20px;
-  margin-bottom: 30px;
+    margin-top: 20px;
 }
 
 .toolbar .nav-link {
-  display: inline-block;
-  padding: 0.2rem 1rem;
-  background-color: white;
-  box-shadow: 0px 1px 3px #b1b1b1;
-  color: #9b9b9b;
-  font-weight: normal;
-  font-size: 14px;
-  height: 100%;
-  border-radius: 0.2em;
-  margin-right: 1px;
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    background-color: white;
+    box-shadow: 0px 1px 3px #b1b1b1;
+    color: #9b9b9b;
+    font-weight: normal;
+    font-size: 14px;
+    height: 100%;
+    border-radius: 0.2em;
+    margin-right: 1px;
 }
 
-.toolbar .nav-link > * {
-  vertical-align: middle;
+.toolbar .nav-link>* {
+    vertical-align: middle;
 }
 
 .toolbar .nav-link fa {
-  margin-left: 7px;
-  vertical-align: top;
+    margin-left: 7px;
+    vertical-align: top;
 }
 
 .tx-ordenar {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  color: #777;
-  text-align: right;
-  font-size: 0.9rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #777;
+    text-align: right;
+    font-size: 0.9rem;
 }
 
 .cp-card .card-body {
-  position: absolute;
-  width: 100%;
-  height: 57px;
-  background-color: rgba(255, 255, 255, 0.8);
-  bottom: 0px;
-  padding: 9px;
-  font-size: 0.8em;
-}
-
-.cp-card .img-count {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  border-radius: 5px;
-  padding: 3px;
-  color: #fff !important;
-  background: rgba(0, 0, 0, 0.7);
-  font-size: 0.6em;
+    position: absolute;
+    width: 100%;
+    height: 57px;
+    background-color: rgba(255, 255, 255, 0.8);
+    bottom: 0px;
+    padding: 9px;
+    font-size: 0.8em;
+    z-index: 1000;
 }
 
 .cp-card .verif .fa {
-  color: #fff !important;
+    color: #fff !important;
 }
 
 .card-tit {
-  font-weight: bold;
-  color: #4b8df8;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: "...";
-  cursor: pointer;
+    font-weight: bold;
+    color: #4b8df8;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: "...";
+    cursor: pointer;
 }
 
 .card-text span {
-  margin-right: 0.625rem;
+    margin-right: 0.625rem;
 }
 
 .card-precio {
-  color: #e20031;
+    color: #e20031;
 }
 
 .imb-img {
-  height: 3rem;
-  width: auto;
-  position: absolute;
-  top: 0.5em;
-  left: 0.5em;
+    max-height: 60px;
+    max-width: 60px;
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
 }
 
 .card {
-  box-shadow: none;
+    box-shadow: none;
+    background-color: #656565;
 }
 
 .direccion {
-  position: absolute;
-  bottom: 100%;
-  text-shadow: 0px 0px 2px black;
-  color: white;
+    position: absolute;
+    bottom: 100%;
+    text-shadow: 0px 0px 2px black;
+    color: white;
 }
 
 .direccion i.fa {
-  margin-right: 5px;
+    margin-right: 5px;
 }
 
-.filtro-activo-btn{
-
-  text-align: left;
-  width: 300px;
-  margin-top: 10px;
-  background-color: #f2f2f2;
-  padding: 15px 20px;
-  border-bottom: 2px solid #e20031;
-  border-bottom-width: 3px;
-
+.filtro-activo-btn {
+    text-align: left;
+    width: 300px;
+    margin-top: 10px;
+    background-color: #f2f2f2;
+    padding: 15px 20px;
+    border-bottom: 2px solid #e20031;
+    border-bottom-width: 3px;
 }
 
-.filtro-activo-btn:focus, .filtro-activo-btn:active {
-  outline: none !important;
-  box-shadow: none;
+.filtro-activo-btn:focus,
+.filtro-activo-btn:active {
+    outline: none !important;
+    box-shadow: none;
 }
 
-.filtro-inactivo-btn{
-  background-color: white !important; 
-  border-top: 1px solid #f2f2f2 !important;
-  border-bottom: 1px solid #f2f2f2 !important;
+.filtro-inactivo-btn {
+    background-color: white !important;
+    border-top: 1px solid #f2f2f2 !important;
+    border-bottom: 1px solid #f2f2f2 !important;
+}
+
+/*------------------*/
+
+.table-panel {
+    display: flex;
+}
+
+.propierties-table-list * {
+    cursor: default;
+}
+
+.propierties-table-list {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    font-size: .7rem;
+    color: #000;
+    font-weight: bold;
+}
+
+.propierties-table-list tr {
+    position: relative;
+}
+
+.propierties-table-list tr:hover {
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, .15);
+}
+
+.propierties-table-list td {
+    border-bottom: solid 1px #f1f1f1;
+    padding: 12px 0 5px 0;
+}
+
+.td-icon-button {
+    width: 48px;
+    padding: 10px 12px 5px 12px !important;
+}
+
+.row-selected {
+    background-color: #428ec14d;
+}
+
+.icon-button {
+    position: relative;
+    font-weight: normal;
+    cursor: pointer !important;
+    outline: none;
+    color: #c5c5c5;
+}
+
+.btn-icon-flat i {
+    width: 25px;
+}
+
+.btn-icon-flat {
+    border: none;
+    background: transparent;
+    width: 40px;
+    outline: none;
+    display: inline-flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.btn-icon-flat-split {
+    width: 15px;
+    padding: 0;
+}
+
+.row-points {
+    position: absolute;
+    left: 8px;
+    color: #dcdcdc;
+}
+
+.icon-checked {
+    color: #7b7b7b;
+}
+
+.icon-button::before {
+    content: " ";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: whitesmoke;
+    z-index: -1;
+    top: -7px;
+    left: -8px;
+    border-radius: 50%;
+    display: none;
+}
+
+.btn-icon-flat-split .icon-button::before {
+    width: 16px;
+    height: 35px;
+    z-index: -1;
+    top: -5px;
+    left: 4px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.icon-button:hover::before {
+    display: block;
+    transition: .3s ease-out;
+    -webkit-transition: .3s ease-out;
+    -moz-transition: .3s ease-out;
+    -ms-transition: .3s ease-out;
+    -o-transition: .3s ease-out;
+}
+
+#modal-confirm * {
+    outline: none;
+}
+
+#modal-confirm .modal-footer {
+    padding: 15px;
+    height: auto;
+    line-height: auto;
+    box-shadow: none;
+}
+
+#modal-confirm .modal-footer .btn-outline-primary {
+    color: #ED1B24;
+    border-color: #ED1B24;
+}
+
+#modal-confirm .modal-footer .btn-outline-primary:hover {
+    border-color: #ED1B24;
+    background-color: #ED1B24;
+    color: #FFF;
+}
+
+.paginator {
+    color: #9b9b9b;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    position: relative;
+    padding-top: 10px;
+}
+
+.paginator .page-counter {
+    margin-right: 20px;
+    font-size: .8rem;
+}
+
+.paginator .icon-button {
+    margin-left: 20px;
+    font-size: 1.2rem;
+}
+
+.paginator .icon-button::before {
+    width: 30px;
+    height: 30px;
+    top: -4px;
+    left: -9px;
+}
+
+.toolbar .nav-link.btn-orderby {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.btn-show-more {
+    margin-top: 30px;
+    color: #00acee;
+    border: solid 1px;
+    background-color: #FFF;
+    width: 300px;
+}
+
+.profile-toolbar {
+    margin-bottom: 25px;
+    color: #9a9a9a;
+    font-weight: normal;
+    align-items: center;
+}
+
+.profile-toolbar .form-control {
+    color: #9a9a9a;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.arrow-down-container {
+    position: relative;
+}
+
+.arrow-down-container .arrow-down {
+    position: absolute;
+    top: 7px;
+    right: 18px;
+    width: 35px;
+    height: 24px;
+    background-color: #FFF;
+}
+
+.row-mg-0 {
+  margin: 0;
+}
+
+.cp-card.card-margin {
+  padding: 0 5px;
+  margin: 5px 0;
 }

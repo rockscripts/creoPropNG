@@ -25,7 +25,9 @@ export class Busqueda {
 
   public page: number;
 
-  constructor() {}
+  public orderBy: string;
+
+  constructor() { }
 
   getMultiParam(paramName) {
     const cleaned = [];

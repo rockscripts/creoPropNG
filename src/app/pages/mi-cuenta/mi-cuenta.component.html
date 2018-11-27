@@ -2,22 +2,63 @@
   <div class="col-12 header-container">
     <div class="header">
       <div class="left-controls">
-        <div class="user-info">
-          <img src="{{perfil.img}}" alt="Sin imagen" class="user-logo">
-          <h4 class="user-name">{{userName}}</h4>
-          <span class="user-plan">VIP 3</span>
+        <div class="user-info-container">
+          <div class="img-profile-container">
+            <img [src]="'http://192.168.0.13/' + perfil.getImgRoute()" alt="profile" class="user-logo">
+
+            <input #loadImg type="file" name="profile-img" accept="image/*" (change)="saveProfileImg($event.target.files)" hidden>
+
+            <button class="btn-icon-flat btn-edit-img">
+              <i class="icon-button material-icons" (click)="loadImg.click()">edit</i>
+            </button>
+          </div>
+
+          <div class="profile-info-container">
+            <ng-container *ngIf="!nameState">
+              <h2 style="max-width: 65%;">
+                {{ perfil.getFullName() | uppercase }}
+              </h2>
+              <button class="btn-icon-flat">
+                <i class="icon-button material-icons" (click)="nameState = !nameState">edit</i>
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="nameState">
+              <ng-container *ngIf="perfil.tipo_user_id !== 2; then user; else inmo"></ng-container>
+
+              <ng-template #user>
+                <label for="">Nombre:</label>
+                <input type="text" class="form-control name-edit" [(ngModel)]="perfil.nombre" name="nombre">
+
+                <label for="">Apellido:</label>
+                <input type="text" class="form-control name-edit" [(ngModel)]="perfil.apellido" name="apellido">
+              </ng-template>
+
+              <ng-template #inmo>
+                <label for="">Nombre:</label>
+                <input type="text" class="form-control name-edit" [(ngModel)]="perfil.inmobiliaria.nombre" name="inmoNombre">
+              </ng-template>
+
+              <button class="btn btn-primary" style="margin-top: 5px;" (click)="edit('name')">GUARDAR</button>
+              <button class="btn btn-outline-danger" style="margin-top: 5px; margin-left: 15px;" (click)="nameState = !nameState">CANCELAR</button>
+            </ng-container>
+
+            <p>{{ perfil.tipoUsuario | titlecase }}</p>
+            <p>{{ perfil.membresia | uppercase }}</p>
+          </div>
         </div>
+
         <div class="tabs">
           <ul class="nav nav-tabs navbar-dropdown">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#mispropiedades">MIS PROPIEDADES</a>
             </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#visitas">VISITAS</a>
+            </li>
             <li class="nav-item">
-              <a class="nav-link  estado-cuenta" data-toggle="tab" href="#visitas">VISITAS</a>
-            </li>
-            <li class="nav-item estado-cuenta">
               <a class="nav-link" data-toggle="tab" href="#estadocuenta">ESTADO DE MI CUENTA</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#pagos">VIP</a>
             </li>
@@ -28,7 +69,7 @@
         </div>
       </div>
       <div class="right-controls d-flex align-items-center">
-          <button type="button" class="w-100 btn btn-update-plan" routerLink="/update-plan">$ Recargar</button>
+        <button type="button" class="w-100 btn btn-update-plan" routerLink="/update-plan">$ Recargar</button>
       </div>
     </div>
     <!--  -->
@@ -45,15 +86,25 @@
           </div>
 
           <div class="content">
-            <app-prop-result [pActivas]=pActivas [pInactivas]=pInactivas [propietario]="propietario_id" [mode]="'userProp'"></app-prop-result>
+            <app-prop-result [listMode]="true" [pActivas]=pActivas [pInactivas]=pInactivas [propietario]="propietario_id" [mode]="'userProp'"></app-prop-result>
           </div>
         </div>
       </div>
-      <div class="tab-pane container fade" id="visitas"><app-user-visitas></app-user-visitas></div>
-      <div class="tab-pane container fade" id="estadocuenta"><app-estado-cuenta></app-estado-cuenta></div>
-      <div class="tab-pane container fade" id="pagos"><app-user-pagos></app-user-pagos></div>
-      <div class="tab-pane container fade" id="mensajes"><app-user-mensajes></app-user-mensajes></div>
-      <div class="tab-pane container fade" id="miperfil"><app-perfil-view [editable]="true"></app-perfil-view></div>
+      <div class="tab-pane container fade" id="visitas">
+        <app-user-visitas></app-user-visitas>
+      </div>
+      <div class="tab-pane container fade" id="estadocuenta">
+        <app-estado-cuenta></app-estado-cuenta>
+      </div>
+      <div class="tab-pane container fade" id="pagos">
+        <app-user-pagos></app-user-pagos>
+      </div>
+      <div class="tab-pane container fade" id="mensajes">
+        <app-user-mensajes></app-user-mensajes>
+      </div>
+      <div class="tab-pane container-fluid fade" id="miperfil">
+        <app-perfil-view [editable]="true"></app-perfil-view>
+      </div>
     </div>
   </div>
 </div>

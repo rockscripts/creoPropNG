@@ -1,53 +1,96 @@
-<div class="container">
+<div class="row" style="padding: 30px 0; margin-bottom: 80px;">
+  <div class="col-7">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">ACERCA DE {{ perfil.getFullName() | uppercase }}</h3>
 
-<div class="row">
-  <div class="col-sm-7 mt-3">
-    <div class="card col-sm-12">
-      <div class="row no-gutters p-3 profilecard">
-        <h3 class="btn-edit" *ngIf="editable" (click)="edit()"><i class="fa btn-fa fa-pencil" ></i></h3>
-        <div class="col-sm-4 col-auto">
-          <img src="{{perfil.img}}" class="img-fluid" alt="Imagen de perfil">
-        </div>
-        <div class="col">
-          <div class="card-block px-2 pr-1">
-            <h4 class="card-title">{{perfil.apellido}} {{perfil.nombre}}</h4>
-            <p class="card-text text-muted w-20">{{perfil.ubicacion}}</p>
-          </div>
-        </div>
-      </div>
-      <div class="row border-top -solid -1px profilecard">
-        <div class="row col-sm-12">
-          <h4 class="pl-2">INFORMACiÓN PERSONAL</h4>
-        </div>
-        <div class="col text-uppercase text-muted">
-          <p>Usuario desde: {{perfil.usuario_desde}}</p>
-          <p>Propiedades publicadas: {{perfil.prop_count}}</p>
-        </div>
-        <div class="col">
-        </div>
+        <ul class="card-list-info">
+          <li class="card-list-item" *ngFor="let optInfo of currentProfile">
+            <ng-container *ngIf="!optInfo.state">
+              <span class="card-list-item__title">{{ optInfo.name | uppercase }}:</span>
 
+              <ng-container *ngIf="!optInfo.showSelect">
+                <span class="card-list-item__data-dark" *ngIf="optInfo.inmobiliaria">{{ perfil.inmobiliaria[optInfo.key] || 'sin agregar' }}</span>
+                <span class="card-list-item__data-dark" *ngIf="!optInfo.inmobiliaria">{{ !optInfo.key2 ? perfil[optInfo.key] : perfil[optInfo.key] + ' ' + perfil[optInfo.key2] || 'sin agregar'
+                  }}
+                </span>
+              </ng-container>
+
+              <span class="card-list-item__data-dark" *ngIf="optInfo.showSelect">{{ showInmobiliariaName(+perfil[optInfo.key]) || 'sin agregar' }}</span>
+
+              <button class="btn-icon-flat">
+                <i class="icon-button material-icons" (click)="optInfo.state = !optInfo.state">edit</i>
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="optInfo.state">
+              <span class="card-list-item__title">{{ optInfo.name | uppercase }}:</span>
+
+              <ng-container *ngIf="!optInfo.showSelect">
+                <input type="text" class="form-control" [(ngModel)]="perfil[optInfo.key]" [name]="optInfo.key" *ngIf="!optInfo.inmobiliaria">
+                <input type="text" class="form-control" [(ngModel)]="perfil.inmobiliaria[optInfo.key]" [name]="optInfo.key" *ngIf="optInfo.inmobiliaria">
+
+                <input type="text" class="form-control" style="margin: 10px auto;" [(ngModel)]="perfil[optInfo.key2]" [name]="optInfo.key2"
+                  *ngIf="optInfo.key2">
+              </ng-container>
+
+              <select [name]="optInfo.key" class="form-control" [(ngModel)]="perfil[optInfo.key]" *ngIf="optInfo.showSelect">
+                <option value=0>Seleccione una inmobiliaria</option>
+                <option [value]="item.id" *ngFor="let item of inmobiliarias">{{ item.name }}</option>
+              </select>
+
+              <button class="btn btn-primary" style="margin-top: 5px;" (click)="edit(optInfo.key)">GUARDAR</button>
+              <button class="btn btn-outline-danger" style="margin-top: 5px; margin-left: 15px;" (click)="optInfo.state = !optInfo.state">CANCELAR</button>
+            </ng-container>
+          </li>
+
+          <!-- descripcion siempre visible -->
+          <li class="card-list-item">
+            <ng-container *ngIf="!descripcionState">
+              <span class="card-list-item__title">DESCRIPCIÓN:</span>
+              <button class="btn-icon-flat">
+                <i class="icon-button material-icons" (click)="descripcionState = !descripcionState">edit</i>
+              </button>
+              <span class="card-list-item__data-dark card-list-item__fullwidth">{{ perfil.descripcion || 'Agregar una descripción' }}</span>
+            </ng-container>
+
+            <ng-container *ngIf="descripcionState">
+              <span class="card-list-item__title">DESCRIPCIÓN:</span>
+              <textarea type="text" class="form-control" [(ngModel)]="perfil.descripcion" name="descripcion" rows="3"></textarea>
+
+              <button class="btn btn-primary" style="margin-top: 5px;" (click)="edit('descripcion')">GUARDAR</button>
+              <button class="btn btn-outline-danger" style="margin-top: 5px; margin-left: 15px;" (click)="descripcionState = !descripcionState">CANCELAR</button>
+            </ng-container>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
+  <div class="col-5">
+    <div class="card contact-card">
+      <div class="card-body">
+        <h3 class="card-title">EDITAR CONTACTO</h3>
 
-  <div class="col-sm-4 mt-3" *ngIf="!editable">
-    <div class="card mt-3">
-      <h4 class="card-title mt-2 pl-3">CONTACTAR ESTE AGENTE</h4>
-      <div class="col-12 my-2"><button type="button" class="w-100 btn btn-cprop" routerLink="/new-prop">Mail</button></div>
-      <div class="col-12 my-2"><button type="button" class="w-100 btn btn-cprop" routerLink="/new-prop">Telefono</button></div>
-    </div>
-    <div class="card mt-5" *ngIf="perfil.inmobiliaria.nombre">
-      <h4 class="card-title mt-2 pl-3">INMOBILIARIA</h4>
-      <div class="row">
-        <div class="col-auto">
-          <img src="./{{perfil.inmobiliaria.logo}}">
-        </div>
-        <div class="col">
-          <h3>{{perfil.inmobiliaria.nombre}}</h3>
-        </div>
+        <ul class="card-list-info">
+          <li class="card-list-item" *ngFor="let optInfo of contactData">
+            <ng-container *ngIf="!optInfo.state">
+              <i class="card-list-item__icon material-icons" *ngIf="optInfo.icon !== 'ws'"> {{ optInfo.icon }} </i>
+              <img src="assets/whatsapp.svg" alt="whatsapp" width="25px" *ngIf="optInfo.icon === 'ws'">
+              <span class="card-list-item__data">{{ perfil[optInfo.key] || 'sin agregar' }}</span>
+              <button class="btn-icon-flat">
+                <i class="icon-button material-icons" (click)="optInfo.state = !optInfo.state">edit</i>
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="optInfo.state">
+              <input type="text" class="form-control" [(ngModel)]="perfil[optInfo.key]" [name]="optInfo.key">
+
+              <button class="btn btn-primary" style="margin-top: 5px;" (click)="edit(optInfo.key, 'contact')">GUARDAR</button>
+              <button class="btn btn-outline-danger" style="margin-top: 5px; margin-left: 15px;" (click)="optInfo.state = !optInfo.state">CANCELAR</button>
+            </ng-container>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-
-</div>
 </div>

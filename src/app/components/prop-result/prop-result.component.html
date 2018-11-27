@@ -1,11 +1,12 @@
-<div class="row">
-  <div class="col-12" *ngIf="mode != 'userProp'">
-    <div class="col-12 hh1 pl-0 res-count row align-items-center">
-      <div class="col-12 pl-0"><b>{{cant_prop}}</b>&nbsp;Propiedades en Argentina</div>
+<div class="row" *ngIf="!listMode" [class.row-mg-0]="showInProfile">
+  <div class="col-12" *ngIf="mode != 'userProp' && !showInProfile">
+    <div class="row align-items-center hh1 res-count">
+      <strong style="margin-right: 10px;">{{ cant_prop }}</strong> Propiedades en Argentina
     </div>
   </div>
+
   <div class="col-12">
-    <div class="col-12 row p-0 toolbar">
+    <div class="row toolbar" *ngIf="!showInProfile">
       <div class="col-12 col-md-9 p-0">
         <ul class="navbar-nav flex-row align-items-stretch " *ngIf="mode == 'userProp'">
           <li class="nav-item dropdown">
@@ -20,7 +21,8 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              MÁS <fa name="angle-down" size="lg"></fa>
+              MÁS
+              <fa name="angle-down" size="lg"></fa>
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item">Una opción</a>
@@ -29,79 +31,233 @@
           </li>
         </ul>
         <div class="propiedades-activas-inactivas" *ngIf="pActivas">
-          <button [ngClass]="{'filtro-inactivo-btn': activas == 0}"  (click)="ToogleActivas(1)" type="button"  class="btn filtro-activo-btn">{{pActivas}} Activas</button>
-          <button [ngClass]="{'filtro-inactivo-btn': activas == 1}"  (click)="ToogleActivas(0)" type="button"  class="btn filtro-activo-btn">{{pInactivas}} Inactivas</button>
-      </div>
+          <button [ngClass]="{'filtro-inactivo-btn': activas == 0}" (click)="ToogleActivas(1)" type="button" class="btn filtro-activo-btn">{{pActivas}} Activas</button>
+          <button [ngClass]="{'filtro-inactivo-btn': activas == 1}" (click)="ToogleActivas(0)" type="button" class="btn filtro-activo-btn">{{pInactivas}} Inactivas</button>
+        </div>
       </div>
       <div class="col-12 col-md-3 tx-ordenar">
-        <span><img src="assets/img/icon-sort.png" style="width:25px"></span> ORDENAR POR
-      </div>
-    </div>
-  </div>
-  <div class="row col-12" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()"
-    (scrolledUp)="onScrollUp()">
-
-    <div *ngFor="let propiedad of propiedades let j = index" class="col-12 col-sm-6 col-md-4 cp-card">
-      <div class="card">
-        <div class="checkbox" *ngIf="mode == 'userProp'">
-          <input type="checkbox" name="{{'checked-propiedad-' + propiedad.id}}">
-        </div>
-        <!-- botonera -->
-        <div class="botonera" *ngIf="mode == 'userProp'">
-          <i class="fa fa-pencil link-btn" (click)="edit(propiedad.id)"></i>
-          <i class="fa fa-trash link-btn" (click)="delete(propiedad.id)"></i>
-        </div>
-        <!-- carrusel -->
-        <div id="imgs{{j}}" class="carousel slide" data-ride="carousel" data-interval="false">
-          <div class="carousel-inner">
-            <div class="carousel-item" *ngFor="let v of propiedad.files let f = first" [ngClass]="{'active' : f}">
-              <img class="card-img" src="./{{v['vista_previa']}}" alt="{{v.titulo}}">
+        <ul class="navbar-nav flex-row align-items-stretch justify-content-end">
+          <li class="nav-item dropdown">
+            <a class="nav-link btn-orderby" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons"> swap_vert </i> ORDENAR POR
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'destacados')">Destacados</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'lowPrice')">Menor precio</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'bigPrice')">Mayor precio</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'lowM2')">Menos m2</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'bigM2')">Más m2</a>
             </div>
-          </div>
-          <a class="carousel-control-prev" href="#imgs{{j}}" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-          </a>
-          <a class="carousel-control-next" href="#imgs{{j}}" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </div>
-        <!-- resto de la info -->
-        <div class="card-img-overlay">
-          <img class="imb-img" src="./{{propiedad.inmobiliaria.logo}}" alt="{{propiedad.inmobiliaria.nombre}}" />
-          <div class="img-count">1/{{propiedad.filesCount}}</div>
-        </div>
-        <div class="card-body">
-          <div class="card-text direccion">
-            <span>
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              {{propiedad.direccion}}
-            </span>
-          </div>
-          <!--descripción -->
-          <div class="cont-b">
-            <div class="card-text card-tit" [routerLink]="['/propiedad/' + propiedad.id]">{{propiedad.titulo}}</div>
-            <div class="card-text">
-              <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span>
-              <span *ngIf="propiedad.banios != 0"><img src="assets/img/bed.svg" style="width:20px">
-                {{propiedad.banios}} </span>
-              <span *ngIf="propiedad.dormitorios != 0"><img src="assets/img/bath.svg" style="width:20px">
-                {{propiedad.dormitorios}} </span>
-              <span class="card-precio">{{propiedad.moneda_simbolo}} <strong>{{propiedad.precio | number:'1.0'}}</strong></span>
-            </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
 
+    <div class="row profile-toolbar" *ngIf="showInProfile">
+      <div class="col-2">
+        <span>Ordernar por</span>
+      </div>
+      <div class="col-3 arrow-down-container">
+        <div class="arrow-down material-icons">expand_more</div>
+        <select name="profile-orderby" (change)="pedirBusqueda(true, $event.target.value)" class="form-control">
+          <option class="dropdown-item" value="destacados">Destacados</option>
+          <option class="dropdown-item" value="lowPrice">Menor precio</option>
+          <option class="dropdown-item" value="bigPrice">Mayor precio</option>
+          <option class="dropdown-item" value="lowM2">Menos m2</option>
+          <option class="dropdown-item" value="bigM2">Más m2</option>
+        </select>
+      </div>
+      <div class="col-3 arrow-down-container">
+        <div class="arrow-down material-icons">expand_more</div>
+        <select name="profile-orderby" class="form-control">
+          <option class="dropdown-item" value="destacados">Todas</option>
+          <option class="dropdown-item" value="lowPrice">En venta</option>
+          <option class="dropdown-item" value="bigM2">En alquiler</option>
+          <option class="dropdown-item" value="bigM2">Venta comercial</option>
+          <option class="dropdown-item" value="bigM2">Alquiler comercial</option>
+        </select>
+      </div>
+      <div class="col-4">
+        <span style="float: right;">Propiedades totales:
+          <strong style="color: #000;">{{ pagination.total }}</strong>
+        </span>
+      </div>
+    </div>
   </div>
-  <div class="row col-12">
-    <div class="col-12 text-center" *ngIf="!scrollFinish">
-      <span>Más propiedades...</span>
+
+  <div class="col-12">
+    <div class="row" [class.row-mg-0]="showInProfile">
+      <div *ngFor="let propiedad of propiedades; let idx = index" class="col-12 col-sm-6 col-md-4 cp-card" [class.card-margin]="showInProfile">
+        <div class="card">
+          <div class="checkbox" *ngIf="mode == 'userProp'">
+            <input type="checkbox" name="{{'checked-propiedad-' + propiedad.id}}">
+          </div>
+          <!-- botonera -->
+          <div class="botonera" *ngIf="mode == 'userProp'">
+            <i class="fa fa-pencil link-btn" (click)="edit(propiedad.id)"></i>
+            <i class="fa fa-trash link-btn" (click)="delete(propiedad.id)"></i>
+          </div>
+
+          <!-- carrusel -->
+          <app-carousel [files]="propiedad.files"></app-carousel>
+
+          <!-- resto de la info -->
+          <div class="card-img-overlay">
+            <img *ngIf="propiedad.tipo_user_id == 2" class="imb-img" [src]="'http://192.168.0.13/' + propiedad.inmobiliaria.logo" [alt]="propiedad.inmobiliaria.nombre"
+            />
+            <img *ngIf="propiedad.tipo_user_id != 2" class="imb-img" [src]="'http://192.168.0.13/' + propiedad.profile_img" />
+          </div>
+
+          <div class="card-body">
+            <div class="card-text direccion">
+              <span>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{ propiedad.direccion }}
+              </span>
+            </div>
+            <!--descripción -->
+            <div class="cont-b">
+              <div class="card-text card-tit" [routerLink]="['/propiedad/' + propiedad.id]">{{propiedad.titulo}}</div>
+              <div class="card-text">
+                <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span>
+                <span *ngIf="propiedad.banios != 0">
+                  <img src="assets/img/bed.svg" style="width:20px"> {{propiedad.banios}} </span>
+                <span *ngIf="propiedad.dormitorios != 0">
+                  <img src="assets/img/bath.svg" style="width:20px"> {{propiedad.dormitorios}} </span>
+                <span class="card-precio">{{propiedad.moneda_simbolo}}
+                  <strong>{{propiedad.precio | number:'1.0'}}</strong>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-
-    <div *ngIf="scrollFinish">
-
-    </div>
+  <div class="col-12 text-center" *ngIf="pagination && pagination.next">
+    <button class="btn btn-show-more" (click)="nextPage()" style="margin-top: 30px;">Ver más
+      <i class="material-icons" style="vertical-align: top;">arrow_downward</i>
+    </button>
   </div>
 </div>
+
+<div class="row" *ngIf="listMode">
+  <div class="col-12 toolbar">
+    <div class="row">
+      <div class="col-12 col-md-9">
+        <div class="row">
+          <div class="col-8">
+            <div class="table-panel">
+              <div class="btn-group">
+                <button class="btn-icon-flat">
+                  <i class="icon-button material-icons icon-checked" (click)="setPanelCheckState(mainCheckState)">
+                    {{ showCheckIconState() }}
+                  </i>
+                </button>
+                <button type="button" class="btn-icon-flat btn-icon-flat-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="icon-button material-icons icon-checked">expand_more</i>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" (click)="setPanelCheckState(2)">Todo</a>
+                  <a class="dropdown-item" (click)="setPanelCheckState(1)">Nada</a>
+                </div>
+              </div>
+
+              <ng-container *ngIf="hasRowSelecteds()">
+                <button class="btn-icon-flat">
+                  <i class="icon-button material-icons icon-checked" (click)="destacarAllSelecteds()">start</i>
+                </button>
+                <button class="btn-icon-flat">
+                  <i class="icon-button material-icons icon-checked" (click)="deleteAllSelecteds(activas)">delete</i>
+                </button>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="paginator" *ngIf="pagination">
+              <span class="page-counter">{{ pagination.range }} propiedades de {{ pagination.total }}</span>
+              <i class="icon-button material-icons" (click)="prevPage(true)" *ngIf="pagination.prev">arrow_back_ios</i>
+              <i class="icon-button material-icons" (click)="nextPage(true)" *ngIf="pagination.next">arrow_forward_ios</i>
+            </div>
+          </div>
+
+          <div class="col-12 propiedades-activas-inactivas" *ngIf="pActivas">
+            <button [ngClass]="{'filtro-inactivo-btn': activas == 0}" (click)="ToogleActivas(1)" type="button" class="btn filtro-activo-btn">{{ pActivas }} Activas</button>
+            <button [ngClass]="{'filtro-inactivo-btn': activas == 1}" (click)="ToogleActivas(0)" type="button" class="btn filtro-activo-btn">{{ pInactivas }} Inactivas</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-3 tx-ordenar">
+        <ul class="navbar-nav flex-row align-items-stretch justify-content-end">
+          <li class="nav-item dropdown">
+            <a class="nav-link btn-orderby" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons"> swap_vert </i> ORDENAR POR
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'destacados')">Destacados</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'lowPrice')">Menor precio</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'bigPrice')">Mayor precio</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'lowM2')">Menos m2</a>
+              <a class="dropdown-item" (click)="pedirBusqueda(true, 'bigM2')">Más m2</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <table class="propierties-table-list">
+      <tbody>
+        <tr *ngFor="let propiedad of propiedades; let idx = index;" [class.row-selected]="propiedad.isSelected" (mouseover)="propiedad.rowActive = true"
+          (mouseout)="propiedad.rowActive = false">
+          <td class="td-icon-button">
+            <i class="material-icons row-points" *ngIf="propiedad.rowActive"> drag_indicator </i>
+            <i class="icon-button material-icons" [class.icon-checked]="propiedad.isSelected" (click)="propiedad.isSelected = !propiedad.isSelected">{{ !propiedad.isSelected ? 'check_box_outline_blank' : 'check_box' }}</i>
+          </td>
+          <td class="td-icon-button" *ngIf="+activas">
+            <i class="icon-button material-icons" [class.icon-checked]="propiedad.destacado" (click)="destacar(propiedad.id)">{{ !propiedad.destacado ? 'star_border' : 'star' }}</i>
+          </td>
+          <td>{{ propiedad.tipo_operacion_name }}</td>
+          <td>{{ propiedad.tipo_prop_nombre }}</td>
+          <td>{{ propiedad.direccion }}</td>
+          <td>{{ propiedad.nombre_zona }}</td>
+          <td>{{ propiedad.ambientes }} Amb.</td>
+          <td>{{ propiedad.dormitorios }} Dorm.</td>
+          <td>{{ propiedad.banios }} Banios</td>
+          <td>{{ propiedad.cochera }} Cocheras</td>
+          <td>{{ propiedad.superficie_total }}m2 Tot.</td>
+          <td>{{ propiedad.moneda_simbolo + ' ' + propiedad.precio }}</td>
+          <td>
+            <i class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="edit(propiedad.id)">edit</i>
+          </td>
+          <td>
+            <span [hidden]="propiedad.rowActive">{{ propiedad.created_at | createdAt }}</span>
+            <i class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="delete(propiedad.id, activas)">delete</i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div id="modal-confirm">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Advertencia!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Esta seguro que desea {{ alertType }}?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Aceptar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancelar</button>
+    </div>
+  </div>
+</ng-template>

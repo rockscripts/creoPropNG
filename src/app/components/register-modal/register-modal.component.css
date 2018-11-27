@@ -1,3 +1,16 @@
-a{  color: #6d6d6d !important; width: inherit; }
+a {
+    color: #6d6d6d !important;
+    width: inherit;
+}
 
-.show { display:block !important; }
+.show {
+    display: block !important;
+}
+
+.modal-dialog a:hover {
+    color: #d01 !important;
+}
+
+.modal {
+    overflow-y: scroll;
+}

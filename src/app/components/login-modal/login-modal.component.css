@@ -1,1 +1,13 @@
-.show { display:block !important; }
+.show {
+    display: block !important;
+}
+
+.modal-link {
+    font-weight: normal;
+    float: right;
+    margin: 15px 0;
+}
+
+.modal-dialog a:hover {
+    color: #d01 !important;
+}

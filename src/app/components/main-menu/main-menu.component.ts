@@ -1,11 +1,11 @@
-import { Component, OnInit }   from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
 
-import { UserService }          from './../../providers/user.service';
+import { UserService } from './../../providers/user.service';
 import { RegisterModalService } from '../../components/register-modal/register-modal.service';
-import { LoginModalService }    from '../../components/login-modal/login-modal.service';
-import { ProfileService }          from './../../providers/profile.service';
-import { Perfil }                  from './../../models/perfil';
+import { LoginModalService } from '../../components/login-modal/login-modal.service';
+import { ProfileService } from './../../providers/profile.service';
+import { Perfil } from './../../models/perfil';
 
 @Component({
   selector: 'app-main-menu',
@@ -17,94 +17,105 @@ export class MainMenuComponent implements OnInit {
   perfil = new Perfil();
 
   constructor(
-    private us:         UserService,
-    private modalReg:   RegisterModalService,
+    private us: UserService,
+    private modalReg: RegisterModalService,
     private modalLogin: LoginModalService,
-    private router:     Router,
+    private router: Router,
     private profile: ProfileService
-  ){}
+  ) { }
 
-  hideSearchBox = false;
+  showSearchBox = true;
+  showNavMenu = true;
   registrado = false;
   navbar_red = true;
 
-  userName:string = '';
+  userName: string = '';
 
-  enlaces:any=[
-    { r: "select-plan", t: 'PUBLICAR UNA PROPIEDAD', attr:'' }
+  enlaces: any = [
+    { r: "select-plan", t: 'PUBLICAR UNA PROPIEDAD', attr: '' }
   ];
 
   ngOnInit() {
     this.registrado = this.us.logeado();
-    if(this.registrado) {
-      if (this.perfil.nombre != ''){
-        this.userName   = this.perfil.nombre + ' ' + this.perfil.apellido;
+    if (this.registrado) {
+      if (this.perfil.nombre != '') {
+        this.userName = this.perfil.nombre + ' ' + this.perfil.apellido;
       } else {
         this.userName = this.us.getEmail();
       }
     }
 
     this.getProfile();
-    
+
     this.us.onLogin.subscribe({ next: (v) => { this.actualizaEstado(); this.getProfile(); } });
     this.us.onLogOut.subscribe({ next: (v) => { this.actualizaEstado(); } });
 
-    this.router.events.subscribe((e) => {
-      if(e instanceof RouterEvent){
-        if (e.url.indexOf('/mi-cuenta') === 0 || e.url.indexOf('/new-prop') === 0){
-          this.hideSearchBox = true;
-        } else {
-          this.hideSearchBox = false;
+    this.profile.profileUpdated
+      .subscribe({
+        next: (imgRoute: string) => this.perfil.tipo_user_id === 2 ? this.perfil.inmobiliaria.img = imgRoute : this.perfil.img = imgRoute
+      });
+
+    this.router.events
+      .subscribe(e => {
+        if (e instanceof RouterEvent) {
+          if (/(\/search;(\w?)+)|(^\/$)/g.test(e.url)) {
+            this.showSearchBox = true;
+          } else {
+            this.showSearchBox = false;
+          }
+
+          if (e.url == '/select-plan' || e.url == '/update-plan') {
+            this.navbar_red = false;
+            this.showNavMenu = false;
+          } else {
+            this.navbar_red = true;
+            this.showNavMenu = true;
+          }
+
+          if (/\/perfil\/\d+/g.test(e.url)) {
+            this.navbar_red = false;
+            this.showNavMenu = true;
+          }
         }
-        if (e.url == '/select-plan' || e.url == '/update-plan'){
-          this.navbar_red = false;
-        } else {
-          this.navbar_red = true;
-        }
-      }
-    });
+      });
   }
 
   getProfile() {
     this.profile.getProfile(this.us.getId()).subscribe((r) => {
-      if(!r || !r["data"]){
+      if (!r || !r["data"]) {
         return;
       }
       r = r["data"];
-      this.perfil.nombre        = r['name'];
-      this.perfil.apellido      = r['surname'];
-      this.perfil.ubicacion     = '';
+      this.perfil.nombre = r['name'];
+      this.perfil.apellido = r['surname'];
       this.perfil.usuario_desde = r['created_at'];
-      this.perfil.prop_count    = r['cant_prop'];
-      this.perfil.user_id       = r['id'];
-      this.perfil.img           = r['profile_img'];
-      this.perfil.celular       = r['celular'];
+      this.perfil.prop_count = r['cant_prop'];
+      this.perfil.id = r['id'];
+      this.perfil.tipo_user_id = +r['tipo_user_id'];
+      this.perfil.img = r['profile_img'];
+      this.perfil.celular = r['celular'];
 
       this.perfil.inmobiliaria.nombre = r['inmobiliaria']['nombre'];
-      this.perfil.inmobiliaria.id     = r['inmobiliaria']['id'];
-      this.perfil.inmobiliaria.img    = r['inmobiliaria']['logo'];
-
-      if (this.perfil.nombre != ''){
-        this.userName   = this.perfil.nombre + ' ' + this.perfil.apellido;
-      }
+      this.perfil.inmobiliaria.id = r['inmobiliaria']['id'];
+      this.perfil.inmobiliaria.img = r['inmobiliaria']['logo'];
     });
   }
 
-  showRegistrar(){ this.modalReg.show();   }
-  showLogin() {    this.modalLogin.show(); }
+  showRegistrar() { this.modalReg.show(); }
+  showLogin() { this.modalLogin.show(); }
 
-  actualizaEstado(){
+  actualizaEstado() {
     this.registrado = this.us.logeado();
-    if(this.registrado) {
-      if (this.perfil.nombre != ''){
-        this.userName   = this.perfil.nombre + ' ' + this.perfil.apellido;
+    if (this.registrado) {
+      if (this.perfil.nombre != '') {
+        this.userName = this.perfil.nombre + ' ' + this.perfil.apellido;
       } else {
         this.userName = this.us.getEmail();
       }
     }
   }
 
-  logOut(){ // [Revisar] si estructuralmente seria correcto dejar esto opr aca
+  logOut() { // [Revisar] si estructuralmente seria correcto dejar esto opr aca
     this.us.logOut();
   }
 }

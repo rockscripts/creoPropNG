@@ -1,0 +1,137 @@
+<div class="row bg-color" *ngIf="profile">
+  <div class="col-12">
+    <p>
+      <a href="#" class="link-blue">Agentes inmobiliarios</a>
+      <span style="margin: auto 15px;">></span> {{ profile.getFullName(true) }}</p>
+    <hr style="margin-bottom: 40px;">
+  </div>
+
+  <div class="col-12 position-relative">
+    <div class="box profile-info-container">
+      <div class="box-header">
+        <div class="profile-img">
+          <img [src]="'http://192.168.0.13/' + profile.getImgRoute(true)" alt="">
+        </div>
+        <div class="profile-info">
+          <h3 class="profile-info__title">{{ profile.getFullName(true) | uppercase }}</h3>
+          <p *ngIf="profile.tipo_user_id !== 3">
+            <span class="profile-info__subtitle">PROPIEDADES ACTIVAS:</span>
+            <span class="link-blue">{{ profile.active_prop }} Propiedades</span>
+          </p>
+          <p *ngIf="profile.tipo_user_id === 3">
+            <span class="profile-info__subtitle">NACIONALIDAD:</span> {{ profile.nacionalidad }}</p>
+          <p *ngIf="profile.tipo_user_id !== 2">
+            <span class="profile-info__subtitle">IDIOMAS:</span> {{ profile.idiomas }}</p>
+          <p *ngIf="profile.tipo_user_id === 2">
+            <span class="profile-info__subtitle">CEO:</span> {{ profile.name + ' ' + profile.surname }}</p>
+        </div>
+      </div>
+      <div class="box-body" *ngIf="profile.tipo_user_id !== 1">
+        <ng-container *ngIf="profile.tipo_user_id === 2;then inmo; else agent"></ng-container>
+        <ng-template #agent>
+          <div class="box-left">
+            <p>
+              <span class="profile-info__subtitle">PROPIEDADES ACTIVAS:</span>
+              <a href="#" class="link-blue">{{ profile.active_prop }} Propiedades</a>
+            </p>
+            <p>
+              <span class="profile-info__subtitle">NÚMERO DE MATRICULA:</span> {{ profile.matricula }}</p>
+            <p>
+              <span class="profile-info__subtitle">EXPERIENCIA DESDE EL AÑO:</span> {{ profile.experiencia_desde }}</p>
+            <p>
+              <span class="profile-info__subtitle">PERTENECIENTE A LA INMOBILIARIA:</span> {{ profile.inmobiliaria.nombre }}</p>
+          </div>
+          <div class="box-right">
+            <div class="row">
+              <div class="col-3" style="padding-right: 0;">
+                <p>
+                  <span class="profile-info__subtitle">AREAS:</span>
+                </p>
+              </div>
+              <div class="col-9">
+                <ul class="profile-info__list" style="margin-top: 10px;">
+                  <li *ngFor="let area of profile.areas.split(',')">{{ area }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #inmo>
+          <div class="box-left" style="width: 100%;">
+            <p>
+              <span class="profile-info__subtitle" *ngIf="profile.matricula">NÚMERO DE MATRICULA:</span> {{ profile.matricula }}</p>
+            <p>
+              <p>
+                <span class="profile-info__subtitle" *ngIf="profile.inmobiliaria.direccion">OFICINA CENTRAL:</span> {{ profile.inmobiliaria.direccion }}</p>
+              <p>
+                <p>
+                  <span class="profile-info__subtitle" *ngIf="profile.areas">AREAS:</span> {{ profile.areas }}</p>
+                <p>
+          </div>
+        </ng-template>
+
+      </div>
+      <div class="box-border-bottom"></div>
+    </div>
+
+    <div class="box contact-info-container">
+      <div class="box-body">
+        <div class="contact-info">
+          <h3>CONTACTAR A {{ profile.tipo_user_id == 2 ? 'ESTA' : 'ESTE' }} {{ profile.getTypeUserFirstWord() }}</h3>
+
+          <a class="btn btn-contact" [href]="'https://api.whatsapp.com/send?phone=' + profile.getPhoneNumber('cel')" *ngIf="profile.celular"
+            style="padding: 8px 0 8px 40px;">
+            <img src="assets/whatsapp.svg" alt="whatsapp"> {{ profile.getPhoneNumber('cel') }}
+          </a>
+          <a class="btn btn-contact" [href]="'tel:' + profile.getPhoneNumber('tel')" *ngIf="profile.tel && profile.tipo_user_id == 2">
+            <i class="material-icons">phone</i> {{ profile.getPhoneNumber('tel') }}</a>
+          <a class="btn btn-contact" [href]="'mailto:' + profile.email" *ngIf="profile.email">
+            <i class="material-icons">mail_box</i> {{ profile.email }}</a>
+        </div>
+      </div>
+      <div class="box-border-bottom"></div>
+    </div>
+  </div>
+
+  <div class="col-12 tabs-container">
+    <div class="box-taps">
+      <button class="tap" [class.tap-active]="!showProps" (click)="showProps = !showProps">Acerca de {{ profile.tipo_user_id == 2 ? 'nostros' : 'mi' }}</button>
+      <button class="tap" [class.tap-active]="showProps" (click)="showProps = !showProps">
+        {{ profile.tipo_user_id == 2 ? 'Nuestras' : 'Mis' }} propiedades
+        <span style="color: #7F7D7E;">({{ profile.active_prop }})</span>
+      </button>
+    </div>
+    <div class="box">
+      <div class="box-body">
+        <ng-container *ngIf="!showProps; then des; else props"></ng-container>
+
+        <ng-template #props>
+          <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+            <app-prop-result [propietario]="profile.id" [showInProfile]="true"></app-prop-result>
+          </div>
+        </ng-template>
+
+        <ng-template #des>
+          <div style="padding: 30px;">
+            <p class="black" *ngIf="profile.tipo_user_id === 1 && profile.nacionalidad">
+              <span class="profile-info__subtitle">NACIONALIDAD:</span> {{ profile.nacionalidad }}
+            </p>
+            <p class="black" *ngIf="profile.tipo_user_id !== 1 && profile.colegio_inmobiliario">
+              <span class="profile-info__subtitle">PERTENECIENTE AL COLEGIO PRFESINAL DE CORREDORES INMOBILIARIOS:</span> {{ profile.colegio_inmobiliario }}
+            </p>
+            <p class="black" *ngIf="profile.tipo_user_id === 2 && profile.experiencia_desde">
+              <span class="profile-info__subtitle">TAYECTORIA DESDE:</span> {{ profile.experiencia_desde }}
+            </p>
+            <p class="black" *ngIf="profile.tipo_user_id === 3 && profile.linkedin">
+              <span class="profile-info__subtitle">LINKEDIN:</span>
+              <a [href]="profile.linkedin" target="_blank" class="link-blue">Ver perfil</a>
+            </p>
+            <p class="tab-description" *ngIf="profile.descripcion">{{ profile.descripcion }}</p>
+          </div>
+        </ng-template>
+
+        <div class="box-border-bottom"></div>
+      </div>
+    </div>
+  </div>
+</div>

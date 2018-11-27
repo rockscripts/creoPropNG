@@ -1,62 +1,122 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute }    from '@angular/router';
-import { Router }            from '@angular/router';
-import { }                   from '@types/googlemaps';
-import { MapsAPILoader }     from '@agm/core';
+import {
+    Component,
+    OnInit,
+    OnDestroy
+}
 
-import { PropiedadesService } from './../../../providers/propiedades.service';
-import { DenunciaService }    from './../../../providers/denuncia.service';
-import { ProfileService }     from './../../../providers/profile.service';
-import { Propiedad }          from '../../../models/propiedad';
+from '@angular/core';
+import {
+    ActivatedRoute
+}
 
-@Component({
-  selector: 'app-prop-detail-page',
-  templateUrl: './prop-detail-page.component.html',
-  styleUrls: ['./prop-detail-page.component.css']
-})
-export class PropDetailPageComponent implements OnInit {
+from '@angular/router';
+import {
+    Router
+}
 
-  id:number;
+from '@angular/router';
+import {}
 
-  propiedad = new Propiedad();
+from '@types/googlemaps';
+import {
+    MapsAPILoader
+}
 
-  constructor(
-    private activatedRoute:   ActivatedRoute,
-    private propiedadService: PropiedadesService,
-    private router:           Router,
-    private denuncia:         DenunciaService,
-    private perfil:           ProfileService,
-    private mapsAPILoader:    MapsAPILoader
-  ) {}
+from '@agm/core';
+import {
+    PropiedadesService
+}
 
-  ngOnInit() {
+from './../../../providers/propiedades.service';
+import {
+    DenunciaService
+}
 
-    this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+from './../../../providers/denuncia.service';
+import {
+    ProfileService
+}
 
-    this.propiedadService.getPropiedad(this.id);
-    this.propiedadService.propiedadLoaded.subscribe({  
-      next: (m) => { this.propiedad = m; console.log(m); } 
-    });
+from './../../../providers/profile.service';
+import {
+    Propiedad
+}
 
-    this.mapsAPILoader.load().then(() => { });
-  }
+from '../../../models/propiedad';
+import {
+    ConfigService
+}
 
-  ngOnDestroy(){
-    //this.propiedadService.propiedadLoaded.unsubscribe();
-  }
+from '../../../providers/config.service';
+import {
+    HttpClient
+}
 
-  denunciar(){
-    this.denuncia.setIdProp(this.id);
-    this.denuncia.showForm.next();
-  }
+from '@angular/common/http';
+import {
+    AlertService
+}
 
-  goToPerfil(){
-    this.perfil.getProfile(this.propiedad[0]['propietario_id']);
-    this.perfil.profileGet.subscribe({
-      next: () => {
-        this.router.navigate(['/perfil/1']);
-      }
-    });
-  }
+from '../../../components/alert/alert.service';
+@Component( {
+    selector: 'app-prop-detail-page', templateUrl: './prop-detail-page.component.html', styleUrls: ['./prop-detail-page.component.css']
+}
 
+) export class PropDetailPageComponent implements OnInit {
+    id: number;
+    propiedad=new Propiedad();
+    contact: any= {}
+    ;
+    constructor( private activatedRoute: ActivatedRoute, private propiedadService: PropiedadesService, private router: Router, private denuncia: DenunciaService, private perfil: ProfileService, private mapsAPILoader: MapsAPILoader, private config: ConfigService, private http: HttpClient, private alert: AlertService) {}
+    ngOnInit() {
+        this.id=+this.activatedRoute.snapshot.paramMap.get('id');
+        this.propiedadService.getPropiedad(this.id);
+        this.propiedadService.propiedadLoaded .subscribe( {
+            next: (m)=> {
+                this.propiedad=m;
+                console.log(m);
+            }
+        }
+        );
+        this.mapsAPILoader.load() .then(()=> {}
+        );
+    }
+    ngOnDestroy() {
+        //this.propiedadService.propiedadLoaded.unsubscribe();
+    }
+    denunciar() {
+        this.denuncia.setIdProp(this.id);
+        this.denuncia.showForm.next();
+    }
+    goToPerfil() {
+        this.router.navigate(['/perfil', this.propiedad.propietario_id]);
+    }
+    sendContact() {
+        let data= {
+            name: this.contact.name, email: this.contact.email, body: this.contact.message, phone: this.contact.phone
+        }
+        ;
+        this.http.post(this.config.getAPIUrl()+`propiedad/$ {
+            this.propiedad.id
+        }
+        /contact`,
+        data,
+            {
+            observe: 'response'
+        }
+        ) .subscribe( r=> {
+            this.alert.showAlert.next( {
+                t: 's', m: 'Mensaje enviado exitosamente'
+            }
+            );
+        }
+        ,
+        error=> {
+            this.alert.showAlert.next( {
+                t: 'a', m: 'Ha ocurrido un error, intenta de nuevo'
+            }
+            );
+        }
+        );
+    }
 }

@@ -1,32 +1,21 @@
-<div [ngClass]="{'modal':true, 'fade':true, 'show':showM}" *ngIf="showM"
-  tabindex="-1" role="dialog">
+<div class="modal fade" [ngClass]="{'show': showM }" *ngIf="showM" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+      <div class="modal-header">
+        <h2 style="margin: 0; font-size: 1.5rem;">Quiero publicar</h2>
+        <button type="button" class="close" (click)="hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-      <div class="modal-body">
-        <button type="button" class="close" (click)="hide()"> <span aria-hidden="true">&times;</span> </button>
+      <div class="modal-body">       <app-signup-form-p></app-signup-form-p>
+      </div>
 
-        <ul class="nav nav-tabs navbar-dropdown">
-          <li class="nav-item">
-            <a class="nav-link active show" data-toggle="tab" href="#mb">Quiero buscar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#mp">Quiero publicar</a>
-          </li>
-        </ul>
-
-        <div class="tab-content">
-          <div id="mb" class="tab-pane fade in active show"> <app-signup-form-b></app-signup-form-b> </div>
-
-          <div id="mp" class="tab-pane fade"> <app-signup-form-p></app-signup-form-p> </div>
-        </div>
-
+      <div class="modal-footer ">
+        <span class="w-100"> Ya tengo cuenta,
+          <a (click)="goToIngresar()">ingresar</a>
+        </span>
+      </div>
 
     </div>
-
-    <div class="modal-footer ">
-      <span class="w-100"> Ya tengo cuenta, <a (click)="goToIngresar()">ingresar</a></span>
-    </div>
-
   </div>
-</div>

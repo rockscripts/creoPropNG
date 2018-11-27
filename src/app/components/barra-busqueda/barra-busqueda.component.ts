@@ -48,11 +48,12 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     private zonas: ZonasService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
+
     this.sub = this.activatedRoute.params.subscribe(params => {
-      this.loadSearchConfig()
+      this.loadSearchConfig(+this.propietario)
         .then(() => {
           this.is_modified = {};
           this.busqueda = new Busqueda();
@@ -95,7 +96,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
           }
 
           // Capital federal se trata como partido pero aparece como provincia
-          if(this.busqueda.ubicacion_provincia == this.ID_CAPITAL_FEDERAL) {
+          if (this.busqueda.ubicacion_provincia == this.ID_CAPITAL_FEDERAL) {
             this.busqueda.ubicacion_partido = this.busqueda.ubicacion_provincia;
             for (const ub of this.searchConfig.ubicaciones_provincias.Argentina) {
               if (ub.id === this.busqueda.ubicacion_provincia && ub.children) {
@@ -115,35 +116,36 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  loadSearchConfig() {
+  loadSearchConfig(propietario?: number) {
     return new Promise((resolve, reject) => {
       if (!this.searchConfig) {
-        this.propiedadesService.getSearchConfig().subscribe(
-          response => {
-            const data = response["data"];
-            this.searchConfig = {
-              tipoOperacion: data["tipoOperacion"],
-              tipoPropiedad: data["tipoPropiedad"],
-              cantidadBanios: data["cantidadBanios"],
-              ambientes: data["ambientes"],
-              cocheras: data["cocheras"],
-              dormitorios: data["dormitorios"],
-              tipoAmbiente: data["tipoAmbiente"],
-              servicios: data["servicios"],
-              generales: data["generales"],
-              tipoAnunciante: data["tipoAnunciante"],
-              ubicaciones_provincias: {
-                Argentina: data["ubicaciones"][0].children
-              },
-              ubicaciones_partidos: null,
-            };
+        this.propiedadesService.getSearchConfig(propietario)
+          .subscribe(
+            response => {
+              const data = response["data"];
+              this.searchConfig = {
+                tipoOperacion: data["tipoOperacion"],
+                tipoPropiedad: data["tipoPropiedad"],
+                cantidadBanios: data["cantidadBanios"],
+                ambientes: data["ambientes"],
+                cocheras: data["cocheras"],
+                dormitorios: data["dormitorios"],
+                tipoAmbiente: data["tipoAmbiente"],
+                servicios: data["servicios"],
+                generales: data["generales"],
+                tipoAnunciante: data["tipoAnunciante"],
+                ubicaciones_provincias: {
+                  Argentina: data["ubicaciones"][0].children
+                },
+                ubicaciones_partidos: null,
+              };
 
-            resolve();
-          },
-          err => {
-            reject(err);
-          }
-        );
+              resolve();
+            },
+            err => {
+              reject(err);
+            }
+          );
       } else {
         resolve();
       }
@@ -372,5 +374,6 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
       }
     }
     this.appliedFilters = filters;
+    // console.log(this.appliedFilters)
   }
 }

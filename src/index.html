@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
   <title>Creoprop</title>
@@ -8,26 +9,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script> 
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { 
-      window.location = 'https://m.creoprop.com.ar'; 
-      } else if (screen.width < 768) { 
-      window.location = 'https://m.creoprop.com.ar'; 
-      } 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script>
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      window.location = 'https://m.creoprop.com.ar';
+    } else if (screen.width < 768) {
+      window.location = 'https://m.creoprop.com.ar';
+    }
   </script>
 </head>
+
 <body>
-    
+
   <app-root>
     <style>
-      body {background-color: #ff999d;}
-      body, html {width: 100%;height: 100%;}
+      body {
+        background-color: #ff999d;
+      }
+
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+      }
 
       .lds-dual-ring {
         display: inline-block;
         width: 64px;
         height: 64px;
       }
+
       .lds-dual-ring:after {
         content: " ";
         display: block;
@@ -39,6 +50,7 @@
         border-color: #fff transparent #fff transparent;
         animation: lds-dual-ring 1.2s linear infinite;
       }
+
       @keyframes lds-dual-ring {
         0% {
           transform: rotate(0deg);
@@ -47,16 +59,16 @@
           transform: rotate(360deg);
         }
       }
-
     </style>
     <div style="width: 100%;height: 100%;justify-content: center;align-items: center;display: flex;">
       <div class="flex">
         <img alt="" src="assets/logo.svg" width="auto" height="50px">
         <div style="width: 100%;/*! padding: auto; */justify-content: center;align-items: center;display: flex;margin-top: 15px;">
-          <div class="lds-dual-ring " style="/*! display: flex; */"></div>
+          <div class="lds-dual-ring"></div>
         </div>
       </div>
     </div>
   </app-root>
 </body>
+
 </html>

@@ -7,7 +7,7 @@ import {
   Input
 } from "@angular/core";
 import { Router } from "@angular/router";
-import {} from "@types/googlemaps";
+import { } from "@types/googlemaps";
 import { MapsAPILoader } from "@agm/core";
 import { FormControl } from "@angular/forms"; //[Modificar] despues se usará este componente para todos los formularios?
 import { NgSelectModule } from "@ng-select/ng-select";
@@ -17,9 +17,12 @@ import { ZonasService } from "../../providers/zonas.service";
 import { PropiedadesService } from "../../providers/propiedades.service";
 import { UserService } from "../../providers/user.service";
 import { AlertService } from "../../components/alert/alert.service";
-import { ProfileService }          from './../../providers/profile.service';
+import { ConfigService } from '../../providers/config.service';
+import { HttpClient } from '@angular/common/http';
+import { ProfileService } from './../../providers/profile.service';
 import { SubscriptionService } from "../../providers/subscription.service";
-import { Subscripcion }                  from './../../models/subscripcion';
+import { Subscripcion } from './../../models/subscripcion';
+
 @Component({
   selector: "app-propiedad-form",
   templateUrl: "./propiedad-form.component.html",
@@ -30,11 +33,11 @@ export class PropiedadFormComponent implements OnInit {
   model: Propiedad = new Propiedad();
 
   ngOnChanges(model: Propiedad = new Propiedad()) {
-    if(this.model.files.length>0 && this.imgsloaded == false){
-    this.loadfiles();
-    this.imgsloaded = true;
+    if (this.model.files.length > 0 && this.imgsloaded == false) {
+      this.loadfiles();
+      this.imgsloaded = true;
     }
-  } 
+  }
   submitted = false;
   dataTarget = "";
 
@@ -60,9 +63,10 @@ export class PropiedadFormComponent implements OnInit {
 
   imgsloaded = false;
 
-  permitirDestaque :any = false;
+  permitirDestaque: any = false;
   public subscription = new Subscripcion();
-  profileResponse:any=null;
+  profileResponse: any = null;
+
 
   constructor(
     private zonasService: ZonasService,
@@ -73,75 +77,71 @@ export class PropiedadFormComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private profile: ProfileService,
-    private profileSubscription : SubscriptionService
+    private profileSubscription: SubscriptionService
   ) {
-    
+
   }
 
-  loadfiles(){
+  loadfiles() {
     this.model.files.forEach(file => {
-      fetch('/'+file.nombre)
+      fetch('/' + file.nombre)
         .then(res => res.blob())
         .then(blob => {
           let reader = new FileReader();
           reader.readAsDataURL(blob);
-        reader.onload = (e: any) => {
-          this.model.imgs.push({
-            filename: file.nombre,
-            filetype: file.tipo,
-            value: reader.result.split(",")[1],
-            url: e.target.result,
-            new: false
+          reader.onload = (e: any) => {
+            this.model.imgs.push({
+              filename: file.nombre,
+              filetype: file.tipo,
+              value: reader.result.split(",")[1],
+              url: e.target.result,
+              new: false
+            });
+          }
         });
-      }
-      });
-  });
-}
+    });
+  }
 
- 
+
 
   onFileChange(event) {
-      for (let file of event.target.files) {
+    for (let file of event.target.files) {
       let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e: any) => {
-        if(this.model.imgs.length < 20){
-        this.model.imgs.push({
-          filename: file.name,
-          filetype: file.type,
-          value: reader.result.split(",")[1],
-          url: e.target.result,
-          new: true
-        });
-      }
-      else
-      alert("No se puede subir más de 20 Imagenes por propiedad");
+        if (this.model.imgs.length < 20) {
+          this.model.imgs.push({
+            filename: file.name,
+            filetype: file.type,
+            value: reader.result.split(",")[1],
+            url: e.target.result,
+            new: true
+          });
+        }
+        else
+          alert("No se puede subir más de 20 Imagenes por propiedad");
       };
     }
   }
 
-  
+
 
   ngOnInit() {
-    this.profile.getProfile(this.user.getId()).subscribe((r) => 
-    {
-      if(!r || !r["data"])
-      {
+    this.profile.getProfile(this.user.getId()).subscribe((r) => {
+      if (!r || !r["data"]) {
         return;
       }
       this.profileResponse = r["data"];
-      try
-        {
-          this.subscription.max_avisos_disponibles    = this.profileResponse.subscripcion[0].subscripcion.max_avisos_disponibles; 
-          this.subscription.max_destaques_disponibles = this.profileResponse.subscripcion[0].subscripcion.max_destaques_disponibles;
-        }
-        catch(e)
-        {
+      try {
+        this.subscription.max_avisos_disponibles = this.profileResponse.subscripcion[0].subscripcion.max_avisos_disponibles;
+        this.subscription.max_destaques_disponibles = this.profileResponse.subscripcion[0].subscripcion.max_destaques_disponibles;
+      }
+      catch (e) {
 
-        }
+      }
     });
 
-   this.zonasService.getZonas().subscribe(r => {
+    this.zonasService.getZonas().subscribe(r => {
       this.zonas = r["data"][0].children; //Children zonas of Argentina
       this.zonasForSelect[1] = this.zonas;
     });
@@ -170,7 +170,7 @@ export class PropiedadFormComponent implements OnInit {
     this.searchControl = new FormControl();
 
     this.mapsAPILoader.load().then(() => {
-      
+
       let autocomplete = new google.maps.places.Autocomplete(
         this.searchElementRef.nativeElement,
         {
@@ -181,6 +181,7 @@ export class PropiedadFormComponent implements OnInit {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          console.log(place);
 
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
@@ -234,29 +235,35 @@ export class PropiedadFormComponent implements OnInit {
     this.cargando = true;
 
     //Edición de propiedad
-    if(this.model.id != -1){
+    if (this.model.id != -1) {
       this.prop.edit().subscribe(r => {
         this.cargando = false;
         this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
         this.router.navigate(["mi-cuenta"]);
-      });    
-    }
-    else{
-
-    if (this.user.permiso("new-prop")) {
-      if (!this.model.formValid()) {
-        this.cargando = false;
-        this.alert.show(this.model.errors);
-        return false;
-      }
-      this.prop.create().subscribe(r => {
-        this.cargando = false;
-        this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
-        if (this.model.id == -1) {
-          this.router.navigate(["/new-prop-ok"]);
-        }
       });
     }
+    else {
+
+      if (this.user.permiso("new-prop")) {
+        if (!this.model.formValid()) {
+          this.cargando = false;
+          this.alert.show(this.model.errors);
+          return false;
+        }
+        this.prop.create().subscribe(r => {
+          this.cargando = false;
+          if (!r['errors']) {
+            this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
+            if (this.model.id == -1) {
+              this.router.navigate(["/new-prop-ok"]);
+            }
+          } else {
+            this.alert.showAlert.next({ t: 'a', m: r['errors'] });
+          }
+
+        });
+      }
+    }
   }
-}
+
 }
