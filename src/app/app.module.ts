@@ -8,7 +8,7 @@ import { LOCALE_ID } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 import { NgbModalModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
+import { environment} from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -126,7 +126,7 @@ import { VerificationComponent } from './pages/verification/verification.compone
     HttpClientModule,
     AngularFontAwesomeModule,
     InfiniteScrollModule,
-    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBKx9GpEdjBOL7bxeTLPgwgRKwaylnTXp0', libraries: ["places"] }),
+    AgmCoreModule.forRoot({ apiKey: environment.googleApiKey, libraries: ["places"] }),
     FormsModule, ReactiveFormsModule,
     NgSelectModule,
     NgbModalModule,

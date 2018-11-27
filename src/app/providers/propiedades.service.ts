@@ -7,6 +7,7 @@ import { Propiedad } from '../models/propiedad';
 
 import { ConfigService } from './config.service';
 import { UserService } from './user.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -97,7 +98,7 @@ export class PropiedadesService {
       this.model.files = r['data'].files;
       this.model.files.push({
         nombre: 'googlemapimage',
-        url: `https://maps.googleapis.com/maps/api/staticmap?center=${this.model.latitud},${this.model.longitud}&markers=color:red%7Clabel:C%7C${this.model.latitud},${this.model.longitud}&zoom=12&size=600x400&key=AIzaSyBKx9GpEdjBOL7bxeTLPgwgRKwaylnTXp0`
+        url: `https://maps.googleapis.com/maps/api/staticmap?center=${this.model.latitud},${this.model.longitud}&markers=color:red%7Clabel:C%7C${this.model.latitud},${this.model.longitud}&zoom=12&size=600x400&key=${environment.googleApiKey}`
       });
       this.model.id = r['data'][0].id;
       this.model.cochera = r['data'][0].cochera;
@@ -121,7 +122,10 @@ export class PropiedadesService {
     });
   }
 
-  getSearchConfig() {
+  getSearchConfig(propietario?: number) {
+    if (propietario) {
+      this.busqueda.propietario_id = propietario;
+    }
     return this.http.post(this.config.getAPIUrl() + this.wsc, JSON.stringify(this.busqueda));
   }
 

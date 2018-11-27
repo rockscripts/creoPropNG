@@ -51,8 +51,9 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+
     this.sub = this.activatedRoute.params.subscribe(params => {
-      this.loadSearchConfig()
+      this.loadSearchConfig(+this.propietario)
         .then(() => {
           this.is_modified = {};
           this.busqueda = new Busqueda();
@@ -115,10 +116,12 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  loadSearchConfig() {
+  loadSearchConfig(propietario?: number) {
+    console.log(propietario);
     return new Promise((resolve, reject) => {
       if (!this.searchConfig) {
-        this.propiedadesService.getSearchConfig().subscribe(
+        this.propiedadesService.getSearchConfig(propietario)
+          .subscribe(
           response => {
             const data = response["data"];
             this.searchConfig = {

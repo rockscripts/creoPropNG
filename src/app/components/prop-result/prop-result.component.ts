@@ -7,6 +7,7 @@ import { Busqueda } from './../../models/busqueda';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { forkJoin } from 'rxjs';
 import { Pagination } from '../../models/pagination';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-prop-result',
@@ -193,7 +194,7 @@ export class PropResultComponent implements OnInit {
           prop.rowActive = false;
           prop.files.push({
             nombre: 'googlemapimage',
-            url: `https://maps.googleapis.com/maps/api/staticmap?center=${prop.latitud},${prop.longitud}&markers=color:red%7Clabel:C%7C${prop.latitud},${prop.longitud}&zoom=12&size=600x400&key=AIzaSyBKx9GpEdjBOL7bxeTLPgwgRKwaylnTXp0`
+            url: `https://maps.googleapis.com/maps/api/staticmap?center=${prop.latitud},${prop.longitud}&markers=color:red%7Clabel:C%7C${prop.latitud},${prop.longitud}&zoom=12&size=600x400&key=${environment.googleApiKey}`
           });
           return prop;
         });
