@@ -10,7 +10,7 @@
     <div class="box profile-info-container">
       <div class="box-header">
         <div class="profile-img">
-          <img [src]="profile.getImgRoute(true)" alt="">
+          <img [src]="baseRoute + profile.getImgRoute(true)" alt="">
         </div>
         <div class="profile-info">
           <h3 class="profile-info__title">{{ profile.getFullName(true) | uppercase }}</h3>
@@ -126,7 +126,7 @@
               <span class="profile-info__subtitle">LINKEDIN:</span>
               <a [href]="profile.linkedin" target="_blank" class="link-blue">Ver perfil</a>
             </p>
-            <p class="tab-description" *ngIf="profile.descripcion">{{ profile.descripcion }}</p>
+            <p class="tap-description" *ngIf="profile.descripcion">{{ profile.descripcion }}</p>
           </div>
         </ng-template>
 

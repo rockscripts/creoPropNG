@@ -1,7 +1,7 @@
 <div class="row" *ngIf="!listMode" [class.row-mg-0]="showInProfile">
   <div class="col-12" *ngIf="mode != 'userProp' && !showInProfile">
-    <div class="row align-items-center hh1 res-count">
-      <strong style="margin-right: 10px;">{{ cant_prop }}</strong> Propiedades en Argentina
+    <div class="row align-items-center hh1 res-count" *ngIf="pagination">
+      <strong style="margin-right: 10px;">{{ pagination.total }}</strong> Propiedades en Argentina
     </div>
   </div>
 
@@ -78,7 +78,7 @@
         </select>
       </div>
       <div class="col-4">
-        <span style="float: right;">Propiedades totales:
+        <span style="float: right;" *ngIf="pagination">Propiedades totales:
           <strong style="color: #000;">{{ pagination.total }}</strong>
         </span>
       </div>
@@ -103,9 +103,9 @@
 
           <!-- resto de la info -->
           <div class="card-img-overlay">
-            <img *ngIf="propiedad.tipo_user_id == 2" class="imb-img" [src]="propiedad.inmobiliaria.logo" [alt]="propiedad.inmobiliaria.nombre"
+            <img *ngIf="propiedad.tipo_user_id == 2" class="imb-img" [src]="baseRoute + propiedad.inmobiliaria.logo" [alt]="propiedad.inmobiliaria.nombre"
             />
-            <img *ngIf="propiedad.tipo_user_id != 2" class="imb-img" [src]="propiedad.profile_img" />
+            <img *ngIf="propiedad.tipo_user_id != 2" class="imb-img" [src]="baseRoute + propiedad.profile_img" />
           </div>
 
           <div class="card-body">
@@ -147,7 +147,7 @@
     <div class="row">
       <div class="col-12 col-md-9">
         <div class="row">
-          <div class="col-8">
+          <div class="col-6">
             <div class="table-panel">
               <div class="btn-group">
                 <button class="btn-icon-flat">
@@ -165,21 +165,25 @@
               </div>
 
               <ng-container *ngIf="hasRowSelecteds()">
-                <button class="btn-icon-flat">
-                  <i class="icon-button material-icons icon-checked" (click)="destacarAllSelecteds()">start</i>
+                <button class="btn-icon-flat" [hidden]="!(+activas)">
+                  <i title="Destacar" class="icon-button material-icons icon-checked" (click)="destacarAllSelecteds()">start</i>
                 </button>
                 <button class="btn-icon-flat">
-                  <i class="icon-button material-icons icon-checked" (click)="deleteAllSelecteds(activas)">delete</i>
+                  <i [title]="+activas ? 'Desactivar' : 'Eliminar'" class="icon-button material-icons icon-checked" (click)="deleteAllSelecteds(activas)">delete</i>
                 </button>
               </ng-container>
             </div>
           </div>
 
-          <div class="col-4">
+          <div class="col-6">
             <div class="paginator" *ngIf="pagination">
               <span class="page-counter">{{ pagination.range }} propiedades de {{ pagination.total }}</span>
-              <i class="icon-button material-icons" (click)="prevPage(true)" *ngIf="pagination.prev">arrow_back_ios</i>
-              <i class="icon-button material-icons" (click)="nextPage(true)" *ngIf="pagination.next">arrow_forward_ios</i>
+              <button class="btn-icon-flat" [disabled]="!pagination.prev" (click)="prevPage(true)">
+                <i class="icon-button material-icons">arrow_back_ios</i>
+              </button>
+              <button class="btn-icon-flat" [disabled]="!pagination.next" (click)="nextPage(true)">
+                <i class="icon-button material-icons">arrow_forward_ios</i>
+              </button>
             </div>
           </div>
 
@@ -215,11 +219,11 @@
         <tr *ngFor="let propiedad of propiedades; let idx = index;" [class.row-selected]="propiedad.isSelected" (mouseover)="propiedad.rowActive = true"
           (mouseout)="propiedad.rowActive = false">
           <td class="td-icon-button">
-            <i class="material-icons row-points" *ngIf="propiedad.rowActive"> drag_indicator </i>
+            <i class="material-icons row-points" [hidden]="!propiedad.rowActive"> drag_indicator </i>
             <i class="icon-button material-icons" [class.icon-checked]="propiedad.isSelected" (click)="propiedad.isSelected = !propiedad.isSelected">{{ !propiedad.isSelected ? 'check_box_outline_blank' : 'check_box' }}</i>
           </td>
           <td class="td-icon-button" *ngIf="+activas">
-            <i class="icon-button material-icons" [class.icon-checked]="propiedad.destacado" (click)="destacar(propiedad.id)">{{ !propiedad.destacado ? 'star_border' : 'star' }}</i>
+            <i title="Destacar" class="icon-button material-icons" [class.icon-checked]="propiedad.destacado" (click)="destacar(propiedad.id)">{{ !propiedad.destacado ? 'star_border' : 'star' }}</i>
           </td>
           <td>{{ propiedad.tipo_operacion_name }}</td>
           <td>{{ propiedad.tipo_prop_nombre }}</td>
@@ -232,11 +236,12 @@
           <td>{{ propiedad.superficie_total }}m2 Tot.</td>
           <td>{{ propiedad.moneda_simbolo + ' ' + propiedad.precio }}</td>
           <td>
-            <i class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="edit(propiedad.id)">edit</i>
+            <i title="Editar" class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="edit(propiedad.id)">edit</i>
           </td>
           <td>
             <span [hidden]="propiedad.rowActive">{{ propiedad.created_at | createdAt }}</span>
-            <i class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="delete(propiedad.id, activas)">delete</i>
+            <i [title]="+activas ? 'Desactivar' : 'Eliminar'" class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive"
+              (click)="delete(propiedad.id, activas)">delete</i>
           </td>
         </tr>
       </tbody>

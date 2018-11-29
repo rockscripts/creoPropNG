@@ -32,6 +32,7 @@ export class PropResultComponent implements OnInit {
   alertType: string = '';
   pagination: Pagination;
   mainCheckState: number = 2;
+  public baseRoute = environment.assetsRoute;
 
   constructor(
     private router: Router,
@@ -98,11 +99,11 @@ export class PropResultComponent implements OnInit {
 
     this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {
-        let request = this.propiedades.map(prop => {
-          if (prop.isSelected) {
+        let request = this.propiedades
+          .filter(prop => prop.isSelected)
+          .map(prop => {
             return this.propiedadesService.delete(+prop.id);
-          }
-        })
+          })
 
         forkJoin(request)
           .subscribe(res => {
@@ -134,11 +135,14 @@ export class PropResultComponent implements OnInit {
   }
 
   destacarAllSelecteds() {
-    let request = this.propiedades.map(prop => {
-      if (prop.isSelected) {
+    let request = this.propiedades
+      .filter(prop => prop.isSelected)
+      .map(prop => {
+        prop.destacado = prop.destacado ? 0 : 1;
         return this.propiedadesService.destacar(+prop.id);
-      }
-    })
+      });
+
+    console.log(request)
 
     forkJoin(request)
       .subscribe(res => {

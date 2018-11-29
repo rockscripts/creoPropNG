@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Perfil } from '../../models/perfil';
 import { ProfileService } from '../../providers/profile.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-public-profile',
@@ -13,6 +14,7 @@ import { ProfileService } from '../../providers/profile.service';
 export class PublicProfileComponent implements OnInit, OnDestroy {
   public profile: Perfil;
   public showProps: boolean = false;
+  public baseRoute = environment.assetsRoute;
   private _onDestroy = new Subject<void>();
 
   constructor(
@@ -34,12 +36,18 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
             delete profileData.inmobiliaria;
 
             this.profile = new Perfil(profileData, inmoData);
+            this.setMarginTapContainer();
           });
 
       });
   }
 
-  ngAfterViewInit(): void {
+  ngOnDestroy(): void {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+
+  private setMarginTapContainer(): void {
     setTimeout(() => {
       let profileContainerHeight: number = document.querySelector('.profile-info-container').clientHeight;
       let contactContainerHeight: number = document.querySelector('.contact-info-container').clientHeight;
@@ -51,12 +59,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
         let diff = contactContainerHeight - profileContainerHeight;
         tapsContainer.style.marginTop = `${diff <= 65 ? 20 : (diff - 70) + 20}px`;
       }
-    }, 300);
-  }
-
-  ngOnDestroy(): void {
-    this._onDestroy.next();
-    this._onDestroy.complete();
+    }, 200);
   }
 
 }

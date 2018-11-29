@@ -35,7 +35,7 @@ export class User {
         valid: false,
         msg: 'Ingrese su email'
       }
-    } else if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(this.email)) {
+    } else if (!/^[a-zA-Z](\w|\.)+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(this.email)) {
       return {
         valid: false,
         msg: 'Ingrese un email válido'

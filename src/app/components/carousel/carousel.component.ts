@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { NgbCarouselConfig, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { NgbSlideEvent } from '@ng-bootstrap/ng-bootstrap/carousel/carousel';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-carousel',
@@ -11,6 +12,7 @@ export class CarouselComponent {
   @ViewChild('carousel') carousel: NgbCarousel;
   @Input() files: any[] = [];
   public current: number = 1;
+  public baseRoute = environment.assetsRoute;
 
   constructor(config: NgbCarouselConfig) {
     config.interval = 0;

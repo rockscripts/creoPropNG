@@ -5,6 +5,8 @@
 .bg-color {
     background-color: #F3F3F3;
     padding: 30px 60px;
+    height: calc(100vh - 60px);
+    align-content: flex-start;
 }
 
 .link-blue {
@@ -162,8 +164,9 @@
     color: #7F7D7E;
 }
 
-.tab-description {
+.tap-description {
     color: #717171;
+    font-weight: normal;
 }
 
 .box-right,

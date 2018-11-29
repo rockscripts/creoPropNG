@@ -228,7 +228,7 @@
           <input id="img-input" type="file" (change)="onFileChange($event)" #file multiple class="foto-input hidden">
         </div>
         <div class="col-3 col-files" *ngFor="let img of model.imgs; let i = index">
-          <img src="{{img.url}}">
+          <img [src]="img.url">
         </div>
       </div>
 

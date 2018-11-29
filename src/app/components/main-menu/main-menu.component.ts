@@ -6,6 +6,7 @@ import { RegisterModalService } from '../../components/register-modal/register-m
 import { LoginModalService } from '../../components/login-modal/login-modal.service';
 import { ProfileService } from './../../providers/profile.service';
 import { Perfil } from './../../models/perfil';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-main-menu',
@@ -13,7 +14,7 @@ import { Perfil } from './../../models/perfil';
   styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent implements OnInit {
-
+  public baseRoute = environment.assetsRoute;
   perfil = new Perfil();
 
   constructor(

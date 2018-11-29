@@ -6,6 +6,7 @@ import { RegisterModalService } from '../../components/register-modal/register-m
 import { UserService } from '../../providers/user.service';
 import { User } from '../../models/user';
 import { Inmobiliaria } from '../../models/inmobiliaria';
+import { AlertService } from '../../components/alert/alert.service';
 
 @Component({
   selector: 'app-signup-form-p',
@@ -23,7 +24,8 @@ export class SignupFormPComponent implements OnInit {
   constructor(
     private router: Router,
     private US: UserService,
-    private modal: RegisterModalService
+    private modal: RegisterModalService,
+    private alert: AlertService
   ) { }
 
   ngOnInit() {
@@ -49,7 +51,7 @@ export class SignupFormPComponent implements OnInit {
     let formValid = this.model.formValid();
 
     if (!formValid.valid) {
-      alert('Hay errores en formulario: \n Por favor ' + formValid.msg)
+      this.alert.show('Hay errores en formulario: <br><br> Por favor ' + formValid.msg);
       return;
     }
 

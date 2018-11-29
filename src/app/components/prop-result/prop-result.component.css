@@ -235,6 +235,16 @@
     color: #7b7b7b;
 }
 
+.btn-icon-flat:disabled,
+.btn-icon-flat:disabled .icon-button {
+    cursor: not-allowed !important;
+}
+
+button.btn-icon-flat:disabled .icon-button::before {
+    background: transparent;
+    cursor: not-allowed;
+}
+
 .icon-button::before {
     content: " ";
     position: absolute;
@@ -360,10 +370,10 @@
 }
 
 .row-mg-0 {
-  margin: 0;
+    margin: 0;
 }
 
 .cp-card.card-margin {
-  padding: 0 5px;
-  margin: 5px 0;
+    padding: 0 5px;
+    margin: 5px 0;
 }

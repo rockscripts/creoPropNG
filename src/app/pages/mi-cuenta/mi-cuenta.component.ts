@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
 import { Busqueda } from './../../models/busqueda';
-
 import { UserService } from './../../providers/user.service';
 import { ProfileService } from './../../providers/profile.service';
 import { Perfil } from './../../models/perfil';
 import { PropiedadesService } from '../../providers/propiedades.service';
 import { User } from '../../models/user';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-mi-cuenta',
@@ -20,8 +19,8 @@ export class MiCuentaComponent implements OnInit {
   perfil = new Perfil();
   pActivas: number = 0;
   pInactivas: number = 0;
-
   nameState: boolean = false;
+  public baseRoute = environment.assetsRoute;
 
   constructor(
     private user: UserService,
