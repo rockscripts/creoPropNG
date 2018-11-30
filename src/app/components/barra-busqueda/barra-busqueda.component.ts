@@ -51,7 +51,6 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.loadSearchConfig(+this.propietario)
         .then(() => {
@@ -135,7 +134,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
                 generales: data["generales"],
                 tipoAnunciante: data["tipoAnunciante"],
                 ubicaciones_provincias: {
-                  Argentina: data["ubicaciones"][0].children
+                  Argentina: data["ubicaciones"].length ? data["ubicaciones"][0].children : []
                 },
                 ubicaciones_partidos: null,
               };

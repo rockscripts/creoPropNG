@@ -4,6 +4,10 @@
     font-weight: bold !important;
 }
 
+.z-index-30 {
+    z-index: 30 !important;
+}
+
 .nav-link {
     font-family: 'Roboto-Bold';
     margin-left: 35px;
@@ -93,6 +97,6 @@ nav form {
 }
 
 .user-profile-image img {
-    max-height: 45px;
-    max-width: 200px;
+    max-height: 50px;
+    max-width: 90px;
 }

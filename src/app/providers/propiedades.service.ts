@@ -127,6 +127,10 @@ export class PropiedadesService {
   getSearchConfig(propietario?: number) {
     if (propietario) {
       this.busqueda.propietario_id = propietario;
+    } else {
+      if (this.busqueda.hasOwnProperty('propietario_id')) {
+        delete this.busqueda.propietario_id;
+      }
     }
     return this.http.post(this.config.getAPIUrl() + this.wsc, JSON.stringify(this.busqueda));
   }
