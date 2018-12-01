@@ -31,19 +31,20 @@
 }
 
 .profile-info-container {
-    width: calc(100% - 450px);
+    width: calc(100% - 410px);
 }
 
 .profile-img {
-    width: 35%;
     display: flex;
     flex-flow: row;
     align-items: center;
+    width: 390px;
+    height: 200px;
 }
 
 .profile-img img {
-    max-width: 300px;
-    max-height: 180px;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .profile-info {
@@ -73,7 +74,7 @@
 }
 
 .contact-info-container {
-    width: 410px;
+    width: 380px;
     position: absolute;
     top: 0;
     right: 15px;
@@ -81,7 +82,7 @@
 
 .contact-info {
     width: 100%;
-    padding: 25px;
+    padding: 25px 12px;
 }
 
 .contact-info h3 {
@@ -92,16 +93,16 @@
 }
 
 .btn-contact {
-    background-color: #F05E4F;
-    margin: 10px 0;
-    width: 100%;
-    color: #FFF;
-    border-bottom: solid 3px #ca5347;
+    background-color: #f05e4f;
+    width: 90%;
+    margin: 10px auto;
+    color: #fff;
+    border-bottom: 3px solid #ca5347;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 700;
     padding: 10px 0 10px 40px;
 }
 
@@ -128,7 +129,7 @@
 }
 
 .box-taps {
-    width: calc(100% - 450px);
+    width: calc(100% - 410px);
     background-color: #FFF;
     display: flex;
     flex-flow: row wrap;

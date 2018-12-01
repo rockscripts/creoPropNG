@@ -90,6 +90,11 @@ nav form {
 
 .user-profile-image {
     padding: 0;
+    height: 50px;
+    width: 90px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 }
 
 .user-profile-image::after {
@@ -97,6 +102,6 @@ nav form {
 }
 
 .user-profile-image img {
-    max-height: 50px;
-    max-width: 90px;
+    max-height: 100%;
+    max-width: 100%;
 }
