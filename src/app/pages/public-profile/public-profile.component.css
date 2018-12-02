@@ -5,7 +5,7 @@
 .bg-color {
     background-color: #F3F3F3;
     padding: 30px 60px;
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
     align-content: flex-start;
 }
 
@@ -38,6 +38,7 @@
     display: flex;
     flex-flow: row;
     align-items: center;
+    justify-content: center;
     width: 390px;
     height: 200px;
 }

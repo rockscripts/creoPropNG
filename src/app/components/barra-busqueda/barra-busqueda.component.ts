@@ -1,10 +1,9 @@
 import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { PropiedadesService } from "./../../providers/propiedades.service";
 import { ZonasService } from "../../providers/zonas.service";
 import { Busqueda } from "./../../models/busqueda";
-import { Observable, Subject } from "rxjs";
+import { AppliedFiltersService } from "../../providers/applied-filters.service";
 
 @Component({
   selector: "app-barra-busqueda",
@@ -19,9 +18,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   @Input()
   propietario: any;
 
-
   public searchConfig: any;
-
   public busqueda: Busqueda;
   public is_modified = {};
 
@@ -47,7 +44,8 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     private propiedadesService: PropiedadesService,
     private zonas: ZonasService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private filtersService: AppliedFiltersService
   ) { }
 
   ngOnInit() {
@@ -373,6 +371,6 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
       }
     }
     this.appliedFilters = filters;
-    // console.log(this.appliedFilters)
+    this.filtersService.sendFilters(filters);
   }
 }

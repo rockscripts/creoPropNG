@@ -98,7 +98,7 @@ body {
 }
 
 .hh1 {
-    height: 50px;
+    min-height: 50px;
 }
 
 .ftit {

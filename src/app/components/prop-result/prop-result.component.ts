@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PropiedadesService } from './../../providers/propiedades.service';
@@ -8,6 +8,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { forkJoin } from 'rxjs';
 import { Pagination } from '../../models/pagination';
 import { environment } from '../../../environments/environment';
+import { AppliedFiltersService } from '../../providers/applied-filters.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-prop-result',
@@ -22,6 +25,7 @@ export class PropResultComponent implements OnInit {
   @Input() pInactivas: number;
   @Input() listMode: boolean = false;
   @Input() showInProfile: boolean = false;
+  @Input() AppliedFilters: any[] = [];
 
   activas: number = 1;
   busqueda: Busqueda;
@@ -33,13 +37,17 @@ export class PropResultComponent implements OnInit {
   pagination: Pagination;
   mainCheckState: number = 2;
   public baseRoute = environment.assetsRoute;
+  public searchResultText: string;
+
+  private _onDestroy = new Subject<void>();
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private propiedadesService: PropiedadesService,
     private gralInfoService: GralInfoService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private filterService: AppliedFiltersService
   ) { }
 
   ngOnInit() {
@@ -64,9 +72,112 @@ export class PropResultComponent implements OnInit {
         r = r['data'];
         this.cant_prop = r['cantPropiedades'];
       });
+
+    this.filterService.onAppliedFilters
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe((filters: any[]) => {
+        if (filters.length) {
+          let text = '';
+
+          let propietyType = filters.find(filter => filter.key === "tipoPropiedad");
+          text += propietyType ? propietyType.label : 'Propiedades';
+
+          let ambientes = filters.find(filter => filter.key === "ambientes");
+          text += ambientes ? ` con ${ambientes.value} ambientes` : '';
+
+          let dormitorios = filters.find(filter => filter.key === "dormitorios");
+          text += dormitorios ? ` con ${dormitorios.value} dormitorios` : '';
+
+          let sanitarios = filters.find(filter => filter.key === "cantidadBanios");
+          text += sanitarios ? ` con ${sanitarios.value} baños` : '';
+
+          let cocheras = filters.find(filter => filter.key === "cocheras");
+          text += cocheras ? ` con ${cocheras.value} cocheras` : '';
+
+          let tipoAmbientes = filters.filter(filter => filter.key === "tipoAmbiente");
+
+          if (tipoAmbientes.length) {
+            text += ' con ' + tipoAmbientes[0].label;
+
+            if (tipoAmbientes.length > 1) {
+              tipoAmbientes.slice(1).forEach(ambiente => {
+                text += ' y ' + ambiente.label;
+              });
+            }
+          }
+
+          let servicios = filters.filter(filter => filter.key === "servicios");
+
+          if (servicios.length) {
+            text += ' con ' + servicios[0].label;
+
+            if (servicios.length > 1) {
+              servicios.slice(1).forEach(servicio => {
+                text += ' y ' + servicio.label;
+              });
+            }
+          }
+
+          let generales = filters.filter(filter => filter.key === "generales");
+
+          if (generales.length) {
+            text += ' con ' + generales[0].label;
+
+            if (generales.length > 1) {
+              generales.slice(1).forEach(general => {
+                text += ' y ' + general.label;
+              });
+            }
+          }
+
+          let superficie = filters.find(filter => filter.key === "superficie");
+          text += superficie ? ` de ${Number(superficie.value.split('-')[0]).toLocaleString('es-ES')} a ${Number(superficie.value.split('-')[1]).toLocaleString('es-ES')}  m²` : '';
+
+          let precio = filters.find(filter => filter.key === "precio");
+          text += precio ? ` de $${Number(precio.value.split('-')[0]).toLocaleString('es-ES')} a $${Number(precio.value.split('-')[1]).toLocaleString('es-ES')}` : '';
+
+          let expensas = filters.find(filter => filter.key === "expensas");
+          text += expensas ? ` con expensas de $${Number(expensas.value.split('-')[0]).toLocaleString('es-ES')} a $${Number(expensas.value.split('-')[1]).toLocaleString('es-ES')}` : '';
+
+          let operationType = filters.find(filter => filter.key === "tipoOperacion");
+          text += operationType ? ' en ' + operationType.label : '';
+
+          let provincia = filters.find(filter => filter.key === "ubicacion_provincia");
+          let city = filters.find(filter => filter.key === "ubicacion_partido");
+          let location = filters.filter(filter => filter.key === "ubicacion");
+
+          if (location.length) {
+            text += ' en ' + location[0].label;
+
+            if (location.length > 1) {
+              location.slice(1).forEach(dir => {
+                text += ' o ' + dir.label;
+              });
+            }
+          } else if (city) {
+            text += ' en ' + city.label;
+          } else if (provincia) {
+            text += ' en ' + provincia.label;
+          } else {
+            text += ' en Argentina';
+          }
+
+          let anunciante = filters.find(filter => filter.key === "tipoAnunciante");
+          anunciante ? text += ' , ' + anunciante.label : '';
+
+          this.searchResultText = text;
+        } else {
+          this.searchResultText = null;
+        }
+      });
   }
 
-  // ngOnDestroy() {}
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
 
   edit(id) {
     this.router.navigate(['/propiedad/edit/' + id]);
@@ -165,16 +276,26 @@ export class PropResultComponent implements OnInit {
     this.pedirBusqueda(reset, null, this.pagination.prev);
   }
 
-  pedirBusqueda(reset: boolean = false, orderBy?: string, page?: number) {
+  filterByTypeOperatioon(id: number): void {
+    this.pedirBusqueda(true, "destacados", 0, (+id) === -1 ? null : id);
+  }
+
+  pedirBusqueda(reset: boolean = false, orderBy?: string, page?: number, typeOperation?: number) {
     if (reset) {
-      delete this.busqueda.page;
+      this.busqueda.page = 0;
+      this.busqueda.tipoOperacion = 0;
+      this.busqueda.orderBy = "destacados";
     }
 
-    this.busqueda.orderBy = orderBy ? orderBy : this.busqueda.orderBy ? this.busqueda.orderBy : '';
+    this.busqueda.orderBy = orderBy ? orderBy : this.busqueda.orderBy ? this.busqueda.orderBy : "destacados";
     this.propiedadesService.busqueda = this.busqueda;
 
     if (page) {
       this.busqueda.page = page;
+    }
+
+    if (typeOperation) {
+      this.busqueda.tipoOperacion = typeOperation;
     }
 
     this.propiedadesService.getSearch()

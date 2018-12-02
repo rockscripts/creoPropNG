@@ -104,6 +104,7 @@ a.active {
     display: inline-flex;
     flex-flow: row wrap;
     align-items: center;
+    justify-content: center;
     width: 390px;
     height: 200px;
 }

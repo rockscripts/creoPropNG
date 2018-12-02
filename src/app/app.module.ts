@@ -77,6 +77,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { CreatedAtPipe } from './components/prop-result/created-at.pipe';
 import { VerificationComponent } from './pages/verification/verification.component';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { AppliedFiltersService } from './providers/applied-filters.service';
 
 @NgModule({
   declarations: [
@@ -150,7 +151,8 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
     LoginModalService,
     ProfileService,
     MercadoPagoService,
-    SubscriptionService
+    SubscriptionService,
+    AppliedFiltersService
   ],
   bootstrap: [
     AppComponent
