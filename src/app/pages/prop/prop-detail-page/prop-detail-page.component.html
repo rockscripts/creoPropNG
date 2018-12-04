@@ -36,7 +36,7 @@
           <div id="imgs-det" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item" *ngFor="let v of propiedad.files let i = index" [ngClass]="{'active' : i == 0}">
-                <img class="card-img-bottom img-map" [src]="v['nombre'] != 'googlemapimage' ? baseRoute + v['nombre'] : v['url']" [alt]="v.titulo">
+                <img class="card-img-bottom img-map" [src]="v['nombre'] != 'googlemapimage' ? v['nombre'] : v['url']" [alt]="v.titulo">
               </div>
             </div>
 
@@ -266,12 +266,11 @@
             <div class="row">
               <div class="col-auto img-profile-container">
                 <ng-container *ngIf="propiedad.user.tipo_user_id == 2">
-                  <img class="c-pointer" *ngIf="propiedad.inmobiliaria && propiedad.inmobiliaria.logo" [src]="baseRoute + propiedad.inmobiliaria.logo"
+                  <img class="c-pointer" *ngIf="propiedad.inmobiliaria && propiedad.inmobiliaria.logo" [src]="propiedad.inmobiliaria.logo"
                     (click)="goToPerfil()">
                 </ng-container>
                 <ng-container *ngIf="propiedad.user.tipo_user_id != 2">
-                  <img class="c-pointer" *ngIf="propiedad.user && propiedad.user.profile_img" [src]="baseRoute + propiedad.user.profile_img"
-                    (click)="goToPerfil()">
+                  <img class="c-pointer" *ngIf="propiedad.user && propiedad.user.profile_img" [src]="propiedad.user.profile_img" (click)="goToPerfil()">
                 </ng-container>
               </div>
               <div class="col contact-info-container" *ngIf="propiedad.user">

@@ -214,3 +214,21 @@ a.active {
 .estado-cuenta {
     display: none;
 }
+
+.buttons-container {
+    margin-bottom: 30px;
+}
+
+.verified-label {
+    margin-top: 15px;
+    color: #28a745;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    flex-flow: row;
+}
+
+.verified-label i {
+    margin-top: -4px;
+    margin-left: 5px;
+}

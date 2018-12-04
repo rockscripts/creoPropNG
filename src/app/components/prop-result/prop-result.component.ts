@@ -36,7 +36,7 @@ export class PropResultComponent implements OnInit {
   alertType: string = '';
   pagination: Pagination;
   mainCheckState: number = 2;
-  public baseRoute = environment.assetsRoute;
+
   public searchResultText: string;
 
   private _onDestroy = new Subject<void>();
@@ -285,6 +285,7 @@ export class PropResultComponent implements OnInit {
       this.busqueda.page = 0;
       this.busqueda.tipoOperacion = 0;
       this.busqueda.orderBy = "destacados";
+      this.propiedades = [];
     }
 
     this.busqueda.orderBy = orderBy ? orderBy : this.busqueda.orderBy ? this.busqueda.orderBy : "destacados";
@@ -300,28 +301,32 @@ export class PropResultComponent implements OnInit {
 
     this.propiedadesService.getSearch()
       .subscribe(r => {
-        let res = r['data'];
+        let data = r['data'].map(prop => {
+          prop.files.push({
+            nombre: 'googlemapimage',
+            url: `https://maps.googleapis.com/maps/api/staticmap?center=${prop.latitud},${prop.longitud}&markers=color:red%7Clabel:C%7C${prop.latitud},${prop.longitud}&zoom=12&size=600x400&key=${environment.googleApiKey}`
+          });
+
+          return prop;
+        });
+
         this.pagination = r['pagination'];
 
-        if (!res.length && !Object.keys(this.busqueda).includes('page')) {
+        if (!data.length && !Object.keys(this.busqueda).includes('page')) {
           this.propiedades = [];
           return;
         }
 
         if (this.busqueda.page > 1) {
-          this.propiedades = this.propiedades.concat(res);
+          this.propiedades = this.propiedades.concat(data);
         } else {
-          this.propiedades = res;
+          this.propiedades = data;
         }
 
         this.propiedades = this.propiedades.map(prop => {
           prop.isSelected = false;
           prop.destacado = +prop.destacado;
           prop.rowActive = false;
-          prop.files.push({
-            nombre: 'googlemapimage',
-            url: `https://maps.googleapis.com/maps/api/staticmap?center=${prop.latitud},${prop.longitud}&markers=color:red%7Clabel:C%7C${prop.latitud},${prop.longitud}&zoom=12&size=600x400&key=${environment.googleApiKey}`
-          });
           return prop;
         });
       });

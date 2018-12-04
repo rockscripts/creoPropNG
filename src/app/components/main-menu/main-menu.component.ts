@@ -14,7 +14,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent implements OnInit {
-  public baseRoute = environment.assetsRoute;
+
   perfil = new Perfil();
   selectPlan: boolean = false;
 

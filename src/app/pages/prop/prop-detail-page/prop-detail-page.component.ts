@@ -21,7 +21,7 @@ export class PropDetailPageComponent implements OnInit {
   id: number;
   propiedad = new Propiedad();
   contact: any = {};
-  public baseRoute = environment.assetsRoute;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,

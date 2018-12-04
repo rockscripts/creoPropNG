@@ -84,7 +84,7 @@ export class PropiedadFormComponent implements OnInit {
 
   loadfiles() {
     this.model.files.forEach(file => {
-      fetch('/' + file.nombre)
+      fetch(file.nombre)
         .then(res => res.blob())
         .then(blob => {
           let reader = new FileReader();

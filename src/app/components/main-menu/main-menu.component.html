@@ -42,7 +42,7 @@
           </a>
           <a *ngIf="perfil.getImgRoute()" class="nav-link dropdown-toggle user-profile-image" href="#" id="navbarDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img [src]="baseRoute + perfil.getImgRoute()" alt="">
+            <img [src]="perfil.getImgRoute()" alt="">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/mi-cuenta">MI CUENTA</a>

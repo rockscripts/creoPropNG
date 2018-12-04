@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute }    from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { Propiedad }          from '../../../models/propiedad';
+import { Propiedad } from '../../../models/propiedad';
 import { PropiedadesService } from '../../../providers/propiedades.service';
 
 @Component({
@@ -10,23 +10,26 @@ import { PropiedadesService } from '../../../providers/propiedades.service';
 })
 export class EditarPropComponent implements OnInit {
 
-  model:Propiedad = new Propiedad();
-  id:number       = -1;
+  model: Propiedad = new Propiedad();
+  id: number = -1;
 
   constructor(
-  	private propiedades:    PropiedadesService,
-  	private activatedRoute: ActivatedRoute
+    private propiedades: PropiedadesService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-  	this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-  	this.propiedades.getPropiedad(this.id);
-    this.propiedades.propiedadLoaded.subscribe({  
-      next: (m) => { this.model = m; } 
-    });
+    this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.propiedades.getPropiedad(this.id);
+    this.propiedades.propiedadLoaded
+      .subscribe({
+        next: (propiedad) => {
+          propiedad.files = propiedad.files.filter(img => img.nombre !== 'googlemapimage');
+          this.model = propiedad;
+        }
+      });
   }
 
-  ngOnDestroy(){
-  }
+  ngOnDestroy() { }
 
 }

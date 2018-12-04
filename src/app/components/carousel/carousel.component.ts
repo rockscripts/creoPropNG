@@ -12,13 +12,14 @@ export class CarouselComponent {
   @ViewChild('carousel') carousel: NgbCarousel;
   @Input() files: any[] = [];
   public current: number = 1;
-  public baseRoute = environment.assetsRoute;
+
 
   constructor(config: NgbCarouselConfig) {
     config.interval = 0;
     config.wrap = true;
     config.keyboard = false;
     config.pauseOnHover = false;
+    config.showNavigationIndicators = false;
   }
 
   getCurrentSlide(e: NgbSlideEvent) {

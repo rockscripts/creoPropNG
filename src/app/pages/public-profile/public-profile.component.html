@@ -10,7 +10,7 @@
     <div class="box profile-info-container">
       <div class="box-header">
         <div class="profile-img">
-          <img [src]="baseRoute + profile.getImgRoute(true)" alt="">
+          <img [src]="profile.getImgRoute(true)" alt="">
         </div>
         <div class="profile-info">
           <h3 class="profile-info__title">{{ profile.getFullName(true) | uppercase }}</h3>

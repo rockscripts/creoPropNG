@@ -14,7 +14,7 @@ import { environment } from '../../../environments/environment';
 export class PublicProfileComponent implements OnInit, OnDestroy {
   public profile: Perfil;
   public showProps: boolean = true;
-  public baseRoute = environment.assetsRoute;
+
   private _onDestroy = new Subject<void>();
 
   constructor(

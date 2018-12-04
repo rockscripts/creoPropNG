@@ -42,6 +42,7 @@ export class Perfil {
   membresia: string = '';
   tipo_user_id: number;
   tipo_user_name: string;
+  verified: number;
 
 
   constructor(profileData?, inmoData?: Inmobiliaria) {
