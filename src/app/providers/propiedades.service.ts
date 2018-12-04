@@ -132,7 +132,8 @@ export class PropiedadesService {
     }
 
     this.busqueda.fromRouteParams(params);
-    return this.http.post(this.config.getAPIUrl() + this.wsc, JSON.stringify(this.busqueda));
+
+    return this.http.post(this.config.getAPIUrl() + this.wsc, this.busqueda.toReqParams());
   }
 
   create() {
