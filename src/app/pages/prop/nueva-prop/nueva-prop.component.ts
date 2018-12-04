@@ -45,7 +45,7 @@ export class NuevaPropComponent implements OnInit {
               this.subscription.total_properties_published = this.profileResponse.subscripcion[0].subscripcion.total_properties_published;
               
               console.log(this.subscription.total_properties_published +" - >= - "+this.subscription.max_avisos);
-              if(this.subscription.total_properties_published >= this.subscription.max_avisos)
+              if(parseInt(this.subscription.total_properties_published) >= parseInt(this.subscription.max_avisos))
               { 
                 swal({ 
                   title: 'Estas Avanzando!',
