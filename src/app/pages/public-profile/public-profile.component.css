@@ -214,6 +214,29 @@
         width: 270px;
         height: 140px;
     }
+    .contact-info h3 {
+        font-size: 1.2rem;
+    }
+    .btn-contact {
+        font-size: .9rem;
+    }
+    .btn-contact img {
+        width: 28px;
+    }
+    .profile-info__title {
+        font-size: 1.6rem;
+    }
 }
 
-@media (min-height: 768px) and (max-height: 1099px) {}
+@media only screen and (min-width: 768px) and (max-width: 1099px) {
+    .contact-info-container {
+        margin: 20px auto;
+        position: relative;
+    }
+    .profile-info-container {
+        width: 100%;
+    }
+    .box-taps {
+        width: 100%;
+    }
+}
