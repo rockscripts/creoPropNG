@@ -4,7 +4,7 @@
       <div class="left-controls">
         <div class="user-info-container">
           <div class="img-profile-container">
-            <img [src]="baseRoute + perfil.getImgRoute()" alt="profile" class="user-logo">
+            <img [src]="perfil.getImgRoute()" alt="profile" class="user-logo">
 
             <input #loadImg type="file" name="profile-img" accept="image/*" (change)="saveProfileImg($event.target.files)" hidden>
 
@@ -39,12 +39,20 @@
                 <input type="text" class="form-control name-edit" [(ngModel)]="perfil.inmobiliaria.nombre" name="inmoNombre">
               </ng-template>
 
-              <button class="btn btn-primary" style="margin-top: 5px;" (click)="edit('name')">GUARDAR</button>
-              <button class="btn btn-outline-danger" style="margin-top: 5px; margin-left: 15px;" (click)="nameState = !nameState">CANCELAR</button>
+              <div class="buttons-container">
+                <button class="btn btn-primary" style="margin-top: 5px;" (click)="edit('name')">GUARDAR</button>
+                <button class="btn btn-outline-danger" style="margin-top: 5px; margin-left: 15px;" (click)="nameState = !nameState">CANCELAR</button>
+              </div>
             </ng-container>
 
             <p>{{ perfil.tipoUsuario | titlecase }}</p>
             <p>{{ perfil.membresia | uppercase }}</p>
+
+            <button class="btn btn-success" style="margin-top: 15px;" (click)="verifyAccount()" *ngIf="perfil.verified < 1">Verificar mi cuenta</button>
+            <div class="verified-label" *ngIf="perfil.verified">
+              <span>Verificado</span>
+              <i class="material-icons">check_circle</i>
+            </div>
           </div>
         </div>
 
@@ -53,12 +61,6 @@
             <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#mispropiedades">MIS PROPIEDADES</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#visitas">VISITAS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#estadocuenta">ESTADO DE MI CUENTA</a>
-            </li> -->
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#pagos">VIP</a>
             </li>

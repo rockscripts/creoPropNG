@@ -84,7 +84,7 @@ export class PropiedadFormComponent implements OnInit {
 
   loadfiles() {
     this.model.files.forEach(file => {
-      fetch('/' + file.nombre)
+      fetch(file.nombre)
         .then(res => res.blob())
         .then(blob => {
           let reader = new FileReader();
@@ -249,7 +249,21 @@ export class PropiedadFormComponent implements OnInit {
           this.cargando = false;
           this.alert.show(this.model.errors);
           return false;
+
         }
+
+        if (!this.selectedZonasByLevel[1]) {
+          this.cargando = false;
+          this.alert.show("Por favor seleccione una provincia");
+          return false;
+        }
+
+        if (!this.selectedZonasByLevel[2]) {
+          this.cargando = false;
+          this.alert.show("Por favor seleccione una ciudad");
+          return false;
+        }
+
         this.prop.create().subscribe(r => {
           this.cargando = false;
           if (!r['errors']) {

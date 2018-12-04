@@ -1,7 +1,8 @@
 <div class="row" *ngIf="!listMode" [class.row-mg-0]="showInProfile">
   <div class="col-12" *ngIf="mode != 'userProp' && !showInProfile">
     <div class="row align-items-center hh1 res-count" *ngIf="pagination">
-      <strong style="margin-right: 10px;">{{ pagination.total }}</strong> Propiedades en Argentina
+      <p style="margin: 10px 0;">
+        <strong style="margin-right: 10px;">{{ pagination.total }}</strong> {{ searchResultText || 'Propiedades en Argentina' }}</p>
     </div>
   </div>
 
@@ -69,12 +70,12 @@
       </div>
       <div class="col-3 arrow-down-container">
         <div class="arrow-down material-icons">expand_more</div>
-        <select name="profile-orderby" class="form-control">
-          <option class="dropdown-item" value="destacados">Todas</option>
-          <option class="dropdown-item" value="lowPrice">En venta</option>
-          <option class="dropdown-item" value="bigM2">En alquiler</option>
-          <option class="dropdown-item" value="bigM2">Venta comercial</option>
-          <option class="dropdown-item" value="bigM2">Alquiler comercial</option>
+        <select name="profile-orderby" class="form-control" (change)="filterByTypeOperatioon($event.target.value)">
+          <option class="dropdown-item" value="-1">Todas</option>
+          <option class="dropdown-item" value="0">En venta</option>
+          <option class="dropdown-item" value="1">En alquiler</option>
+          <option class="dropdown-item" value="2">Alquiler comercial</option>
+          <option class="dropdown-item" value="3">Venta comercial</option>
         </select>
       </div>
       <div class="col-4">
@@ -89,23 +90,14 @@
     <div class="row" [class.row-mg-0]="showInProfile">
       <div *ngFor="let propiedad of propiedades; let idx = index" class="col-12 col-sm-6 col-md-4 cp-card" [class.card-margin]="showInProfile">
         <div class="card">
-          <div class="checkbox" *ngIf="mode == 'userProp'">
-            <input type="checkbox" name="{{'checked-propiedad-' + propiedad.id}}">
-          </div>
-          <!-- botonera -->
-          <div class="botonera" *ngIf="mode == 'userProp'">
-            <i class="fa fa-pencil link-btn" (click)="edit(propiedad.id)"></i>
-            <i class="fa fa-trash link-btn" (click)="delete(propiedad.id)"></i>
-          </div>
-
           <!-- carrusel -->
           <app-carousel [files]="propiedad.files"></app-carousel>
 
           <!-- resto de la info -->
           <div class="card-img-overlay">
-            <img *ngIf="propiedad.tipo_user_id == 2" class="imb-img" [src]="baseRoute + propiedad.inmobiliaria.logo" [alt]="propiedad.inmobiliaria.nombre"
+            <img *ngIf="propiedad.tipo_user_id == 2" class="imb-img" [src]="propiedad.inmobiliaria.logo" [alt]="propiedad.inmobiliaria.nombre"
             />
-            <img *ngIf="propiedad.tipo_user_id != 2" class="imb-img" [src]="baseRoute + propiedad.profile_img" />
+            <img *ngIf="propiedad.tipo_user_id != 2" class="imb-img" [src]="propiedad.profile_img" />
           </div>
 
           <div class="card-body">

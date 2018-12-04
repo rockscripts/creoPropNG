@@ -1,4 +1,4 @@
-<nav [ngClass]="{'navbar':true, 'navbar-white':!navbar_red, 'navbar-red':navbar_red, 'navbar-expand-lg':true, 'fixed-top':true, 'navbar-light':true}">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light" [ngClass]="{'navbar-white': !navbar_red, 'navbar-red': navbar_red, 'z-index-30': selectPlan }">
   <a class="navbar-brand" routerLink="/">
     <img src="assets/logo.svg" width="auto" height="50px" alt="" *ngIf="navbar_red">
     <img src="assets/logo-red.svg" width="auto" height="50px" alt="" *ngIf="!navbar_red"> creoprop
@@ -42,7 +42,7 @@
           </a>
           <a *ngIf="perfil.getImgRoute()" class="nav-link dropdown-toggle user-profile-image" href="#" id="navbarDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img [src]="baseRoute + perfil.getImgRoute()" alt="">
+            <img [src]="perfil.getImgRoute()" alt="">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/mi-cuenta">MI CUENTA</a>
