@@ -77,6 +77,9 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { CreatedAtPipe } from './components/prop-result/created-at.pipe';
 import { VerificationComponent } from './pages/verification/verification.component';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { AppliedFiltersService } from './providers/applied-filters.service';
+import { FeedComponent } from './components/feed/feed.component';
+import {NgxGistModule} from 'ngx-gist/dist/ngx-gist.module';
 
 @NgModule({
   declarations: [
@@ -120,7 +123,8 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
     CarouselComponent,
     //pipes
     CreatedAtPipe,
-    VerificationComponent
+    VerificationComponent,
+    FeedComponent,
   ],
   imports: [
     BrowserModule,
@@ -134,6 +138,7 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
     SweetAlert2Module,
     NgbModalModule,
     NgbCarouselModule,
+    NgxGistModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
@@ -150,7 +155,8 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
     LoginModalService,
     ProfileService,
     MercadoPagoService,
-    SubscriptionService
+    SubscriptionService,
+    AppliedFiltersService
   ],
   bootstrap: [
     AppComponent

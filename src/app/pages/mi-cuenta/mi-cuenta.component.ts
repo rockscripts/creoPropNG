@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Busqueda } from './../../models/busqueda';
-import { UserService } from './../../providers/user.service';
 import { ProfileService } from './../../providers/profile.service';
 import { Perfil } from './../../models/perfil';
 import { PropiedadesService } from '../../providers/propiedades.service';
 import { User } from '../../models/user';
 import { environment } from '../../../environments/environment';
+import { UserService } from '../../providers/user.service';
+import { AlertService } from '../../components/alert/alert.service';
 
 @Component({
   selector: 'app-mi-cuenta',
@@ -20,12 +21,12 @@ export class MiCuentaComponent implements OnInit {
   pActivas: number = 0;
   pInactivas: number = 0;
   nameState: boolean = false;
-  public baseRoute = environment.assetsRoute;
 
   constructor(
     private user: UserService,
     private profile: ProfileService,
-    private Propiedades: PropiedadesService
+    private Propiedades: PropiedadesService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -55,6 +56,7 @@ export class MiCuentaComponent implements OnInit {
       this.perfil.tipoUsuario = r['tipo_user_name'];
       this.perfil.tipo_user_id = +r['tipo_user_id'];
       this.perfil.membresia = r['membresia'];
+      this.perfil.verified = +r['verified'];
 
       this.perfil.inmobiliaria.nombre = r['inmobiliaria']['nombre'];
       this.perfil.inmobiliaria.id = r['inmobiliaria']['id'];
@@ -73,6 +75,16 @@ export class MiCuentaComponent implements OnInit {
           this.nameState = false;
         }
       });
+  }
+
+  verifyAccount(): void {
+    this.user.verifyAccount()
+      .subscribe(res => {
+        this.alertService.showSuccess('Se ha enviado un link de verificación a su correo');
+      }, err => {
+        console.log(err);
+      });
+
   }
 
   saveProfileImg(files: FileList) {

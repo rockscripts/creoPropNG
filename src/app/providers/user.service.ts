@@ -126,4 +126,7 @@ export class UserService {
   getInmobiliarias(): Observable<any> {
     return this.http.get(this.config.getAPIUrl() + 'inmobiliaria/all');
   }
+  verifyAccount() {
+    return this.http.get(this.config.getAPIUrl() + 'reverify/' + this.userData.id);
+  }
 }

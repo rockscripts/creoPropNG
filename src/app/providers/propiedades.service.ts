@@ -88,6 +88,7 @@ export class PropiedadesService {
   getPropiedad(id) {
     this.http.post(this.config.getAPIUrl() + this.wsp, { 'id': id })
       .subscribe((r) => {
+        console.log(r)
         this.model = new Propiedad();
         this.model.amenities = r['data'].amenities;
         this.model.servicios = r['data'].servicios;
@@ -119,16 +120,38 @@ export class PropiedadesService {
         this.model.nombre_zona = r['data'][0].nombre_zona;
         this.model.titulo = r['data'][0].titulo;
         this.model.zona = r['data'][0].zona_id;
+        this.model.feed = r['data'][0].feed;
+        this.model.tipo_propiedad_id = (r['data'][0].tipo_propiedad_id);
+        this.model.tipo_propiedad_nombre = (r['data'][0].tipo_prop_nombre);
+        this.model.tipo_operacion_id = parseInt(r['data'][0].tipo_operacion_id);
+        this.model.valor_dia = r['data'][0].valor_dia;
+        this.model.valor_mes = r['data'][0].valor_mes;
+        this.model.valor_semana = r['data'][0].valor_semana;
+        this.model.id_provincia = r['data'][0].id_provincia;
+        this.model.provincia = r['data'][0].provincia;
+        this.model.id_ciudad = r['data'][0].id_ciudad;
+        this.model.ciudad = r['data'][0].ciudad;
+        this.model.id_barrio = r['data'][0].id_barrio;
+        this.model.barrio = r['data'][0].barrio;
+        this.model.id_subzona = r['data'][0].id_subzona;
+        this.model.disposicion = parseInt(r['data'][0].disposicion);
+        
         //Ingresar imagenes reales de la propiedad
         this.propiedadLoaded.next(this.model);
       });
   }
 
-  getSearchConfig(propietario?: number) {
+  getSearchConfig(params: any = {}, propietario?: number) {
+    let busqueda = new Busqueda();
+    busqueda.fromRouteParams(params);
+
     if (propietario) {
-      this.busqueda.propietario_id = propietario;
+      busqueda.propietario_id = propietario;
+    } else if (busqueda.hasOwnProperty('propietario_id')) {
+      delete busqueda.propietario_id;
     }
-    return this.http.post(this.config.getAPIUrl() + this.wsc, JSON.stringify(this.busqueda));
+
+    return this.http.post(this.config.getAPIUrl() + this.wsc, busqueda.toReqParams());
   }
 
   create() {
@@ -145,6 +168,10 @@ export class PropiedadesService {
 
   delete(id: number) {
     return this.http.delete(this.config.getAPIUrl() + `propiedad/${id}/delete`);
+  }
+
+  activate(id: number) {
+    return this.http.delete(this.config.getAPIUrl() + `propiedad/${id}/activate`);
   }
 
   destacar(id: number) {

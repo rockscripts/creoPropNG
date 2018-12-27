@@ -83,13 +83,6 @@ export class User {
         }
       }
 
-      if (this.tipo_user_id == 3 && !this.id_inmobiliaria) {
-        return {
-          valid: false,
-          msg: 'Seleccione la inmobiliaria a la que pertenece'
-        }
-      }
-
       if (!this.matricula) {
         return {
           valid: false,
@@ -103,7 +96,7 @@ export class User {
         valid: false,
         msg: 'Ingrese su número de teléfono movil'
       }
-    } else if (!/^\+{1}\d{12}$/.test(this.celular)) {
+    } else if (!/^\+{1}\d{12,17}$/.test(this.celular)) {
       return {
         valid: false,
         msg: 'Ingrese un número de teléfono válido'

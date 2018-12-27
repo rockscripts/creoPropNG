@@ -1,0 +1,153 @@
+//Just array for property info . 
+//debug
+{
+    "errors":"",
+    "data":{
+       "0":{
+          "id":"21264",
+          "titulo":"property test - precio alquiler temporal",
+          "texto":"description test",
+          "inmobiliaria_id":null,
+          "propietario_id":"120",
+          "direccion":", Abasto, Capital Federal",
+          "tipo_propiedad_id":"2",
+          "tipo_operacion_id":"2",
+          "antiguedad_id":"0",
+          "capacidad":"0",
+          "dormitorios":"4",
+          "banios":"2",
+          "ambientes":"2",
+          "cochera":"0",
+          "piscina":"0",
+          "mascota":"0",
+          "seguridad":"0",
+          "lavarropas":"0",
+          "quincho":"0",
+          "superficie_cubierta":"0",
+          "superficie_total":"100",
+          "latitud":"4.5433489137287",
+          "longitud":"-75.668873431526",
+          "valor_dia":"200",
+          "valor_semana":"600",
+          "valor_mes":"1000",
+          "disponible":"1",
+          "activo":"1",
+          "destacado":"0",
+          "disposicion":"0",
+          "expensas":"60",
+          "precio":"0",
+          "moneda":"1",
+          "piso":null,
+          "dpto":"",
+          "calle1":"",
+          "calle2":"",
+          "etapa":null,
+          "tipo_techo":null,
+          "largo_terreno":null,
+          "frente":null,
+          "luminosidad":null,
+          "estado_inmueble":null,
+          "cobertura_cochera":null,
+          "cantidad_plantas":null,
+          "camas":null,
+          "parque_infantil":null,
+          "pension":null,
+          "entorno":null,
+          "limpieza_final":null,
+          "cancha_tenis":null,
+          "gastos":null,
+          "gimnasio":null,
+          "hidromasaje":null,
+          "parrilla":null,
+          "sala_juegos":null,
+          "solarium":null,
+          "mov_reducida":null,
+          "zona_id":"64",
+          "created_at":"2018-12-19 02:22:00",
+          "updated_at":"2018-12-19 02:22:00",
+          "id_provincia":"8",
+          "provincia":"Capital Federal",
+          "id_ciudad":"64",
+          "ciudad":"Abasto",
+          "id_barrio":null,
+          "barrio":null,
+          "id_subzona":null,
+          "subzona":null,
+          "feed":"0",
+          "feed_id":null,
+          "url_feed":null,
+          "nombre_zona":"Abasto",
+          "nombre_operacion":"Alquiler Temporal",
+          "moneda_simbolo":"AR$",
+          "user":{
+             "id":"120",
+             "name":"Alex",
+             "surname":"Grisales",
+             "tel":null,
+             "celular":"+543145687895",
+             "email":"rockscripts@gmail.com",
+             "profile_img":"",
+             "tipo_user_id":"1"
+          }
+       },
+       "files":[
+          {
+             "id":"211810",
+             "nombre":"https://www.creoprop.com.ar/img/prop/446815452293201215060-4-1-650-a542d8629a-1501787353.jpg",
+             "ruta":"https://www.creoprop.com.ar/img/",
+             "tipo":"image/jpeg",
+             "tamanio":"h",
+             "vista_previa":"https://www.creoprop.com.ar/img/prop/tumb/446815452293201215060-4-1-650-a542d8629a-1501787353.jpg"
+          }
+       ],
+       "filesCount":1,
+       "servicios":[
+          {
+             "id_servicio":"3",
+             "nombre":"Teléfono"
+          },
+          {
+             "id_servicio":"7",
+             "nombre":"Luz"
+          },
+          {
+             "id_servicio":"11",
+             "nombre":"Internet / WiFi"
+          },
+          {
+             "id_servicio":"16",
+             "nombre":"Televisión"
+          }
+       ],
+       "ambientes":[
+          {
+             "id_ambiente":"8",
+             "nombre":"Balcón"
+          },
+          {
+             "id_ambiente":"9",
+             "nombre":"Cocina"
+          }
+       ],
+       "carac_gral":[
+ 
+       ],
+       "amenities":[
+          {
+             "id":12,
+             "nombre":"Horno",
+             "activo":1,
+             "created_at":"2017-11-13 00:10:49",
+             "updated_at":"2017-11-13 00:29:56"
+          },
+          {
+             "id":18,
+             "nombre":"Caja de Seguridad",
+             "activo":1,
+             "created_at":"2017-11-13 00:10:49",
+             "updated_at":"2017-11-13 00:10:49"
+          }
+       ],
+       "inmobiliaria":null
+    }
+ }

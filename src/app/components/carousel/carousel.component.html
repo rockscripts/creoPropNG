@@ -1,6 +1,6 @@
 <ngb-carousel #carousel *ngIf="files.length" (slide)="getCurrentSlide($event)">
   <ng-template ngbSlide *ngFor="let file of files">
-    <img class="card-img" [src]="file.nombre != 'googlemapimage' ? baseRoute + file.vista_previa : file.url" [alt]="file.titulo">
+    <img id="canvas_{{ current }}" class="card-img canvas_{{ current }}" [src]="getImageFixed(file, current)" [alt]="file.titulo" [routerLink]="['/propiedad/' + id_property]">
     <div class="img-count">{{ current }}/{{ files.length }}</div>
   </ng-template>
 </ngb-carousel>

@@ -38,6 +38,9 @@ a.active {
 
 .header-container {
     background: #f7f7f7;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
 }
 
 .header {
@@ -56,9 +59,13 @@ a.active {
 }
 
 .header .nav-tabs {
-    margin-bottom: 30px;
     font-size: 13px;
     border-bottom: none;
+}
+
+.tabs {
+    position: absolute;
+    bottom: 1px;
 }
 
 .header .nav-link {
@@ -85,17 +92,21 @@ a.active {
 
 .user-info-container {
     display: flex;
-    flex-flow: row;
+    flex-flow: row wrap;
     align-items: flex-start;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    background: #f7f7f7;
+    z-index: 1;
 }
 
 .img-profile-container {
     position: relative;
     display: inline-flex;
-    min-width: 200px;
-    max-width: 400px;
-    height: 200px;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 154px;
 }
 
 .img-profile-container img {
@@ -108,7 +119,7 @@ a.active {
     flex-flow: row wrap;
     justify-content: flex-start;
     max-width: 50%;
-    padding: 20px;
+    padding: 0 20px;
 }
 
 .profile-info-container p,
@@ -202,4 +213,41 @@ a.active {
 
 .estado-cuenta {
     display: none;
+}
+
+.buttons-container {
+    margin-bottom: 30px;
+}
+
+.verified-label {
+    margin-top: 15px;
+    color: #28a745;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    flex-flow: row;
+}
+
+.verified-label i {
+    margin-top: -4px;
+    margin-left: 5px;
+}
+
+.without-img {
+    border: solid 2px #ccc;
+}
+
+.without-img::before {
+    content: "Elija una imagen de perfil";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #f7f7f7;
+    width: 295px;
+    height: 149px;
+    color: #6d6d6d;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

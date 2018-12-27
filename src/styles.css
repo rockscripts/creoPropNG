@@ -98,7 +98,7 @@ body {
 }
 
 .hh1 {
-    height: 50px;
+    min-height: 50px;
 }
 
 .ftit {
@@ -151,7 +151,7 @@ body {
 }
 
 a {
-    color: ##03a9ec !important;
+    color: #03a9ec !important;
     font-weight: bold;
     cursor: pointer;
 }
@@ -254,4 +254,18 @@ h5 {
 
 .ubicacion .ng-select.ng-select-disabled .ng-select-container .ng-value-container .ng-placeholder {
     color: #818181;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon
+{
+    width: 30px;
+    height: 30px;
+}
+.card-img-bottom
+{
+ width: auto
+}
+.carousel-item
+{
+    text-align: center
 }

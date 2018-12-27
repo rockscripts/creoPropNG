@@ -239,3 +239,9 @@ img{
     transform: rotate(140deg);
   }
 }
+#valor_dia, #valor_semana, #valor_mes, #precio_alquiler
+{
+  width: 4.5rem;
+    display: inline-block;
+    vertical-align: top;
+}

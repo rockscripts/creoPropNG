@@ -1,11 +1,10 @@
 import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { PropiedadesService } from "./../../providers/propiedades.service";
 import { ZonasService } from "../../providers/zonas.service";
 import { Busqueda } from "./../../models/busqueda";
-import { Observable, Subject } from "rxjs";
-
+import { AppliedFiltersService } from "../../providers/applied-filters.service";
+import * as $ from 'jquery';
 @Component({
   selector: "app-barra-busqueda",
   templateUrl: "./barra-busqueda.component.html",
@@ -19,9 +18,7 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
   @Input()
   propietario: any;
 
-
   public searchConfig: any;
-
   public busqueda: Busqueda;
   public is_modified = {};
 
@@ -47,109 +44,103 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
     private propiedadesService: PropiedadesService,
     private zonas: ZonasService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private filtersService: AppliedFiltersService
   ) { }
 
   ngOnInit() {
+    this.sub = this.activatedRoute.params
+      .subscribe(params => {
+        console.log(params)
+        this.propiedadesService.getSearchConfig({ ...params }, +this.propietario)
+          .subscribe(response => {
+            let data = response["data"];
 
-    this.sub = this.activatedRoute.params.subscribe(params => {
-      this.loadSearchConfig(+this.propietario)
-        .then(() => {
-          this.is_modified = {};
-          this.busqueda = new Busqueda();
-          this.busqueda.fromRouteParams(params);
+            this.searchConfig = {
+              tipoOperacion: data["tipoOperacion"],
+              tipoPropiedad: data["tipoPropiedad"],
+              cantidadBanios: data["cantidadBanios"],
+              ambientes: data["ambientes"],
+              cocheras: data["cocheras"],
+              dormitorios: data["dormitorios"],
+              tipoAmbiente: data["tipoAmbiente"],
+              servicios: data["servicios"],
+              generales: data["generales"],
+              tipoAnunciante: data["tipoAnunciante"],
+              ubicaciones_provincias: {
+                Argentina: data["ubicaciones"].length ? data["ubicaciones"][0].children : []
+              },
+              ubicaciones_partidos: null,
+            };
 
-          if (this.propietario) {
-            this.busqueda.propietario_id = this.propietario;
-          }
+            this.is_modified = {};
+            this.busqueda = new Busqueda();
+            this.busqueda.fromRouteParams(params);
 
-          for (const paramName of this.listRangeParams) {
-            if (this.busqueda[paramName]) {
-              const splitted = this.busqueda[paramName].split("-");
-              this[paramName + "Desde"] = splitted[0];
-              this[paramName + "Hasta"] = splitted[1];
-            } else {
-              this[paramName + "Desde"] = null;
-              this[paramName + "Hasta"] = null;
+            if (this.propietario) {
+              this.busqueda.propietario_id = this.propietario;
             }
-          }
 
-          this.searchConfig.ubicaciones_partidos = null;
-          this.searchConfig.ubicaciones_localidad = null;
-
-          if (this.busqueda.ubicacion_provincia) {
-            for (const ub of this.searchConfig.ubicaciones_provincias.Argentina) {
-              if (ub.id === this.busqueda.ubicacion_provincia && ub.children) {
-                this.searchConfig.ubicaciones_partidos = ub.children;
-                break;
+            for (const paramName of this.listRangeParams) {
+              if (this.busqueda[paramName]) {
+                const splitted = this.busqueda[paramName].split("-");
+                this[paramName + "Desde"] = splitted[0];
+                this[paramName + "Hasta"] = splitted[1];
+              } else {
+                this[paramName + "Desde"] = null;
+                this[paramName + "Hasta"] = null;
               }
             }
-          }
 
-          if (this.busqueda.ubicacion_partido && this.searchConfig.ubicaciones_partidos) {
-            for (const ub of this.searchConfig.ubicaciones_partidos) {
-              if (ub.id === this.busqueda.ubicacion_partido && ub.children) {
-                this.searchConfig.ubicaciones_localidad = ub.children;
-                break;
+            this.searchConfig.ubicaciones_partidos = null;
+            this.searchConfig.ubicaciones_localidad = null;
+
+            if (this.busqueda.ubicacion_provincia) {
+              for (const ub of this.searchConfig.ubicaciones_provincias.Argentina) {
+                if (ub.id === this.busqueda.ubicacion_provincia && ub.children) {
+                  this.searchConfig.ubicaciones_partidos = ub.children;
+                  break;
+                }
               }
             }
-          }
 
-          // Capital federal se trata como partido pero aparece como provincia
-          if (this.busqueda.ubicacion_provincia == this.ID_CAPITAL_FEDERAL) {
-            this.busqueda.ubicacion_partido = this.busqueda.ubicacion_provincia;
-            for (const ub of this.searchConfig.ubicaciones_provincias.Argentina) {
-              if (ub.id === this.busqueda.ubicacion_provincia && ub.children) {
-                this.searchConfig.ubicaciones_localidad = ub.children;
-                break;
+            if (this.busqueda.ubicacion_partido && this.searchConfig.ubicaciones_partidos) {
+              for (const ub of this.searchConfig.ubicaciones_partidos) {
+                if (ub.id === this.busqueda.ubicacion_partido && ub.children) {
+                  this.searchConfig.ubicaciones_localidad = ub.children;
+                  break;
+                }
               }
             }
-          }
 
-          this.getAppliedFilters();
-        })
-        .catch();
-    });
+            // Capital federal se trata como partido pero aparece como provincia
+            if (this.busqueda.ubicacion_provincia == this.ID_CAPITAL_FEDERAL) {
+              this.busqueda.ubicacion_partido = this.busqueda.ubicacion_provincia;
+              for (const ub of this.searchConfig.ubicaciones_provincias.Argentina) {
+                if (ub.id === this.busqueda.ubicacion_provincia && ub.children) {
+                  this.searchConfig.ubicaciones_localidad = ub.children;
+                  break;
+                }
+              }
+            }
+
+            this.getAppliedFilters();
+            this.searchConfig.ubicaciones_provincias.Argentina.sort(this.orderLocationsByCount)
+          });
+      });
+  }
+
+  orderLocationsByCount(a,b)
+  {
+    if (a.count > b.count)
+        return -1;
+    if (a.count < b.count)
+      return 1;
+    return 0;
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }
-
-  loadSearchConfig(propietario?: number) {
-    return new Promise((resolve, reject) => {
-      if (!this.searchConfig) {
-        this.propiedadesService.getSearchConfig(propietario)
-          .subscribe(
-            response => {
-              const data = response["data"];
-              this.searchConfig = {
-                tipoOperacion: data["tipoOperacion"],
-                tipoPropiedad: data["tipoPropiedad"],
-                cantidadBanios: data["cantidadBanios"],
-                ambientes: data["ambientes"],
-                cocheras: data["cocheras"],
-                dormitorios: data["dormitorios"],
-                tipoAmbiente: data["tipoAmbiente"],
-                servicios: data["servicios"],
-                generales: data["generales"],
-                tipoAnunciante: data["tipoAnunciante"],
-                ubicaciones_provincias: {
-                  Argentina: data["ubicaciones"][0].children
-                },
-                ubicaciones_partidos: null,
-              };
-
-              resolve();
-            },
-            err => {
-              reject(err);
-            }
-          );
-      } else {
-        resolve();
-      }
-    });
   }
 
   doBusqueda() {
@@ -374,6 +365,6 @@ export class BarraBusquedaComponent implements OnInit, OnDestroy {
       }
     }
     this.appliedFilters = filters;
-    // console.log(this.appliedFilters)
+    this.filtersService.sendFilters(filters);
   }
 }

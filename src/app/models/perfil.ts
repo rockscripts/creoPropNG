@@ -42,6 +42,7 @@ export class Perfil {
   membresia: string = '';
   tipo_user_id: number;
   tipo_user_name: string;
+  verified: number;
 
 
   constructor(profileData?, inmoData?: Inmobiliaria) {
@@ -102,6 +103,6 @@ export class Perfil {
   }
 
   getPhoneNumber(type: string): number {
-    return +String(this['cel' ? 'celular' : 'tel']).replace(/\+/g, '');
+    return this['cel' ? 'celular' : 'tel'] ? +String(this['cel' ? 'celular' : 'tel']).replace(/\+/g, '') : null;
   }
 }

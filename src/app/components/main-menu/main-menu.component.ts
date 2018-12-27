@@ -14,8 +14,9 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent implements OnInit {
-  public baseRoute = environment.assetsRoute;
+
   perfil = new Perfil();
+  selectPlan: boolean = false;
 
   constructor(
     private us: UserService,
@@ -59,7 +60,7 @@ export class MainMenuComponent implements OnInit {
     this.router.events
       .subscribe(e => {
         if (e instanceof RouterEvent) {
-          if (/(\/search;(\w?)+)|(^\/$)/g.test(e.url)) {
+          if (/(\/search;(\w?)+)|(^\/$)|(\/home\/\d+)/g.test(e.url)) {
             this.showSearchBox = true;
           } else {
             this.showSearchBox = false;
@@ -67,10 +68,12 @@ export class MainMenuComponent implements OnInit {
 
           if (e.url == '/select-plan' || e.url == '/update-plan') {
             this.navbar_red = false;
+            this.selectPlan = true;
             this.showNavMenu = false;
           } else {
             this.navbar_red = true;
             this.showNavMenu = true;
+            this.selectPlan = false;
           }
 
           if (/\/perfil\/\d+/g.test(e.url)) {
@@ -79,6 +82,10 @@ export class MainMenuComponent implements OnInit {
           }
         }
       });
+      $(document).ready(function()
+      {
+        $(".navbar-red").fadeIn(1000);
+      })
   }
 
   getProfile() {

@@ -13,8 +13,9 @@ import { environment } from '../../../environments/environment';
 })
 export class PublicProfileComponent implements OnInit, OnDestroy {
   public profile: Perfil;
-  public showProps: boolean = false;
-  public baseRoute = environment.assetsRoute;
+  public showProps: boolean = true;
+  public marginTop: number;
+
   private _onDestroy = new Subject<void>();
 
   constructor(
@@ -36,7 +37,10 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
             delete profileData.inmobiliaria;
 
             this.profile = new Perfil(profileData, inmoData);
-            this.setMarginTapContainer();
+            setTimeout(() => {
+              this.setMarginTapContainer();
+              this.marginTop = this.getMargin();
+            }, 200);
           });
 
       });
@@ -47,19 +51,23 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     this._onDestroy.complete();
   }
 
-  private setMarginTapContainer(): void {
-    setTimeout(() => {
-      let profileContainerHeight: number = document.querySelector('.profile-info-container').clientHeight;
-      let contactContainerHeight: number = document.querySelector('.contact-info-container').clientHeight;
-      let tapsContainer = <HTMLElement>document.querySelector('.tabs-container');
+  private getMargin() {
+    let containerHeight = document.querySelector('.box-header').clientHeight;
+    let profileHeight = document.querySelector('.box-header .profile-img').clientHeight
 
-      if (profileContainerHeight > contactContainerHeight) {
-        tapsContainer.style.marginTop = '20px';
-      } else {
-        let diff = contactContainerHeight - profileContainerHeight;
-        tapsContainer.style.marginTop = `${diff <= 65 ? 20 : (diff - 70) + 20}px`;
-      }
-    }, 200);
+    return (containerHeight - profileHeight) / 2;
   }
 
+  private setMarginTapContainer(): void {
+    let profileContainerHeight: number = document.querySelector('.profile-info-container').clientHeight;
+    let contactContainerHeight: number = document.querySelector('.contact-info-container').clientHeight;
+    let tapsContainer = <HTMLElement>document.querySelector('.tabs-container');
+
+    if (profileContainerHeight > contactContainerHeight) {
+      tapsContainer.style.marginTop = '20px';
+    } else {
+      let diff = contactContainerHeight - profileContainerHeight;
+      tapsContainer.style.marginTop = `${diff <= 65 ? 20 : (diff - 70) + 20}px`;
+    }
+  }
 }

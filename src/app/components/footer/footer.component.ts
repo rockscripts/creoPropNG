@@ -9,19 +9,19 @@ import { Router, RouterEvent } from "@angular/router";
 })
 export class FooterComponent implements OnInit {
   propiedades_alquiler: any = [
-    { tit: "Departamentos en Alquiler" },
-    { tit: "Locales en Alquiler" },
-    { tit: "Casas en Alquiler" },
-    { tit: "Oficinas en Alquiler" },
-    { tit: "Galpones en Alquiler" }
+    { tit: "Departamentos en Alquiler", url:("/search;tipoOperacion=1\;tipoPropiedad=2")},
+    { tit: "Locales en Alquiler" , url:"/search;tipoOperacion=1\;tipoPropiedad=23"},
+    { tit: "Casas en Alquiler" , url:"/search;tipoOperacion=1\;tipoPropiedad=1"},
+    { tit: "Oficinas en Alquiler", url:"/search;tipoOperacion=1\;tipoPropiedad=23" },
+    { tit: "Galpones en Alquiler" , url:"/search;tipoOperacion=1\;tipoPropiedad=20"}
   ];
 
   propiedades_venta: any = [
-    { tit: "Departamentos en Venta" },
-    { tit: "Locales en Venta" },
-    { tit: "Casas en Venta" },
-    { tit: "Oficinas en Venta" },
-    { tit: "Galpones en Venta" }
+    { tit: "Departamentos en Venta" , url:"search;tipoOperacion=0\;tipoPropiedad=2"},
+    { tit: "Locales en Venta" , url:"search;tipoOperacion=0\;tipoPropiedad=2"},
+    { tit: "Casas en Venta" , url:"search;tipoOperacion=0\;tipoPropiedad=2"},
+    { tit: "Oficinas en Venta" , url:"search;tipoOperacion=0\;tipoPropiedad=2"},
+    { tit: "Galpones en Venta" , url:"search;tipoOperacion=0\;tipoPropiedad=2"}
   ];
 
   disable_footer = false;
@@ -49,5 +49,10 @@ export class FooterComponent implements OnInit {
         }
       }
     });
+
+    $(document).ready(function()
+    {
+      $(".footer").fadeIn(6200);
+    })
   }
 }

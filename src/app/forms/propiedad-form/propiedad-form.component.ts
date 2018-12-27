@@ -17,8 +17,6 @@ import { ZonasService } from "../../providers/zonas.service";
 import { PropiedadesService } from "../../providers/propiedades.service";
 import { UserService } from "../../providers/user.service";
 import { AlertService } from "../../components/alert/alert.service";
-import { ConfigService } from '../../providers/config.service';
-import { HttpClient } from '@angular/common/http';
 import { ProfileService } from './../../providers/profile.service';
 import { SubscriptionService } from "../../providers/subscription.service";
 import { Subscripcion } from './../../models/subscripcion';
@@ -45,14 +43,16 @@ export class PropiedadFormComponent implements OnInit {
   @ViewChild("search")
   public searchElementRef: ElementRef;
   searchControl: FormControl;
-
+  tipo_propiedad_id: any;
+  tipo_operacion_id: any;
   equipamiento: any;
   servicios: any;
   tiposPropiedad: any;
   ambientes: any;
   carac_gral: any;
   cargando = false;
-  selectedZonasByLevel: any = [null, null, null, null, null];
+  
+  selectedZonasByLevel: any = [null, "8", null, null, null];
   zonasForSelect: any = [null, null, null, null, null];
   zonas: any;
   denomina: any = ["", "Provincia", "", "", ""];
@@ -84,7 +84,7 @@ export class PropiedadFormComponent implements OnInit {
 
   loadfiles() {
     this.model.files.forEach(file => {
-      fetch('/' + file.nombre)
+      fetch(file.nombre)
         .then(res => res.blob())
         .then(blob => {
           let reader = new FileReader();
@@ -101,8 +101,6 @@ export class PropiedadFormComponent implements OnInit {
         });
     });
   }
-
-
 
   onFileChange(event) {
     for (let file of event.target.files) {
@@ -124,9 +122,8 @@ export class PropiedadFormComponent implements OnInit {
     }
   }
 
-
-
   ngOnInit() {
+
     this.profile.getProfile(this.user.getId()).subscribe((r) => {
       if (!r || !r["data"]) {
         return;
@@ -135,12 +132,14 @@ export class PropiedadFormComponent implements OnInit {
       try {
         this.subscription.max_avisos_disponibles = this.profileResponse.subscripcion[0].subscripcion.max_avisos_disponibles;
         this.subscription.max_destaques_disponibles = this.profileResponse.subscripcion[0].subscripcion.max_destaques_disponibles;
+        this.changeZonaSelect("1")
       }
       catch (e) {
 
       }
     });
-
+    
+    
     this.zonasService.getZonas().subscribe(r => {
       this.zonas = r["data"][0].children; //Children zonas of Argentina
       this.zonasForSelect[1] = this.zonas;
@@ -165,23 +164,55 @@ export class PropiedadFormComponent implements OnInit {
     this.initMaps();
   }
 
+  placeMarker(e) {
+    this.model.latitud = e.coords.lat;
+    this.model.longitud = e.coords.lng;
+  }
+
   private initMaps() {
     this.setCurrentPosition();
     this.searchControl = new FormControl();
 
     this.mapsAPILoader.load().then(() => {
 
-      let autocomplete = new google.maps.places.Autocomplete(
-        this.searchElementRef.nativeElement,
-        {
-          types: ["address"]
-        }
-      );
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["geocode"]
+      });
+
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          console.log(place);
+
+          if (!place.address_components) {
+            this.alert.show('Ingrese una dirección valida');
+            return;
+          }
+
+          this.model.direccion = place.formatted_address;
+
+          let street = place.address_components.filter(item => item.types.includes("street_number") || item.types.includes("route"));
+          street = street.map(item => {
+            item.types = item.types.filter(x => x === "street_number").length ? item.types.filter(x => x === "street_number") : item.types.filter(x => x === "route");
+            return item;
+          })
+
+          if (street.length) {
+            if (street.length < 2) {
+              if (!street.find(x => x.types[0] === "street_number")) {
+                this.alert.show('Ingrese el número de calle');
+              } else if (!street.find(x => x.types[0] === "route")) {
+                this.alert.show('Ingrese la avenida');
+              }
+
+              this.model.direccion = null;
+              return;
+            }
+          } else {
+            this.alert.show('Debe ingresar la avenida y el número de calle');
+            this.model.direccion = null;
+            return;
+          }
 
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
@@ -189,6 +220,7 @@ export class PropiedadFormComponent implements OnInit {
           }
 
           //set latitude, longitude and zoom
+          this.model.calle1 = street.find(x => x.types[0] === "route").long_name + ' ' + street.find(x => x.types[0] === "street_number").long_name
           this.model.latitud = place.geometry.location.lat();
           this.model.longitud = place.geometry.location.lng();
           this.mapZoom = 12;
@@ -198,19 +230,24 @@ export class PropiedadFormComponent implements OnInit {
   }
 
   private setCurrentPosition() {
-    if ("geolocation" in navigator) {
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.model.latitud = position.coords.latitude;
         this.model.longitud = position.coords.longitude;
         this.mapZoom = 12;
+      }, () => {
+        console.log('ocurrion un error')
       });
     }
   }
 
   changeZonaSelect(actualLevel) {
+    console.log("level: "+actualLevel)
+    console.log(this.selectedZonasByLevel)
+    console.log(this.zonasForSelect)
     const nextLevel = actualLevel + 1;
 
-    this.model.zona = [this.selectedZonasByLevel[actualLevel]];
+    this.model.zona = this.selectedZonasByLevel[actualLevel];
 
     //Clean all next fields
     for (let i = nextLevel; i <= this.zonasService.MAX_LEVELS; i++) {
@@ -231,6 +268,23 @@ export class PropiedadFormComponent implements OnInit {
   }
 
   guardar() {
+    if (this.selectedZonasByLevel[1]) {
+      this.model.id_provincia = this.selectedZonasByLevel[1];
+      this.model.provincia = this.zonasForSelect[1].find(zona => zona.id == this.model.id_provincia).name;
+    }
+    if (this.selectedZonasByLevel[2]) {
+      this.model.id_ciudad = this.selectedZonasByLevel[2];
+      this.model.ciudad = this.zonasForSelect[2].find(zona => zona.id == this.model.id_ciudad).name;
+    }
+    if (this.selectedZonasByLevel[3]) {
+      this.model.id_barrio = this.selectedZonasByLevel[3];
+      this.model.barrio = this.zonasForSelect[3].find(zona => zona.id == this.model.id_barrio).name;
+    }
+    if (this.selectedZonasByLevel[4]) {
+      this.model.id_subzona = this.selectedZonasByLevel[4];
+      this.model.subzona = this.zonasForSelect[4].find(zona => zona.id == this.model.id_subzona).name;
+    }
+
     this.prop.setModel(this.model);
     this.cargando = true;
 
@@ -241,15 +295,27 @@ export class PropiedadFormComponent implements OnInit {
         this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
         this.router.navigate(["mi-cuenta"]);
       });
-    }
-    else {
-
+    } else {
       if (this.user.permiso("new-prop")) {
         if (!this.model.formValid()) {
           this.cargando = false;
           this.alert.show(this.model.errors);
           return false;
+
         }
+
+        if (!this.model.id_provincia) {
+          this.cargando = false;
+          this.alert.show("Por favor seleccione una provincia");
+          return false;
+        }
+
+        if (!this.model.id_ciudad) {
+          this.cargando = false;
+          this.alert.show("Por favor seleccione una ciudad");
+          return false;
+        }
+
         this.prop.create().subscribe(r => {
           this.cargando = false;
           if (!r['errors']) {

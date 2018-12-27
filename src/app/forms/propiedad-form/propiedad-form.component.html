@@ -82,7 +82,6 @@
         </div>
 
       </div>
-
       <div class="row titc">
         <div class="col">
           <h4>Precio</h4>
@@ -90,7 +89,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="model.tipo_operacion_id == 0 || model.tipo_operacion_id == 1">
         <div class="input-element" *ngIf="model.tipo_operacion_id == 0">
           <label>Precio de venta</label>
           <br />
@@ -99,28 +98,60 @@
           </ng-select>
           <input id="precio" type="text" class="form-control" [(ngModel)]="model.precio" name="precio">
         </div>
-
+        <div class="input-element" *ngIf="model.tipo_operacion_id == 1">
+            <label>Precio de Alquiler</label>
+            <br />
+            <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
+              name="moneda">
+            </ng-select>
+            <input id="precio" type="text" class="form-control" [(ngModel)]="model.precio" name="precio">
+          </div>
+          
         <div class="input-element">
           <label>Expensas</label>
           <br />
+          <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
+          name="moneda">
+        </ng-select>
           <input id="expensas" type="text" class="form-control" name="expensas" [(ngModel)]="model.expensas" placeholder="">
-          <span class="before">$</span>
         </div>
       </div>
-
-      <div class="row" *ngIf="model.tipo_operacion_id != 0">
+      
+      <div class="row" *ngIf="model.tipo_operacion_id == 2 ">
         <div class="input-element">
           <label>Valor día</label>
-          <input id="valor_dia" type="text" class="form-control" name="valor_dia" [(ngModel)]="model.valor_dia" placeholder="Valor día">
+          <br />
+          <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
+          name="moneda">
+        </ng-select> 
+        <input id="valor_dia" type="text" class="form-control" name="valor_dia" [(ngModel)]="model.valor_dia" placeholder="Valor día">
         </div>
         <div class="input-element">
           <label>Valor semana</label>
+          <br />
+          <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
+          name="moneda">
+        </ng-select>
           <input id="valor_semana" type="text" class="form-control" name="valor_semana" [(ngModel)]="model.valor_semana" placeholder="Valor semana">
         </div>
         <div class="input-element">
           <label>Valor mes</label>
+          <br />
+          <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
+          name="moneda">
+        </ng-select>
           <input id="valor_mes" type="text" class="form-control" name="valor_mes" [(ngModel)]="model.valor_mes" placeholder="Valor mes">
         </div>
+
+        <div class="input-element">
+            <label>Expensas</label>
+            <br />
+            <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
+            name="moneda">
+          </ng-select>
+            <input id="expensas" type="text" class="form-control" name="expensas" [(ngModel)]="model.expensas" placeholder="">
+            <span class="before">$</span>
+          </div>
       </div>
 
       <div class="row titc">
@@ -143,7 +174,7 @@
 
             <div class="input-element">
               <ng-select [clearable]="false" bindValue="id" bindLabel="name" [items]="zonasForSelect[2]" (change)="changeZonaSelect(2)"
-                [(ngModel)]="selectedZonasByLevel[2]" name="zona-2" placeholder="Elegir una ciudad" [disabled]="!zonasForSelect[2]">
+                [(ngModel)]="selectedZonasByLevel[2]" name="zona-2" placeholder="Elegir una ciudad">
               </ng-select>
             </div>
             <div class="input-element">
@@ -171,7 +202,8 @@
 
       <div class="row">
         <div class="col">
-          <label>Dirección</label>
+          <label>Dirección (
+            <small>ejemplo: Avenida Santa Fe 4500, Palermo, CABA, Argentina</small>)</label>
           <input autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl"
             name="direccion" [(ngModel)]="model.direccion">
         </div>
@@ -179,7 +211,7 @@
 
       <div class="row">
         <div class="col-12">
-          <agm-map [latitude]="model.latitud" [longitude]="model.longitud" [zoom]="mapZoom" [scrollwheel]="false">
+          <agm-map [latitude]="model.latitud" [longitude]="model.longitud" [zoom]="mapZoom" [scrollwheel]="false" (mapClick)="placeMarker($event)">
             <agm-marker [latitude]="model.latitud" [longitude]="model.longitud" [label]="model.titulo"></agm-marker>
           </agm-map>
         </div>

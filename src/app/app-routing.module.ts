@@ -22,6 +22,7 @@ import { MercadoPagoOkComponent } from './pages/MP/mercado-pago-ok/mercado-pago-
 import { MercadoPagoFailComponent } from './pages/MP/mercado-pago-fail/mercado-pago-fail.component';
 import { MercadoPagoPendComponent } from './pages/MP/mercado-pago-pend/mercado-pago-pend.component';
 import { VerificationComponent } from './pages/verification/verification.component';
+import {FeedComponent} from './components/feed/feed.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'compraFail', component: MercadoPagoFailComponent },
   { path: 'compraPending', component: MercadoPagoPendComponent },
   { path: 'verify/:id', component: VerificationComponent },
+  { path: 'feed', component: FeedComponent },
   { path: "**", redirectTo: "/404" },
 
 ];

@@ -1,0 +1,35 @@
+<div class="container-1060">
+  <h2>Feed XML</h2>
+  <ul>Si tienes propiedades publicadas en otros sitios, puedes publicarlas fácilmente en creoprop. Sigue las siguientes intrucciones:
+    <li>Crea un archivo XML con las especificaciones descritas abajo</li>
+    <li>Envía el archivo a nuestro correo <strong>creopropar@gmail.com</strong></li>
+  </ul>
+
+  <h3>Especificaciones</h3>
+  <ul>
+    <li><strong>titulo:</strong> Titulo de la propiedad</li>
+    <li><strong>direccion:</strong> Dirección de la propiedad</li>
+    <li><strong>texto:</strong> Descripción de la propiedad</li>
+    <li><strong>tipoPropiedad:</strong> El tipo de propiedad que deseas publicar, los valores válidos son: <strong>{{ tiposPropiedad }} </strong></li>
+    <li><strong>latitud</strong></li>
+    <li><strong>longitud</strong> </li>
+    <li><strong>superficieTotal:</strong> Superifcie total de la propiedad especificada en metros cuadrados</li>
+    <li><strong>dormitorios:</strong> Cantidad de dormitorios que tenga tu propiedad</li>
+    <li><strong>banios:</strong> Cantidad de baños que tenga tu propiedad</li>
+    <li><strong>tipoOperacion:</strong> Valores válidos: <strong>Venta, Alquiler, Alquiler Temporal</strong></li>
+    <li><strong>Moneda:</strong> Valores admitidos: <strong>USD, ARS</strong></li>
+    <li><strong>pictures: </strong> Etiqueta contenedora donde se definen una o mas imágenes que tenga la propiedad, dentro de ella se agregan varias etiquetas &lt;picture&gt; </li>
+    <li><strong>picture:</strong> url de la imagen, recuerde que ésta etiqueta va dentro de &lt;pictures&gt; y que puede agregar varias</li>
+    <li><strong>Precio:</strong> Precio de la propiedad, sólo debe agregarse cuando el tipo de operación sea Venta</li>
+    <li>Los siguientes campos sólo deben ser agregados si el tipo de opración es Alquiler o Alquiler Temporal</li>
+    <li><strong>valorDia:</strong> Precio por día del alquiler</li>
+    <li><strong>ValorSemana:</strong> Precio por semana del alquiler</li>
+    <li><strong>ValorMes:</strong> Precio mensual del alquiler</li>
+  </ul>
+  <h3>Ejemplo</h3>
+
+  <ngx-gist [gistId]="'otniel55/9ab4ed6b6f0433573b78c84d7e638895'" style="height: 1000px"></ngx-gist>
+
+
+</div>
+

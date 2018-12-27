@@ -66,3 +66,12 @@ footer .list-group-item{
 .copyright-label {
   padding-left: 0;
 }
+.list-group-item a
+{
+  text-decoration: none;
+  font-weight: normal;
+}
+.footer
+{
+  display: none;
+}

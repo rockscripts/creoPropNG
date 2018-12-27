@@ -65,7 +65,8 @@
 }
 
 .img-map {
-    height: 480px;
+   
+    width: 100%
 }
 
 .card-body .subt {
@@ -137,12 +138,14 @@ agm-map {
 }
 
 .img-profile-container {
-    width: 100%;
-    max-height: 100px;
-    overflow: hidden;
-    display: block;
-    text-align: center;
-    padding: 10px 0;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-height: 140px;
+    margin: auto;
+    padding: 30px;
 }
 
 .img-profile-container img {
@@ -151,9 +154,11 @@ agm-map {
 }
 
 .contact-info-container {
-    text-align: center;
+    text-align: left;
     margin-bottom: 30px;
     margin-top: 10px;
+    text-align: left;
+    padding-left: 19px;
 }
 
 .mg-bottom {
@@ -171,4 +176,222 @@ agm-map {
     -moz-transition: .2s ease-out;
     -ms-transition: .2s ease-out;
     -o-transition: .2s ease-out;
+}
+
+@media only screen and (max-width: 1299px) {
+    .img-profile-container {
+        width: 300px;
+        height: 154px;
+    }
+}
+.col-12 .icons
+{
+    vertical-align: top;
+}
+.temporal-service-prices
+{
+    list-style: none;
+    padding-left: 0px;
+    list-style: none;
+    text-align: right;
+}
+.prices-left
+{
+    width: 45%;
+    float: left;
+}
+.prices-rigth
+{
+    float: left;
+    width: 49%;
+}
+.col-left
+{
+    float: left;
+    width: 40%;
+}
+.col-rigth
+{
+    float: right;
+    width: 55%;
+}
+.topln .temporal-service-prices li
+{
+    font-weight: bold;
+}
+.align-right
+{
+    text-align: right
+}
+.detail-single-price
+{
+    font-weight: bold;  
+    font-size: 20px;
+    display: inline-block;
+    width: 100%;
+}
+.card-title{
+    color: black;
+    font-size: 20px;
+    text-transform: capitalize!important;
+}
+.topln  .icons {
+    width: 50px;
+}
+.main-details .temporal-service-prices li
+{
+    text-align: left
+}
+.bread-link:hover{
+    color:#03a9ec!important
+}
+.bread-link
+{
+    color: #212529;
+    font-size: 14px;
+    text-decoration: none;
+    color: #212529!important;
+    font-weight: normal!important;
+    cursor: pointer;
+}
+.bread-link-home
+{
+    cursor: pointer;
+}
+.bread-link a
+{
+    color: #212529!important;
+    font-weight: normal!important;
+}
+.bread-link-home, .bread-link-address
+{
+    color: #212529;
+    font-size: 14px;
+}
+.bread-link-address
+{
+   font-weight: bold;
+}
+.card-body-transparent
+{
+    background: transparent;
+    box-shadow: none!important;
+}
+.header-top-container
+{
+    background: #f0f0f0;
+    padding-top: 10px;
+    margin-top: -29px;
+    padding-left: 14px;
+    padding-bottom: 16px;
+}
+.header-top-icons
+{
+    color: #212529;
+    font-size: 14px;
+    text-decoration: none!important;
+    color: #212529!important;
+    font-weight: normal!important;
+    cursor: pointer;
+}
+.header-top-icons a
+{
+    color: #212529!important;
+    text-decoration: none!important;
+    font-weight: normal!important;
+    cursor: pointer;
+    text-align: right
+}
+.bread-link:hover{
+    color:#03a9ec!important
+}
+.xspace
+{
+    margin-top:10px;
+}
+.rigth-text
+{
+    text-align: right;
+    align-items: center;
+    width: 100%;
+    padding-right: 3%;
+}
+.backicon
+{
+    width: 53px!important;
+    height: 32px!important;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    padding: 6px;
+    border-radius: 4px;
+    margin-top: -23px;
+    margin-left: -21px;
+}
+.backicon:hover
+{
+    -webkit-box-shadow: 1px 0px 5px 0px rgba(0,172,238,0.69);
+    -moz-box-shadow: 1px 0px 5px 0px rgba(0,172,238,0.69);
+    box-shadow: 1px 0px 5px 0px rgba(0,172,238,0.69);
+}
+.card-prices .card-title
+{
+    font-weight: bold
+}
+.title-property
+{
+    font-weight: bold;
+}
+.p-detail-p .carousel
+{
+ margin-top: -15px;
+}
+.fix-align
+{
+    padding-left: 16px;
+}
+.see-all-prop
+{
+    text-decoration: none;
+    font-weight: normal
+}
+.contact-prop
+{
+    font-weight: bold;
+    padding-top: 14px;
+    padding-bottom: 10px;
+}
+.contact-info-container div{
+    width: 100%
+}
+.row-info
+{
+    padding-left: 25px;
+}
+.contact-info-container .contact-icons
+{
+    font-size: 28px;
+    width: 28px;
+    color: black;
+}
+.contact-info-with-i
+{
+    padding-left: 27px;
+}
+.btn-cred
+{
+    background: #ed1b24ff;
+    border-radius: 5px;
+    width: 100%;
+    color: white;
+}
+.btn-cred:hover
+{
+    -webkit-box-shadow: 1px 0px 5px 0px rgba(0,172,238,0.69);
+    -moz-box-shadow: 1px 0px 5px 0px rgba(0,172,238,0.69);
+    box-shadow: 1px 0px 5px 0px rgba(0,172,238,0.69);
+    opacity: 0.9;
+}
+.bread-link-home:hover
+{
+    font-weight: bold
 }

@@ -18,6 +18,7 @@ export class Propiedad {
   public toilette: number = 0;
   public expensas: number = 0;
   public disposicion: number = 0;
+  public nombre_disposicion: any = ""
   public equipamiento: any = [];
 
   public moneda: number = 1;
@@ -34,6 +35,7 @@ export class Propiedad {
   public codigoPostal: number = 0;
 
   public tipo_propiedad_id: number = 1;
+  public tipo_propiedad_nombre: string = '';
   public tipo_operacion_id: number = 0;
   public superficie_cubierta: number = 0;
   public superficie_total: number = 0;
@@ -60,6 +62,17 @@ export class Propiedad {
   public zona_nivel: number = 1;
   public nombre_zona: string = "";
 
+  public id_provincia: number = 0;
+  public provincia: string = '';
+  public id_ciudad: number = 0;
+  public ciudad: string = '';
+  public id_barrio: number = 0;
+  public barrio: string = '';
+  public id_subzona: number = 0;
+  public subzona: string = '';
+  public feed: number = 0;
+
+
   //valores posibles
   public tipo_prop: any = [
     { id: 0, nombre: "Casa" },
@@ -78,7 +91,7 @@ export class Propiedad {
   ];
   public moneda_op: any = [{ id: 2, nombre: "U$S" }, { id: 1, nombre: "AR$" }];
 
-  constructor() {}
+  constructor() { this.getNombreDisposicion(2)}
 
   public errors: string = "";
 
@@ -111,11 +124,15 @@ export class Propiedad {
       this.errors = "Ingresa al menos una foto de la propiedad";
       return false;
     }
-
     if (
-      (this.tipo_operacion_id == 1 || this.tipo_operacion_id == 2) &&
+      (this.tipo_operacion_id == 2) &&
       (this.valor_dia == 0 || this.valor_mes == 0 || this.valor_semana == 0)
     ) {
+      this.errors = "Es necesario completar el precio";
+      return false;
+    }
+
+    if (this.tipo_operacion_id == 1 && this.precio == 0) {
       this.errors = "Es necesario completar el precio";
       return false;
     }
@@ -131,5 +148,13 @@ export class Propiedad {
     }
 
     return true;
+  }
+  getNombreDisposicion(id)
+  {  
+    return this.disposicion_op[id].nombre
+  }
+  getInmobiliariaLogo(image)
+  { 
+    return location.origin+"/"+image;
   }
 }
