@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ViewChild, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { PropiedadesService } from './../../providers/propiedades.service';
 import { GralInfoService } from './../../providers/gral-info.service';
+import { PropiedadesService } from './../../providers/propiedades.service';
 import { Busqueda } from './../../models/busqueda';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { forkJoin } from 'rxjs';
@@ -302,10 +302,10 @@ export class PropResultComponent implements OnInit {
     this.propiedadesService.getSearch()
       .subscribe(r => {
         let data = r['data'].map(prop => {
-          prop.files.push({
+          /*prop.files.push({
             nombre: 'googlemapimage',
             url: `https://maps.googleapis.com/maps/api/staticmap?center=${prop.latitud},${prop.longitud}&markers=color:red%7Clabel:C%7C${prop.latitud},${prop.longitud}&zoom=12&size=600x400&key=${environment.googleApiKey}`
-          });
+          });*/
 
           return prop;
         });

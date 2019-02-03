@@ -9,19 +9,19 @@ import { Router, RouterEvent } from "@angular/router";
 })
 export class FooterComponent implements OnInit {
   propiedades_alquiler: any = [
-    { tit: "Departamentos en Alquiler" },
-    { tit: "Locales en Alquiler" },
-    { tit: "Casas en Alquiler" },
-    { tit: "Oficinas en Alquiler" },
-    { tit: "Galpones en Alquiler" }
+    { tit: "Departamentos en Alquiler", id:  1, tipoPropiedad: 2 },
+    { tit: "Locales en Alquiler", id: 1, tipoPropiedad: 23 },
+    { tit: "Casas en Alquiler", id: 1, tipoPropiedad: 1},
+    { tit: "Oficinas en Alquiler", id: 1, tipoPropiedad: 26 },
+    { tit: "Galpones en Alquiler", id: 1, tipoPropiedad: 20 }
   ];
 
   propiedades_venta: any = [
-    { tit: "Departamentos en Venta" },
-    { tit: "Locales en Venta" },
-    { tit: "Casas en Venta" },
-    { tit: "Oficinas en Venta" },
-    { tit: "Galpones en Venta" }
+    { tit: "Departamentos en Venta", id: 0, tipoPropiedad: 2 },
+    { tit: "Locales en Venta", id: 0, tipoPropiedad: 23 },
+    { tit: "Casas en Venta", id: 0, tipoPropiedad: 1 },
+    { tit: "Oficinas en Venta", id: 0, tipoPropiedad: 26},
+    { tit: "Galpones en Venta", id: 0, tipoPropiedad: 20 }
   ];
 
   disable_footer = false;

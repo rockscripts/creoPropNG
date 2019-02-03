@@ -88,41 +88,47 @@
 
   <div class="col-12">
     <div class="row" [class.row-mg-0]="showInProfile">
-      <div *ngFor="let propiedad of propiedades; let idx = index" class="col-12 col-sm-6 col-md-4 cp-card" [class.card-margin]="showInProfile">
-        <div class="card">
-          <!-- carrusel -->
-          <app-carousel [files]="propiedad.files"></app-carousel>
+      <div *ngFor="let propiedad of propiedades; let idx = index" class="col-12 col-sm-6 col-md-4 cp-card qKTX_95pZKCNooTgK0_nv" [class.card-margin]="showInProfile"   style="cursor: pointer; padding-right:0px;">
+        <a target="_blank" [routerLink]="['/propiedad/' + propiedad.id]">
+          <div class="card">
+            <!-- carrusel -->
+            <img class="card-img" [src]="propiedad.files.imagen" [alt]="propiedad.files.titulo">
 
-          <!-- resto de la info -->
-          <div class="card-img-overlay">
-            <img *ngIf="propiedad.tipo_user_id == 2" class="imb-img" [src]="propiedad.inmobiliaria.logo" [alt]="propiedad.inmobiliaria.nombre"
-            />
-            <img *ngIf="propiedad.tipo_user_id != 2" class="imb-img" [src]="propiedad.profile_img" />
-          </div>
+            <!-- resto de la info -->
+            <div class="card-img-overlay">
+              <img *ngIf="propiedad.tipo_user_id == 2 && propiedad.inmobiliaria == ''" class="imb-img" [src]="propiedad.inmobiliaria.logo" [alt]="propiedad.inmobiliaria.nombre"
+              />
+              <img *ngIf="propiedad.tipo_user_id != 2 && propiedad.profile_img  == ''" class="imb-img" [src]="propiedad.profile_img" />
+            </div>
 
-          <div class="card-body">
-            <div class="card-text direccion">
+            <div class="card-body" target="_blank"  [routerLink]="['/propiedad/' + propiedad.id]">
+              <div class="card-text direccion">
               <span>
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 {{ propiedad.direccion }}
               </span>
-            </div>
-            <!--descripción -->
-            <div class="cont-b">
-              <div class="card-text card-tit" [routerLink]="['/propiedad/' + propiedad.id]">{{propiedad.titulo}}</div>
-              <div class="card-text">
-                <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span>
-                <span *ngIf="propiedad.banios != 0">
+              </div>
+              <!--descripción -->
+              <div class="cont-b">
+                <div class="card-text card-tit">{{propiedad.titulo}}</div>
+                <div class="card-text">
+                  <span *ngIf="propiedad.tipo_prop_nombre != null">{{propiedad.tipo_prop_nombre}} </span>
+                  <span *ngIf="propiedad.banios != 0">
                   <img src="assets/img/bed.svg" style="width:20px"> {{propiedad.banios}} </span>
-                <span *ngIf="propiedad.dormitorios != 0">
+                  <span *ngIf="propiedad.dormitorios != 0">
                   <img src="assets/img/bath.svg" style="width:20px"> {{propiedad.dormitorios}} </span>
-                <span class="card-precio">{{propiedad.moneda_simbolo}}
-                  <strong>{{propiedad.precio | number:'1.0'}}</strong>
+                  <span class="card-precio" *ngIf="propiedad.tipo_operacion_id == 1 || propiedad.tipo_operacion_id == 0">{{propiedad.moneda_simbolo}}
+                    <strong>{{propiedad.precio | number:'1.0'}}</strong>
                 </span>
+
+                  <span class="card-precio" *ngIf="propiedad.tipo_operacion_id == 2">{{propiedad.moneda_simbolo}}
+                    <strong>{{propiedad.valor_semana | number:'1.0'}}</strong>
+                </span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -209,24 +215,25 @@
     <table class="propierties-table-list">
       <tbody>
         <tr *ngFor="let propiedad of propiedades; let idx = index;" [class.row-selected]="propiedad.isSelected" (mouseover)="propiedad.rowActive = true"
-          (mouseout)="propiedad.rowActive = false">
+          (mouseout)="propiedad.rowActive = false" >
           <td class="td-icon-button">
             <i class="material-icons row-points" [hidden]="!propiedad.rowActive"> drag_indicator </i>
             <i class="icon-button material-icons" [class.icon-checked]="propiedad.isSelected" (click)="propiedad.isSelected = !propiedad.isSelected">{{ !propiedad.isSelected ? 'check_box_outline_blank' : 'check_box' }}</i>
           </td>
-          <td class="td-icon-button" *ngIf="+activas">
+          <td class="td-icon-button" *ngIf="+activas" [routerLink]="['/propiedad/' + propiedad.id]">
             <i title="Destacar" class="icon-button material-icons" [class.icon-checked]="propiedad.destacado" (click)="destacar(propiedad.id)">{{ !propiedad.destacado ? 'star_border' : 'star' }}</i>
           </td>
-          <td>{{ propiedad.tipo_operacion_name }}</td>
-          <td>{{ propiedad.tipo_prop_nombre }}</td>
-          <td>{{ propiedad.direccion }}</td>
-          <td>{{ propiedad.nombre_zona }}</td>
-          <td>{{ propiedad.ambientes }} Amb.</td>
-          <td>{{ propiedad.dormitorios }} Dorm.</td>
-          <td>{{ propiedad.banios }} Banios</td>
-          <td>{{ propiedad.cochera }} Cocheras</td>
-          <td>{{ propiedad.superficie_total }}m2 Tot.</td>
-          <td>{{ propiedad.moneda_simbolo + ' ' + propiedad.precio }}</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]">{{ propiedad.tipo_operacion_name }}</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]">{{ propiedad.tipo_prop_nombre }}</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]">{{ propiedad.calle1 }}</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]">{{ propiedad.ciudad }}</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]">{{ propiedad.ambientes }} Amb.</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]">{{ propiedad.dormitorios }} Dorm.</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]">{{ propiedad.banios }} Banios</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]">{{ propiedad.cochera }} Cocheras</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]">{{ propiedad.superficie_total }}m2 Tot.</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]" *ngIf="propiedad.tipo_operacion_id == 1 || propiedad.tipo_operacion_id == 0">{{ propiedad.moneda_simbolo + ' ' + propiedad.precio }}</td>
+          <td [routerLink]="['/propiedad/' + propiedad.id]" *ngIf="propiedad.tipo_operacion_id == 2">{{ propiedad.moneda_simbolo + ' ' + propiedad.valor_semana }}</td>
           <td>
             <i title="Editar" class="icon-button material-icons icon-checked" [hidden]="!propiedad.rowActive" (click)="edit(propiedad.id)">edit</i>
           </td>

@@ -62,6 +62,14 @@ export class PropDetailPageComponent implements OnInit {
     this.router.navigate(['/perfil', this.propiedad.propietario_id]);
   }
 
+  getImgRoute() {
+    if (this.propiedad.user.tipo_user_id == 1)  {
+      //return  this.config.getAPIImg() + this.propiedad.inmobiliaria.logo;
+
+    }
+    return (+this.propiedad.user.tipo_user_id) === 2 ? this.propiedad.inmobiliaria.logo : this.propiedad.user.profile_img;
+  }
+
   sendContact() {
     let data = {
       name: this.contact.name, email: this.contact.email, body: this.contact.message, phone: this.contact.phone

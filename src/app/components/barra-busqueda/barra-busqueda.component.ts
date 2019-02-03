@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from "@angular/core";
+import { Component, NgModule, Input, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PropiedadesService } from "./../../providers/propiedades.service";
 import { ZonasService } from "../../providers/zonas.service";
@@ -10,6 +10,7 @@ import { AppliedFiltersService } from "../../providers/applied-filters.service";
   templateUrl: "./barra-busqueda.component.html",
   styleUrls: ["./barra-busqueda.component.css"]
 })
+
 export class BarraBusquedaComponent implements OnInit, OnDestroy {
   @Input()
   hideFilter: any = [];

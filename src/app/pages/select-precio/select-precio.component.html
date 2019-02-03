@@ -20,7 +20,13 @@
             <p>{{plan.bd1}}</p>
             <p>{{plan.bd2}}</p>
           </div>
+
           <div class="row bt-cont">
+            <div class="col-12 col-sm-10 offset-sm-1 text-center" *ngIf="!registrado">
+              <button type="button" class="btn btn-cprop" data-toggle="modal" (click)="showRegistrar()">
+                <span>Publicar</span>
+              </button>
+            </div>
             <div class="col-12 col-sm-10 offset-sm-1 text-center" *ngIf="registrado && subscription.id_plan==plan.id">
               <div *ngIf="(subscription.max_avisos_disponibles>0 || subscription.max_avisos_disponibles==-1)">
                 <button type="button" class="btn btn-cprop btn-publish-now" data-toggle="modal" routerLink="/new-prop">

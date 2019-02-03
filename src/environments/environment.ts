@@ -3,12 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   googleApiKey: 'AIzaSyD2ohKHAfu3LTRtftC37oMAmy2ldJ1a4Gg',
-  // assetsRoute: '/',
-  // urlApi: 'https://creoprop.com.ar/creoPropAPI/web/',
-  assetsRoute: 'http://192.168.0.13/',
-  urlApi: 'http://192.168.0.13:8000/',
+   assetsRoute: '/',
+   img: 'https://creoprop.com.ar/',
+   urlApi: 'https://creoprop.com.ar/creoPropAPI/web/',
+  //assetsRoute: 'http://192.168.0.13/',
+  //urlApi: 'http://creopropapi.test/',
 };
 
 /*

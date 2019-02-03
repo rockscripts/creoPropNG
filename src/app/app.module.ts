@@ -45,7 +45,7 @@ import { PropiedadFormComponent } from './forms/propiedad-form/propiedad-form.co
 import { SignupFormPComponent } from './forms/signup-form-p/signup-form-p.component';
 import { DenunciaPropFormComponent } from './forms/denuncia-prop-form/denuncia-prop-form.component';
 import { UserProfileFormComponent } from './forms/user-profile-form/user-profile-form.component';
-
+import { OrderModule } from 'ngx-order-pipe';
 import localeEs from '@angular/common/locales/es';
 registerLocaleData(localeEs);
 
@@ -135,6 +135,7 @@ import { AppliedFiltersService } from './providers/applied-filters.service';
     SweetAlert2Module,
     NgbModalModule,
     NgbCarouselModule,
+    OrderModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

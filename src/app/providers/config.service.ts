@@ -11,4 +11,8 @@ export class ConfigService {
   getAPIUrl() {
     return environment.urlApi;
   }
+
+  getAPIImg() {
+    return environment.img;
+  }
 }

@@ -13,6 +13,7 @@ import { Subscripcion }                  from './../../models/subscripcion';
 import { ProfileService }          from './../../providers/profile.service';
 import { SubscriptionService }          from './../../providers/subscription.service';
 import { ActivatedRoute } from '@angular/router';
+import {RegisterModalService} from '../../components/register-modal/register-modal.service';
 
 @Component({
   selector: 'app-select-precio',
@@ -48,8 +49,10 @@ export class SelectPrecioComponent implements OnInit {
     private MP:      MercadoPagoService,
     private modalLG: LoginModalService,
     private profile: ProfileService,
-    private subscriptionService:SubscriptionService,
-    private route: ActivatedRoute
+    private subscriptionService: SubscriptionService,
+    private route: ActivatedRoute,
+    private modalReg: RegisterModalService,
+    private modalLogin: LoginModalService,
   ) {}
 
   ngOnInit() {
@@ -100,6 +103,9 @@ export class SelectPrecioComponent implements OnInit {
     });
     }
   }
+
+  showRegistrar() { this.modalReg.show(); }
+  showLogin() { this.modalLogin.show(); }
 
   siguiente(s)
   {

@@ -11,7 +11,7 @@ import { } from "@types/googlemaps";
 import { MapsAPILoader } from "@agm/core";
 import { FormControl } from "@angular/forms"; //[Modificar] despues se usará este componente para todos los formularios?
 import { NgSelectModule } from "@ng-select/ng-select";
-
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Propiedad } from "../../models/propiedad";
 import { ZonasService } from "../../providers/zonas.service";
 import { PropiedadesService } from "../../providers/propiedades.service";
@@ -77,7 +77,8 @@ export class PropiedadFormComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private profile: ProfileService,
-    private profileSubscription: SubscriptionService
+    private profileSubscription: SubscriptionService,
+    private fb: FormBuilder
   ) {
 
   }
@@ -192,6 +193,8 @@ export class PropiedadFormComponent implements OnInit {
           this.model.latitud = place.geometry.location.lat();
           this.model.longitud = place.geometry.location.lng();
           this.mapZoom = 12;
+          this.model.direccion = place.formatted_address;
+          this.model.calle1 = place.name;
         });
       });
     });
@@ -212,12 +215,41 @@ export class PropiedadFormComponent implements OnInit {
 
     this.model.zona = [this.selectedZonasByLevel[actualLevel]];
 
+    if (this.model.provincia === '') {
+        for (const zona of this.zonas) {
+            if (zona.id === this.selectedZonasByLevel[actualLevel]  && zona.children) {
+              this.model.provincia = zona.name;
+              this.model.id_provincia = zona.id;
+            }
+        }
+    }
+
+    if (this.model.ciudad === '' && actualLevel === 2) {
+      for (const zona of this.zonasForSelect[actualLevel]) {
+        if (this.model.zona[0] === zona.id) {
+          this.model.ciudad = zona.name;
+          this.model.id_ciudad = zona.id;
+        }
+      }
+    }
+
+
+    if (this.model.barrio === '' && actualLevel === 3) {
+      for (const zona of this.zonasForSelect[actualLevel]) {
+        if (this.model.zona[0] === zona.id) {
+          this.model.barrio = zona.name;
+          this.model.id_barrio = zona.id;
+        }
+      }
+    }
+
+
+
     //Clean all next fields
     for (let i = nextLevel; i <= this.zonasService.MAX_LEVELS; i++) {
       this.zonasForSelect[i] = null;
       this.selectedZonasByLevel[i] = null;
     }
-
     //Populate next field
     for (const zona of this.zonasForSelect[actualLevel]) {
       if (zona.id === this.selectedZonasByLevel[actualLevel] && zona.children) {
@@ -233,12 +265,12 @@ export class PropiedadFormComponent implements OnInit {
   guardar() {
     this.prop.setModel(this.model);
     this.cargando = true;
+    console.log(this.model)
 
-    //Edición de propiedad
     if (this.model.id != -1) {
       this.prop.edit().subscribe(r => {
         this.cargando = false;
-        this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
+        this.prop.clearModel();
         this.router.navigate(["mi-cuenta"]);
       });
     }
@@ -267,7 +299,7 @@ export class PropiedadFormComponent implements OnInit {
         this.prop.create().subscribe(r => {
           this.cargando = false;
           if (!r['errors']) {
-            this.prop.clearModel(); //[modificar] //esto se tendria que hacer automáticamente cada vez que se crea una nueva propiedad
+            this.prop.clearModel();
             if (this.model.id == -1) {
               this.router.navigate(["/new-prop-ok"]);
             }

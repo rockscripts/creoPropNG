@@ -1,5 +1,6 @@
 export class Propiedad {
   public titulo: string = "";
+  public direccion_old: string = "";
   public direccion: string = "";
   public capacidad: number = 0;
   public dormitorios: number = 0;
@@ -23,6 +24,7 @@ export class Propiedad {
   public moneda: number = 1;
   public moneda_simbolo: string = "";
   public precio: number = 0;
+
   public nombre_operacion: string = "";
 
   public piso: string = "";
@@ -33,7 +35,7 @@ export class Propiedad {
   public longitud: number = -64.4100692;
   public codigoPostal: number = 0;
 
-  public tipo_propiedad_id: number = 1;
+  public tipo_propiedad_id: string = '';
   public tipo_operacion_id: number = 0;
   public superficie_cubierta: number = 0;
   public superficie_total: number = 0;
@@ -50,15 +52,24 @@ export class Propiedad {
   public tipo_plan: number = -1;
   public id: number = -1;
   public propietario_id: number = -1;
+  public tipo_prop_nombre: string = '';
   public inmobiliaria_id: number = -1;
 
   public inmobiliaria: any = { logo: "", nombre: "" };
-  public user: any = { celular: "", name: "", id: "", surname: "" };
+  public user: any = { celular: "", name: "", id: "", surname: "", matricula: "", tipo_user_id: '', profile_img: '' };
 
   public zona_id: number = -1;
   public zona: any = [];
   public zona_nivel: number = 1;
   public nombre_zona: string = "";
+  public id_provincia: string = "";
+  public provincia: string = "";
+  public id_ciudad: number = 1;
+  public ciudad: string = "";
+  public id_barrio: number = 1;
+  public barrio: string = "";
+  public id_subzona: number = 1;
+  public subzona: string = "";
 
   //valores posibles
   public tipo_prop: any = [
@@ -113,9 +124,13 @@ export class Propiedad {
     }
 
     if (
-      (this.tipo_operacion_id == 1 || this.tipo_operacion_id == 2) &&
+      (this.tipo_operacion_id == 2) &&
       (this.valor_dia == 0 || this.valor_mes == 0 || this.valor_semana == 0)
     ) {
+      this.errors = "Es necesario completar el precio";
+      return false;
+    }
+    if (this.tipo_operacion_id == 1 && this.precio == 0) {
       this.errors = "Es necesario completar el precio";
       return false;
     }

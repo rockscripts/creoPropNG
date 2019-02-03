@@ -34,7 +34,7 @@
           <div class="filter-content">
             <div class="list-container">
               <ul class="list-group list-group-flush">
-                <li *ngFor="let ub of searchConfig.ubicaciones_provincias.Argentina" class="list-group-item">
+                <li *ngFor="let ub of searchConfig.ubicaciones_provincias.Argentina | orderBy: 'count' : true " class="list-group-item">
                   <div (click)="addFilter({ubicacion_provincia: ub.id})" class="d-flex justify-content-between">
                     <span>{{ub.name}}</span>
                     <span class="badge">({{ub.count}})</span>

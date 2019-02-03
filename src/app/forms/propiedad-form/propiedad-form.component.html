@@ -26,12 +26,23 @@
           </ng-select>
         </div>
 
-        <div class="input-element">
+        <div class="input-element" *ngIf="model.tipo_propiedad_id; else templateName">
           <label>Tipo de propiedad</label>
-          <ng-select id="tipoPropiedad" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="tiposPropiedad" [(ngModel)]="model.tipo_propiedad_id"
+          <ng-select id="tipoPropiedad" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="tiposPropiedad" [(ngModel)]="tiposPropiedad[model.tipo_propiedad_id].id"
             name="tipo_propiedad_id">
           </ng-select>
         </div>
+
+        <ng-template #templateName>
+            <div class="input-element">
+                <label>Tipo de propiedad</label>
+                <ng-select id="tipoPropiedad" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="tiposPropiedad" [(ngModel)]="model.tipo_propiedad_id"
+                  name="tipo_propiedad_id">
+                </ng-select>
+            </div>
+
+
+        </ng-template>
 
         <div class="input-element">
           <label>Ambientes</label>
@@ -90,9 +101,10 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="input-element" *ngIf="model.tipo_operacion_id == 0">
-          <label>Precio de venta</label>
+      <div class="row" *ngIf="model.tipo_operacion_id == 0 || model.tipo_operacion_id == 1">
+        <div class="input-element">
+          <label *ngIf="model.tipo_operacion_id == 0">Precio de venta</label>
+          <label *ngIf="model.tipo_operacion_id == 1">Precio de alquiler</label>
           <br />
           <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
             name="moneda">
@@ -104,22 +116,41 @@
           <label>Expensas</label>
           <br />
           <input id="expensas" type="text" class="form-control" name="expensas" [(ngModel)]="model.expensas" placeholder="">
-          <span class="before">$</span>
+
         </div>
       </div>
 
-      <div class="row" *ngIf="model.tipo_operacion_id != 0">
+      <div class="row" *ngIf="model.tipo_operacion_id == 2">
         <div class="input-element">
           <label>Valor día</label>
+          <br />
+          <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
+                     name="moneda">
+          </ng-select>
           <input id="valor_dia" type="text" class="form-control" name="valor_dia" [(ngModel)]="model.valor_dia" placeholder="Valor día">
         </div>
         <div class="input-element">
           <label>Valor semana</label>
+          <br />
+          <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
+                     name="moneda">
+          </ng-select>
           <input id="valor_semana" type="text" class="form-control" name="valor_semana" [(ngModel)]="model.valor_semana" placeholder="Valor semana">
         </div>
         <div class="input-element">
           <label>Valor mes</label>
+          <br />
+          <ng-select id="moneda" [clearable]="false" bindValue="id" bindLabel="nombre" [items]="model.moneda_op" [(ngModel)]="model.moneda"
+                     name="moneda">
+          </ng-select>
           <input id="valor_mes" type="text" class="form-control" name="valor_mes" [(ngModel)]="model.valor_mes" placeholder="Valor mes">
+        </div>
+
+        <div class="input-element">
+          <label>Expensas</label>
+          <br />
+          <input id="expensas" type="text" class="form-control" name="expensas" [(ngModel)]="model.expensas" placeholder="">
+
         </div>
       </div>
 
@@ -168,10 +199,9 @@
           <hr>
         </div>
       </div>
-
       <div class="row">
         <div class="col">
-          <label>Dirección</label>
+          <label>Dirección ( <small _ngcontent-c13="">ejemplo: Avenida Santa Fe 4500, Palermo, CABA, Argentina</small>)</label>
           <input autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl"
             name="direccion" [(ngModel)]="model.direccion">
         </div>
@@ -227,6 +257,10 @@
           </div>
           <input id="img-input" type="file" (change)="onFileChange($event)" #file multiple class="foto-input hidden">
         </div>
+        <div class="col-3 col-files" *ngFor="let img of model.files; let i = index">
+          <img [src]="img.nombre">
+        </div>
+
         <div class="col-3 col-files" *ngFor="let img of model.imgs; let i = index">
           <img [src]="img.url">
         </div>
